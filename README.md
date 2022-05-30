@@ -1,6 +1,6 @@
 # Data Pipeline
 
-To prepare data for our [industry impact page](https://model.earth/localsite/info/), we're using [GitHub Actions](/community/projects/#github-actions) and two processes that estimate gaps in BLS data: Eckert Linear Objective Functions and Machine Learning.  
+To prepare data for our [industry impact page](https://model.earth/localsite/info/), we'll be using [GitHub Actions](/community/projects/#github-actions) and two processes that estimate gaps in census employment data: Eckert Linear Objective Functions and Machine Learning.  
 
 
 [Using Machine Learning for Census Business Data Gaps](research)
