@@ -1,4 +1,4 @@
-# Using Machine Learning to Estimate Census Business Pattern Gaps
+# Using Machine Learning to Estimate Census Business Patterns
 
 **Data sources**  
 Bureau of Labor Statistics (BLS) Quarterly Census of Employment & Wages - [Output](/localsite/info/#state=GA), [Dev](/localsite/info/naics)  
