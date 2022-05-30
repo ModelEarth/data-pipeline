@@ -19,7 +19,7 @@ Isserman, A.M.; Westervelt, J. [1.5 million missing numbers: Overcoming employme
 
 ## 2017 NAICS Data without Gaps
 
-As of 2017, Census now perturbs cells with small employment counts. Therefore, [fpeckert](http://www.fpeckert.me/cbp/) does not impute data from 2017 forward since there are no missing cells in the data.
+As of 2017, the US Census inserts estimates (perturbs cells) for small employment counts. Therefore, [fpeckert](http://www.fpeckert.me/cbp/) does not impute data from 2017 forward since there are no missing cells in the data.
 
 [Imputed County Business Patterns (CBP) dataset](http://www.fpeckert.me/cbp/) by [Fabian Eckert, et al.](http://fpeckert.me/cbp/efsy.pdf) - The Fabian Eckert (2021) work extends Isserman and Westervelt (2006), but uses a linear objective function for faster computation with exact results. The authors are planning to apply to zip codes. "After 1994, the CBP files contain tabulations at the zip code level. We plan to apply our imputation method to this geographic unit in a future draft." - GitHub Fork: [cbp\_database\_public](https://github.com/modelearth/cbp_database_public).     
 
