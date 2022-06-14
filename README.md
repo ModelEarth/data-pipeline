@@ -14,7 +14,7 @@ The local industry lists are loaded in the browser (client-side) to filter [US E
 1. [Generate state county files](https://github.com/modelearth/community-data) for 2 to 6 digit NAICS industries for static hosting on Github.  
 To avoid gaps in county industry data, we'll use this [2018 data from Eckert](https://github.com/modelearth/community-data/tree/master/process/cbp).  
 2. Compare with output from our [Machine Learning script](research).  
-3. Our **[new comparison report](../../info/naics/)** will be a new version of our [EPA Local Industries Impact Report](../../info/).  
+3. Our **[new comparison report](/localsite/info/naics/)** updates our [EPA Local Industries Impact Report](../../info/).  
 4. We're also working with [Commodity Flow Survey (CFS)](https://github.com/modelearth/commodity-flow-survey) NAICS data.
 
 Data source: US Bureau of Labor Statistics (BLS)
