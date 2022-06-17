@@ -5,8 +5,9 @@ To prepare data for our [industry impact page](https://model.earth/localsite/inf
 
 [Using Machine Learning for Census Business Data Gaps](research)
 We process local NAICS industry lists into:
-1. [state files with county employment levels](https://github.com/modelearth/community-data/tree/master/us/state) 
-2. [zipcode files with employment levels](https://github.com/modelearth/community-data/tree/master/us/zipcodes/naics) 
+1. [State files with county employment levels](https://github.com/modelearth/community-data/tree/master/us/state) 
+2. [Zipcode files with employment levels](https://github.com/modelearth/community-data/tree/master/us/zipcodes/naics) 
+3. [International trade](international)  
 
 The local industry lists are loaded in the browser (client-side) to filter [US EPA Industry Input-Output Charts](../../../io/charts/) which use [static JSON USEEIO impact data](https://github.com/modelearth/io/tree/main/build/api).  
 
@@ -29,10 +30,14 @@ We recommend that you work in [USEEIO-widgets repo](../../charts) if you are int
 
 ## Community Data File Format
 
-Our NAICS county CSV files have the following columns - [Sample File](https://github.com/modelearth/community-data/blob/master/us/state/GA/naics/GA_data_filled.csv)  
+Our NAICS county CSV files have the following columns - [Sample File](https://github.com/modelearth/community-data/blob/master/us/zipcodes/naics/3/0/3/1/8/zipcode30318-census-naics6-2018.csv)<!--[Sample File](https://github.com/modelearth/community-data/blob/master/us/state/GA/naics/GA_data_filled.csv)-->  
 
-- FIPS - Location (5-digit state-county ID)  
-- NAICS - ActivityProducedBy (6-digit naics)  
+**In File Name**
+- Zip, FIPS (5-digit state-county ID) or CountryCode (3-characters)  
+- NaicsLevel - ActivityProducedBy (6-digit naics)  
+
+**Columns**
+- Naics - ActivityProducedBy (6-digit naics)  
 - Establishments - Other (Number of Extablishments)  
 - Employees - Employment FlowAmount (Number of Employees)  
 - Payroll - US Dollars (Annual Wages)
