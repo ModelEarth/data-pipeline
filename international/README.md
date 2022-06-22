@@ -7,4 +7,4 @@
 
 ## Data Processing Steps
 
-Coming soon
+The UN Comtrade Database API was used to gather data on imports and exports. For an individual user, the request limit of a single API call is 10,000. 
