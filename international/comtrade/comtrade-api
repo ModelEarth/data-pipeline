@@ -1,0 +1,2118 @@
+
+R version 4.2.0 (2022-04-22 ucrt) -- "Vigorous Calisthenics"
+Copyright (C) 2022 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+> install.packages("comtradr")
+Installing package into ‘C:/Users/Asus/AppData/Local/R/win-library/4.2’
+(as ‘lib’ is unspecified)
+--- Please select a CRAN mirror for use in this session ---
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.2/comtradr_0.3.0.zip'
+Content type 'application/zip' length 450447 bytes (439 KB)
+downloaded 439 KB
+
+package ‘comtradr’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+        C:\Users\Asus\AppData\Local\Temp\RtmpsdWPmj\downloaded_packages
+> library(comtradr)
+> example54 <- ct_search(reporters = "Dominican Rep.", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example54, file= " Dominican Rep. 2020 exports.csv", row.names=FALSE)
+> Example55 <- ct_search(reporters = "Algeria", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example55, file= " Algeria 2020.csv", row.names=FALSE)
+> Example56 <- ct_search(reporters = "Ecuador", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example56, file= " Ecuador 2020.csv", row.names=FALSE)
+> Example57 <- ct_search(reporters = "Egypt", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example57, file= " Egypt 2020.csv", row.names=FALSE)
+> Example58 <- ct_search(reporters = "Eritrea", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example58, file= " Eritrea 2020.csv", row.names=FALSE)
+> Example59 <- ct_search(reporters = "Spain", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example59, file= " Spain 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example59' not found
+> Example59 <- ct_search(reporters = "Spain", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example59, file= " Spain 2020 imports.csv", row.names=FALSE)
+> example59 <- ct_search(reporters = "Spain", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example59, file= " Spain 2020 exports.csv", row.names=FALSE)
+> Example60 <- ct_search(reporters = "Estonia", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example60, file= " Estonia 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example60' not found
+> Example60 <- ct_search(reporters = "Estonia", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example60, file= " Estonia 2020 imports.csv", row.names=FALSE)
+> example60 <- ct_search(reporters = "Estonia", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example60, file= " Estonia 2020 exports.csv", row.names=FALSE)
+> Example61 <- ct_search(reporters = "Ethiopia", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example61, file= " Ethiopia 2020.csv", row.names=FALSE)
+> Example62 <- ct_search(reporters = "Finland", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example62, file= " Finland 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example62' not found
+> Example62 <- ct_search(reporters = "Finland", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example62, file= " Finland 2020 imports.csv", row.names=FALSE)
+> example62 <- ct_search(reporters = "Finland", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example62, file= " Finland 2020 exports.csv", row.names=FALSE)
+> Example63 <- ct_search(reporters = "Fiji", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example63, file= " Fiji 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example63' not found
+> Example63 <- ct_search(reporters = "Fiji", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example63, file= " Fiji 2020 imports.csv", row.names=FALSE)
+> example63 <- ct_search(reporters = "Fiji", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example63, file= " Fiji 2020 exports.csv", row.names=FALSE)
+> Example64 <- ct_search(reporters = "France", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example64, file= " France 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example64' not found
+> Example64 <- ct_search(reporters = "France", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example64, file= " France 2020 imports.csv", row.names=FALSE)
+> example64 <- ct_search(reporters = "France", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example64, file= " France 2020 exports.csv", row.names=FALSE)
+> Example65 <- ct_search(reporters = "Faeroe Isds", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example65, file= " Faeroe Isds 2020.csv", row.names=FALSE)
+> Example66 <- ct_search(reporters = "FS Micronesia", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example66, file= " FS Micronesia 2020.csv", row.names=FALSE)
+> Example67 <- ct_search(reporters = "Gabon", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example67, file= " Gabon 2020.csv", row.names=FALSE)
+> Example68 <- ct_search(reporters = "United Kingdom", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example68, file= " United Kingdom 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example68' not found
+> Example68 <- ct_search(reporters = "United Kingdom", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example68, file= " United Kingdom 2020 imports.csv", row.names=FALSE)
+> example68 <- ct_search(reporters = "United Kingdom", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example68, file= " United Kingdom 2020 exports.csv", row.names=FALSE)
+> Example69 <- ct_search(reporters = "Georgia", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example69, file= " Georgia 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example69' not found
+> Example69 <- ct_search(reporters = "Georgia", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example69, file= " Georgia 2020 imports.csv", row.names=FALSE)
+> example69 <- ct_search(reporters = "Georgia", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example69, file= " Georgia 2020 exports.csv", row.names=FALSE)
+> Example70 <- ct_search(reporters = "Ghana", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example70, file= " Ghana 2020.csv", row.names=FALSE)
+> Example71 <- ct_search(reporters = "Gibraltar", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example71, file= " Gibraltar 2020.csv", row.names=FALSE)
+> Example72 <- ct_search(reporters = "Guinea", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example72, file= " Guinea 2020.csv", row.names=FALSE)
+> Example73 <- ct_search(reporters = "Gambia", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example73, file= " Gambia 2020.csv", row.names=FALSE)
+> Example74 <- ct_search(reporters = "Guinea-Bissau", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example74, file= " Guinea-Bissau 2020.csv", row.names=FALSE)
+> Example75 <- ct_search(reporters = "Equatorial Guinea", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example75, file= " Equatorial Guinea 2020.csv", row.names=FALSE)
+> Example76 <- ct_search(reporters = "Greece", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example76, file= " Greece 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example76' not found
+> Example76 <- ct_search(reporters = "Greece", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example76, file= " Greece 2020 imports.csv", row.names=FALSE)
+> example76 <- ct_search(reporters = "Greece", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example76, file= " Greece 2020 exports.csv", row.names=FALSE)
+> Example77 <- ct_search(reporters = "Grenada", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example77, file= " Grenada 2020.csv", row.names=FALSE)
+> Example78 <- ct_search(reporters = "Greenland", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example78, file= " Greenland 2020.csv", row.names=FALSE)
+> Example79 <- ct_search(reporters = "Guatemala", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example79, file= " Guatemala 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example79' not found
+> Example79 <- ct_search(reporters = "Guatemala", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example79, file= " Guatemala 2020 imports.csv", row.names=FALSE)
+> example79 <- ct_search(reporters = "Guatemala", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example79, file= " Guatemala 2020 exports.csv", row.names=FALSE)
+> Example80 <- ct_search(reporters = "Guyana", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example80, file= " Guyana 2020.csv", row.names=FALSE)
+> Example81 <- ct_search(reporters = "China, Hong Kong SAR", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example81, file= " China, Hong Kong SAR 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example81' not found
+> Example81 <- ct_search(reporters = "China, Hong Kong SAR", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example81, file= " China, Hong Kong SAR 2020 imports.csv", row.names=FALSE)
+> example81 <- ct_search(reporters = "China, Hong Kong SAR", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example81, file= " China, Hong Kong SAR 2020 exports.csv", row.names=FALSE)
+> Example82 <- ct_search(reporters = "Honduras", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example82, file= " Honduras 2020.csv", row.names=FALSE)
+> Example83 <- ct_search(reporters = "Croatia", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example83, file= " Croatia 2020.csv", row.names=FALSE)
+> Example84 <- ct_search(reporters = "Haiti", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example84, file= " Haiti 2020.csv", row.names=FALSE)
+> Example85 <- ct_search(reporters = "Hungary", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example85, file= " Hungary 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example85' not found
+> Example85 <- ct_search(reporters = "Hungary", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example85, file= " Hungary 2020 imports.csv", row.names=FALSE)
+> example85 <- ct_search(reporters = "Hungary", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example85, file= " Hungary 2020 exports.csv", row.names=FALSE)
+> Example86 <- ct_search(reporters = "Indonesia", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example86, file= " Indonesia 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example86' not found
+> Example86 <- ct_search(reporters = "Indonesia", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example86, file= " Indonesia 2020 imports.csv", row.names=FALSE)
+> example86 <- ct_search(reporters = "Indonesia", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example86, file= " Indonesia 2020 exports.csv", row.names=FALSE)
+> Example87 <- ct_search(reporters = "India", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example87, file= " India 2020.csv", row.names=FALSE)
+> Example88 <- ct_search(reporters = "Ireland", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example88, file= " Ireland 2020.csv", row.names=FALSE)
+> Example89 <- ct_search(reporters = "Iran", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example89, file= " Iran 2020.csv", row.names=FALSE)
+> Example90 <- ct_search(reporters = "Iraq", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example90, file= " Iraq 2020.csv", row.names=FALSE)
+> Example91 <- ct_search(reporters = "Iceland", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example91, file= " Iceland 2020.csv", row.names=FALSE)
+> Example92 <- ct_search(reporters = "Israel", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example92, file= " Israel 2020.csv", row.names=FALSE)
+> Example93 <- ct_search(reporters = "Italy", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example93, file= " Italy 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example93' not found
+> Example93 <- ct_search(reporters = "Italy", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example93, file= " Italy 2020 imports.csv", row.names=FALSE)
+> example93 <- ct_search(reporters = "Italy", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example93, file= " Italy 2020 exports.csv", row.names=FALSE)
+> Example94 <- ct_search(reporters = "Jamaica", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example94, file= " Jamaica 2020.csv", row.names=FALSE)
+> Example95 <- ct_search(reporters = "Jordan", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example95, file= " Jordan 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example95' not found
+> Example95 <- ct_search(reporters = "Jordan", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example95, file= " Jordan 2020 imports.csv", row.names=FALSE)
+> example95 <- ct_search(reporters = "Jordan", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example95, file= " Jordan 2020 exports.csv", row.names=FALSE)
+> Example95 <- ct_search(reporters = "Jordan", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example95, file= " Jordan 2020 imports.csv", row.names=FALSE)
+> example95 <- ct_search(reporters = "Jordan", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example95, file= " Jordan 2020 exports.csv", row.names=FALSE)
+> Example96 <- ct_search(reporters = "Japan", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example96, file= " Japan 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example96' not found
+> Example96 <- ct_search(reporters = "Japan", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example96, file= " Japan 2020 imports.csv", row.names=FALSE)
+> example96 <- ct_search(reporters = "Japan", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example96, file= " Japan 2020 exports.csv", row.names=FALSE)
+> Example97 <- ct_search(reporters = "Kazakhstan", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example97, file= " Kazakhstan 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example97' not found
+> Example97 <- ct_search(reporters = "Kazakhstan", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example97, file= " Kazakhstan 2020 imports.csv", row.names=FALSE)
+> example97 <- ct_search(reporters = "Kazakhstan", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example97, file= " Kazakhstan 2020 exports.csv", row.names=FALSE)
+> Example98 <- ct_search(reporters = "Kenya", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example98, file= " Kenya 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example98' not found
+> Example98 <- ct_search(reporters = "Kenya", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example98, file= " Kenya 2020 imports.csv", row.names=FALSE)
+> example98 <- ct_search(reporters = "Kenya", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example98, file= " Kenya 2020 exports.csv", row.names=FALSE)
+> Example98 <- ct_search(reporters = "Kenya", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example98, file= " Kenya 2020 imports.csv", row.names=FALSE)
+> Example99 <- ct_search(reporters = "Kyrgyzstan", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example99, file= " Kyrgyzstan 2020.csv", row.names=FALSE)
+> Example100 <- ct_search(reporters = "Cambodia", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example100, file= " Cambodia 2020.csv", row.names=FALSE)
+> Example101 <- ct_search(reporters = "Kiribati", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example101, file= " Kiribati 2020.csv", row.names=FALSE)
+> Example102 <- ct_search(reporters = "Saint Kitts and Nevis", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example102, file= " Saint Kitts and Nevis 2020.csv", row.names=FALSE)
+> Example103 <- ct_search(reporters = "Rep. of Korea", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example103, file= " Rep. of Korea 2020.csv", row.names=FALSE)
+> Example104 <- ct_search(reporters = "Kuwait", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example104, file= " Kuwait 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example104' not found
+> Example104 <- ct_search(reporters = "Kuwait", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example104, file= " Kuwait 2020 imports.csv", row.names=FALSE)
+> example104 <- ct_search(reporters = "Kuwait", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example104, file= " Kuwait 2020 exports.csv", row.names=FALSE)
+> Example105 <- ct_search(reporters = "Lao People's Dem. Rep.", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example105, file= " Lao People's Dem. Rep. 2020.csv", row.names=FALSE)
+> Example105 <- ct_search(reporters = "Lao People's Dem. Rep.", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example105, file= " Lao People's Dem. Rep. 2020.csv", row.names=FALSE)
+> Example107 <- ct_search(reporters = "Liberia", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example107, file= " Liberia 2020.csv", row.names=FALSE)
+> Example108 <- ct_search(reporters = "Libya", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example108, file= " Libya 2020.csv", row.names=FALSE)
+> Example109 <- ct_search(reporters = "Saint Lucia", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example109, file= " Saint Lucia 2020.csv", row.names=FALSE)
+> Example110 <- ct_search(reporters = "Sri Lanka", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example110, file= " Sri Lanka 2020.csv", row.names=FALSE)
+> Example111 <- ct_search(reporters = "Lesotho", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example111, file= " Lesotho 2020.csv", row.names=FALSE)
+> Example112 <- ct_search(reporters = "Lithuania", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example112, file= " Lithuania 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example112' not found
+> Example112 <- ct_search(reporters = "Lithuania", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example112, file= " Lithuania 2020 imports.csv", row.names=FALSE)
+> example112 <- ct_search(reporters = "Lithuania", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example112, file= " Lithuania 2020 exports.csv", row.names=FALSE)
+> Example113 <- ct_search(reporters = "Luxembourg", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example113, file= " Luxembourg 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example113' not found
+> Example113 <- ct_search(reporters = "Luxembourg", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example113, file= " Luxembourg 2020 imports.csv", row.names=FALSE)
+> example113 <- ct_search(reporters = "Luxembourg", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example113, file= " Luxembourg 2020 exports.csv", row.names=FALSE)
+> Example114 <- ct_search(reporters = "Latvia", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example114, file= " Latvia 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example114' not found
+> Example114 <- ct_search(reporters = "Latvia", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: Comtrade API request failed, with status code [409]
+> write.csv(Example114, file= " Latvia 2020 imports.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example114' not found
+> example114 <- ct_search(reporters = "Latvia", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: Comtrade API request failed, with status code [409]
+> write.csv(example114, file= " Latvia 2020 exports.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'example114' not found
+> Example114 <- ct_search(reporters = "Latvia", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: Comtrade API request failed, with status code [409]
+> write.csv(Example114, file= " Latvia 2020 imports.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example114' not found
+> example114 <- ct_search(reporters = "Latvia", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: Comtrade API request failed, with status code [409]
+> write.csv(example114, file= " Latvia 2020 exports.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'example114' not found
+> Example114 <- ct_search(reporters = "Latvia", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example114, file= " Latvia 2020 imports.csv", row.names=FALSE)
+> example114 <- ct_search(reporters = "Latvia", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example114, file= " Latvia 2020 exports.csv", row.names=FALSE)
+> Example115 <- ct_search(reporters = "China, Macao SAR", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example115, file= " China, Macao SAR 2020.csv", row.names=FALSE)
+> Example116 <- ct_search(reporters = "Morocco", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example116, file= " Morocco 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example116' not found
+> Example116 <- ct_search(reporters = "Morocco", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example116, file= " Morocco 2020 imports.csv", row.names=FALSE)
+> example116 <- ct_search(reporters = "Morocco", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example116, file= " Morocco 2020 exports.csv", row.names=FALSE)
+> Example117 <- ct_search(reporters = "Rep. of Moldova", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example117, file= " Rep. of Moldova 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example117' not found
+> Example117 <- ct_search(reporters = "Rep. of Moldova", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example117, file= " Rep. of Moldova 2020 imports.csv", row.names=FALSE)
+> example117 <- ct_search(reporters = "Rep. of Moldova", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example117, file= " Rep. of Moldova 2020 exports.csv", row.names=FALSE)
+> Example118 <- ct_search(reporters = "Madagascar", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example118, file= " Madagascar 2020.csv", row.names=FALSE)
+> Example119 <- ct_search(reporters = "Maldives", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example119, file= " Maldives 2020.csv", row.names=FALSE)
+> Example120 <- ct_search(reporters = "Mexico", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example120, file= " Mexico 2020.csv", row.names=FALSE)
+> Example121 <- ct_search(reporters = "Marshall Isds", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example121, file= " Marshall Isds 2020.csv", row.names=FALSE)
+> Example122 <- ct_search(reporters = "North Macedonia", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example122, file= " North Macedonia 2020.csv", row.names=FALSE)
+> Example123 <- ct_search(reporters = "Mali", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example123, file= " Mali 2020.csv", row.names=FALSE)
+> Example124 <- ct_search(reporters = "Malta", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example124, file= " Malta 2020.csv", row.names=FALSE)
+> Example125 <- ct_search(reporters = "Myanmar", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example125, file= " Myanmar 2020.csv", row.names=FALSE)
+> Example126 <- ct_search(reporters = " Montenegro", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: From arg 'reporters', these values were not found in the country database:  Montenegro
+> write.csv(Example126, file= " Montenegro 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example126' not found
+> Example126 <- ct_search(reporters = "Montenegro", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example126, file= " Montenegro 2020.csv", row.names=FALSE)
+> Example127 <- ct_search(reporters = "Mongolia", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example127, file= " Mongolia 2020.csv", row.names=FALSE)
+> Example128 <- ct_search(reporters = "N. Mariana Isds", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example128, file= " N. Mariana Isds 2020.csv", row.names=FALSE)
+> Example129 <- ct_search(reporters = "Mozambique", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example129, file= " Mozambique 2020.csv", row.names=FALSE)
+> Example130 <- ct_search(reporters = "Mauritania", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example130, file= " Mauritania 2020.csv", row.names=FALSE)
+> Example131 <- ct_search(reporters = "Mauritius", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example131, file= " Mauritius 2020.csv", row.names=FALSE)
+> Example132 <- ct_search(reporters = "Malawi", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example132, file= " Malawi 2020.csv", row.names=FALSE)
+> Example133 <- ct_search(reporters = "Malaysia", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example133, file= " Malaysia 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example133' not found
+> Example133 <- ct_search(reporters = "Malaysia", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example133, file= " Malaysia 2020 imports.csv", row.names=FALSE)
+> example133 <- ct_search(reporters = "Malaysia", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example133, file= " Malaysia 2020 exports.csv", row.names=FALSE)
+> Example134 <- ct_search(reporters = "Namibia", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example134, file= " Namibia 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example134' not found
+> Example134 <- ct_search(reporters = "Namibia", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example134, file= " Namibia 2020 imports.csv", row.names=FALSE)
+> example134 <- ct_search(reporters = "Namibia", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example134, file= " Namibia 2020 exports.csv", row.names=FALSE)
+> Example135 <- ct_search(reporters = "New Caledonia", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example135, file= " New Caledonia 2020.csv", row.names=FALSE)
+> 
+> Example136 <- ct_search(reporters = "Niger", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example136, file= " Niger 2020.csv", row.names=FALSE)
+> Example137 <- ct_search(reporters = "Nigeria", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example137, file= " Nigeria 2020.csv", row.names=FALSE)
+> Example138 <- ct_search(reporters = "Nicaragua", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example138, file= " Nicaragua 2020.csv", row.names=FALSE)
+> Example139 <- ct_search(reporters = "Netherland", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: From arg 'reporters', these values were not found in the country database: Netherland
+> write.csv(Example139, file= " Netherland 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example139' not found
+> Example139 <- ct_search(reporters = "Netherlands", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example139, file= " Netherland 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example139' not found
+> Example139 <- ct_search(reporters = "Netherlands", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example139, file= " Netherland 2020 imports.csv", row.names=FALSE)
+> example139 <- ct_search(reporters = "Netherlands", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example139, file= " Netherland 2020 exports.csv", row.names=FALSE)
+> Example140 <- ct_search(reporters = "Norway", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example140, file= " Norway 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example140' not found
+> Example140 <- ct_search(reporters = "Norway", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example140, file= " Norway 2020 imports.csv", row.names=FALSE)
+> example140 <- ct_search(reporters = "Norway", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example140, file= " Norway 2020 exports.csv", row.names=FALSE)
+> Example141 <- ct_search(reporters = "Nepal", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example141, file= " Nepal 2020.csv", row.names=FALSE)
+> Example142 <- ct_search(reporters = "New Zealand", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example142, file= " New Zealand 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example142' not found
+> Example142 <- ct_search(reporters = "New Zealand", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example142, file= " New Zealand 2020 imports.csv", row.names=FALSE)
+> example142 <- ct_search(reporters = "New Zealand", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example142, file= " New Zealand 2020 exports.csv", row.names=FALSE)
+> Example143 <- ct_search(reporters = "Oman", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example143, file= " Oman 2020.csv", row.names=FALSE)
+> Example144 <- ct_search(reporters = "Pakistan", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example144, file= " Pakistan 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example144' not found
+> Example144 <- ct_search(reporters = "Pakistan", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example144, file= " Pakistan 2020 imports.csv", row.names=FALSE)
+> example144 <- ct_search(reporters = "Pakistan", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example144, file= " Pakistan 2020 exports.csv", row.names=FALSE)
+> Example145 <- ct_search(reporters = "Panama", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example145, file= " Panama 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example145' not found
+> Example145 <- ct_search(reporters = "Panama", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example145, file= " Panama 2020 imports.csv", row.names=FALSE)
+> example145 <- ct_search(reporters = "Panama", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example145, file= " Panama 2020 exports.csv", row.names=FALSE)
+> Example146 <- ct_search(reporters = "Peru", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example146, file= " Peru 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example146' not found
+> Example146 <- ct_search(reporters = "Peru", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example146, file= " Peru 2020 imports.csv", row.names=FALSE)
+> example146 <- ct_search(reporters = "Peru", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example146, file= " Peru 2020 exports.csv", row.names=FALSE)
+> Example146 <- ct_search(reporters = "Peru", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example146, file= " Peru 2020 imports.csv", row.names=FALSE)
+> example146 <- ct_search(reporters = "Peru", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example146, file= " Peru 2020 exports.csv", row.names=FALSE)
+> Example147 <- ct_search(reporters = "Philippines", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example147, file= " Philippines 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example147' not found
+> Example147 <- ct_search(reporters = "Philippines", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example147, file= " Philippines 2020 imports.csv", row.names=FALSE)
+> example147 <- ct_search(reporters = "Philippines", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example147, file= " Philippines 2020 exports.csv", row.names=FALSE)
+> Example148 <- ct_search(reporters = "Palau", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example148, file= " Palau 2020.csv", row.names=FALSE)
+> Example149 <- ct_search(reporters = "Papua New Guinea", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example149, file= " Papua New Guinea 2020.csv", row.names=FALSE)
+> Example150 <- ct_search(reporters = "Poland", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example150, file= " Poland 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example150' not found
+> Example150 <- ct_search(reporters = "Poland", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example150, file= " Poland 2020 imports.csv", row.names=FALSE)
+> example150 <- ct_search(reporters = "Poland", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example150, file= " Poland 2020 exports.csv", row.names=FALSE)
+> Example150 <- ct_search(reporters = "Poland", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example150, file= " Poland 2020 imports.csv", row.names=FALSE)
+> example150 <- ct_search(reporters = "Poland", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example150, file= " Poland 2020 exports.csv", row.names=FALSE)
+> Example151 <- ct_search(reporters = "Dem. People's Rep. of Korea", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example151, file= " Dem. People's Rep. of Korea 2020.csv", row.names=FALSE)
+> Example152 <- ct_search(reporters = "Portugal", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example152, file= " Portugal 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example152' not found
+> Example152 <- ct_search(reporters = "Portugal", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example152, file= " Portugal 2020 imports.csv", row.names=FALSE)
+> example152 <- ct_search(reporters = "Portugal", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example152, file= " Portugal 2020 exports.csv", row.names=FALSE)
+> Example153 <- ct_search(reporters = "Paraguay", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example153, file= " Paraguay 2020.csv", row.names=FALSE)
+> Example154 <- ct_search(reporters = "French Polynesia", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example154, file= " French Polynesia 2020.csv", row.names=FALSE)
+> Example155 <- ct_search(reporters = "Qatar", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example155, file= " Qatar 2020.csv", row.names=FALSE)
+> Example156 <- ct_search(reporters = "Romania", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example156, file= " Romania 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example156' not found
+> Example156 <- ct_search(reporters = "Romania", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example156, file= " Romania 2020 imports.csv", row.names=FALSE)
+> example156 <- ct_search(reporters = "Romania", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example156, file= " Romania 2020 exports.csv", row.names=FALSE)
+> Example157 <- ct_search(reporters = "Russian Federation", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example157, file= " Russian Federation 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example157' not found
+> Example157 <- ct_search(reporters = "Russian Federation", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example157, file= " Russian Federation 2020 imports.csv", row.names=FALSE)
+> example157 <- ct_search(reporters = "Russian Federation", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example157, file= " Russian Federation 2020 exports.csv", row.names=FALSE)
+> Example158 <- ct_search(reporters = "Rwanda", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example158, file= " Rwanda 2020.csv", row.names=FALSE)
+> Example159 <- ct_search(reporters = "Saudi Arabia", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example159, file= " Saudi Arabia 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example159' not found
+> Example159 <- ct_search(reporters = "Saudi Arabia", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example159, file= " Saudi Arabia 2020 imports.csv", row.names=FALSE)
+> example159 <- ct_search(reporters = "Saudi Arabia", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example159, file= " Saudi Arabia 2020 exports.csv", row.names=FALSE)
+> Example160 <- ct_search(reporters = "Sudan", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example160, file= " Sudan 2020.csv", row.names=FALSE)
+> Example161 <- ct_search(reporters = "Senegal", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example161, file= " Senegal 2020.csv", row.names=FALSE)
+> Example162 <- ct_search(reporters = "Singapore", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example162, file= " Singapore 2020.csv", row.names=FALSE).
+Error: unexpected symbol in "write.csv(Example162, file= " Singapore 2020.csv", row.names=FALSE)."
+> Example162 <- ct_search(reporters = "Singapore", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example162, file= " Singapore 2020 imports.csv", row.names=FALSE)
+> example162 <- ct_search(reporters = "Singapore", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example162, file= " Singapore 2020 exports.csv", row.names=FALSE)
+> Example163 <- ct_search(reporters = "Solomon Isds", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example163, file= " Solomon Isds 2020.csv", row.names=FALSE)
+> Example164 <- ct_search(reporters = "Sierra Leone", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example164, file= " Sierra Leone 2020.csv", row.names=FALSE)
+> Example165 <- ct_search(reporters = "El Salvador", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example165, file= " El Salvador 2020.csv", row.names=FALSE)
+> Example166 <- ct_search(reporters = "San Marino", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example166, file= " San Marino 2020.csv", row.names=FALSE)
+> Example167 <- ct_search(reporters = "Somalia", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example167, file= " Somalia 2020.csv", row.names=FALSE)
+> Example168 <- ct_search(reporters = "Serbia", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example168, file= " Serbia 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example168' not found
+> Example168 <- ct_search(reporters = "Serbia", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example168, file= " Serbia 2020 imports.csv", row.names=FALSE)
+> example168 <- ct_search(reporters = "Serbia", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example168, file= " Serbia 2020 exports.csv", row.names=FALSE)
+> Example169 <- ct_search(reporters = "South Sudan", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example169, file= " South Sudan 2020.csv", row.names=FALSE)
+> Example170 <- ct_search(reporters = "Sao Tome and Principe", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example170, file= " Sao Tome and Principe 2020.csv", row.names=FALSE)
+> Example171 <- ct_search(reporters = "Suriname", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example171, file= " Suriname 2020.csv", row.names=FALSE)
+> Example172 <- ct_search(reporters = "Slovakia", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example172, file= " Slovakia 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example172' not found
+> Example172 <- ct_search(reporters = "Slovakia", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example172, file= " Slovakia 2020 imports.csv", row.names=FALSE)
+> example172 <- ct_search(reporters = "Slovakia", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: Comtrade API request failed, with status code [409]
+> write.csv(example172, file= " Slovakia 2020 exports.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'example172' not found
+> Example172 <- ct_search(reporters = "Slovakia", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: Comtrade API request failed, with status code [409]
+> write.csv(Example172, file= " Slovakia 2020 imports.csv", row.names=FALSE)
+> example172 <- ct_search(reporters = "Slovakia", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: Comtrade API request failed, with status code [409]
+> write.csv(example172, file= " Slovakia 2020 exports.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'example172' not found
+> Example172 <- ct_search(reporters = "Slovakia", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example172, file= " Slovakia 2020 imports.csv", row.names=FALSE)
+> example172 <- ct_search(reporters = "Slovakia", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example172, file= " Slovakia 2020 exports.csv", row.names=FALSE)
+> Example173 <- ct_search(reporters = "Slovenia", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example173, file= " Slovenia 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example173' not found
+> Example173 <- ct_search(reporters = "Slovenia", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example173, file= " Slovenia 2020 imports.csv", row.names=FALSE)
+> example173 <- ct_search(reporters = "Slovenia", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example173, file= " Slovenia 2020 exports.csv", row.names=FALSE)
+> Example173 <- ct_search(reporters = "Slovenia", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example173, file= " Slovenia 2020 imports.csv", row.names=FALSE)
+> example173 <- ct_search(reporters = "Slovenia", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example173, file= " Slovenia 2020 exports.csv", row.names=FALSE)
+> Example174 <- ct_search(reporters = "Sweden", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example174, file= " Sweden 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example174' not found
+> Example174 <- ct_search(reporters = "Sweden", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example174, file= " Sweden 2020 imports.csv", row.names=FALSE)
+> example174 <- ct_search(reporters = "Sweden", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example174, file= " Sweden 2020 exports.csv", row.names=FALSE)
+> Example175 <- ct_search(reporters = "Eswatini", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example175, file= " Eswatini 2020.csv", row.names=FALSE)
+> Example176 <- ct_search(reporters = "Saint Maarten", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example176, file= " Saint Maarten 2020.csv", row.names=FALSE)
+> Example177 <- ct_search(reporters = "Seychelles", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example177, file= " Seychelles 2020.csv", row.names=FALSE)
+> Example178 <- ct_search(reporters = "Turks and Caicos Isds", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example178, file= " Turks and Caicos Isds 2020.csv", row.names=FALSE)
+> Example178 <- ct_search(reporters = "Turks and Caicos Isds", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example178, file= " Turks and Caicos Isds 2020.csv", row.names=FALSE)
+> Example179 <- ct_search(reporters = "Chad", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example179, file= " Chad 2020.csv", row.names=FALSE)
+> Example180 <- ct_search(reporters = "Togo", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example180, file= " Togo 2020.csv", row.names=FALSE)
+> Example181 <- ct_search(reporters = "Thailand", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example181, file= " Thailand 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example181' not found
+> Example181 <- ct_search(reporters = "Thailand", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example181, file= " Thailand 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example181' not found
+> Example181 <- ct_search(reporters = "Thailand", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example181, file= " Thailand 2020 imports.csv", row.names=FALSE)
+> example181 <- ct_search(reporters = "Thailand", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example181, file= " Thailand 2020 exports.csv", row.names=FALSE)
+> Example182 <- ct_search(reporters = "Tajikistan", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example182, file= " Tajikistan 2020.csv", row.names=FALSE)
+> Example183 <- ct_search(reporters = "Turkmenistan", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example183, file= " Turkmenistan 2020.csv", row.names=FALSE)
+> Example184 <- ct_search(reporters = "Timor-Leste", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example184, file= " Timor-Leste 2020.csv", row.names=FALSE)
+> Example185 <- ct_search(reporters = "Tonga", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example185, file= " Tonga 2020.csv", row.names=FALSE)
+> Example186 <- ct_search(reporters = "Trinidad and Tobago", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example186, file= " Trinidad and Tobago 2020.csv", row.names=FALSE)
+> Example187 <- ct_search(reporters = "Tunisia", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example187, file= " Tunisia 2020.csv", row.names=FALSE)
+> Example188 <- ct_search(reporters = "Turkey", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example188, file= " Turkey 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example188' not found
+> Example188 <- ct_search(reporters = "Turkey", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example188, file= " Turkey 2020 imports.csv", row.names=FALSE)
+> example188 <- ct_search(reporters = "Turkey", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example188, file= " Turkey 2020 exports.csv", row.names=FALSE)
+> Example189 <- ct_search(reporters = "Tuvalu", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example189, file= " Tuvalu 2020.csv", row.names=FALSE)
+> Example190 <- ct_search(reporters = "United Rep. of Tanzania", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example190, file= " United Rep. of Tanzania 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example190' not found
+> Example190 <- ct_search(reporters = "United Rep. of Tanzania", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example190, file= " United Rep. of Tanzania 2020 imports.csv", row.names=FALSE)
+> example190 <- ct_search(reporters = "United Rep. of Tanzania", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example190, file= " United Rep. of Tanzania 2020 exports.csv", row.names=FALSE)
+> Example191 <- ct_search(reporters = "Uganda", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example191, file= " Uganda 2020.csv", row.names=FALSE)
+> Example192 <- ct_search(reporters = "Ukraine", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example192, file= " Ukraine 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example192' not found
+> Example192 <- ct_search(reporters = "Ukraine", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example192, file= " Ukraine 2020 imports.csv", row.names=FALSE)
+> example192 <- ct_search(reporters = "Ukraine", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example192, file= " Ukraine 2020 exports.csv", row.names=FALSE)
+> Example193 <- ct_search(reporters = "Uruguay", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example193, file= " Uruguay 2020.csv", row.names=FALSE)
+> Example194 <- ct_search(reporters = "USA", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example194, file= " USA 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example194' not found
+> Example194 <- ct_search(reporters = "USA", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example194, file= " USA 2020 imports.csv", row.names=FALSE)
+> example194 <- ct_search(reporters = "USA", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example194, file= " USA 2020 exports.csv", row.names=FALSE)
+> Example195 <- ct_search(reporters = "Uzbekistan", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example195, file= " Uzbekistan 2020.csv", row.names=FALSE)
+> Example196 <- ct_search(reporters = "Saint Vincent and the Grenadines", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example196, file= " Saint Vincent and the Grenadines 2020.csv", row.names=FALSE)
+> Example197 <- ct_search(reporters = "Venezuela", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example197, file= " Venezuela 2020.csv", row.names=FALSE)
+> Example198 <- ct_search(reporters = "Br. Virgin Isds", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example198, file= " Br. Virgin Isds 2020.csv", row.names=FALSE)
+> Example199 <- ct_search(reporters = "U.S. Virgin Isds", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: From arg 'reporters', these values were not found in the country database: U.S. Virgin Isds
+> write.csv(Example199, file= " U.S. Virgin Isds 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example199' not found
+> Example199 <- ct_search(reporters = "US Virgin Isds", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example199, file= " U.S. Virgin Isds 2020.csv", row.names=FALSE)
+> Example200 <- ct_search(reporters = "Fmr. Rep. of Vietnam", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: From arg 'reporters', these values were not found in the country database: Fmr. Rep. of Vietnam
+> write.csv(Example200, file= " Fmr. Rep. of Vietnam 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example200' not found
+> Example200 <- ct_search(reporters = "Fmr Rep. of Vietnam", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example200, file= " Fmr Rep. of Vietnam 2020.csv", row.names=FALSE)
+> Example201 <- ct_search(reporters = "Vanuatu", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example201, file= " Vanuatu 2020.csv", row.names=FALSE)
+> Example202 <- ct_search(reporters = "Samoa", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example202, file= " Samoa 2020.csv", row.names=FALSE)
+> Example203 <- ct_search(reporters = "Yemen", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example203, file= " Yemen 2020.csv", row.names=FALSE)
+> Example204 <- ct_search(reporters = "South Africa", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+Error: API request failed. Err msg from Comtrade:
+  Maximum resultset is: 10000
+> write.csv(Example204, file= " South Africa 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example204' not found
+> Example204 <- ct_search(reporters = "South Africa", 
++                       partners = "World", 
++                       trade_direction = "imports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example204, file= " South Africa 2020 imports.csv", row.names=FALSE)
+>  example204 <- ct_search(reporters = "South Africa", 
++                       partners = "World", 
++                       trade_direction = "exports", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(example204, file= " South Africa 2020 exports.csv", row.names=FALSE)
+>                       trade_direction = "all", 
+Error: unexpected ',' in "                      trade_direction = "all","
+>                       start_date = 2020, 
+Error: unexpected ',' in "                      start_date = 2020,"
+>                       end_date = 2020,
+Error: unexpected ',' in "                      end_date = 2020,"
+> commod_codes="ALL")
+Error: unexpected ')' in "commod_codes="ALL")"
+> write.csv(Example205, file= " Zambia 2020.csv", row.names=FALSE)
+Error in is.data.frame(x) : object 'Example205' not found
+> Example205 <- ct_search(reporters = "Zambia", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example205, file= " Zambia 2020.csv", row.names=FALSE)
+> Example206 <- ct_search(reporters = "Zimbabwe", 
++                       partners = "World", 
++                       trade_direction = "all", 
++                       start_date = 2020, 
++                       end_date = 2020,
++ commod_codes="ALL")
+> write.csv(Example206, file= " Zimbabwe 2020.csv", row.names=FALSE)
+> 
