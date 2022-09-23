@@ -1,6 +1,6 @@
 # GitHub Action Workflows
 
-There are 3 workflow samples here in [.github/workflows](tree/main/.github/workflows).  
+There are 3 workflow samples here in [.github/workflows](.github/workflows).  
 
 1. flat-data.yml uses githubocto/flat@v3 to get batmanflat.json
 2. get_file.yml pulls using curl to get cameraready.json for the [CameraReady map](https://map.georgia.org/localsite/map/#show=cameraready&state=GA).  
@@ -29,5 +29,4 @@ Use this sample of including a Python script in GitHub Actions:
 
 https://github.com/abrie/atl-council-scraper
 
-We can run our comtrade script to populate folders for each country:
-https://github.com/modelearth/data-pipeline/tree/main/international/comtrade
+We can run our [comtrade script](https://github.com/modelearth/data-pipeline/tree/main/international/comtrade) to populate folders for each country.
