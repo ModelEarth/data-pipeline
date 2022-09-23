@@ -29,4 +29,4 @@ Use this sample of including a Python script in GitHub Actions:
 
 https://github.com/abrie/atl-council-scraper
 
-We can run our [comtrade script](https://github.com/modelearth/data-pipeline/tree/main/international/comtrade) to populate folders for each country.
+We'll run our [Python comtrade script](https://github.com/modelearth/data-pipeline/tree/main/international/comtrade) to populate folders for each country.  
