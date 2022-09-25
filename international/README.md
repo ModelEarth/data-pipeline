@@ -12,7 +12,7 @@ The UN Comtrade Database API was used to gather data on imports and exports. For
 
 ### Experiments with comtrade/comtrade-script.py
 
-In the comtrade folder...
+In the comtrade folder, open a commad prompt and run...
 
 Create a virtual environment (OSX / Linux / Windows):
 `python3 -m venv .venv`
