@@ -22,3 +22,8 @@ OSX / Linux:
 
 Windows:
 `\.venv\Scripts\activate.bat`
+
+
+Not working yet. Generated blank row_ID .csv file previously. 
+
+python3 comtrade-script.py
