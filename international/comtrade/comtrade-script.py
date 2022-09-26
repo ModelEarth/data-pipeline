@@ -27,7 +27,10 @@ print ('Argument List:', str(sys.argv))
 # Will we need to move the following into main when running as a GitHub Action?
 
 print("################");
-url='https://comtrade.un.org/api/get?max=2&type=C&freq=A&px=HS&ps=2018&r=152&p=all&rg=all&cc=851712'
+# rg=all&   p=all&
+url='https://comtrade.un.org/api/get?max=10&type=C&freq=A&px=HS&ps=2021&r=152&cc=851712&rg=all&p=4'
+# &cc=TOTAL
+url='https://comtrade.un.org/api/get?max=20&type=C&freq=A&px=HS&ps=2021&r=all&p=4&rg=all'
 un_data=requests.get(url)
 #print(un_data.content)
 
@@ -65,9 +68,12 @@ def main():
     # Save rows to csv file
     #with open('row_ID_name.csv', 'w') as writer:
     #    [writer.write('{0},{1}\n'.format(key, value)) for key, value in rows.items()]
+    count = 0
     with open('row_ID_name.csv', 'w') as writer:
-        [writer.write("TradeValue\n")]
-        [writer.write('{0}\n'.format(rows[0]["TradeValue"]))]
+        [writer.write("Partner,Commodity,Value,Quantity,Weight\n")]
+        while (count < rowQuantity):
+            [writer.write('{0},{1},{2},{3},{4}\n'.format(rows[count]["rt3ISO"],rows[count]["cmdCode"],rows[count]["TradeValue"],rows[count]["TradeQuantity"],rows[count]["NetWeight"]))]
+            count = count + 1;
     writer.close()
     print('done')
 
