@@ -27,6 +27,10 @@ Our older links: [Industries by county](https://github.com/modelearth/community-
 We recommend that you work in [USEEIO-widgets repo](../../charts) if you are interested in interacting with the API data.
 -->
 
+<!--
+    12-digit FIPS Code - state, county, tract, block group
+    https://www.policymap.com/2012/08/tips-on-fips-a-quick-guide-to-geographic-place-codes-part-iii/
+-->
 
 ## Community Data File Format
 
