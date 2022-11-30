@@ -1,10 +1,7 @@
 # GitHub Action Workflows
 
-There are 3 workflow samples here in [.github/workflows](.github/workflows).  
+Workflow actions not yet set up here in the data-pipeline repo.
 
-1. flat-data.yml uses githubocto/flat@v3 to get batmanflat.json
-2. get_file.yml pulls using curl to get cameraready.json for the [CameraReady map](https://map.georgia.org/localsite/map/#show=cameraready&state=GA).  
-3. fetch-api-data.yml uses fetch-api-data-action to get batman.json (BUG! saves [object Object])
 
 
 ## Build from source
