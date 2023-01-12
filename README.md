@@ -1,5 +1,7 @@
 # Data Pipeline
 
+[Commodity Flow Survey (CFS)](https://github.com/modelearth/commodity-flow-survey) - NAICS input-output by county.
+
 To prepare data for our [industry impact page](https://model.earth/localsite/info/), we'll be using [GitHub Actions](/community/projects/#github-actions) and two processes that estimate gaps in census employment data: Eckert Linear Objective Functions and Machine Learning.  
 
 
@@ -16,7 +18,6 @@ The local industry lists are loaded in the browser (client-side) to filter [US E
 To avoid gaps in county industry data, we'll use this [2018 data from Eckert](https://github.com/modelearth/community-data/tree/master/process/cbp).  
 2. Compare with output from our [Machine Learning script](research).  
 3. <span style="display:none" class="local">Our **[new comparison report](/localsite/info/naics/)** updates </span>Our [EPA Local Industries Impact Report](../../info/).  
-4. We're also working with [Commodity Flow Survey (CFS)](https://github.com/modelearth/commodity-flow-survey) NAICS data.
 
 Data source: US Bureau of Labor Statistics (BLS)
 Our older links: [Industries by county](https://github.com/modelearth/community-data/tree/master/us/state) | [Industries by zipcode](../../../community/industries/)  
