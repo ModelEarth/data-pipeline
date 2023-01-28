@@ -33,6 +33,11 @@ We recommend that you work in [USEEIO-widgets repo](../../charts) if you are int
     https://www.policymap.com/2012/08/tips-on-fips-a-quick-guide-to-geographic-place-codes-part-iii/
 -->
 
+## Source and Integrations
+
+[BEA Global Value Chains](https://www.bea.gov/data/special-topics/global-value-chains)
+
+
 ## Community Data File Format
 
 Our NAICS county CSV files have the following columns - [Sample File](https://github.com/modelearth/community-data/blob/master/us/zipcodes/naics/3/0/3/1/8/zipcode30318-census-naics6-2018.csv)<!--[Sample File](https://github.com/modelearth/community-data/blob/master/us/state/GA/naics/GA_data_filled.csv)-->  
