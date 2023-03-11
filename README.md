@@ -1,7 +1,7 @@
 # Model.Earth Data Pipeline
 
 GitHub: [Data-Pipeline](https://github.com/modelearth/data-pipeline)  
-Formats NAICS files by county and zip for [Industry Impact Pages](https://model.earth/localsite/info/)  
+The data pipeline formats NAICS files by county and zip for [Industry Impact Pages](https://model.earth/localsite/info/)  
 
 **TO DO:**
 
