@@ -1,46 +1,28 @@
-# Data Pipeline
+# Model.Earth Data Pipeline
 
-[Commodity Flow Survey (CFS)](https://github.com/modelearth/commodity-flow-survey) - NAICS input-output by county.
+GitHub: [Data-Pipeline](https://github.com/modelearth/data-pipeline)  
+Formats NAICS files by county and zip for [Industry Impact Pages](https://model.earth/localsite/info/)  
 
-To prepare data for our [industry impact page](https://model.earth/localsite/info/), we'll be using [GitHub Actions](/community/projects/#github-actions) and two processes that estimate gaps in census employment data: Eckert Linear Objective Functions and Machine Learning.  
+**TO DO:**
 
+Use the following [examples of Merging Input-Output Data for Totals](/localsite/info/data/totals/) to show actual dollar values in the US EPA [inflow-outflow chart](../../../io/charts/). Here's a stand-alone [widget for testing](http://localhost:8887/io/build/iochart.html#indicators=ENRG,GHG,VADD&sectors=113000,327310,327400,333613,335912,336111,562111,562212)
 
-[Using Machine Learning for Census Business Data Gaps](research)
-We process local NAICS industry lists into:
-1. [State files with county employment levels](https://github.com/modelearth/community-data/tree/master/us/state) 
-2. [Zipcode files with employment levels](https://github.com/modelearth/community-data/tree/master/us/zipcodes/naics) 
-3. [International trade](international)  
-
-The local industry lists are loaded in the browser (client-side) to filter [US EPA Industry Input-Output Charts](../../../io/charts/) which use [static JSON USEEIO impact data](https://github.com/modelearth/io/tree/main/build/api).  
+[WebStorm Notes](https://docs.google.com/document/d/1BKxx5Q5rtNgZ9cD-Hsgdi_nEL1YPCfPhKjbnIqMgCRI/edit?usp=sharing) - Add info on using [GitHub Copilot by OpenAI](https://github.com/features/copilot) or other AI codex.
 
 **Our NAICS pipeline**
-1. [Generate state county files](https://github.com/modelearth/community-data) for 2 to 6 digit NAICS industries for static hosting on Github.  
-To avoid gaps in county industry data, we'll use this [2018 data from Eckert](https://github.com/modelearth/community-data/tree/master/process/cbp).  
-2. Compare with output from our [Machine Learning script](research).  
-3. <span style="display:none" class="local">Our **[new comparison report](/localsite/info/naics/)** updates </span>Our [EPA Local Industries Impact Report](../../info/).  
+We generate local NAICS industry lists and store on GitHub as .csv, .json and .md files:
+1. [State files with county employment levels](https://github.com/modelearth/community-data/tree/master/us/state) for 2 to 6 digit NAICS industries for static hosting on Github. [Steps for generating files](https://github.com/modelearth/community-data) could be a GitHub Action.     
+2. [Zipcode files with employment levels](https://github.com/modelearth/community-data/tree/master/us/zipcodes/naics) - Includes nunber of Establishments and Employees 
+3. [International trade by country](international) - Imports and exports by country by year (to be developed)  
 
-Data source: US Bureau of Labor Statistics (BLS)
-Our older links: [Industries by county](https://github.com/modelearth/community-data/tree/master/us/state) | [Industries by zipcode](../../../community/industries/)  
-[Samples of Merging Input-Output Data for Totals](/localsite/info/data/totals/) | [WebStorm Notes](https://docs.google.com/document/d/1BKxx5Q5rtNgZ9cD-Hsgdi_nEL1YPCfPhKjbnIqMgCRI/edit?usp=sharing)
+Our implementation of the [US EPA Industry Input-Output Charts](../../../io/charts/) use static files containing [USEEIO API data as json](https://github.com/modelearth/io/tree/main/build/api) for fast page loads.
 
-<!--
-[Embeddable IO Widgets](../../charts) use the [static JSON files](https://github.com/modelearth/io/tree/main/build/api) output from the [USEEIO API](https://github.com/USEPA/USEEIO_API/wiki).
-We recommend that you work in [USEEIO-widgets repo](../../charts) if you are interested in interacting with the API data.
--->
+**[Our Upcoming Industry Input-Output Report](/localsite/info/naics/)** will replace our [Local Industries Impact Report](../../localsite/info/).
+<br>
 
-<!--
-    12-digit FIPS Code - state, county, tract, block group
-    https://www.policymap.com/2012/08/tips-on-fips-a-quick-guide-to-geographic-place-codes-part-iii/
--->
+### Community Data File Format
 
-## Source and Integrations
-
-[BEA Global Value Chains](https://www.bea.gov/data/special-topics/global-value-chains)
-
-
-## Community Data File Format
-
-Our NAICS county CSV files have the following columns - [Sample File](https://github.com/modelearth/community-data/blob/master/us/zipcodes/naics/3/0/3/1/8/zipcode30318-census-naics6-2018.csv)<!--[Sample File](https://github.com/modelearth/community-data/blob/master/us/state/GA/naics/GA_data_filled.csv)-->  
+Our NAICS county .csv files have the following columns - [Sample File](https://github.com/modelearth/community-data/blob/master/us/zipcodes/naics/3/0/3/1/8/zipcode30318-census-naics6-2018.csv)<!--[Sample File](https://github.com/modelearth/community-data/blob/master/us/state/GA/naics/GA_data_filled.csv)-->  
 
 **In File Name**
 - Zip, FIPS (5-digit state-county ID) or CountryCode (3-characters)  
@@ -54,8 +36,40 @@ Our NAICS county CSV files have the following columns - [Sample File](https://gi
 - Population - Included with our Machine Learning output
 <br>
 
+Data source: US Bureau of Labor Statistics (BLS)
 
-# US Data Sources
+Older links: [Industries by county](https://github.com/modelearth/community-data/tree/master/us/state) | [Industries by zipcode](../../../community/industries/)  
+
+
+## Input-Output between Counties
+
+[Commodity Flow Survey (CFS)](https://github.com/modelearth/commodity-flow-survey) - NAICS input-output by county.
+
+## Imputation to fill NAICS Census Gaps
+
+[Removal of Gaps in NAICS Census Business data](research)
+Processes that estimate gaps in census employment data.
+Eckert Linear Objective Functions and Machine Learning.
+
+<!-- This has been moved:  
+To avoid gaps in county industry data, we'll use this [2018 data from Eckert](https://github.com/modelearth/community-data/tree/master/process/cbp).  
+-->
+
+<!--
+[Embeddable IO Widgets](../../charts) use the [static JSON files](https://github.com/modelearth/io/tree/main/build/api) output from the [USEEIO API](https://github.com/USEPA/USEEIO_API/wiki).
+We recommend that you work in [USEEIO-widgets repo](../../charts) if you are interested in interacting with the API data.
+-->
+
+<!--
+    12-digit FIPS Code - state, county, tract, block group
+    https://www.policymap.com/2012/08/tips-on-fips-a-quick-guide-to-geographic-place-codes-part-iii/
+-->
+<br>
+
+
+# US EPA Data Source and Integrations
+
+[BEA Global Value Chains](https://www.bea.gov/data/special-topics/global-value-chains)
 
 BLS, EPA's USEEIO and Flowsa (BEA, Energy, Water, more)
 
