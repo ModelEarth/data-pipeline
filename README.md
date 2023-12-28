@@ -11,7 +11,7 @@ Use the following [examples of Merging Input-Output Data for Totals](/localsite/
 
 **Our NAICS pipeline**
 We generate local NAICS industry lists and store on GitHub as .csv, .json and .md files:
-1. [State files with county employment levels](https://github.com/modelearth/community-data/tree/master/us/state) for 2 to 6 digit NAICS industries for static hosting on Github. [Steps for generating files](https://github.com/modelearth/community-data) could be a GitHub Action.     
+1. [County Industry files](https://github.com/modelearth/community-data) with 2 to 6 digit NAICS industries hosted on Github.    
 2. [Zipcode files with employment levels](https://github.com/modelearth/community-data/tree/master/us/zipcodes/naics) - Includes nunber of Establishments and Employees 
 3. [International trade by country](international) - Imports and exports by country by year (to be developed)  
 
