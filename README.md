@@ -1,10 +1,13 @@
-[Community Data](/community-data/)
-# Model.Earth Data Pipeline
+# Data Pipeline
 
-GitHub: [Data-Pipeline](https://github.com/modelearth/data-pipeline)  
-The data pipeline formats NAICS files by county and zip for [Industry Impact Pages](https://model.earth/localsite/info/)  
+Scripts used to populate our [Community Data Repo](/community-data/) for [Industry Impact Pages](https://model.earth/localsite/info/)
 
-**TO DO:**
+Fork on GitHub: [Data-Pipeline](https://github.com/modelearth/data-pipeline)  
+
+**NEW**
+[Timeline data prep](timelines/prep/all)
+
+**TO DO (REACT)**
 
 Use the following [examples of Merging Input-Output Data for Totals](/localsite/info/data/totals/) to show actual dollar values in the US EPA [inflow-outflow chart](../../../io/charts/). Here's a stand-alone [widget for testing](http://localhost:8887/io/build/iochart.html#indicators=ENRG,GHG,VADD&sectors=113000,327310,327400,333613,335912,336111,562111,562212)
 
@@ -17,27 +20,11 @@ We generate local NAICS industry lists and store on GitHub as .csv, .json and .m
 3. [International trade by country](international) - Imports and exports by country by year (to be developed)  
 
 Our implementation of the [US EPA Industry Input-Output Charts](../../../io/charts/) use static files containing [USEEIO API data as json](https://github.com/modelearth/io/tree/main/build/api) for fast page loads.
-
-**[Our Upcoming Industry Input-Output Report](/localsite/info/naics/)** will replace our [Local Industries Impact Report](../../localsite/info/).
 <br>
 
-### Community Data File Format
-
-Our NAICS county .csv files have the following columns - [Sample File](https://github.com/modelearth/community-data/blob/master/us/zipcodes/naics/3/0/3/1/8/zipcode30318-census-naics6-2018.csv)<!--[Sample File](https://github.com/modelearth/community-data/blob/master/us/state/GA/naics/GA_data_filled.csv)-->  
-
-**In File Name**
-- Zip, FIPS (5-digit state-county ID) or CountryCode (3-characters)  
-- NaicsLevel - ActivityProducedBy (6-digit naics)  
-
-**Columns**
-- Naics - ActivityProducedBy (6-digit naics)  
-- Establishments - Other (Number of Extablishments)  
-- Employees - Employment FlowAmount (Number of Employees)  
-- Payroll - US Dollars (Annual Wages)
-- Population - Included with our Machine Learning output
-<br>
-
+<!--
 Data source: US Bureau of Labor Statistics (BLS)
+-->
 
 Older links: [Industries by county](https://github.com/modelearth/community-data/tree/master/us/state) | [Industries by zipcode](../../../community/industries/)  
 
