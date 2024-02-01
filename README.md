@@ -142,7 +142,7 @@ View our [Flowsa Python scripts](flowsa)
 
 [Community Datasets](https://github.com/modelearth/community-data/) - NAICS Industry Data with Gaps Filled  
 
-[Machine Learning Algorithms for NAICS industries](https://github.com/modelearth/machine-learning/) - US Bureau of Labor Statistics (BLS)
+[Machine Learning Imputation Algorithms for NAICS industries](https://github.com/modelearth/machine-learning/) - US Bureau of Labor Statistics (BLS)
 
 [Impact Heatmap from JSON](/io/build/sector_list.html?view=mosaic&count=50) - [Earlier Goods and Service Heatmap Mockup](../../../community/start/dataset/)
 
