@@ -6,7 +6,7 @@ The phiresky timeline will be modified to show changes in naics industry levels 
 
 [Places (blog setup)](/places/) - [Phiresky SQLite](https://phiresky.github.io/blog/2021/hosting-sqlite-databases-on-github-pages/) - Includes location selection!
 [Line Race](../../line-race.html) - [Apache eChart](https://echarts.apache.org/examples/en/editor.html?c=line-race)
-[Community Forecasting](/community-forecasting/community-forecasting/?page=zip/#zip=30318)
+[Community Forecasting](/community-forecasting/?page=zip/#zip=30318)
 
 
 ## NAICS Timelines - Generate Multiple Years
