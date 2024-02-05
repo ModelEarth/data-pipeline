@@ -1,17 +1,14 @@
+[Community Data](/community-data/)
 # Data Pipeline
 
-Scripts used to populate our [Community Data Repo](/community-data/) for [Industry Impact Pages](https://model.earth/localsite/info/)
+Scripts used to populate the [Community Data](/community-data/) repo for [Industry Impact](https://model.earth/localsite/info/) info and [Map Topics](/localsite/map/#appview=topics&geoview=country).
 
-Fork on GitHub: [Data-Pipeline](https://github.com/modelearth/data-pipeline)  
+Fork our [Data-Pipeline from GitHub](https://github.com/modelearth/data-pipeline), clone it locally and add updates. Send your output to a cloned fork of [community-data](https://github.com/modelearth/community-data).
 
-**NEW**
-[Timeline data prep](timelines/prep/all)
-
-**TO DO (REACT)**
-
-Use the following [examples of Merging Input-Output Data for Totals](/localsite/info/data/totals/) to show actual dollar values in the US EPA [inflow-outflow chart](../../../io/charts/). Here's a stand-alone [widget for testing](http://localhost:8887/io/build/iochart.html#indicators=ENRG,GHG,VADD&sectors=113000,327310,327400,333613,335912,336111,562111,562212)
-
+<span class="local" style="display:none;">
+**Update During Future Web Challenge**<br>
 [WebStorm Notes](https://docs.google.com/document/d/1BKxx5Q5rtNgZ9cD-Hsgdi_nEL1YPCfPhKjbnIqMgCRI/edit?usp=sharing) - Add info on using [GitHub Copilot by OpenAI](https://github.com/features/copilot) or other AI codex.
+</span>
 
 **Our NAICS pipeline**
 We generate local NAICS industry lists and store on GitHub as .csv, .json and .md files:
@@ -19,40 +16,12 @@ We generate local NAICS industry lists and store on GitHub as .csv, .json and .m
 2. [Zipcode files with employment levels](https://github.com/modelearth/community-data/tree/master/us/zipcodes/naics) - Includes nunber of Establishments and Employees 
 3. [International trade by country](international) - Imports and exports by country by year (to be developed)  
 
-Our implementation of the [US EPA Industry Input-Output Charts](../../../io/charts/) use static files containing [USEEIO API data as json](https://github.com/modelearth/io/tree/main/build/api) for fast page loads.
-<br>
-
-<!--
-Data source: US Bureau of Labor Statistics (BLS)
--->
-
-Older links: [Industries by county](https://github.com/modelearth/community-data/tree/master/us/state) | [Industries by zipcode](../../../community/industries/)  
-
-
-## Input-Output between Counties
-
-[Commodity Flow Survey (CFS)](https://github.com/modelearth/commodity-flow-survey) - NAICS input-output by county.
-
-## Imputation to fill NAICS Census Gaps
-
-[Removal of Gaps in NAICS Census Business data](research)
-Processes that estimate gaps in census employment data.
-Eckert Linear Objective Functions and Machine Learning.
-
-<!-- This has been moved:  
-To avoid gaps in county industry data, we'll use this [2018 data from Eckert](https://github.com/modelearth/community-data/tree/master/process/cbp).  
--->
-
-<!--
-[Embeddable IO Widgets](../../charts) use the [static JSON files](https://github.com/modelearth/io/tree/main/build/api) output from the [USEEIO API](https://github.com/USEPA/USEEIO_API/wiki).
-We recommend that you work in [USEEIO-widgets repo](../../charts) if you are interested in interacting with the API data.
--->
+Our implementation of the [US EPA Industry Input-Output Charts](../../../io/charts/) uses static files containing [USEEIO API data as json](https://github.com/modelearth/io/tree/main/build/api) for fast page loads.
 
 <!--
     12-digit FIPS Code - state, county, tract, block group
     https://www.policymap.com/2012/08/tips-on-fips-a-quick-guide-to-geographic-place-codes-part-iii/
 -->
-<br>
 
 
 # US EPA Data Source and Integrations
