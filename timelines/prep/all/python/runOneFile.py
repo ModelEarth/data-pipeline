@@ -15,7 +15,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import StandardScaler, normalize
 from sklearn.decomposition import PCA
-""" to run multiple files: python povertyHuyenEdit.py -n -d ../../../../community/data
+""" to run multiple files: python povertyHuyenEdit.py -n -d ../../../../community-forecasting/data
 to run one file:  python povertyHuyenEdit.py -1 -i 2016_zcta_sm.csv """
 def processData(inFile,random_state):
     data=pd.read_csv(inFile)
@@ -23,7 +23,7 @@ def processData(inFile,random_state):
     
     #print("----------------------\ndata.describe()\n")
     #data.describe()
-    #data = pd.read_csv('../../../../community/data/2016/2016_zcta_sm.csv')
+    #data = pd.read_csv('../../../../community-forecasting/data/2016/2016_zcta_sm.csv')
     # Separate out the x_data and y_data.
     x_data = data.loc[:, data.columns != "y"]
     y_data = data.loc[:, "y"]

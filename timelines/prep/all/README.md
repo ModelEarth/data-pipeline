@@ -25,24 +25,27 @@ Or run individually:
 
 	sqlite3 zcta.db < zcta_2013.SQL.txt> zcta.OUT.txt  
 
-This sends files to community/data/[year]
+This sends files to community-forecasting/data/[year]
 
 ----
 
-Importatnt: Make new edits to zcta.SQL.txt, then update line numbers in automate.py.  
+# Random Forest and Regression
+
+Make new edits to zcta.SQL.txt, then update line numbers in automate.py.
+
 Annual zcta_[year].SQL.txt files are overwritten by automate.py.  
 
-1. Run Random Forest (uses runOneFile.py):  
+1.) Run Random Forest (uses python/runOneFile.py):  
+Double // is probably a typo:
 
-python automateRF.py "../../../..//community/data"  
+	python automateRF.py "../../../..//community-forecasting/data"  
 
-2. Create a summary file. Run in usa/summary folder:
+2.) Create a summary file. Run in usa/summary folder:
 
-sqlite3 summary.db < summary.SQL.txt > summary.OUT.txt
+	sqlite3 summary.db < summary.SQL.txt > summary.OUT.txt
 
-3. Generate zips folders using instructions in zipgraph.py
+3.) Generate zips folders using instructions in zipgraph.py
 
-4. See readme in regression
+4.) See readme in [regression](../regression)
 
-
-Also see [Processing NAICS by Zip Code](/community-data/process/naics/) 
+5.) Also see [Processing NAICS by Zip Code](/community-data/process/naics/) 

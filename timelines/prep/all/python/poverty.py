@@ -16,7 +16,7 @@ from sklearn.decomposition import PCA
 #### Read and Split the Data ####
 # Read in all the data. Replace the 'xxx' with the path to the data set.
 
-data = pd.read_csv('../../../../community/data/2016/2016_zcta_sm.csv')
+data = pd.read_csv('../../../../community-forecasting/data/2016/2016_zcta_sm.csv')
 
 # Separate out the x_data and y_data.
 x_data = data.loc[:, data.columns != "y"]

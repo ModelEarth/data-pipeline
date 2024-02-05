@@ -8,7 +8,7 @@ import subprocess
 import re
 def writeNewSQL(sqlFile):
     yearList=['2012','2013','2014','2015','2016']
-    outDir="../../../../community/data/"
+    outDir="../../../../community-forecasting/data/"
     outputFiles=[]
     for i in range(5):
         outFile=os.path.join(os.path.abspath(outDir),yearList[i])  #folder for zcta_sm
@@ -20,7 +20,7 @@ def writeNewSQL(sqlFile):
                 allLines=fh.readlines()
                 for i in range(35):
                     outFH.write(allLines[i])#stop at .modecsv
-                allLines[35]=os.path.join(".import ../../../community/data/",yearList[k],yearList[k])+"_zcta_industries_sm.csv industries"
+                allLines[35]=os.path.join(".import ../../../community-forecasting/data/",yearList[k],yearList[k])+"_zcta_industries_sm.csv industries"
                 outFH.write(allLines[35])
                 for i in range(36,61):
                     outFH.write(allLines[i])
@@ -36,7 +36,7 @@ def writeNewSQL(sqlFile):
                 outFH.write(allLines[91] +"\n")
                 for i in range(92,155):
                     outFH.write(allLines[i])
-                allLines[155]=os.path.join(".output ../../../community/data/",yearList[k],yearList[k]+ "_zcta_sm.csv")
+                allLines[155]=os.path.join(".output ../../../community-forecasting/data/",yearList[k],yearList[k]+ "_zcta_sm.csv")
                 outFH.write(allLines[155]+"\n")
                 for i in range(156,163):
                     outFH.write(allLines[i])
@@ -45,7 +45,7 @@ def main():
     
     writeNewSQL(inFile)
     yearList=['2012','2013','2014','2015','2016']
-    outDir="../../../../community/data/"
+    outDir="../../../../community-forecasting/data/"
     outputFiles=[]
     for i in range(1,4):
         outFile=os.path.join(os.path.abspath(outDir),yearList[i])  #folder for zcta_sm

@@ -1,12 +1,12 @@
 """ instruction:
 NOT USING - same size as 5 folders, plus we'll need to support postal codes with letters of the alphabet.
 before running the script:
-/community/data/zip has to be created, or else the script will fail.
+/community-forecasting/data/zip has to be created, or else the script will fail.
 then run:
-python zipgraph_2folders.py ../zipcodes/zcta/zip_to_zcta_2018.csv ../../../community/data/zip/
+python zipgraph_2folders.py ../zipcodes/zcta/zip_to_zcta_2018.csv ../../../community-forecasting/data/zip/
 
 <path of zcta file. ex: ../zipcodes/zcta/zip_to_zcta_2018.csv> 
-<path to zip folder. Ex: ../../../community/data/zip/>
+<path to zip folder. Ex: ../../../community-forecasting/data/zip/>
 
 the order CANNOT be switched, or else the script will fail.
 """

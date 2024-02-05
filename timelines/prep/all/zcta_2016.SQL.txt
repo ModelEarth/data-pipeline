@@ -1,7 +1,7 @@
 -- To run: ./run.sh
 -- Or: sqlite3 zcta.db < zcta.SQL.txt > zcta.OUT.txt
 -- Combines industry and poverty data
--- Outputs to community/data/[year]_zcta_sm.csv
+-- Outputs to community-forecasting/data/[year]_zcta_sm.csv
 -- ALERT!!!!!! If line number change in this file, also update automate.py
 -- Search and replace year "2016" in 5 places below.
 -- Also update prior year "2015" in 1 place.
@@ -32,7 +32,7 @@ CREATE table industries
 	JobsTransport int
 );
 .mode csv
-.import ../../../community/data/2016/2016_zcta_industries_sm.csv industries
+.import ../../../community-forecasting/data/2016/2016_zcta_industries_sm.csv industries
 
 UPDATE industries SET JobsAgriculture = 0 WHERE JobsAgriculture = '';
 UPDATE industries SET JobsAutomotive = 0 WHERE JobsAutomotive = '';
@@ -156,7 +156,7 @@ inner join povertyNextYear next on p.zcta = next.zcta
 
 --convert to csv
 .mode csv
-.output ../../../community/data/2016/2016_zcta_sm.csv
+.output ../../../community-forecasting/data/2016/2016_zcta_sm.csv
 select * from zcta_output;
 .output stdout
 

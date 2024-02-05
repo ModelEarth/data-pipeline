@@ -1,5 +1,5 @@
 
-# To run: python automateRF.py "../../../../community/data"
+# To run: python automateRF.py "../../../../community-forecasting/data"
 
 import sys
 import argparse
