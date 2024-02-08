@@ -13,11 +13,13 @@ The phiresky timeline will be modified to show changes in naics industry levels 
 
 Each year, at the end of April (or later... was Nov in 2019), get the latest industry file.   
 
-This generates a sqlite file for eadh year: zcta_2013.SQL.txt, etc.
+Outputs SQLite script for years.
 
-	python automate.py zcta.SQL.txt  
+This generates a sqlite file for each year: zcta_2013.SQL.txt, etc.
 
-Then run:  
+	python automate.py zcta.SQL.txt 
+
+Then run to send .csv output to data folder:  
 
 	./run.sh
 
@@ -25,7 +27,7 @@ Or run individually:
 
 	sqlite3 zcta.db < zcta_2013.SQL.txt> zcta.OUT.txt  
 
-This sends files to community-forecasting/data/[year]
+This sends files to data/[year]
 
 ----
 
