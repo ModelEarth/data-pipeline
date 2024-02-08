@@ -1,9 +1,9 @@
 # Regression Prep  
 
-The regression script uses prior years to project forward employment levels. Linear projects seem conservative. Alternative methods could be explored.  
+The regression script uses prior years to project forward employment levels. Linear projections seem conservative. Alternative methods could be explored.  
 
 
-1.) Populate files ../../community-forecasting/data using steps in ../all/README.md  
+1.) Use steps in ../all/README.md to generate files in output folder.
 
 2.) Run: 
 
@@ -31,11 +31,11 @@ OLD:
 tsclean.py creates combo_zcta_sm.csv from files in raw folder, up to last=2016.  
 
 NEW:  
-tsclean.py creates combo_zcta_sm.csv from files in ../../community-forecasting/data/[year]/[year]_zcta_sm.csv, up to last=2016.  
+tsclean.py creates combo_zcta_sm.csv from files in input/[year]/[year]_zcta_sm.csv, up to last=2016.  
 
 Then use tsclean.py to:
 
-A. Send the projected years to community-forecasting/data/[year]/[year]_zcta_sm_projected.csv  
+A. Send the projected years to input/[year]/[year]_zcta_sm_projected.csv  
 B. Create combo_zcta_sm_projection.csv  
 
 

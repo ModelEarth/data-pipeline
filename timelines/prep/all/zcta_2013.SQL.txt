@@ -1,7 +1,7 @@
 -- To run: ./run.sh
 -- Or: sqlite3 zcta.db < zcta.SQL.txt > zcta.OUT.txt
 -- Combines industry and poverty data
--- Outputs to community-forecasting/data/[year]_zcta_sm.csv
+-- Outputs to output/[year]_zcta_sm.csv
 -- ALERT!!!!!! If line number change in this file, also update automate.py
 -- Search and replace year "2012" in 5 places below.
 -- Also update prior year "2013" in 1 place. (Change povertyPriorYear1 from 2012 if editing). But don't, see README.md instead.
