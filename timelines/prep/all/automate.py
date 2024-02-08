@@ -44,7 +44,7 @@ def writeNewSQL(sqlFile):
                 for i in range(160,166):
                     outFH.write(allLines[i])
 def main():
-    inFile=sys.argv[1]
+    inFile=sys.argv[1] # zcta.SQL.txt
     
     writeNewSQL(inFile)
     yearList=['2012','2013','2014','2015','2016','2017']
