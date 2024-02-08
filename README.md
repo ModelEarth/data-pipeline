@@ -5,11 +5,6 @@ Scripts used to populate the [Community Data](/community-data/) repo for [Indust
 
 Fork our [Data-Pipeline from GitHub](https://github.com/modelearth/data-pipeline), clone it locally and add updates. Send your output to a cloned fork of [community-data](https://github.com/modelearth/community-data).
 
-<span class="local" style="display:none;">
-**Update During Future Web Challenge**<br>
-[WebStorm Notes](https://docs.google.com/document/d/1BKxx5Q5rtNgZ9cD-Hsgdi_nEL1YPCfPhKjbnIqMgCRI/edit?usp=sharing) - Add info on using [GitHub Copilot by OpenAI](https://github.com/features/copilot) or other AI codex.
-</span>
-
 **Our NAICS pipeline**
 We generate local NAICS industry lists and store on GitHub as .csv, .json and .md files:
 1. [County Industry files](https://github.com/modelearth/community-data) with 2 to 6 digit NAICS industries hosted on Github.    
