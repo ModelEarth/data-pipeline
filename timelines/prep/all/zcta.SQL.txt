@@ -32,7 +32,7 @@ CREATE table industries
 	JobsTransport int
 );
 .mode csv
-.import ../../../community-forecasting/data/2012/2012_zcta_industries_sm.csv industries
+.import input/2012/2012_zcta_industries_sm.csv industries
 
 UPDATE industries SET JobsAgriculture = 0 WHERE JobsAgriculture = '';
 UPDATE industries SET JobsAutomotive = 0 WHERE JobsAutomotive = '';
@@ -59,7 +59,7 @@ CREATE table poverty
 	working_fulltime_poverty  int
 );
 .mode csv
-.import ../poverty/output/2012_zcta_poverty.csv poverty
+.import input/poverty/output/2012_zcta_poverty.csv poverty
 
 CREATE table povertyPriorYear1
 (
@@ -75,7 +75,7 @@ CREATE table povertyPriorYear1
 	working_fulltime_poverty  int
 );
 .mode csv
-.import ../poverty/output/2012_zcta_poverty.csv povertyPriorYear1 -- For other years, make previous year (2011 does not exist)
+.import input/poverty/output/2012_zcta_poverty.csv povertyPriorYear1 -- For other years, make previous year (2011 does not exist)
 
 CREATE table povertyNextYear
 (
@@ -91,7 +91,7 @@ CREATE table povertyNextYear
 	working_fulltime_poverty  int
 );
 .mode csv
-.import ../poverty/output/2013_zcta_poverty.csv povertyNextYear
+.import input/poverty/output/2013_zcta_poverty.csv povertyNextYear
 
 -- We can try flipping these later
 -- 32394 industry zcta's - empty omitted, including US Virgin Islands
@@ -156,7 +156,7 @@ inner join povertyNextYear next on p.zcta = next.zcta
 
 --convert to csv
 .mode csv
-.output ../../../community-forecasting/data/2012/2012_zcta_sm.csv
+.output input/2012/2012_zcta_sm.csv
 select * from zcta_output;
 .output stdout
 

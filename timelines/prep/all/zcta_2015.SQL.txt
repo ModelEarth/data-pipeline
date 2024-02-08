@@ -3,8 +3,8 @@
 -- Combines industry and poverty data
 -- Outputs to community-forecasting/data/[year]_zcta_sm.csv
 -- ALERT!!!!!! If line number change in this file, also update automate.py
--- Search and replace year "2016" in 5 places below.
--- Also update prior year "2015" in 1 place.
+-- Search and replace year "2012" in 5 places below.
+-- Also update prior year "2013" in 1 place. (Change povertyPriorYear1 from 2012 if editing). But don't, see README.md instead.
 
 -- Setup
 .headers on
@@ -32,7 +32,7 @@ CREATE table industries
 	JobsTransport int
 );
 .mode csv
-.import ../../../community-forecasting/data/2015/2015_zcta_industries_sm.csv industries
+.import input/2015/2015_zcta_industries_sm.csv industries
 
 UPDATE industries SET JobsAgriculture = 0 WHERE JobsAgriculture = '';
 UPDATE industries SET JobsAutomotive = 0 WHERE JobsAutomotive = '';
@@ -59,7 +59,7 @@ CREATE table poverty
 	working_fulltime_poverty  int
 );
 .mode csv
-.import ../poverty/output/2015_zcta_poverty.csv poverty
+.import input/poverty/output/2015_zcta_poverty.csv poverty
 
 CREATE table povertyPriorYear1
 (
@@ -75,7 +75,7 @@ CREATE table povertyPriorYear1
 	working_fulltime_poverty  int
 );
 .mode csv
-.import ../poverty/output/2014_zcta_poverty.csv povertyPriorYear1
+.import input/poverty/output/2014_zcta_poverty.csv povertyPriorYear1
 
 CREATE table povertyNextYear
 (
@@ -91,7 +91,7 @@ CREATE table povertyNextYear
 	working_fulltime_poverty  int
 );
 .mode csv
-.import ../poverty/output/2016_zcta_poverty.csv povertyNextYear
+.import input/poverty/output/2016_zcta_poverty.csv povertyNextYear
 
 -- We can try flipping these later
 -- 32394 industry zcta's - empty omitted, including US Virgin Islands
@@ -102,17 +102,17 @@ select i.zcta,
 -- lat/lon are available in /data/[year]/[year]_zcta_industries_sm
 -- i.latitude, i.longitude, -- omitting from small file 
 --i.JobsTotal,
-1000 * i.JobsTotal/p.population AS JobsTotal1000,
-1000 * i.JobsAgriculture/p.population AS JobsAgriculture1000,
+i.JobsTotal, -- 1000 * i.JobsTotal/p.population AS JobsTotal1000,
+i.JobsAgriculture, -- 1000 * i.JobsAgriculture/p.population AS JobsAgriculture1000,
 --1000 * i.JobsAutomotive/p.population AS JobsAutomotive1000,
-1000 * i.JobsEntertainment/p.population AS JobsEntertainment1000,
-1000 * i.JobsConstruction/p.population AS JobsConstruction1000,
-1000 * i.JobsHealthcare/p.population AS JobsHealthcare1000,
-1000 * i.JobsManufacturing/p.population AS JobsManufacturing1000,
-1000 * i.JobsProfessional/p.population AS JobsProfessional1000,
-1000 * i.JobsRealestate/p.population AS JobsRealestate1000,
-1000 * i.JobsTrade/p.population AS JobsTrade1000,
-1000 * i.JobsTransport/p.population AS JobsTransport1000,
+i.JobsEntertainment, -- 1000 * i.JobsEntertainment/p.population AS JobsEntertainment1000,
+i.JobsConstruction, -- 1000 * i.JobsConstruction/p.population AS JobsConstruction1000,
+i.JobsHealthcare, -- 1000 * i.JobsHealthcare/p.population AS JobsHealthcare1000,
+i.JobsManufacturing, -- 1000 * i.JobsManufacturing/p.population AS JobsManufacturing1000,
+i.JobsProfessional, -- 1000 * i.JobsProfessional/p.population AS JobsProfessional1000,
+i.JobsRealestate, -- 1000 * i.JobsRealestate/p.population AS JobsRealestate1000,
+i.JobsTrade, -- 1000 * i.JobsTrade/p.population AS JobsTrade1000,
+i.JobsTransport, -- 1000 * i.JobsTransport/p.population AS JobsTransport1000,
 --i.JobsAgriculture,
 --i.JobsAutomotive,
 --i.JobsEntertainment,
@@ -123,19 +123,19 @@ select i.zcta,
 --i.JobsRealestate,
 --i.JobsTrade,
 --i.JobsTransport,
-p.population,
-p.poverty,
-p.poverty_under18,
-p.poverty_18to65,
-p.poverty_over65,
-p.education,
-p.work_experience,
-p.working_fulltime,
-p.working_fulltime_poverty,
+p.population AS Population,
+1000 * p.poverty/p.population AS Poverty,
+1000 * p.poverty_under18/p.population AS Poverty_Under18,
+1000 * p.poverty_18to65/p.population AS Poverty_18to65,
+1000 * p.poverty_over65/p.population AS Poverty_Over65,
+1000 * p.education/p.population AS Education,
+1000 * p.work_experience/p.population AS Work_Experience,
+1000 * p.working_fulltime/p.population AS Working_Fulltime,
+1000 * p.working_fulltime_poverty/p.population AS Working_Fulltime_Poverty,
 --prior.poverty priorPoverty,
 -- Poverty will be changing to a total, so use this to compare percentages
--- (prior.poverty/prior.population - p.poverty/p.population) AS povertyChange,
--- (prior.poverty - p.poverty) AS povertyChange,
+-- (prior.poverty/prior.population - p.poverty/p.population) AS PovertyChange,
+-- (prior.poverty - p.poverty) AS PovertyChange,
 
 -- Also modify when changing poverty to total >>>>>>
 -- Change from prior year is steady (0%) or increasing, change to next year is increasing by 2% or more.
@@ -156,7 +156,7 @@ inner join povertyNextYear next on p.zcta = next.zcta
 
 --convert to csv
 .mode csv
-.output ../../../community-forecasting/data/2015/2015_zcta_sm.csv
+.output output/2015/2015_zcta_sm.csv
 select * from zcta_output;
 .output stdout
 

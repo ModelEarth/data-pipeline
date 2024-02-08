@@ -1,0 +1,20 @@
+,features,                         importance
+1,population,0.087273
+2,poverty,0.07548200000000001
+3,poverty_18to65,0.075262
+4,education,0.074159
+5,work_experience,0.073653
+6,working_fulltime,0.071505
+7,poverty_under18,0.066801
+8,JobsTotal,0.06442300000000001
+9,poverty_over65,0.060302
+10,JobsConstruction,0.045723
+11,JobsProfessional,0.043503
+12,JobsHealthcare,0.038817000000000004
+13,JobsTransport,0.038331
+14,JobsManufacturing,0.03696
+15,JobsTrade,0.035307
+16,JobsRealestate,0.033158
+17,JobsEntertainment,0.031789
+18,working_fulltime_poverty,0.027016000000000002
+19,JobsAgriculture,0.020536000000000002

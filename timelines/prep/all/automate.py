@@ -25,18 +25,18 @@ def writeNewSQL(sqlFile):
                     outFH.write(allLines[i])
                 
                 # Feb 2024 - We can reactivate if we find poverty folder. It was not in community-forecasting/data
-                # allLines[61]=os.path.join(".import input/poverty/output/",yearList[k]+"_zcta_poverty.csv poverty")
-                # outFH.write(allLines[61]+ "\n")
-                # for i in range(62,77):
-                #     outFH.write(allLines[i])
-                # allLines[77]=os.path.join(".import input/poverty/output/",yearList[k-1]+"_zcta_poverty.csv povertyPriorYear1")
-                # outFH.write(allLines[77] +"\n")
-                # for i in range(78,93):
-                #     outFH.write(allLines[i])
-                # allLines[93]=os.path.join(".import input/poverty/output/",yearList[k+1]+"_zcta_poverty.csv povertyNextYear")
-                # outFH.write(allLines[93] +"\n")
-                # for i in range(94,158):
-                #     outFH.write(allLines[i])
+                allLines[61]=os.path.join(".import input/poverty/output/",yearList[k]+"_zcta_poverty.csv poverty")
+                outFH.write(allLines[61]+ "\n")
+                for i in range(62,77):
+                    outFH.write(allLines[i])
+                allLines[77]=os.path.join(".import input/poverty/output/",yearList[k-1]+"_zcta_poverty.csv povertyPriorYear1")
+                outFH.write(allLines[77] +"\n")
+                for i in range(78,93):
+                    outFH.write(allLines[i])
+                allLines[93]=os.path.join(".import input/poverty/output/",yearList[k+1]+"_zcta_poverty.csv povertyNextYear")
+                outFH.write(allLines[93] +"\n")
+                for i in range(94,158):
+                    outFH.write(allLines[i])
 
                 allLines[159]=os.path.join(".output output/",yearList[k],yearList[k]+ "_zcta_sm.csv") + "\nselect * from zcta_output;"
                 outFH.write(allLines[159]+"\n") 
