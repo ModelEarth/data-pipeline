@@ -2,9 +2,15 @@
 
 # SQLite in Browser
 
-We're figuring out how to use the SQLite timeline graph.
-[Timeline data prep](/data-pipeline/timelines/prep/all/).
+The steps below aim to run [Phiresky's excellent SQLite chart sample](https://phiresky.github.io/blog/2021/hosting-sqlite-databases-on-github-pages/) locally and on GitHub Pages.
 
+Fork [our fork](https://github.com/ModelEarth/blog) of Phiresky's blog sample, then clone to your local computer.
+
+Please add to the steps below on installing the SQLite blog.
+
+You could use this [Pandoc GitHub Action](https://github.com/pandoc/pandoc-action-example) to convert documents on GitHub's servers with every push, to avoid building locally.
+
+Once the Github Page deployment works, our fork will be visible at [model.earth/blog/2021/hosting-sqlite-databases-on-github-pages](https://model.earth/blog/2021/hosting-sqlite-databases-on-github-pages/)
 
 ## SQLite blog sample install
 
@@ -90,3 +96,5 @@ brew install pandoc
 Fixed nextjs link error.  Invalid <Link> with <a> child. Please remove <a> or use <Link legacyBehavior>
 
 	npx @next/codemod new-link --force
+
+You might need to add [Pandoc GitHub Action](https://github.com/pandoc/pandoc-action-example) in your fork of [our fork](https://github.com/ModelEarth/blog) to convert documents on GitHub's servers with every push (or maybe just building locally is fine).
