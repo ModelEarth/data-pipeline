@@ -2,10 +2,10 @@
 
 # Timeline samples
 
-The phiresky timeline will be modified to show changes in naics industry levels for zips and counties.
+[SQLite in a browser](../../sqlite/) from the phiresky timeline will be modified to show changes in naics industry levels for zips and counties.
 
 
-[Timeline using SQLite in Browser](../../sqlite) - [Phiresky SQLite](https://phiresky.github.io/blog/2021/hosting-sqlite-databases-on-github-pages/) - Includes location selection!
+[Phiresky SQLite Timeline](https://phiresky.github.io/blog/2021/hosting-sqlite-databases-on-github-pages/) - Includes filter for selecting countries
 [Line Race](../../line-race.html) - [Apache eChart](https://echarts.apache.org/examples/en/editor.html?c=line-race)
 [Community Forecasting](/community-forecasting/?page=zip/#zip=30318)
 
