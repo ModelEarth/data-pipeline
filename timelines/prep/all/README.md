@@ -8,6 +8,7 @@ The phiresky timeline will be modified to show changes in naics industry levels 
 [Line Race](../../line-race.html) - [Apache eChart](https://echarts.apache.org/examples/en/editor.html?c=line-race)
 [Community Forecasting](/community-forecasting/?page=zip/#zip=30318)
 
+Python to [import .csv files into SQLite](https://github.com/phiresky/world-development-indicators-sqlite/) - Worldbank Development Indicators by year
 
 ## NAICS Timelines - Generate Multiple Years
 
