@@ -2,7 +2,7 @@
 
 # SQLite in Browser
 
-The steps below aim to run [Phiresky's excellent SQLite chart sample](https://phiresky.github.io/blog/2021/hosting-sqlite-databases-on-github-pages/) locally and on GitHub Pages.
+The steps below aim to run [Phiresky's excellent SQLite timeline sample](https://phiresky.github.io/blog/2021/hosting-sqlite-databases-on-github-pages/) locally and on GitHub Pages.
 
 Fork [our fork](https://github.com/ModelEarth/blog) of Phiresky's blog sample, then clone to your local computer.
 
