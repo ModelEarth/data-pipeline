@@ -1,17 +1,10 @@
 [Community Data](/community-data/)
 # Data Pipeline
 
-Scripts used to populate the [Community Data](/community-data/) repo for [Industry Impact](https://model.earth/localsite/info/) info and [Map Topics](/localsite/map/#appview=topics&geoview=country).
+We generating local NAICS industry lists and storing on GitHub as .csv files. [Our Community Data Repo](/community-data/) contains county and zip code data generated for [Industry Impact](https://model.earth/localsite/info/) info and [Map Topics](/localsite/map/#appview=topics&geoview=country).
 
-Fork our [Data-Pipeline from GitHub](https://github.com/modelearth/data-pipeline), clone it locally and add updates. Send your output to a cloned fork of [community-data](https://github.com/modelearth/community-data).
+Our implementation of the [US EPA Industry Input-Output Charts](../../../io/charts/) uses static json files containing [USEEIO API data](https://github.com/modelearth/io/tree/main/build/api) for fast page loads.
 
-**Our NAICS pipeline**
-We generate local NAICS industry lists and store on GitHub as .csv, .json and .md files:
-1. [County Industry files](https://github.com/modelearth/community-data) with 2 to 6 digit NAICS industries hosted on Github.    
-2. [Zipcode files with employment levels](https://github.com/modelearth/community-data/tree/master/us/zipcodes/naics) - Includes nunber of Establishments and Employees 
-3. [International trade by country](international) - Imports and exports by country by year (to be developed)  
-
-Our implementation of the [US EPA Industry Input-Output Charts](../../../io/charts/) uses static files containing [USEEIO API data as json](https://github.com/modelearth/io/tree/main/build/api) for fast page loads.
 
 <!--
     12-digit FIPS Code - state, county, tract, block group
