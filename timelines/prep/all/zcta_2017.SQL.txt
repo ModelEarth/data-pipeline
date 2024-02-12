@@ -3,8 +3,8 @@
 -- Combines industry and poverty data
 -- Outputs to output/[year]_zcta_sm.csv
 -- ALERT!!!!!! If line number change in this file, also update automate.py
--- Search and replace year "2016" in 5 places below.
--- Also update prior year "2015" in 1 place.
+-- Search and replace year "2012" in 5 places below.
+-- Also update prior year "2013" in 1 place. (Change povertyPriorYear1 from 2012 if editing). But don't, see README.md instead.
 
 -- Setup
 .headers on
@@ -32,7 +32,7 @@ CREATE table industries
 	JobsTransport int
 );
 .mode csv
-.import ../../../community-forecasting/data/2017/2017_zcta_industries_sm.csv industries
+.import input/2017/2017_zcta_industries_sm.csv industries
 
 UPDATE industries SET JobsAgriculture = 0 WHERE JobsAgriculture = '';
 UPDATE industries SET JobsAutomotive = 0 WHERE JobsAutomotive = '';
@@ -59,7 +59,7 @@ CREATE table poverty
 	working_fulltime_poverty  int
 );
 .mode csv
-.import ../poverty/output/2017_zcta_poverty.csv poverty
+.import input/poverty/output/2017_zcta_poverty.csv poverty
 
 CREATE table povertyPriorYear1
 (
@@ -75,7 +75,7 @@ CREATE table povertyPriorYear1
 	working_fulltime_poverty  int
 );
 .mode csv
-.import ../poverty/output/2016_zcta_poverty.csv povertyPriorYear1
+.import input/poverty/output/2016_zcta_poverty.csv povertyPriorYear1
 
 CREATE table povertyNextYear
 (
