@@ -39,10 +39,17 @@ Make new edits to zcta.SQL.txt, then update line numbers in automate.py.
 
 Annual zcta_[year].SQL.txt files are overwritten by automate.py.  
 
-1.) Run Random Forest (uses python/runOneFile.py):  
-Double // is probably a typo:
+Might need:
+	
+	python3 -m venv env
+	source env/bin/activate
+	pip install pandas
+	pip install scikit-learn
 
-	python automateRF.py "../../../..//community-forecasting/data"  
+1.) Run Random Forest (uses python/runOneFile.py):
+
+	cd python
+	python automateRF.py "../output/regression" 
 
 2.) Create a summary file. Run in usa/summary folder:
 

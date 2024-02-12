@@ -32,7 +32,7 @@ def getOneFileOutput(inFile):
 def main():
     inDir=sys.argv[1]
     dir_list=[d for d in os.listdir(inDir)]
-    dir_list.remove('2017')
+    #dir_list.remove('2017')
     #dir_list.remove('2012')
     #print(dir_list)
     for  subDir in dir_list:#2013, 2014,2015,2016
