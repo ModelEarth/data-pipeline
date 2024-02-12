@@ -7,9 +7,9 @@ import os
 import subprocess
 import re
 def writeNewSQL(sqlFile):
-    yearList=['2013','2014','2015','2016','2017']
+    yearList=['2012','2013','2014','2015','2016','2017']
     outputFiles=[]
-    for i in range(5):
+    for i in range(len(yearList)):
         outSQLFile=os.path.abspath(os.path.join("./","zcta_"+yearList[i]+".SQL.txt"))
         outputFiles.append(outSQLFile)
     for k in range(0,5):
@@ -49,7 +49,7 @@ def main():
     yearList=['2012','2013','2014','2015','2016','2017']
     sqlFiles=[]
     outDir="output/"
-    for i in range(0,5):
+    for i in range(0,len(yearList)):
         if not os.path.exists(os.path.join(outDir,yearList[i])):
             os.makedirs(os.path.join(outDir,yearList[i]))
         outSQLFile=os.path.abspath(os.path.join("./","zcta_"+yearList[i]+".SQL.txt"))
