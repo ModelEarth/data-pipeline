@@ -1,5 +1,5 @@
 
-# To run: python automateRF.py "../../../../community-forecasting/data"
+# To run: python automateRF.py "../input"
 
 import sys
 import argparse
@@ -17,7 +17,7 @@ from sklearn.preprocessing import StandardScaler, normalize
 from sklearn.decomposition import PCA
 import runOneFile
 def getOneFileOutput(inFile):
-    print(inFile)
+    print("inFile: " + inFile)
     outFile=os.path.join("/".join(inFile.split("/")[:-1]),inFile.split("/")[-1].split("_")[0]+"_random_forest_poverty.csv")
     command="python runOneFile.py {} > temp.txt && sed 's/\s* /,/' temp.txt > {}".format(inFile,outFile)
     subprocess.call(command,shell=True)

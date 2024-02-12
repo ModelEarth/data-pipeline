@@ -49,7 +49,7 @@ Might need:
 1.) Run Random Forest (uses python/runOneFile.py):
 
 	cd python
-	python automateRF.py "../output" 
+	python automateRF.py "../input"
 
 2.) Create a summary file. Run in usa/summary folder:
 
