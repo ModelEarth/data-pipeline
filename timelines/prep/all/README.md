@@ -41,15 +41,15 @@ Annual zcta_[year].SQL.txt files are overwritten by automate.py.
 
 Might need:
 	
-	python3 -m venv env
-	source env/bin/activate
-	pip install pandas
+	python3 -m venv env &&
+	source env/bin/activate &&
+	pip install pandas &&
 	pip install scikit-learn
 
 1.) Run Random Forest (uses python/runOneFile.py):
 
 	cd python
-	python automateRF.py "../output/regression" 
+	python automateRF.py "../output" 
 
 2.) Create a summary file. Run in usa/summary folder:
 
