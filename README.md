@@ -1,7 +1,7 @@
 [Community Data](/community-data/)
 # Data Pipeline
 
-We generating local NAICS industry lists and storing on GitHub as .csv files. [Our Community Data Repo](/community-data/) contains county and zip code data generated for [Industry Impact](https://model.earth/localsite/info/) info and [Map Topics](/localsite/map/#appview=topics&geoview=country).
+[Our Community Data Repo](/community-data/) contains state, county and zip code data generated for [Industry Impact](https://model.earth/localsite/info/) info and [Map Topics](/localsite/map/#appview=topics&geoview=country).
 
 Our implementation of the [US EPA Industry Input-Output Charts](../../../io/charts/) uses static json files containing [USEEIO API data](https://github.com/modelearth/io/tree/main/build/api) for fast page loads.
 
