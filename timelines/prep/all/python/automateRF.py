@@ -35,11 +35,11 @@ def main():
     #dir_list.remove('2017')
     #dir_list.remove('2012')
     #print(dir_list)
-    for  subDir in dir_list:#2013, 2014,2015,2016
+    for  subDir in dir_list:#2013,2014,2015,2016
         for file in os.listdir(os.path.join(inDir,subDir)):
             if 'zcta_sm.csv' in file:
                 file=os.path.abspath(os.path.join(inDir,subDir,file))
-                #print(file)
+                print(file)
                 getOneFileOutput(file)
 if __name__ == "__main__":
     main()   
