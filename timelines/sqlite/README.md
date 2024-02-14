@@ -6,7 +6,7 @@ The steps below aim to run [Phiresky's excellent SQLite timeline sample](https:/
 
 Fork [our fork](https://github.com/ModelEarth/blog) of Phiresky's blog sample, then clone to your local computer.
 
-Please add to the steps below on installing the SQLite blog.
+Please add to the steps below on installing the SQLite blog. [Fork to edit current page](https://github.com/ModelEarth/data-pipeline/tree/main/timelines/sqlite).
 
 You could use this [Pandoc GitHub Action](https://github.com/pandoc/pandoc-action-example) to convert documents on GitHub's servers with every push, to avoid building locally.
 
