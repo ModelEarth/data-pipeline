@@ -51,8 +51,9 @@ Might need:
 	cd python
 	python automateRF.py "../input"
 
-2.) Create a summary file. Run in usa/summary folder:
+2.) Create a summary file. Run in timelines/summary folder:
 
+	cd ../all/input
 	sqlite3 summary.db < summary.SQL.txt > summary.OUT.txt
 
 3.) Generate zips folders using instructions in zipgraph.py
