@@ -1,6 +1,8 @@
 ## Uses right column "y" set to 1 for rows that increase by 2% in insubsequent year.
 
 # To run: python poverty.py
+import warnings
+warnings.simplefilter(action='ignore')
 import sys
 import argparse
 import os
@@ -30,7 +32,7 @@ def processData(inFile,random_state):
     # The random state to use while splitting the data.
     # Split 70% of the data into training and 30% into test sets. Call them x_train, x_test, y_train and y_test.
     # Use the train_test_split method in sklearn with the parameter 'shuffle' set to true and the 'random_state' set to 100.
-    x_train, x_test, y_train, y_test = train_test_split(x_data, y_data, test_size=0.3, shuffle='true', random_state=random_state)
+    x_train, x_test, y_train, y_test = train_test_split(x_data, y_data, test_size=0.3, shuffle=True, random_state=random_state)
     return x_train, x_test, y_train, y_test,x_data,y_data
 def linearRegression(x_train, x_test, y_train, y_test,x_data,y_data):
     # ## Linear Regression
@@ -97,7 +99,7 @@ def rainForest(inFile):
     # Split 70% of the data into training and 30% into test sets. Call them x_train, x_test, y_train and y_test.
     # Use the train_test_split method in sklearn with the parameter 'shuffle' set to true and the 'random_state' set to 100.
     random_state=100
-    x_train, x_test, y_train, y_test = train_test_split(x_data, y_data, test_size=0.3, shuffle='true', random_state=random_state)
+    x_train, x_test, y_train, y_test = train_test_split(x_data, y_data, test_size=0.3, shuffle=True, random_state=random_state)
     ###### Random Forest Classifier 
     # Create a RandomForestClassifier and train it.
     #Create a Gaussian Classifier
@@ -108,8 +110,8 @@ def rainForest(inFile):
     # Test its accuracy on the training set using the accuracy_score method.
     # Test its accuracy on the test set using the accuracy_score method.
     # Model Accuracy, how often is the classifier correct?
-    #print("RandomForestClassifier Training Accuracy before tuning: ",accuracy_score(y_train, y_pred_train))
-    #print("RandomForestClassifier Test Set Accuracy before tuning: ",accuracy_score(y_test, y_pred))
+    print("RandomForestClassifier Training Accuracy before tuning: ",accuracy_score(y_train, y_pred_train))
+    print("RandomForestClassifier Test Set Accuracy before tuning: ",accuracy_score(y_test, y_pred))
     #importances = rf_classifier.feature_importances_
     #std = np.std([tree.feature_importances_ for tree in rf_classifier.estimators_],axis=0)
     # Print the feature ranking
