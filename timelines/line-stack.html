@@ -11,23 +11,24 @@
 
   
   <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
-  <!-- Uncomment this line if you want to dataTool extension
+  <!-- Uncomment this line if you want to dataTool extension -->
   <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.3/dist/extension/dataTool.min.js"></script>
-  -->
-  <!-- Uncomment this line if you want to use gl extension
+  
+  <!-- Uncomment this line if you want to use gl extension -->
   <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
-  -->
-  <!-- Uncomment this line if you want to echarts-stat extension
+  
+  <!-- Uncomment this line if you want to echarts-stat extension -->
   <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
-  -->
-  <!-- Uncomment this line if you want to use map
+  
+  <!-- Uncomment this line if you want to use map -->
   <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/china.js"></script>
   <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js"></script>
-  -->
-  <!-- Uncomment these two lines if you want to use bmap extension
+  
+  <!-- Uncomment these two lines if you want to use bmap extension 
   <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
   <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.3/dist/extension/bmap.min.js"></script>
   -->
+  
 
   <script type="text/javascript">
     var dom = document.getElementById('container');
@@ -63,7 +64,8 @@
   xAxis: {
     type: 'category',
     boundaryGap: false,
-    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    dataX: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    data: ['2019', '2020', '2021', '2022', '2023', '2024', '2025']
   },
   yAxis: {
     type: 'value'
@@ -97,7 +99,7 @@
       name: 'Search Engine',
       type: 'line',
       stack: 'Total',
-      data: [820, 932, 901, 934, 1290, 1330, 1320]
+      data: [820, 932, 901, 934, 1290, 1330, 500]
     }
   ]
 };
