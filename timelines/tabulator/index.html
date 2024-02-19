@@ -30,7 +30,6 @@
     <div id="readmeDiv"></div>
 
     <h2>Time Table - Rows for Years</h2>
-    Not activated yet.
     <div id="timeline-table"></div>
     <br>
 
@@ -50,14 +49,23 @@
 
 </div>
 <script>
-var csvYearData = `"Year", "Naics12", "Naics23"
-"2017", "1234", "5678"`;
+// Help, this is returning TypeError: Cannot read properties of null (reading 'verticalFillMode')
+var csvYearData = [
+    {Year:"2017", Naics12:"12345", Naics23:"555"}, 
+    {Year:"2018", Naics12:"78787", Naics23:"777"},
+    {Year:"2019", Naics12:"3343", Naics23:"888"},
+    {Year:"2020", Naics12:"4343", Naics23:"465"},
+    {Year:"2021", Naics12:"5343", Naics23:"3322"},
+    {Year:"2022", Naics12:"6343", Naics23:"1010"},
+    {Year:"2023", Naics12:"7343", Naics23:"3247"},
+];
+
 var table1 = new Tabulator("#timeline-table", {
  
     layout:"fitColumns",      //fit columns to width of table
     responsiveLayout:"hide",  //hide columns that dont fit on the table
     //tooltips:true,          //show tool tips on cells
-    maxHeight:"200px",        // For frozenRows
+    maxHeight:"250px",        // For frozenRows
     addRowPos:"top",          //when adding a new row, add it to the top of the table
     history:true,             //allow undo and redo actions on the table
     paginationSize:7,         //allow 7 rows per page of data
@@ -68,14 +76,17 @@ var table1 = new Tabulator("#timeline-table", {
     ],
 
     columns:[                 //define the table columns
-        {title:"Year", field:"Year", minWidth:100, maxWidth:100, editor:"input"},
-        {title:"Naics12", field:"Naics12", minWidth:100, maxWidth:100, editor:"input"},
-        {title:"Naics23", field:"Naics23", minWidth:100, maxWidth:100, editor:"input"},
+        {title:"Year", field:"Year", minWidth:100, hozAlign:"right", maxWidth:100, editor:"input"},
+        {title:"N1221", field:"Naics12", minWidth:100, hozAlign:"right", maxWidth:100, editor:"input"},
+        {title:"N2345", field:"Naics23", minWidth:100, hozAlign:"right", maxWidth:100, editor:"input"},
     ],
 
 });
-// BugBug - This probably need to be modified to json.
-table1.setData(csvYearData);
+
+// BugBug - wait for table load instead. setTimeout prevents TypeError: Cannot read properties of null (reading 'verticalFillMode')
+setTimeout(() => {
+    table1.setData(csvYearData);
+},800);
 
 var csvFile = "https://model.earth/community-data/industries/naics/US/counties/AK/USAK-census-naics4-2020.csv";
 //var csvFile = "/community-data/industries/naics/US/counties/AK/USAK-census-naics4-2020.csv";
