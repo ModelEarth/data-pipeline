@@ -13,6 +13,7 @@ Rows: 2017 to 2020
 https://model.earth/community-data/industries/naics/US/counties/AK/USAK-census-naics2-2017.csv
 https://model.earth/community-data/industries/naics/US/counties/AK/USAK-census-naics2-2020.csv
 
-
+https://model.earth/community-data/industries/naics/US/counties/AK/USAK-census-naics4-2017.csv
+https://model.earth/community-data/industries/naics/US/counties/AK/USAK-census-naics4-2020.csv
 
 Columns: About 
