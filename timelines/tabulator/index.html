@@ -7,60 +7,128 @@
 <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
 
 <title>Tabulator with Timeline</title>
-
 <link href="https://unpkg.com/tabulator-tables/dist/css/tabulator.min.css" rel="stylesheet">
+
+<script type="text/javascript" src="/localsite/js/d3.v5.min.js" id="/localsite/js/d3.v5.min.js"></script>
+
 <link type="text/css" rel="stylesheet" href="/localsite/css/base.css" id="/localsite/css/base.css" />
 <link type="text/css" rel="stylesheet" href="/localsite/css/base-tabulator.css" />
-
 <script type="text/javascript" src="/localsite/js/localsite.js?showheader=true&showsearch=true"></script>
+
+<script type="text/javascript" src="https://unpkg.com/tabulator-tables/dist/js/tabulator.min.js"></script>
+
+<script>
+    loadMarkdown("README.md", "readmeDiv", "_parent");
+    loadMarkdown("python.md", "pythonDiv", "_parent");
+</script>
 </head>
 
 <body>
 
-<script type="text/javascript" src="https://unpkg.com/tabulator-tables/dist/js/tabulator.min.js"></script>
-
 <div class="content contentpadding">
 
-	<h3 style="padding-top:0px; margin-top:0px;">Tabulator Sample</h3>
-
-	<div id="example-table"></div>
-    <div style="margin-top:8px">
-	   <a href="http://tabulator.info/docs/" target="_blank">Tabulator Documentation</a> |
-       <a href="https://tabulator.info/docs/5.6/data" target="_blank">About Loading Data from .CSV</a>
-       
-    </div>
-    <br>
     <div id="readmeDiv"></div>
+
+    <h2>Time Table - Rows for Years</h2>
+    Not activated yet.
+    <div id="timeline-table"></div>
+    <br>
+
+    <h2>Arkansas Industries 2020</h2>
+    This data will be flipped into 3 multi-year datasets for: Establishments, Employees and Payroll.<br><br>
+	<div id="example-table"></div>
+    <br>
+    <div id="tabulator-sample"></div>
+
+    <div style="margin-top:8px">
+       <a href="http://tabulator.info/docs/" target="_blank">Tabulator Documentation</a> |
+       <a href="https://tabulator.info/docs/5.6/data" target="_blank">About Loading Data from .CSV</a>
+    </div>
+
+    <br>
+    <div id="pythonDiv"></div>
 
 </div>
 <script>
-var table = new Tabulator("#example-table", {
-    importFormat:"json",
-    autoColumns:true,
-});
+var csvYearData = `"Year", "Naics12", "Naics23"
+"2017", "1234", "5678"`;
+var table1 = new Tabulator("#timeline-table", {
+ 
+    layout:"fitColumns",      //fit columns to width of table
+    responsiveLayout:"hide",  //hide columns that dont fit on the table
+    //tooltips:true,          //show tool tips on cells
+    maxHeight:"200px",        // For frozenRows
+    addRowPos:"top",          //when adding a new row, add it to the top of the table
+    history:true,             //allow undo and redo actions on the table
+    paginationSize:7,         //allow 7 rows per page of data
+    movableColumns:true,      //allow column order to be changed
+    resizableRows:true,       //allow row order to be changed
+    initialSort:[             //set the initial sort order of the data
+        {column:"progress", dir:"desc"},
+    ],
 
-//alert(theroot)
-var csvFile = "https://model.earth/community-data/industries/naics/US/counties/AK/USAK-census-naics6-2020.csv";
+    columns:[                 //define the table columns
+        {title:"Year", field:"Year", minWidth:100, maxWidth:100, editor:"input"},
+        {title:"Naics12", field:"Naics12", minWidth:100, maxWidth:100, editor:"input"},
+        {title:"Naics23", field:"Naics23", minWidth:100, maxWidth:100, editor:"input"},
+    ],
+
+});
+// BugBug - This probably need to be modified to json.
+table1.setData(csvYearData);
+
+var csvFile = "https://model.earth/community-data/industries/naics/US/counties/AK/USAK-census-naics4-2020.csv";
+//var csvFile = "/community-data/industries/naics/US/counties/AK/USAK-census-naics4-2020.csv";
+
+let yearRecords = [];
 loadScript(theroot + 'js/d3.v5.min.js', function(results) {
     waitForVariable('customD3loaded', function() {
-        d3.csv(csvFile).then(function(data) {
-            console.log("File loaded " + csvFile);
-            console.log(data);
-            //table.setData(csvData);
-            table.setData(data);
-        });
+
+        // TO DO - Loop through years 2017 to 2020.
+        // 
+            d3.csv(csvFile).then(function(data) {
+                console.log("File loaded " + csvFile);
+                console.log(data); // An array of objects
+                
+                // TO DO: Append each year to an array of year rows called yearRecords
+
+                // TO DO:  Append each year to an array of year rows asynchronously as file loads.
+                table2.setData(data);
+            });
+        // 
+        // End year loop
     });
 });
 
+var table2 = new Tabulator("#example-table", {
+ 
+    layout:"fitColumns",      //fit columns to width of table
+    responsiveLayout:"hide",  //hide columns that dont fit on the table
+    //tooltips:true,          //show tool tips on cells
+    maxHeight:"500px",        // For frozenRows
+    addRowPos:"top",          //when adding a new row, add it to the top of the table
+    history:true,             //allow undo and redo actions on the table
+    paginationSize:7,         //allow 7 rows per page of data
+    movableColumns:true,      //allow column order to be changed
+    resizableRows:true,       //allow row order to be changed
+    initialSort:[             //set the initial sort order of the data
+        {column:"progress", dir:"desc"},
+    ],
 
+    columns:[                 //define the table columns
 
+        {formatter:"rowSelection", titleFormatter:"rowSelection", hozAlign:"center", headerHozAlign:"center", width:10, headerSort:false, cellClick:function(e, cell){ cell.getRow().toggleSelect();
+        }},
+        {title:"NAICS", field:"Naics", maxWidth:80, editor:"input"},
+        {title:"Establishments", field:"Establishments", hozAlign:"right", maxWidth:100, editor:"input"},
+        {title:"Establishments", field:"Establishments", hozAlign:"left", formatter:"progress", editor:true, cssClass:"tabulatorBar"},
+        {title:"Employees", field:"Employees", hozAlign:"right", maxWidth:100, editor:"input"},
+        {title:"Payroll", field:"Payroll", hozAlign:"right", maxWidth:100, editor:"input"},
+    ],
 
-//table.setData();
+});
 </script>
 
-<script>
-	loadMarkdown("README.md", "readmeDiv", "_parent");
-</script>
 
 </body>
 </html>
