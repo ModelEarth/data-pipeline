@@ -1,7 +1,7 @@
 [Data Pipeline](../)
 # International Data Pipeline
 
-[Prepare International Timeline data](../timelines/sqlite/)
+[Prepare International Timeline data](../timelines/sqlite/) using [worldbank.org indicators](https://github.com/phiresky/world-development-indicators-sqlite/)
 
 [UN Comtrade Database API](https://comtrade.un.org/data/dev/portal/) - Imports and exports by country by year
 
