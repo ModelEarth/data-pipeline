@@ -34,9 +34,12 @@ In our fork, Nextjs is migrated to the new version which uses RUST.
 
 (3) Run these 4 commands in the blog folder (These are from the blog folder readme):
 
-	yarn posts
+	yarn posts &&
 	yarn dev
-	yarn build
+
+New command window
+
+	yarn build  &&
 	yarn commit
 
 ---
