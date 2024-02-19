@@ -20,6 +20,6 @@ Cell values: 1 of 3 attributes (Establishments, Employees, Payroll)
 
 Name of resulting file:
 
-US-AK-census-naics4-establishments.csv
-US-AK-census-naics4-employees.csv
-US-AK-census-naics4-payroll.csv
+US-AK-census-naics4-establishments.csv  
+US-AK-census-naics4-employees.csv  
+US-AK-census-naics4-payroll.csv  
