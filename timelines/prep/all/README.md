@@ -49,11 +49,11 @@ Might need:
 1.) Run Random Forest (uses python/runOneFile.py):
 
 	cd python
-	python automateRF.py "../input"
+	python automateRF.py "../output"
 
 2.) Create a summary file. Run in timelines/summary folder:
 
-	cd ../all/input
+	cd ../../summary/
 	sqlite3 summary.db < summary.SQL.txt > summary.OUT.txt
 
 3.) Generate zips folders using instructions in zipgraph.py

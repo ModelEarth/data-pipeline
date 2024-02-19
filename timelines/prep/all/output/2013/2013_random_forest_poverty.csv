@@ -1,0 +1,22 @@
+,RandomForestClassifier,Training Accuracy before tuning:  0.9766016463851109
+1,RandomForestClassifier,Test Set Accuracy before tuning:  0.8257828810020876
+2,,importance
+3,Population,0.085550
+4,Poverty,0.077889
+5,Education,0.075447
+6,Working_Fulltime,0.073154
+7,Poverty_18to65,0.072244
+8,Work_Experience,0.072221
+9,JobsTotal,0.069667
+10,Poverty_Under18,0.062600
+11,Poverty_Over65,0.059186
+12,JobsConstruction,0.047482
+13,JobsProfessional,0.044511
+14,JobsHealthcare,0.041704
+15,JobsTrade,0.036663
+16,JobsManufacturing,0.035857
+17,JobsTransport,0.035561
+18,JobsEntertainment,0.030766
+19,JobsRealestate,0.030489
+20,Working_Fulltime_Poverty,0.027983
+21,JobsAgriculture,0.021025
