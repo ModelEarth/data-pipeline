@@ -1,4 +1,4 @@
-[Community Data](/community-data/)
+[Community Data](../../../../community-data/)
 
 # Timeline samples
 
