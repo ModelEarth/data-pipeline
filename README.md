@@ -75,7 +75,7 @@ View our [Flowsa Python scripts](flowsa)
 
 #### Embeddable Datasets
 <!-- ../#mapview=country -->
-[Beyond Carbon State Map](../../../apps/beyondcarbon/#mapview=state) - More embedding samples: [Community Pages](../../../apps)
+[Community Model Pages](../../../apps) - Parameters for [embedding in local sites](../../../localsite/)
 
 [Impact Charts](../../../io/charts/) - US Environmentally-Extended Input-Output (USEEIO) - Goods and Services 
 
