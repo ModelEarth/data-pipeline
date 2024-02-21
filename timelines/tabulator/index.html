@@ -83,6 +83,7 @@ function displayTabulators() {
 
     });
 
+    // TO DO - Find Tabulator command triggered once table is ready.
     // BugBug - wait for table load instead. setTimeout prevents TypeError: Cannot read properties of null (reading 'verticalFillMode')
     setTimeout(() => {
         table1.setData(csvYearData);
@@ -102,6 +103,13 @@ function displayTabulators() {
     if (hash.state) {
         csvFile = csvRoot + hash.state + "/US" + hash.state + "-census-naics4-2020.csv";
         $("#tabPageTitle").html(hash.state + " Industries 2020");
+    }
+
+    // Sample loop, to apply below to year file loading. Then append asynchonously to table2 using table2.setData
+    let startYear = 2017;
+    let endYear = 2020;
+    for (var i = startYear; i <= endYear; ++i) {
+        console.log("Year " + i);
     }
 
     let yearRecords = [];
