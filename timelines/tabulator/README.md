@@ -1,3 +1,5 @@
+[Active Projects](../../../io/)
+
 # Tabulator Sample for Timeline
 
 TO DO - Within javascript in the current page:
@@ -6,7 +8,7 @@ TO DO - Within javascript in the current page:
 2. Append each year to an array of year rows called yearRecords. - Person 1
 3. Append each year to Tabulator asynchronously as 4 year files load. - Person 1
 4. Display an Observable Framework timeline that auto-updates as Tabulator changes. - Person 2
-5. Merge names of industries based on NAICS values. - Person 3
+5. Merge names of industries in javascript using our [NAICS Lookup](https://model.earth/community-data/us/id_lists/industry_id_list.csv) - Person 3
 
 If you're Person 2 or 3, work in a copy of the index.html page. Deploy within this folder in your fork.
 
