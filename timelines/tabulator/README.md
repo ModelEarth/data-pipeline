@@ -12,6 +12,4 @@ TO DO - Within javascript in the current page:
 
 If you're Person 2 or 3, work in a copy of the index.html page. Deploy within this folder in your fork.
 
-Note: We will soon be addig a dash in the annual file names between US and the 2-char state.
-USAK-census-naics6-2020.csv will become US-AK-census-naics4-2020.csv
 
