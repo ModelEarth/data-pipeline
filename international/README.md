@@ -1,9 +1,9 @@
 [Data Pipeline](../)
-# International Data Pipeline and API
+# International Data API
 
-[Google Data Commons API for UN Global Goals](https://blog.google/technology/ai/google-ai-data-un-global-goals/)
+[Google Data Commons API for UN Global Goals](https://blog.google/technology/ai/google-ai-data-un-global-goals/) - [UN Data Commons: SDG Data by Goal](https://unstats.un.org/UNSDWebsite/undatacommons/sdgs)
 
-[Update our Google Data Commons notes page](../../localsite/info/data/datacommons/) - Add steps for using the API and add visualizations
+[Update our Google Data Commons notes page](../../localsite/info/data/datacommons/) - Add steps for using the API and generate visualizations
 
 [Prep Timeline Data](../timelines/) using [worldbank.org indicators](https://github.com/phiresky/world-development-indicators-sqlite/)
 
@@ -11,7 +11,7 @@
 
 [UN Comtrade Database API](https://comtrade.un.org/data/dev/portal/) - Imports and exports by country by year
 
-[IPCC — Intergovernmental Panel on Climate Change](https://www.ipcc.ch) - The United Nations body for assessing the science related to climate change.
+[Intergovernmental Panel on Climate Change (IPCC)](https://www.ipcc.ch) - The UN body for assessing the science related to climate change.
 
 ## Data Processing Steps
 
