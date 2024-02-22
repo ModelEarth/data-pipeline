@@ -2,6 +2,7 @@
 # International Data API
 
 [Google Data Commons API for UN Global Goals](https://blog.google/technology/ai/google-ai-data-un-global-goals/) - [UN Data Commons: SDG Data by Goal](https://unstats.un.org/UNSDWebsite/undatacommons/sdgs)
+Article says the the UN SDG data resides in Google Data Commons API.
 
 [Update our Google Data Commons notes page](../../localsite/info/data/datacommons/) - Add steps for using the API and generate visualizations
 
