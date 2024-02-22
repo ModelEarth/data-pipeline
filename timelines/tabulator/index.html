@@ -30,14 +30,25 @@
     <div id="readmeDiv"></div>
 
     <h2>Time Table - Rows for Years</h2>
+    
+    Table 4: From Javascript - To be added
     <div id="timeline-table"></div>
+    <br><br>
+
+    Table 3: From Python File
+    <div id="timeline-table-python"></div>
+    <br><br>
+
+    Table 1: From JSON
+    <div id="timeline-table-fromjson"></div>
     <br>
 
     <h2 id="tabPageTitle">Arkansas Industries 2020</h2>
     This data will be flipped into 3 multi-year datasets for: Establishments, Employees and Payroll.<br><br>
+
+    Table 2:
 	<div id="example-table"></div>
     <br>
-    <div id="tabulator-sample"></div>
 
     <div style="margin-top:8px">
        <a href="http://tabulator.info/docs/" target="_blank">Tabulator Documentation</a> |
@@ -60,7 +71,7 @@ function displayTabulators() {
         {Year:"2023", Naics12:"7343", Naics23:"3247"},
     ];
 
-    var table1 = new Tabulator("#timeline-table", {
+    var table1 = new Tabulator("#timeline-table-fromjson", {
      
         layout:"fitColumns",      //fit columns to width of table
         responsiveLayout:"hide",  //hide columns that dont fit on the table
@@ -98,7 +109,6 @@ function displayTabulators() {
     csvRoot = "/community-data/industries/naics/US/counties/";
     var csvFile = csvRoot + "AK/US-AK-census-naics4-2020.csv";
     
-
     hash = getHash();
     if (hash.state) {
         csvFile = csvRoot + hash.state + "/US" + hash.state + "-census-naics4-2020.csv";
@@ -119,7 +129,7 @@ function displayTabulators() {
             // TO DO - Loop through years 2017 to 2020.
             // 
                 d3.csv(csvFile).then(function(data) {
-                    console.log("File loaded " + csvFile);
+                    console.log("Census File loaded " + csvFile);
                     console.log(data); // An array of objects
                     
                     // TO DO: Append each year to an array of year rows called yearRecords
@@ -159,12 +169,65 @@ function displayTabulators() {
         ],
 
     });
+
+    var csvRootTimeline = "https://github.com/ModelEarth/data-pipeline/timelines/tabulator/outputs/";
+    csvRootTimeline = "/data-pipeline/timelines/tabulator/outputs/";
+    var csvFileTimeline = csvRootTimeline + "US-AK-census-naics4-employees.csv";
+
+    d3.csv(csvFileTimeline).then(function(data) {
+        console.log("Python file loaded " + csvFileTimeline);
+        
+        
+        // TO DO: Append each year to an array of year rows called yearRecords
+
+        // TO DO:  Append each year to an array of year rows asynchronously as file loads.
+
+        tableDisplay(data["columns"],data);
+    });
+
+
+
 }
 displayTabulators();
 
+function tableDisplay(columns,data) {
+    console.log("Python file data:");
+    console.log(data); // An array of objects
+    console.log("Python file columns:");
+    console.log(columns);
+
+    // TO DO:
+    // Why does adding columns:columns WITHOUT autoColumns:true produce error:
+    // TypeError: Cannot use 'in' operator to search for '0' in Year
+    // columns:columns,
+
+    var table3 = new Tabulator("#timeline-table-python", {
+        data:data,
+        layout:"fitColumns",      //fit columns to width of table
+        responsiveLayout:"hide",  //hide columns that dont fit on the table
+        //tooltips:true,          //show tool tips on cells
+        maxHeight:"500px",        // For frozenRows
+        addRowPos:"top",          //when adding a new row, add it to the top of the table
+        history:true,             //allow undo and redo actions on the table
+        paginationSize:7,         //allow 7 rows per page of data
+        movableColumns:true,      //allow column order to be changed
+        resizableRows:true,       //allow row order to be changed
+        initialSort:[             //set the initial sort order of the data
+            {column:"progress", dir:"desc"},
+        ],
+        autoColumns:true,
+    });
+}
 document.addEventListener('hashChangeEvent', function (elem) {
     displayTabulators();
 });
+
+
+
+//-----------
+
+
+
 </script>
 
 
