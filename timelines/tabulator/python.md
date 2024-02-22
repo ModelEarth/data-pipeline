@@ -1,6 +1,6 @@
 ## Python Version
 
-Honglin Zhu has generated 3 sample static timelines file using python.md.
+Honglin Zhu has generated 3 sample static timelines file using csv_merge.py.
 
 Rows: 2017 to 2020
 
