@@ -1,0 +1,5 @@
+The app uses Streamlit for the frontend, allowing users to select prompts from a CSV file to generate images using the Replicate API.
+It retrieves necessary API tokens and endpoints from a .streamlit/secrets.toml file for both Replicate and GitHub.
+A function convert_to_jpeg converts the generated image to JPEG format.
+The save_image_to_github function uploads the JPEG image to a specified GitHub repository, encoding the image in base64.
+The main function (main) handles the UI elements, image generation process, and calls the saving function upon user interaction.
