@@ -58,6 +58,9 @@ Might need:
 
 3.) Generate zips folders using instructions in zipgraph.py
 
+	pip install openpyxl
+	python zipgraph.py ZIPCodetoZCTACrosswalk2022UDS.xlsx ../../zip/
+	
 4.) See readme in [regression](../regression)
 
 5.) Also see [Processing NAICS by Zip Code](/community-data/process/naics/) 
