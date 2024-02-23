@@ -1,4 +1,5 @@
-# Now resides as data-pipeline/timelines/prep/industries/naics-timelines.py
+# Generates year rows with NAICS columns
+# Ronan updating initial script from Honglin
 
 import pandas as pd
 import os
