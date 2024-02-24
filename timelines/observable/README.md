@@ -71,8 +71,9 @@ Only works with the npx http-server command above
 This works when running the cmd in the parent, so this is not a level issue.
 http://192.168.1.210:8082/dist/
 
+If you are hosting on GitHub, remember to turn on Github Pages.
 
-To publish (Haven't done this yet. Using GitHub Desktop instead.):
+To publish to Observable (Haven't done this yet. Used GitHub Desktop instead.):
 
 	yarn deploy
 
@@ -86,6 +87,6 @@ These are at the bottom here: https://model.earth/observable/
 	yarn observable
 	yarn observable help
 
-If you are hosting on GitHub, turn on Github Pages.
+
 
 
