@@ -8,8 +8,7 @@ By Mike Bostock, New York Times data scientist who created D3.
 
 ## Notes on Initial Install
 
-<!--You won't need to re-run the install steps on the current repo.-->
-These are a summary of the [Observable Install Steps](
+Based on [Observable Install Steps](
 https://observablehq.com/framework/getting-started#3.-publish)
 
 In the webroot, we ran yarn because it's faster and more secure than: npm init @observablehq
@@ -78,11 +77,9 @@ To publish (Haven't done this yet. Using GitHub Desktop instead.):
 
 	yarn deploy
 
-THE BIG QUESTION - How do we deploy the files?
+THE BIG QUESTION - How do we deploy the files to GitHub Pages?
 
 How do we toggle deploy between self-hosting and deploying to Observable?
-
-If you are hosting on GitHub, turn on Github Pages.
 
 How do we run either of the following?
 These are at the bottom here: https://model.earth/observable/
@@ -90,8 +87,6 @@ These are at the bottom here: https://model.earth/observable/
 	yarn observable
 	yarn observable help
 
-
-You can edit this README.md page and add subfolders with files here in the "io" folder:
-[localhost:8887/observable/io](http://localhost:8887/observable/io/)
+If you are hosting on GitHub, turn on Github Pages.
 
 
