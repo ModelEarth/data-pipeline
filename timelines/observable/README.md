@@ -91,7 +91,7 @@ These are at the bottom here: [model.earth/observable](https://model.earth/obser
 
 
 Failed attempts:
-https://model.earth/observable/dist
-https://model.earth/observable-dist
+[model.earth/observable/dist](https://model.earth/observable/dist/)
+[model.earth/observable-dist](https://model.earth/observable-dist/)
 
 
