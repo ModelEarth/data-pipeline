@@ -8,8 +8,7 @@ By Mike Bostock, New York Times data scientist who created D3.
 
 ## Notes on Initial Install
 
-Based on [Observable Install Steps](
-https://observablehq.com/framework/getting-started#3.-publish)
+Based on the [Observable Install Steps](https://observablehq.com/framework/getting-started#3.-publish)
 
 In the webroot, we ran yarn because it's faster and more secure than: npm init @observablehq
 
