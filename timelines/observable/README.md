@@ -3,7 +3,7 @@
 # Observable
 
 [Observable Framework](https://observablehq.com/framework/) - for static site generation
-By Mike Bostock, New York Times data scientist who created D3.
+Created by Mike Bostock, the New York Times data scientist who created D3.
 
 
 ## Notes on Initial Install
@@ -33,7 +33,7 @@ Include sample files to help you get started?
 ◇  Initialize git repository?
 │  Yes
 
-cd into the observable folder and run
+cd into the observable folder and run. This will open a browser at http://127.0.0.1:3001
 
 	yarn dev
 
@@ -62,22 +62,24 @@ http://192.168.1.210:8081
 So you can't view the subfolders at:
 [localhost:8887/observable/dist](http://localhost:8887/observable/dist/)
 
-And the image and .js also don't display here with GitHub Pages at either of these:
+And the image and .js files return 404 with GitHub Pages at either of these:
 https://model.earth/observable/dist/
 https://model.earth/observable-dist/
 
 
-Only works with the npx http-server command above
+Only works with the npx http-server command above.
 This works when running the cmd in the parent, so this is not a level issue.
 http://192.168.1.210:8082/dist/
 
-If you are hosting on GitHub, remember to turn on Github Pages.
 
-To publish to Observable (Haven't done this yet. Used GitHub Desktop instead.):
+To publish to Observable (You must be logged in to Observable to deploy.)
 
 	yarn deploy
 
-THE BIG QUESTION - How do we deploy the files to GitHub Pages?
+Trying to use GitHub Desktop instead.
+If you are hosting on GitHub, remember to turn on Github Pages.
+
+THE BIG QUESTION - How do we view unbroken static dist files using GitHub Pages?
 
 How do we toggle deploy between self-hosting and deploying to Observable?
 
@@ -88,5 +90,8 @@ These are at the bottom here: https://model.earth/observable/
 	yarn observable help
 
 
+Failed attempts:
+https://model.earth/observable/dist
+https://model.earth/observable-dist
 
 
