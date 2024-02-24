@@ -84,7 +84,7 @@ THE BIG QUESTION - How do we view unbroken static dist files using GitHub Pages?
 How do we toggle deploy between self-hosting and deploying to Observable?
 
 How do we run either of the following?
-These are at the bottom here: https://model.earth/observable/
+These are at the bottom here: [model.earth/observable](https://model.earth/observable/)
 
 	yarn observable
 	yarn observable help
