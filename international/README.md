@@ -8,6 +8,6 @@ The UN Sustainable Development Goals (SDG) data resides in the [Google Data Comm
 
 [Prep Timeline Data](../timelines/) using [worldbank.org indicators](https://github.com/phiresky/world-development-indicators-sqlite/)
 
-<--
-[Intergovernmental Panel on Climate Change (IPCC)](https://www.ipcc.ch) - The UN body for assessing the science related to climate change.
+<!--
+[Intergovernmental Panel on Climate Change (IPCC)](https://www.ipcc.ch) - The UN body for climate change data assessments.
 -->
