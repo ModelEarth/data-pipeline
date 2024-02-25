@@ -96,3 +96,19 @@ Failed attempts:
 
 Placing dist at the root of a site also fails:
 [earthscape.github.io](https://earthscape.github.io/)
+
+Works when deploying to observable hosting:
+[earthscape.observablehq.cloud/hello-framework/example-report](https://earthscape.observablehq.cloud/hello-framework/example-report)
+[https://observablehq.com/@earthscape](https://observablehq.com/@earthscape)
+
+
+Found this:
+GH Action to build and publish sources on push
+https://talk.observablehq.com/t/announcing-observable-2-0/8744/10
+
+Here's the action:
+https://github.com/GordonSmith/framework/actions/runs/7920241316
+
+This probably has info on adding: feat: Deploy docs to github.io #1
+https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
+
