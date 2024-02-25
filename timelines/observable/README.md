@@ -113,8 +113,19 @@ This probably has info on adding: feat: Deploy docs to github.io #1
 https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
 
 
-Steps:
+These steps didn't work yet:
+
 Pages
 Build and Deploy: Souce: GitHub Actions > create your own
 Set the name to deploy-docs.yml 
 Paste the text from [deploy-docs.yml](deploy-docs.yml) in the current folder
+Also added deploy.yml
+
+Still not working. Here are the failing actions, which were copied from GordonSmith/framework.
+https://github.com/ModelEarth/observable/actions
+
+Maybe it's failing because our [observable site](https://github.com/ModelEarth/observable/) is built with the hello example, whereas [GordonSmith/framework](https://github.com/GordonSmith/framework) is a fork of the [framework website](https://github.com/observablehq/framework).
+
+Trying with a similar fork of framework repo.
+https://github.com/ModelEarth/framework/actions
+
