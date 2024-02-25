@@ -128,7 +128,7 @@ Placing dist at the root of a site also fails:
 
 So far, only works for us when deploying to observable hosting:
 
-[earthscape.observablehq.cloud/hello-framework/example-report](https://earthscape.observablehq.cloud/hello-framework/example-report)
+[earthscape.observablehq.cloud/hello-framework/](https://earthscape.observablehq.cloud/hello-framework/)
 
 Create a user account for yourself. We test with:
 [https://observablehq.com/@earthscape](https://observablehq.com/@earthscape)
