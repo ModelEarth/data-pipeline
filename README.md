@@ -44,7 +44,7 @@ We may combine QWI data with BLS data to estimate 6-digit naics employment and p
 
 ## US EPA - Flowsa Flow-By-Activity Datasets for USEEIO
 
-[View Ecosystem](../../../io/about/api/) - The US EPA Flowsa data processing library includes:
+[View Ecosystem](../../io/about/api/) and [Lifecycle Tools Overview](../../community/tools/) - The US EPA Flowsa data pipeline includes:
 
 * [US Bureau of Economic Analysis (BEA)](https://www.bea.gov/data/industries/gross-output-by-industry)
 GDP Gross Output, Make Before Redefinitions, Use Before Redefinitions
