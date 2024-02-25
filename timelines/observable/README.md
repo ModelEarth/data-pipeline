@@ -112,3 +112,9 @@ https://github.com/GordonSmith/framework/actions/runs/7920241316
 This probably has info on adding: feat: Deploy docs to github.io #1
 https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
 
+
+Steps:
+Pages
+Build and Deploy: Souce: GitHub Actions > create your own
+Set the name to deploy-docs.yml 
+Paste the text from [deploy-docs.yml](deploy-docs.yml) in the current folder
