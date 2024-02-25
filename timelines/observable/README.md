@@ -90,27 +90,49 @@ These are at the bottom here: [model.earth/observable](https://model.earth/obser
 	yarn observable help
 
 
-Failed attempts:
+The answer is likely to be found in the [Observable Forum](https://talk.observablehq.com/).
+
+We are following this post for a solution:
+[Self Hosting post](https://talk.observablehq.com/t/announcing-observable-2-0/8744/8)
+A reply links to a sample of forking the Observable website and its Github Actions.
+
+
+Here's the action GordonSmith is using successfully (but what are the steps and settings?):
+https://github.com/GordonSmith/framework/actions/runs/7920241316
+
+
+Our attempt is failing:
+
+We might need to figure out how to adjust the actions properly on the page above.
+https://github.com/ModelEarth/framework/actions
+
+The above is a fork of the Observable Framework repo, like GordonSmith did.
+https://model.earth/framework/
+
+This might have info on adding: feat: Deploy docs to github.io #1
+https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
+
+
+
+### Hello sample
+
+Our [observable self hosted test](https://github.com/ModelEarth/observable/) is built with the hello example, whereas [GordonSmith/framework](https://github.com/GordonSmith/framework) used a fork of the [framework website](https://github.com/observablehq/framework).
+
+
+Our Hello sample failed attempts:
 [model.earth/observable/dist](https://model.earth/observable/dist/)
 [model.earth/observable-dist](https://model.earth/observable-dist/)
 
 Placing dist at the root of a site also fails:
 [earthscape.github.io](https://earthscape.github.io/)
 
-Works when deploying to observable hosting:
+So far, only works for us when deploying to observable hosting:
+
 [earthscape.observablehq.cloud/hello-framework/example-report](https://earthscape.observablehq.cloud/hello-framework/example-report)
+
+Create a user account for yourself. We test with:
 [https://observablehq.com/@earthscape](https://observablehq.com/@earthscape)
 
-
-Found this:
-GH Action to build and publish sources on push
-https://talk.observablehq.com/t/announcing-observable-2-0/8744/10
-
-Here's the action:
-https://github.com/GordonSmith/framework/actions/runs/7920241316
-
-This probably has info on adding: feat: Deploy docs to github.io #1
-https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
 
 
 These steps didn't work yet:
@@ -124,8 +146,8 @@ Also added deploy.yml
 Still not working. Here are the failing actions, which were copied from GordonSmith/framework.
 https://github.com/ModelEarth/observable/actions
 
-Maybe it's failing because our [observable site](https://github.com/ModelEarth/observable/) is built with the hello example, whereas [GordonSmith/framework](https://github.com/GordonSmith/framework) is a fork of the [framework website](https://github.com/observablehq/framework).
-
-Trying with a similar fork of framework repo.
-https://github.com/ModelEarth/framework/actions
-
+<!--
+New Workflow > Set up a workflow yourself
+Copy
+Deploy framework content to Pages
+-->
