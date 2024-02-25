@@ -94,4 +94,5 @@ Failed attempts:
 [model.earth/observable/dist](https://model.earth/observable/dist/)
 [model.earth/observable-dist](https://model.earth/observable-dist/)
 
-
+Placing dist at the root of a site also fails:
+[earthscape.github.io](https://earthscape.github.io/)
