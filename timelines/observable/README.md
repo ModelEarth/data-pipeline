@@ -18,7 +18,7 @@ Yarn may prompt you to upgrade node. Check where you have node.
 
 	where node
 
-If you have two node locations, use both cmds to update. The second is for node version manager:
+If you have two node instances, use both cmds to update. The second is for node version manager (vvm):
 
 	n latest
 	nvm install node --reinstall-packages-from=node
