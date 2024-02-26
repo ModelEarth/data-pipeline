@@ -27,7 +27,7 @@ output/2021/2021-naics2-counties.csv
 
 The training file format will be:
 
-FIPS, N1111, N2222, N333, N4444, N5555
+Fips, N1111, N2222, N333, N4444, N5555
 
 Each row is a location. (FIPS = countyID)
 
