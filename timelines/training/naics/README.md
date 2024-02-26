@@ -27,9 +27,10 @@ output/2021/2021-naics2-counties.csv
 
 The training file format will be:
 
-Fips, N1111, N2222, N333, N4444, N5555
+Fips, N1111-Firms, N1111-People, N1111-Pay, N2222-Firms, N2222-People, N2222-Pay, ...
 
 Each row is a location. (FIPS = countyID)
+The cells are attributes (Establishments, Employees, Payroll) for the NAICS rows.
 
 This is the equivalent to the prior file (ztca = zipcode):
 
