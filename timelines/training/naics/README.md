@@ -5,7 +5,7 @@
 We're creating a new Random Forest process infomed [by the prior ztca process](../../prep/all)
 
 We'll use the state of Maine (MN) as our sample counties.  
-We'll use NAICS level 2 which has about 72 industries.
+We'll use NAICS level 4 which has about 72 industries.
 
 Could we process the data entirely in Pandas rather then using SQLLite?
 
@@ -47,7 +47,7 @@ Ronan is working on a similar pivot in [prep/industries](../../prep/industries/)
 
 ---
 
-### 3.)  Append 0 or 1 to the last column.
+### 3.) Append 0 or 1 to the last column.
 
 County demographic attributes can be fetched from the Google Data Commons API for population, education levels, income/poverty levels.
 
