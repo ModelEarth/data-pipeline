@@ -1,31 +1,29 @@
 [Community Data](../../../../community-data/)
 
-# Timeline samples
-
-[SQLite in a browser](../../sqlite/) from the phiresky timeline will be modified to show changes in naics industry levels for zips and counties.
-
-[Our Tabulator + Timeline Sample](../../tabulator)
-[Phiresky SQLite Timeline](https://phiresky.github.io/blog/2021/hosting-sqlite-databases-on-github-pages/) - Includes filter for selecting countries
-[Line Race](../../line-race.html) - [Apache eChart](https://echarts.apache.org/examples/en/editor.html?c=line-race)
-[Community Forecasting](/community-forecasting/?page=zip/#zip=30318)
-
-Python to [import .csv files into SQLite](https://github.com/phiresky/world-development-indicators-sqlite/) - Worldbank Development Indicators by year
+# NAICS Timeline Data for ML
 
 ## NAICS Timelines - Generate Multiple Years
 
 Each year, at the end of April (or later... was Nov in 2019), get the latest industry file.   
 
-Outputs SQLite script for years.
+### Output SQLite script for years
+Create a sqlite generator for each year: zcta\_2017.SQL.txt  
+Imports data from [input/2017/2017_zcta_industries_sm.csv](input/2017/2017_zcta_industries_sm.csv)
 
-This generates a sqlite file for each year: zcta_2013.SQL.txt, etc.
+	python automate.py zcta.SQL.txt
 
-	python automate.py zcta.SQL.txt 
+### Send annual training files to output folder
+output/[year]/[year]\_zcta_sm.csv
 
-Then run to send .csv output to data folder:  
+zcta, JobsTotal, JobsAgriculture, JobsEntertainment,...
+Population, Poverty, Poverty_Under18, Education,Work_Experience, Working_Fulltime, Working_Fulltime_Poverty, y
+
+Where last column y is 1 or 0.
+
 
 	./run.sh
 
-Or run individually:
+Or run years individually:
 
 	sqlite3 zcta.db < zcta_2013.SQL.txt> zcta.OUT.txt  
 
