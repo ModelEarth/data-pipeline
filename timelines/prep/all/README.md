@@ -16,7 +16,7 @@ zcta, latitude, longitude,JobsTotal,JobsAgriculture,JobsAutomotive,JobsEntertain
 30324,33.82,-84.36,1008,1,,63,38,100,22,234,77,46,12
 ...
 
-Our new data is annual files withh locations (county fips) and rows for each industry with 3 indicators.
+Our new data is annual files with locations (county fips) and rows for each industry with 3 indicators.
 
 Fips, Naics, Establishments, Employees, Payroll
 02016,7225,5,42,1113
