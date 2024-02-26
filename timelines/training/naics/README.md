@@ -9,13 +9,18 @@ We'll use NAICS level 2 which has about 72 industries.
 
 Could we process the data entirely in Pandas rather then using SQLLite?
 
+Yanqing is working on #1 and #2
 
-### 1.) Yanqing - Prepare Python that loads naics4 data into Pandas for 2017 to 2021 for Maine.
+### 1.) Prepare Python that loads naics4 data into Pandas for 2017 to 2021 for Maine
+
+Source files. Load these directly from the URL into Pandas.
 
 https://model.earth/community-data/industries/naics/US/counties/MN/US-MN-census-naics4-counties-2021.csv
 
+View files on GitHub: [industries/naics/US/counties/MN](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/counties/MN)
+
 ---
-<br>
+
 
 ### 2.) Output annual training files to:
 output/2021/2021-naics2-counties.csv
@@ -31,18 +36,17 @@ This is the equivalent to the prior file (ztca = zipcode):
 zcta, JobsTotal, JobsAgriculture, JobsEntertainment,…
 Population, Poverty, PovertyUnder18, Education,WorkExperience, WorkingFulltime, WorkingFulltime_Poverty, y
 
-Ronan is working on a similar pivot in [pep/industries](../../prep/industries/) for timelines, except the timeline rows are years.
+Ronan is working on a similar pivot in [prep/industries](../../prep/industries/) for timelines, except the timeline rows are years.
 
 ---
-<br>
 
 ### 3.)  Sijia - Append 0 or 1 to the last column.
 
-Look at prior process to document aspects to predict.
+Look at the prior process to document aspects to predict.
 
 We can use county demographic attributes like education and poverty.
 
-Count demographic attributes would be fetched from Google Data Commons.
+County demographic attributes can be fetched from the Google Data Commons API.
 
 ---
 <br>
