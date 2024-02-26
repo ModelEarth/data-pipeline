@@ -47,11 +47,25 @@ Ronan is working on a similar pivot in [prep/industries](../../prep/industries/)
 
 ---
 
-### 3.)  Sijia - Append 0 or 1 to the last column.
+### 3.)  Append 0 or 1 to the last column.
 
-Document what poverty quanitifier was previously use to set the y value to 0 or 1.
+County demographic attributes can be fetched from the Google Data Commons API for population, education levels, income/poverty levels.
 
-County demographic attributes can be fetched from the Google Data Commons API for population, education levels, income levels.
+Prior y column:
+y=1 when the current year’s poverty had no decline from the prior year AND the next year’s poverty increased by 2% or more.
+<!--
+Applied in
+prep/all/zcta_2016.SQL.txt
+
+-- Change from prior year is steady (0%) or increasing, change to next year is increasing by 2% or more.
+
+CASE
+      WHEN (prior1.poverty - p.poverty) >= 0 AND (p.poverty - next.poverty) >= 2 THEN 1
+      ELSE 0
+END
+
+AS y -- the povertyBinary for >= 2% in coming year, and no decline for current year.
+-->
 
 ---
 <br>
