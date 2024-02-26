@@ -31,7 +31,7 @@ CREATE table annual2012
 	y int
 );
 .mode csv
-.import ../all/input/2012/2012_zcta_sm.csv annual2012
+.import ../output/2012/2012_zcta_sm.csv annual2012
 
 CREATE table annual2013
 (
@@ -59,7 +59,7 @@ CREATE table annual2013
 	y int
 );
 .mode csv
-.import ../all/input/2013/2013_zcta_sm.csv annual2013
+.import ../output/2013/2013_zcta_sm.csv annual2013
 
 CREATE table annual2014
 (
@@ -87,7 +87,7 @@ CREATE table annual2014
 	y int
 );
 .mode csv
-.import ../all/input/2014/2014_zcta_sm.csv annual2014
+.import ../output/2014/2014_zcta_sm.csv annual2014
 
 CREATE table annual2015
 (
@@ -115,7 +115,7 @@ CREATE table annual2015
 	y int
 );
 .mode csv
-.import ../all/input/2015/2015_zcta_sm.csv annual2015
+.import ../output/2015/2015_zcta_sm.csv annual2015
 
 CREATE table annual2016
 (
@@ -143,7 +143,7 @@ CREATE table annual2016
 	y int
 );
 .mode csv
-.import ../all/input/2016/2016_zcta_sm.csv annual2016
+.import ../output/2016/2016_zcta_sm.csv annual2016
 
 -------------
 
@@ -174,7 +174,7 @@ from annual2012
 ;
 --convert to csv
 .mode csv
-.output ../all/output/2012/2012_summary.csv
+.output ../output/2012/2012_summary.csv
 select * from summary2012;
 .output stdout
 
@@ -206,7 +206,7 @@ from annual2013
 ;
 --convert to csv
 .mode csv
-.output ../all/output/2013/2013_summary.csv
+.output ../output/2013/2013_summary.csv
 select * from summary2013;
 .output stdout
 
@@ -238,7 +238,7 @@ from annual2014
 ;
 --convert to csv
 .mode csv
-.output ../all/output/2014/2014_summary.csv
+.output ../output/2014/2014_summary.csv
 select * from summary2014;
 .output stdout
 
@@ -270,7 +270,7 @@ from annual2015
 ;
 --convert to csv
 .mode csv
-.output ../all/output/2015/2015_summary.csv
+.output ../output/2015/2015_summary.csv
 select * from summary2015;
 .output stdout
 
@@ -302,7 +302,7 @@ from annual2016
 ;
 --convert to csv
 .mode csv
-.output ../all/output/2016/2016_summary.csv
+.output ../output/2016/2016_summary.csv
 select * from summary2016;
 .output stdout
 
@@ -314,7 +314,7 @@ select * FROM summary2015 UNION
 select * FROM summary2016;
 --convert to csv
 .mode csv
-.output ../all/output/summary/summary.csv
+.output ../output/summary/summary.csv
 select * from allyears;
 .output stdout
 

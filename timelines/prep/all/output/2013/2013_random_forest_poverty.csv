@@ -1,22 +1,22 @@
-,RandomForestClassifier,Training Accuracy before tuning:  0.9766016463851109
-1,RandomForestClassifier,Test Set Accuracy before tuning:  0.8257828810020876
+,RandomForestClassifier,Training Accuracy before tuning:  0.9766911238367931
+1,RandomForestClassifier,Test Set Accuracy before tuning:  0.8279749478079332
 2,,importance
-3,Population,0.085550
-4,Poverty,0.077889
-5,Education,0.075447
-6,Working_Fulltime,0.073154
-7,Poverty_18to65,0.072244
-8,Work_Experience,0.072221
-9,JobsTotal,0.069667
-10,Poverty_Under18,0.062600
-11,Poverty_Over65,0.059186
-12,JobsConstruction,0.047482
-13,JobsProfessional,0.044511
-14,JobsHealthcare,0.041704
-15,JobsTrade,0.036663
-16,JobsManufacturing,0.035857
-17,JobsTransport,0.035561
-18,JobsEntertainment,0.030766
-19,JobsRealestate,0.030489
-20,Working_Fulltime_Poverty,0.027983
-21,JobsAgriculture,0.021025
+3,Population,0.086535
+4,Poverty,0.077744
+5,Poverty_18to65,0.074110
+6,Education,0.073760
+7,Working_Fulltime,0.073369
+8,Work_Experience,0.071698
+9,Poverty_Under18,0.065921
+10,JobsTotal,0.061084
+11,Poverty_Over65,0.057888
+12,JobsConstruction,0.050089
+13,JobsProfessional,0.042234
+14,JobsHealthcare,0.040029
+15,JobsManufacturing,0.038588
+16,JobsTransport,0.036567
+17,JobsTrade,0.035658
+18,JobsRealestate,0.034464
+19,JobsEntertainment,0.030418
+20,Working_Fulltime_Poverty,0.028489
+21,JobsAgriculture,0.021354
