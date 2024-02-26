@@ -37,10 +37,14 @@ cd into the observable folder and run. This will open a browser at http://127.0.
 
 	yarn dev
 
+Or: npm run dev
+
 Open a new terminal in the observable repo.
 And build a static site for self hosting:
 
 	yarn build
+
+Or: npm run build
 
 We'll rename the "dist" folder to "io".
 Doing so allows us to avoid merge conflicts if we were to remove /dist from the .gitignore file.
