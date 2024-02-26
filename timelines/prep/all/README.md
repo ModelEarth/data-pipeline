@@ -4,11 +4,31 @@
 
 ## NAICS Timelines - Generate Multiple Years
 
-Each year, at the end of April (or later... was Nov in 2019), get the latest industry file.   
+<!--Each year, at the end of April (or later... was Nov in 2019), get the latest industry file. -->
+
+The old data source was annual files containing locations (zip) and 11 industry columns.
+[input/2017/2017_zcta_industries_sm.csv](input/2017/2017_zcta_industries_sm.csv)
+
+zcta, latitude, longitude,JobsTotal,JobsAgriculture,JobsAutomotive,JobsEntertainment,JobsConstruction,JobsHealthcare,JobsManufacturing,JobsProfessional,JobsRealestate,JobsTrade,JobsTransport
+30318,33.79,-84.45,1626,,2,132,78,92,83,303,87,164,41
+30319,33.88,-84.33,974,1,,70,43,70,11,317,120,56,3
+30322,33.79,-84.33,54,,,,,11,,1,,1,
+30324,33.82,-84.36,1008,1,,63,38,100,22,234,77,46,12
+...
+
+Our new data is annual files withh locations (county fips) and rows for each industry with 3 indicators.
+
+Fips, Naics, Establishments, Employees, Payroll
+02016,7225,5,42,1113
+02016,8139,4,22,1506
+02016,1141,5,6,602
+02016,3117,5,2514,70547
+...
+
 
 ### Output SQLite script for years
 Create a sqlite generator for each year: zcta\_2017.SQL.txt  
-Imports data from [input/2017/2017_zcta_industries_sm.csv](input/2017/2017_zcta_industries_sm.csv)
+These import data from [input/2017/2017_zcta_industries_sm.csv](input/2017/2017_zcta_industries_sm.csv)
 
 	python automate.py zcta.SQL.txt
 
