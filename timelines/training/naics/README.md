@@ -25,14 +25,20 @@ View files on GitHub: [industries/naics/US/counties/MN](https://github.com/Model
 ### 2.) Output annual training files to:
 output/2021/2021-naics2-counties.csv
 
-The training file format will be:
+
+For each industry, there will be 3 columns (Firms, People and Pay)
 
 Fips, N1111-Firms, N1111-People, N1111-Pay, N2222-Firms, N2222-People, N2222-Pay, ...
 
-Each row is a location. (FIPS = countyID)
-The cells are attributes (Establishments, Employees, Payroll) for the NAICS rows.
+Each row is a location (Fips = countyID) with 3 attributes per industry.
 
-This is the equivalent to the prior file (ztca = zipcode):
+The following attribute names are equivalent:
+
+Firms = Establishments
+People = Employees
+Pay = Payroll
+
+As a reference, the prior structure for ztca (zipcode) was:
 
 zcta, JobsTotal, JobsAgriculture, JobsEntertainment,…
 Population, Poverty, PovertyUnder18, Education,WorkExperience, WorkingFulltime, WorkingFulltime_Poverty, y
