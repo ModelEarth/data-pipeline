@@ -49,11 +49,9 @@ Ronan is working on a similar pivot in [prep/industries](../../prep/industries/)
 
 ### 3.)  Sijia - Append 0 or 1 to the last column.
 
-Look at the prior process to document aspects to predict.
+Document what poverty quanitifier was previously use to set the y value to 0 or 1.
 
-We can use county demographic attributes like education and poverty.
-
-County demographic attributes can be fetched from the Google Data Commons API.
+County demographic attributes can be fetched from the Google Data Commons API for population, education levels, income levels.
 
 ---
 <br>
