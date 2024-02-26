@@ -1,0 +1,22 @@
+RandomForestClassifier Training Accuracy before tuning:  0.9746161078031965
+RandomForestClassifier Test Set Accuracy before tuning:  0.6879047420096094
+                          importance
+Population                  0.081018
+Poverty                     0.076513
+Work_Experience             0.071714
+Education                   0.071255
+Poverty_18to65              0.069708
+Working_Fulltime            0.068838
+JobsTotal                   0.063323
+Poverty_Under18             0.063314
+Poverty_Over65              0.058833
+JobsConstruction            0.049527
+JobsProfessional            0.043767
+JobsHealthcare              0.042725
+JobsManufacturing           0.041729
+JobsTransport               0.039878
+JobsTrade                   0.038139
+JobsEntertainment           0.034780
+JobsRealestate              0.034222
+Working_Fulltime_Poverty    0.030832
+JobsAgriculture             0.019885
