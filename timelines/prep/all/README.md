@@ -64,14 +64,15 @@ Might need:
 	pip install pandas &&
 	pip install scikit-learn
 
-1.) Run Random Forest (uses python/runOneFile.py):
+1.) In "python" subfolder, run Random Forest (uses python/runOneFile.py):
+Takes about a minute.
 
-	cd python
+	cd python &&
 	python automateRF.py "../output"
 
 2.) Create a summary file. Run in timelines/summary folder:
 
-	cd ../../summary/
+	cd ../summary/ &&
 	sqlite3 summary.db < summary.SQL.txt > summary.OUT.txt
 
 3.) Generate zips folders using instructions in zipgraph.py
