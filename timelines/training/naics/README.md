@@ -13,9 +13,9 @@ Our ML Group: Sijia, Irene, Ronan, Lily, Luwei, Wenxi, Magie and more.
 TO DO:
 
 1.) Use Random Forest to make forecasting based on naics industry levels:
-- Top ten Maine counties at risk of increased poverty - Use Google Data Commons API
-- Top ten Maine counties likely to have a decline in bee populations - Find a data source
-- Top ten Maine counties likely to have a decline decline in tree canopy - Find a data source
+- Top ten Maine counties at risk of increased poverty - Use Google Data Commons API for county data
+- Top ten Maine counties likely to have a decline in bee populations - Find a data source (county or zip)
+- Top ten Maine counties likely to have a decline decline in tree canopy - Find a data source (county or zip)
 
 2.) Generate Maine CSV file for our [StreamLit Image Generation](../../../research/stream/).
 3.) Apply y=1 on-the-fly with Javascript and [Observable](../../observable/).
