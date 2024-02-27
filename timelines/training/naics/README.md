@@ -1,6 +1,6 @@
 [Timelines ML](../../)
 
-# Training Data for NAICS ML
+# NAICS Training Data for ML
 
 We're creating a new Random Forest process infomed [by the prior ztca process](../../prep/all)
 
