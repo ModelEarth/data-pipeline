@@ -37,7 +37,7 @@ We'll need a Python library that pulls the county population by year.
 Let's also include the value of the center latitude and longitude
 We could include the county name, then see if the model predicts differently without it.
 
-A columns.md file could list the column values:
+A file called columns.md could be output with a list of the column values:
 
 Fips
 Name
