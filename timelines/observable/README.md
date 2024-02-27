@@ -155,3 +155,14 @@ New Workflow > Set up a workflow yourself
 Copy
 Deploy framework content to Pages
 -->
+
+
+## Added localsite repo as a submodule
+
+Run in the docs folder: <!-- Or you can append "docs/" and run in repo's root. -->
+
+git submodule add https://github.com/ModelEarth/localsite localsite && 
+git commit -m "localsite submodule" && 
+
+git submodule add https://github.com/ModelEarth/localsite apps && 
+git commit -m "apps submodule"
