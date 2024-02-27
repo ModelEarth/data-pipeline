@@ -8,7 +8,7 @@ We'll use the state of Maine (MN) for our sample counties.
 We'll use NAICS level 4 which has about 72 industries.
 
 Yanqing (Lily) is working on #1 and #2 below.
-Our ML Group: Sijia, Kargil, Irene, Ronan, Lily, Luwei, Wenxi, Magie and more.
+Our ML Group: Sijia, Kargil, Alison, Irene, Ronan, Lily, Luwei, Wenxi, Magie and more.
 
 TO DO:
 
