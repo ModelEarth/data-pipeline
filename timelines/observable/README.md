@@ -3,7 +3,7 @@
 # Observable
 
 [Observable Framework](https://observablehq.com/framework/) - for static site generation
-Created by Mike Bostock, the New York Times data scientist who created D3.
+Observable is by Mike Bostock, the New York Times data scientist who created D3.
 
 
 ## Notes on Initial Install
