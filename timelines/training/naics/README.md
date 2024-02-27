@@ -9,7 +9,10 @@ We'll use NAICS level 4 which has about 72 industries.
 
 Could we process the data entirely in Pandas rather then using SQLLite?
 
-Yanqing is working on #1 and #2
+Yanqing (Lily) is working on #1 and #2. Also StreamLit.
+Our ML Group: Sijia, Irene, Ronan, Lily, Luwei, Wenxi, Magie - lots more.
+
+TO DO: Aplly y=1 on the fly with Javascript.
 
 ### 1.) Prepare Python that loads naics4 data into Pandas for 2017 to 2021 for Maine
 

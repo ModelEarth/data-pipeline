@@ -7,7 +7,7 @@ Prediction from changes in naics industry levels for zips and counties.
 
 ## Using Annual Industry and Census Data
 
-[NAICS Data Prep - New Random Forest](training/) - For [StreamLit ML & AI images](../research/stream/)
+[NAICS Data Prep - New Random Forest](training/naics/) - For [StreamLit ML & AI images](../research/stream/)
 [NAICS Data Prep - Prior Random Forest](prep/all/)
 
 [Tabulator using Javascript](tabulator/)
