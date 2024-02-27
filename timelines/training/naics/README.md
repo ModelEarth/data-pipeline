@@ -8,18 +8,20 @@ We'll use the state of Maine (MN) for our sample counties.
 We'll use NAICS level 4 which has about 72 industries.
 
 Yanqing (Lily) is working on #1 and #2 below.
-Our ML Group: Sijia, Irene, Ronan, Lily, Luwei, Wenxi, Magie and more.
+Our ML Group: Sijia, Kargil, Irene, Ronan, Lily, Luwei, Wenxi, Magie and more.
 
 TO DO:
 
-1.) Use Random Forest to make forecasting based on naics industry levels:
+1.) Prepare Python that loads naics4 data into Pandas for 2017 to 2021 for Maine
+2.) Output annual training files
+3.) Use Random Forest to make forecasting based on naics industry levels:
 - Top ten Maine counties at risk of increased poverty - Use Google Data Commons API for county data
 - Top ten Maine counties likely to have declining bee populations - Find a data source (county or zip)
 - Top ten Maine counties likely to have declining tree canopy - Find a data source (county or zip)
 
-2.) Generate Maine CSV file for our [StreamLit Image Generation](../../../research/stream/).
-3.) Apply y=1 on-the-fly with Javascript and [Observable](../../observable/).
-4.) Use [Tensorflow.org](https://www.tensorflow.org/js/demos) for [Neural Network predictions](https://www.tensorflow.org/s/results/?q=neural%20networks).
+4.) Generate Maine CSV file for our [StreamLit Image Generation](../../../research/stream/).
+5.) Apply y=1 on-the-fly with Javascript and [Observable](../../observable/).
+6.) Use [Tensorflow.org](https://www.tensorflow.org/js/demos) for [Neural Network predictions](https://www.tensorflow.org/s/results/?q=neural%20networks).
 
 
 ### 1. Prepare Python that loads naics4 data into Pandas for 2017 to 2021 for Maine
@@ -85,7 +87,7 @@ Ronan is working on a similar pivot in [prep/industries](../../prep/industries/)
 
 ---
 
-### 3. Append 0 or 1 to the last column.
+### Append 0 or 1 to the last column.
 
 County demographic attributes can be fetched from the Google Data Commons API for population, education levels, income/poverty levels.
 
@@ -108,6 +110,6 @@ AS y -- the povertyBinary for >= 2% in coming year, and no decline for current y
 ---
 <br>
 
-### 4.) Display results of Random Forest
+### Display results of Random Forest
 
 Sample from prior zcta process:
