@@ -26,7 +26,7 @@ TO DO:
 
 ### 1. Prepare Python that loads naics4 data into Pandas for 2017 to 2021 for Maine
 
-Project Lead: Yanqing (Lily)
+Project Contact: Yanqing (Lily)
 
 Source files. Load these directly from the URL into Pandas.
 
@@ -39,7 +39,7 @@ View files on GitHub: [industries/naics/US/counties/MN](https://github.com/Model
 
 ### 2. Output annual training files
 
-Project Lead: Yanqing (Lily)
+Project Contact: Yanqing (Lily)
 
 Save to: output/2021/2021-naics2-counties.csv
 Later these will reside in /community-forecasting
