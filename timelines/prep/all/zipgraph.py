@@ -1,6 +1,6 @@
 """ 
 EDIT 2/13/2024:
-1. update data source: 2022 Zip code to ZTCA crosswalk (https://udsmapper.org/zip-code-to-zcta-crosswalk/)
+1. update data source: 2022 Zip code to ZCTA crosswalk (https://udsmapper.org/zip-code-to-zcta-crosswalk/)
 2. change reading input data source file from csv to xlsx
 
 instruction:

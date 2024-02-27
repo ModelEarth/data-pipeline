@@ -2,7 +2,7 @@
 
 # NAICS Training Data for ML
 
-We're creating a new Random Forest process infomed [by the prior ztca process](../../prep/all)
+We're creating a new Random Forest process informed [by the prior zcta process](../../prep/all)
 
 We'll use the state of Maine (MN) for our sample counties.  
 We'll use NAICS level 4 which has about 72 industries.
@@ -14,8 +14,8 @@ TO DO:
 
 1.) Use Random Forest to make forecasting based on naics industry levels:
 - Top ten Maine counties at risk of increased poverty - Use Google Data Commons API for county data
-- Top ten Maine counties likely to have a decline in bee populations - Find a data source (county or zip)
-- Top ten Maine counties likely to have a decline decline in tree canopy - Find a data source (county or zip)
+- Top ten Maine counties likely to have declining bee populations - Find a data source (county or zip)
+- Top ten Maine counties likely to have declining tree canopy - Find a data source (county or zip)
 
 2.) Generate Maine CSV file for our [StreamLit Image Generation](../../../research/stream/).
 3.) Apply y=1 on-the-fly with Javascript and [Observable](../../observable/).
@@ -76,7 +76,7 @@ People = Employees
 Pay = Payroll
 -->
 
-As a reference, the prior structure for ztca (zipcode) was:
+As a reference, the prior structure for zcta (zip code) was:
 
 zcta, JobsTotal, JobsAgriculture, JobsEntertainment,…
 Population, Poverty, PovertyUnder18, Education,WorkExperience, WorkingFulltime, WorkingFulltime_Poverty, y
