@@ -4,17 +4,27 @@
 
 We're creating a new Random Forest process infomed [by the prior ztca process](../../prep/all)
 
-We'll use the state of Maine (MN) as our sample counties.  
+We'll use the state of Maine (MN) for our sample counties.  
 We'll use NAICS level 4 which has about 72 industries.
 
-Could we process the data entirely in Pandas rather then using SQLLite?
+Yanqing (Lily) is working on #1 and #2 below.
+Our ML Group: Sijia, Irene, Ronan, Lily, Luwei, Wenxi, Magie and more.
 
-Yanqing (Lily) is working on #1 and #2. Also StreamLit.
-Our ML Group: Sijia, Irene, Ronan, Lily, Luwei, Wenxi, Magie - lots more.
+TO DO:
 
-TO DO: Aplly y=1 on the fly with Javascript.
+1.) Use Random Forest to make forecasting based on naics industry levels:
+- Top ten Maine counties at risk of increased poverty - Use Google Data Commons API
+- Top ten Maine counties likely to have a decline in bee populations - Find a data source
+- Top ten Maine counties likely to have a decline decline in tree canopy - Find a data source
 
-### 1.) Prepare Python that loads naics4 data into Pandas for 2017 to 2021 for Maine
+2.) Generate Maine CSV file for our [StreamLit Image Generation](../../../research/stream/).
+3.) Apply y=1 on-the-fly with Javascript and [Observable](../../observable/).
+4.) Use [Tensorflow.org](https://www.tensorflow.org/js/demos) for [Neural Network predictions](https://www.tensorflow.org/s/results/?q=neural%20networks).
+
+
+### 1. Prepare Python that loads naics4 data into Pandas for 2017 to 2021 for Maine
+
+Project Lead: Yanqing (Lily)
 
 Source files. Load these directly from the URL into Pandas.
 
@@ -25,8 +35,12 @@ View files on GitHub: [industries/naics/US/counties/MN](https://github.com/Model
 ---
 
 
-### 2.) Output annual training files to:
-output/2021/2021-naics2-counties.csv
+### 2. Output annual training files
+
+Project Lead: Yanqing (Lily)
+
+Save to: output/2021/2021-naics2-counties.csv
+Later these will reside in /community-forecasting
 
 To streamline reuse, we'll avoid creating a header row.
 
@@ -71,7 +85,7 @@ Ronan is working on a similar pivot in [prep/industries](../../prep/industries/)
 
 ---
 
-### 3.) Append 0 or 1 to the last column.
+### 3. Append 0 or 1 to the last column.
 
 County demographic attributes can be fetched from the Google Data Commons API for population, education levels, income/poverty levels.
 
@@ -95,3 +109,5 @@ AS y -- the povertyBinary for >= 2% in coming year, and no decline for current y
 <br>
 
 ### 4.) Display results of Random Forest
+
+Sample from prior zcta process:
