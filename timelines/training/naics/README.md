@@ -27,7 +27,7 @@ output/2021/2021-naics2-counties.csv
 
 To streamline reuse, we'll avoid creating a header row.
 
-For each industry, there will be 3 column values:
+Each row is a location (Fips = countyID) with 73 industries, each with 3 attributes (224 columns total)
 
 Industry's Establishments per 1000 people
 Industry's Employees per 1000 people
@@ -37,7 +37,7 @@ We'll need a Python library that pulls the county population by year.
 Let's also include the value of the center latitude and longitude
 We could include the county name, then see if the model predicts differently without it.
 
-A .md file could list the column values:
+A columns.md file could list the column values:
 
 Fips
 Name
@@ -51,8 +51,6 @@ Naics X Average pay
 
 <!--
 Fips, N1111-Firms, N1111-People, N1111-Pay, N2222-Firms, N2222-People, N2222-Pay, ...
-
-Each row is a location (Fips = countyID) with 3 attributes per industry.
 
 The following attribute names are equivalent:
 
