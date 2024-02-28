@@ -46,7 +46,30 @@ And build a static site for self hosting:
 
 Or: npm run build
 
-We'll rename the "dist" folder to "io".
+
+Command for sending a folder's content into the repo. [source](https://medium.com/@colleen85052/populate-github-repo-with-existing-folder-from-command-line-18fc67fb804d)
+First you'll need to create an empty repo within GitHub.com.
+
+<textarea class="codetext" rows="6">
+git init
+git add .
+git commit -m "Init"
+git remote add origin <link to repository, ending with ".git">
+git remote -v
+git push --set-upstream origin main
+</textarea>
+
+Commit changes (Edit the message)
+
+<textarea class="codetext" rows="3">
+git add .
+git commit -m "Message goes Here"
+git push
+</textarea>
+
+---
+
+We might rename the "dist" folder to "io".
 Doing so allows us to avoid merge conflicts if we were to remove /dist from the .gitignore file.
 
 IMPORTANT:
