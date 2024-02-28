@@ -7,6 +7,38 @@
 
 [Streamlit Real or Fake (our RealityStream)](https://github.com/ModelEarth/RealityStream) - Logistic Regression, Random Forest and Support Vector Machines.
 
+TO DO: Prompt CSV files for Top 4 Industries in Maine and Oregon
+
+Create a Python script at research/stream/industries-prompt.py to  
+generate a CSV file with the top 4 Establishment rows from our 
+[Maine 2021 Industry list](https://model.earth/community-data/industries/naics/US/counties/ME/US-ME-census-naics4-2021.csv) and [Oregon 2021 Industry list](https://model.earth/community-data/industries/naics/US/counties/OR/US-OR-census-naics4-2021.csv).
+
+Use parameters for: country (US), stateAbbr (ME and OR), naicsLevel (4), year (2021), state (Maine and Oregon), outputFolder (prompts/industries)
+
+Join with the Industry titles from our [NAICS Lookup CSV](https://model.earth/community-data/us/id_lists/industry_id_list.csv).
+
+Save the column names as:
+
+Naics
+Industry
+Prompt
+Establishments
+Employees
+Payroll
+
+Populate the Prompt column with these four for each (12 total):
+- A honey bee is near a location that provides [Industry] in Maine in 2021.
+- A street under a tree canopy near a location that provides [Industry] in Maine in 2021.
+- An innovation that creates jobs in [Industry] in Maine in 2021.
+- An innovation that reduces poverty in [Industry] in Maine in 2021.
+
+Send the output to 2 files in a prompts/industries subfolder:
+
+prompts/industries/ME-prompts-2021.csv
+prompts/industries/OR-prompts-2021.csv
+
+<br>
+
 ### Dataset APIs to find
 Pull from Google Data Commons using [REST](https://docs.datacommons.org/api/rest/v2/getting_started) and an [Observable Data Loader](https://docs.datacommons.org/api/rest/v2).
 
