@@ -5,6 +5,7 @@
 [Observable Framework](https://observablehq.com/framework/) - for static site generation
 Observable is by Mike Bostock, the New York Times data scientist who created D3.
 
+Check out the [Observable Data Loaders](https://observablehq.com/framework/loaders)
 
 ## Notes on Initial Install
 
