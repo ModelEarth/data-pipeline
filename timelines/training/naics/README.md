@@ -24,16 +24,23 @@ TO DO:
 6.) Apply y=1 on-the-fly with Javascript and [Observable](../../observable/).
 7.) Use [Tensorflow.org](https://www.tensorflow.org/js/demos) for [Neural Network predictions](https://www.tensorflow.org/s/results/?q=neural%20networks).
 
+### Always start a virtual environment first
+
+Run in your modelearth webroot since you'll be sending files to data repos.
+
+      python3 -m venv env && source env/bin/activate
+      && cd data-pipeline/timelines/training/naics
+
 
 ### 1. Prepare Python that loads naics4 data into Pandas for 2017 to 2021 for Maine
 
-Project Contact: Yanqing (Lily)
+DONE - Project Contact: Yanqing (Lily)
 
 Source files. Load these directly from the URL into Pandas.
 
 https://model.earth/community-data/industries/naics/US/counties/MN/US-MN-census-naics4-counties-2021.csv
 
-View files on GitHub: [industries/naics/US/counties/MN](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/counties/MN)
+View source files on GitHub: [industries/naics/US/counties/MN](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/counties/MN)
 
 ---
 
