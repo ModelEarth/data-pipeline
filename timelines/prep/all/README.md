@@ -2,6 +2,8 @@
 
 # NAICS Timeline Data for ML
 
+Our recent work resides at [timelines/training/naics](../../training/naics)
+
 ## NAICS Timelines - Generate Multiple Years
 
 <!--Each year, at the end of April (or later... was Nov in 2019), get the latest industry file. -->
@@ -25,6 +27,12 @@ Fips, Naics, Establishments, Employees, Payroll
 02016,3117,5,2514,70547
 ...
 
+### Always start a virtual environment first
+
+Run in your modelearth webroot since you'll be sending files to data repos.
+
+	python3 -m venv env && source env/bin/activate
+	&& cd data-pipeline/timelines/prep/all
 
 ### Output SQLite script for years
 Create a sqlite generator for each year: zcta\_2017.SQL.txt  
