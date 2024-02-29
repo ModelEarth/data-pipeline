@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import requests
 import io
 import os
@@ -18,7 +19,12 @@ def getTop4Establishment(country, stateAbbr, naicsLevel, year, state, outputFold
     df_merged = pd.merge(df_extracted, df_industry, left_on='Naics', right_on='relevant_naics', how='left')
     df_merged.drop(['relevant_naics', "Unnamed: 0"], axis=1, inplace=True)
     df_merged.rename(columns={"industry_detail": "Industry"}, inplace=True)
-    output_name = f"{stateAbbr}-prompts-{str(year)}.csv"
+    
+
+    df_repeated = pd.DataFrame(np.repeat(df_merged.values, 4, axis=0), columns=df_merged.columns)
+    print(df_repeated)
+
+    raise Exception
     
     df_merged['Prompt'] = None
     
@@ -41,7 +47,8 @@ def getTop4Establishment(country, stateAbbr, naicsLevel, year, state, outputFold
         os.makedirs(outputFolder)
 
     print(df_merged)
-
+    
+    output_name = f"{stateAbbr}-prompts-{str(year)}.csv"
     df_merged.to_csv(os.path.join(outputFolder, output_name),index=False)
     
 getTop4Establishment("US", "ME", 4, 2021, "Maine", "prompts/industries")
