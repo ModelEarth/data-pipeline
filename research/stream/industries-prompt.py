@@ -31,10 +31,10 @@ def getTop4Establishment(country, stateAbbr, naicsLevel, year, state, outputFold
     def getPrompt(industry, state, year):
 
         prompts = [
-            f"A honey bee is near a location that provides {industry} in {state} in {str(year)}.",
-            f"A street under a tree canopy near a location that provides {industry} in {state} in {str(year)}.",
-            f"An innovation that creates jobs in {industry} in {state} in {str(year)}.",
-            f"An innovation that reduces poverty in {industry} in {state} in {str(year)}."
+            f"A small-honey-bee is near a location that provides {industry} in {state} in {str(year)}. Golden hour photograph. --no signage",
+            f"Biking under a tree canopy near near a location that provides {industry} in {state} in {str(year)}. Golden hour photograph. --no signage",
+            f"A person uses an innovation that creates jobs in {industry} in {state} in {str(year)}. Golden hour photograph. --no signage",
+            f"An amazing innovation that reduces poverty in {industry} in {state} in {str(year)}. Golden hour photograph. --no signage"
         ]
 
         return prompts
