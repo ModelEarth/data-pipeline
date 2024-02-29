@@ -19,37 +19,36 @@ def getTop4Establishment(country, stateAbbr, naicsLevel, year, state, outputFold
     df_merged = pd.merge(df_extracted, df_industry, left_on='Naics', right_on='relevant_naics', how='left')
     df_merged.drop(['relevant_naics', "Unnamed: 0"], axis=1, inplace=True)
     df_merged.rename(columns={"industry_detail": "Industry"}, inplace=True)
-    
 
     df_repeated = pd.DataFrame(np.repeat(df_merged.values, 4, axis=0), columns=df_merged.columns)
-    print(df_repeated)
-
-    raise Exception
+    df_repeated["Count"] = np.tile(np.array([1,2,3,4]), 4)
     
-    df_merged['Prompt'] = None
+    df_repeated['Prompt'] = None
     
-    def getPrompt(industry, state, year):
+    def getPrompt(industry_list, state, year):
+        assert len(industry_list) == 4
+        output_list = []
 
-        prompts = [
-            f"A small-honey-bee is near a location that provides {industry} in {state} in {str(year)}. Golden hour photograph. --no signage",
-            f"Biking under a tree canopy near near a location that provides {industry} in {state} in {str(year)}. Golden hour photograph. --no signage",
-            f"A person uses an innovation that creates jobs in {industry} in {state} in {str(year)}. Golden hour photograph. --no signage",
-            f"An amazing innovation that reduces poverty in {industry} in {state} in {str(year)}. Golden hour photograph. --no signage"
-        ]
+        for industry in industry_list:
+            prompts = [
+                f"A small-honey-bee is near a location that provides {industry} in {state} in {str(year)}. Golden hour photograph. --no signage",
+                f"Biking under a tree canopy near near a location that provides {industry} in {state} in {str(year)}. Golden hour photograph. --no signage",
+                f"A person uses an innovation that creates jobs in {industry} in {state} in {str(year)}. Golden hour photograph. --no signage",
+                f"An amazing innovation that reduces poverty in {industry} in {state} in {str(year)}. Golden hour photograph. --no signage"
+            ]
+            output_list.extend(prompts)
+        return output_list
 
-        return prompts
-    
-    prompts_list = [getPrompt(df_merged["Industry"][i], state, year) for i in range(len(df_merged))]
-    df_merged["Prompt"] = prompts_list
+    df_repeated["Prompt"] = getPrompt(list(df_merged["Industry"]), state, year)
         
 
     if not os.path.exists(outputFolder):
         os.makedirs(outputFolder)
 
-    print(df_merged)
+    print(df_repeated)
     
     output_name = f"{stateAbbr}-prompts-{str(year)}.csv"
-    df_merged.to_csv(os.path.join(outputFolder, output_name),index=False)
+    df_repeated.to_csv(os.path.join(outputFolder, output_name),index=False)
     
 getTop4Establishment("US", "ME", 4, 2021, "Maine", "prompts/industries")
 getTop4Establishment("US", "OR", 4, 2021, "Oregon", "prompts/industries")
