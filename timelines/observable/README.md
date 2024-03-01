@@ -116,9 +116,16 @@ Deployed project built above:
 
 [earthscape.observablehq.cloud/hello-framework/](https://earthscape.observablehq.cloud/hello-framework/)
 
+Kargil's demo-workspace project:
+[https://demo-workspace.observablehq.cloud/hello-framework/](https://demo-workspace.observablehq.cloud/hello-framework/)
+
+<!-- No Public notebooks, these probably require a paid account
+[https://observablehq.com/@demo-workspace](https://observablehq.com/@demo-workspace)
+-->
+
 Change the visibility of your hosted project:
 
-In your Observable account -> go to projects -> 3-dot menu to the right of your project name
+In your Observable account -> click "Viea All" go to projects list -> 3-dot menu to the right of your project name, choose Share and set Public to Can View.
 
 
 ### Hello sample - Self-Hosting Attempts
