@@ -37,19 +37,8 @@ Send the output to 2 files in a prompts/industries subfolder:
 prompts/industries/ME-prompts-2021.csv
 prompts/industries/OR-prompts-2021.csv
 
-The y=1 value will be set by [Census Data](https://www.censusreporter.org/data/map/?table=B06011&geo_ids=040|01000US)
+The y=1 value will be set by [Census Data](https://www.censusreporter.org/data/map/?table=B06011&geo_ids=040|01000US) and [Bee Pollinator](../bees/) data
 
-
-<br>
-
-### Dataset APIs to find
-Pull from Google Data Commons using [REST](https://docs.datacommons.org/api/rest/v2/getting_started) and an [Observable Data Loader](https://docs.datacommons.org/api/rest/v2).
-
-These will be used to populate the y=1 value for our [naics training data](../../timelines/training/naics).
-
-- [Bee Pollinator Decline](https://sustainableagriculture.net/blog/pnas-wild-bee-study/)
-- Reductions in Tree Canopy
-- [Increasing Poverty](https://unstats.un.org/UNSDWebsite/undatacommons/sdgs/goals?v=dc/topic/sdg_1)
 
 ## AI Images Generated from Replicate API
 
