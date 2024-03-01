@@ -67,7 +67,7 @@ def aggregate_and_save_data(states, years, output_base, cells=["Establishments",
                     if cell in df_year.columns:
                         df_agg = df_year.groupby('Naics', as_index=False)[cell].sum()
                         df_agg['Naics'] = df_agg['Naics'].apply(lambda x: f"N{x}")
-                        df_agg.set_index('Naics', in·1place=True)
+                        df_agg.set_index('Naics', inplace=True)
                         # Only add columns which do not include the year
                         columns_to_add = {col: f"{year}" for col in df_agg.columns if str(year) not in col}
                         df_agg.rename(columns=columns_to_add, inplace=True)
