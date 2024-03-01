@@ -92,19 +92,5 @@ states = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID"
 years = [2017, 2018, 2019, 2020]  
 output_base = os.path.join(base_dir, "outputs") 
 
-cells = ["Establishments","Employees","Payroll"]
-years = [2017,2018]
-i = 0
-for state in states:
-    
-    prefix = f"US-{state}-census-naics4-"
-    for cell in cells:
-        i += 1
-        df_cell = pd.DataFrame()
-        df_cell["Year"] = years
-        naics_total = set()
-        year2output = {}
-
-
 aggregate_and_save_data(states, years, output_base)
 
