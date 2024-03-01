@@ -4,7 +4,7 @@
 
 We're creating a new Random Forest process informed [by the prior zcta process](../../prep/all)
 
-We'll use the state of Maine (MN) for our sample counties.  
+We'll use the state of Maine (ME) for our sample counties.  
 We'll use NAICS level 4 which has about 72 industries.
 
 Yanqing (Lily) is working on #1 and #2 below.
@@ -39,9 +39,9 @@ DONE - Project Contact: Yanqing (Lily)
 
 Source files. Load these directly from the URL into Pandas.
 
-https://model.earth/community-data/industries/naics/US/counties/MN/US-MN-census-naics4-counties-2021.csv
+https://model.earth/community-data/industries/naics/US/counties/ME/US-ME-census-naics4-counties-2021.csv
 
-View source files on GitHub: [industries/naics/US/counties/MN](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/counties/MN)
+View source files on GitHub: [industries/naics/US/counties/ME](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/counties/ME)
 
 ---
 
