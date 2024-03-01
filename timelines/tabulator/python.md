@@ -1,5 +1,7 @@
 ## Python Version
 
+Also see version with [all 50 states](../prep/industries)
+
 Honglin Zhu has generated 3 sample static timelines file using csv_merge.py.
 
 Rows: 2017 to 2020
