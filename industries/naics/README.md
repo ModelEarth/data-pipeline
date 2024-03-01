@@ -8,17 +8,12 @@ TO DO: Send 50 state files to /community-data/industries/naics/US/country
 
 ### NAICS Zip Code data
 
-Starting with 2019, [ZIP Codes Business Patterns (ZBP)](https://www.census.gov/data/developers/data-sets/cbp-zbp/zbp-api.html) are available in the County Business Patterns (CBP) API which we also use for [state and county naics processing.
-
-- [Process Zips prior to 2017](/community-data/process/naics/)
+Starting with 2019, [ZIP Codes Business Patterns (ZBP)](https://www.census.gov/data/developers/data-sets/cbp-zbp/zbp-api.html) are available in the County Business Patterns (CBP) API which we also use for state and county naics processing.  [Process zips code zcta prior to 2019](/community-data/process/naics/)
 
 
 ### County Business Patterns (CBP)
 
 State-county-naics files previouly resided in [us/state](https://github.com/modelearth/community-data/tree/master/us/state) <span class="local" style="display:none">- <a href="../../../us/state">view on localhost</a></span>
-
-
-TO DO: For recent years
 
 USEPA has these 2 crosswalks. (There are no naics industry titles in these.)
 
@@ -64,9 +59,6 @@ US36005-census-naics6-2020.csv for a single county. Not needed currently. -->
 
 We send the annual naics files to: [/community-data/us/state-naics-update/](/community-data/us/state-naics-update/)
 Currently we then move manually to: [/community-data/us/state-naics/](/community-data/us/state-naics/)
-
-
-
 
 For each year, there are 3 for the US, and 6 for each state:  
 
