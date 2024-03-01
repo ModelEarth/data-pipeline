@@ -50,19 +50,19 @@ View source files on GitHub: [industries/naics/US/counties/ME](https://github.co
 
 Project Contact: Yanqing (Lily)
 
-Save to: output/2021/2021-naics2-counties.csv
+Output: One row per location (county) with columns for all naics4 industries with 3 attributes.
+
+Save to: output/2021/US-ME-training-naics4-counties-2021.csv
+
 Later these will reside in /community-forecasting
 
-To streamline reuse, we'll avoid creating a header row.
-
-Each row is a location (Fips = countyID) with 73 industries, each with 3 attributes (224 columns total)
-
+Attributes:
 Industry's Establishments per 1000 people
 Industry's Employees per 1000 people
 Industry's Average pay per Employee
 
 We'll need a Python library that pulls the county population by year.
-Let's also include the value of the center latitude and longitude
+Let's also include the value of the center latitude and longitude.
 We could include the county name, then see if the model predicts differently without it.
 
 A file called columns.md could be output with a list of the column values:
