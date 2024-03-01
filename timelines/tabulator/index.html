@@ -33,6 +33,7 @@
     
     Table 4: From Javascript (Establishments)
     <div id="timeline-table"></div>
+    <div id="table4-count"></div>
     <br><br>
 
     Table 3: From Python File (Establishments)
@@ -227,7 +228,7 @@ document.addEventListener('hashChangeEvent', function (elem) {
     displayTabulators();
 });
 
-
+var table4count = 0;
 function table4Display() {
     console.log("Python file data:");
     //console.log(data); // An array of objects
@@ -253,6 +254,13 @@ function table4Display() {
             {column:"progress", dir:"desc"},
         ],
         autoColumns:true,
+    });
+    table4.on("dataLoaded", function(data){
+        
+        //alert("loaded")
+        /*
+        
+        */
     });
 
     // TO DO - Find Tabulator command triggered once table is ready.
@@ -281,6 +289,13 @@ function table4Display() {
                     
                     // TO DO: wait until table4 tabulator is built
                     table4.setData(data);
+                    table4count = table4count + data.length-1;
+
+                    $("#table4_totalcount").remove(); // Prevent dup - this will also remove events bound to the element.
+                    let totalcount_div = Object.assign(document.createElement('div'),{id:"table4_totalcount",style:"margin-bottom:10px"})
+                    $("#table4-count").append(totalcount_div);
+                    totalcount_div.innerHTML = table4count  + " rows";
+
                 });
                 
             }
