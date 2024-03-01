@@ -19,18 +19,19 @@ TO DO:
 - Top ten Maine counties likely to have declining bee populations - Find a data source (county or zip)
 - Top ten Maine counties likely to have declining tree canopy - Find a data source (county or zip)
 
-4.) DONE - Generate Maine and Oregon CSV file for our [StreamLit Image Generation](../../../research/stream/) - Honglin
-5.) [Create an easy way for non-coders to setup Observable visualizations](/data-pipeline/timelines/observable) - Kargil and others
-6.) Apply y=1 on-the-fly with Javascript and [Observable](../../observable/).
-7.) Use [Tensorflow.org](https://www.tensorflow.org/js/demos) for [Neural Network predictions](https://www.tensorflow.org/s/results/?q=neural%20networks).
+4.) [Create an easy way for non-coders to setup Observable visualizations](/data-pipeline/timelines/observable) - Kargil and others
+5.) [Apply y=1 on-the-fly](/data-pipeline/research/bees/) with Javascript and [Observable](../../observable/).
+6.) Use [Tensorflow.org](https://www.tensorflow.org/js/demos) for [Neural Network predictions](https://www.tensorflow.org/s/results/?q=neural%20networks).
 
-### Always start a virtual environment first
+### Start a virtual environment
 
 Run in your modelearth webroot since you'll be sending files to data repos.
 
       python3 -m venv env && source env/bin/activate
       && cd data-pipeline/timelines/training/naics
 
+
+## Current Projects
 
 ### 1. Prepare Python that loads naics4 data into Pandas for 2017 to 2021 for Maine
 
