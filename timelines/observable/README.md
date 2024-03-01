@@ -119,13 +119,15 @@ Deployed project built above:
 Kargil's demo-workspace project:
 [https://demo-workspace.observablehq.cloud/hello-framework/](https://demo-workspace.observablehq.cloud/hello-framework/)
 
-<!-- No Public notebooks, these probably require a paid account
-[https://observablehq.com/@demo-workspace](https://observablehq.com/@demo-workspace)
--->
-
 Change the visibility of your hosted project:
 
 In your Observable account -> click "Viea All" go to projects list -> 3-dot menu to the right of your project name, choose Share and set Public to Can View.
+
+Looks like we can add Public Notes (notebooks)
+https://observablehq.com/@demo-workspace
+
+But the project list itself is not visibly others, at least not without a paid account or maybe a setting change. I get 404 here:
+https://observablehq.com/projects/@demo-workspace
 
 
 ### Hello sample - Self-Hosting Attempts
