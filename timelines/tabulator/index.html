@@ -31,11 +31,11 @@
 
     <h2>Time Table - Rows for Years</h2>
     
-    Table 4: From Javascript - To be added
+    Table 4: From Javascript (Establishments)
     <div id="timeline-table"></div>
     <br><br>
 
-    Table 3: From Python File
+    Table 3: From Python File (Establishments)
     <div id="timeline-table-python"></div>
     <br><br>
 
@@ -61,7 +61,7 @@
 </div>
 <script>
 function displayTabulators() {
-    var csvYearData = [
+    let csvYearData = [
         {Year:"2017", Naics12:"12345", Naics23:"555"}, 
         {Year:"2018", Naics12:"78787", Naics23:"777"},
         {Year:"2019", Naics12:"3343", Naics23:"888"},
@@ -96,9 +96,14 @@ function displayTabulators() {
 
     // TO DO - Find Tabulator command triggered once table is ready.
     // BugBug - wait for table load instead. setTimeout prevents TypeError: Cannot read properties of null (reading 'verticalFillMode')
-    setTimeout(() => {
-        table1.setData(csvYearData);
-    },800);
+    //setTimeout(() => {
+    //    table1.setData(csvYearData);
+    //},800);
+    table1.on("tableBuilt", function() {
+        // Now the table is initialized, you can set your data
+        //table.setData(yourData);
+        table1.setData(csvYearData4);
+    });
 
     table1.on("dataLoaded", function(data){
         // Triggered by setData
@@ -182,7 +187,7 @@ function displayTabulators() {
 
         // TO DO:  Append each year to an array of year rows asynchronously as file loads.
 
-        tableDisplay(data["columns"],data);
+        tableDisplay(data["columns"],data); // For table3
     });
 
 
@@ -223,8 +228,96 @@ document.addEventListener('hashChangeEvent', function (elem) {
 });
 
 
+function table4Display() {
+    console.log("Python file data:");
+    //console.log(data); // An array of objects
+    console.log("Python file columns:");
+    //console.log(columns);
 
-//-----------
+    // TO DO:
+    // Why does adding columns:columns WITHOUT autoColumns:true produce error:
+    // TypeError: Cannot use 'in' operator to search for '0' in Year
+    // columns:columns,
+
+    var table4 = new Tabulator("#timeline-table", {
+        layout:"fitColumns",      //fit columns to width of table
+        responsiveLayout:"hide",  //hide columns that dont fit on the table
+        //tooltips:true,          //show tool tips on cells
+        maxHeight:"500px",        // For frozenRows
+        addRowPos:"top",          //when adding a new row, add it to the top of the table
+        history:true,             //allow undo and redo actions on the table
+        paginationSize:7,         //allow 7 rows per page of data
+        movableColumns:true,      //allow column order to be changed
+        resizableRows:true,       //allow row order to be changed
+        initialSort:[             //set the initial sort order of the data
+            {column:"progress", dir:"desc"},
+        ],
+        autoColumns:true,
+    });
+
+    // TO DO - Find Tabulator command triggered once table is ready.
+    // BugBug - wait for table load instead. setTimeout prevents TypeError: Cannot read properties of null (reading 'verticalFillMode')
+    //setTimeout(() => {
+    //    table4.setData(csvYearData4);
+    //},800);
+
+    table4.on("tableBuilt", function() {
+        // Now the table is initialized, you can set your data
+        // Not ideal here, move to table4.setData(data) below so files start loading faster.
+        table4YearFiles();
+    });
+
+    function table4YearFiles() {
+
+        loadScript(theroot + 'js/d3.v5.min.js', function(results) {
+            waitForVariable('customD3loaded', function() {
+            // Loop through years 2017 to 2020.
+            for (let year = 2017; year <= 2021; year++) {
+                let csvFile = "https://raw.githubusercontent.com/ModelEarth/community-data/master/industries/naics/US/counties/AK/US-AK-census-naics6-counties-" + year + ".csv";
+                
+                d3.csv(csvFile).then(function(data) {
+                    console.log("Census File loaded for " + year + ". " + csvFile);
+                    console.log(data); // An array of objects
+                    
+                    // TO DO: wait until table4 tabulator is built
+                    table4.setData(data);
+                });
+                
+            }
+            // End year loop
+            });
+        });
+    }
+}
+document.addEventListener('hashChangeEvent', function (elem) {
+    displayTabulators();
+});
+table4Display();
+
+// To Delete
+let csvYearData4 = [
+    {Year:"2017", Naics12:"12345", Naics23:"555"}, 
+    {Year:"2018", Naics12:"78787", Naics23:"777"},
+    {Year:"2019", Naics12:"3343", Naics23:"888"},
+    {Year:"2020", Naics12:"4343", Naics23:"465"},
+    {Year:"2021", Naics12:"5343", Naics23:"3322"},
+    {Year:"2022", Naics12:"6343", Naics23:"1010"},
+    {Year:"2023", Naics12:"7343", Naics23:"3247"},
+];
+
+// process year CSV data (parse, pivot, etc.)
+function processData(csvData, year) {
+  // parse CSV data into an array of objects
+  const parsedData = csvData
+    .split('\n')
+    .map(line => {
+      const [fips, naics, establishments, employees, payroll] = line.split(',');
+      return { fips, naics, establishments, employees, payroll, year };
+    });
+  return parsedData;
+}
+
+
 
 
 

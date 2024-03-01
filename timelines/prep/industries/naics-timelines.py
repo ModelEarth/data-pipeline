@@ -88,8 +88,23 @@ def aggregate_and_save_data(states, years, output_base, cells=["Establishments",
 # Usage
 base_dir = os.getcwd()
 states = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"]
+
 years = [2017, 2018, 2019, 2020]  
 output_base = os.path.join(base_dir, "outputs") 
+
+cells = ["Establishments","Employees","Payroll"]
+years = [2017,2018]
+i = 0
+for state in states:
+    
+    prefix = f"US-{state}-census-naics4-"
+    for cell in cells:
+        i += 1
+        df_cell = pd.DataFrame()
+        df_cell["Year"] = years
+        naics_total = set()
+        year2output = {}
+
 
 aggregate_and_save_data(states, years, output_base)
 
