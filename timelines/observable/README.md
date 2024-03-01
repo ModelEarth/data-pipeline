@@ -7,6 +7,7 @@ Observable is by Mike Bostock, the New York Times data scientist who created D3.
 
 Check out the [Observable Data Loaders](https://observablehq.com/framework/loaders)
 
+
 ## Notes on Initial Install
 
 Based on the [Observable Install Steps](https://observablehq.com/framework/getting-started#3.-publish)
@@ -104,12 +105,30 @@ To publish to Observable (You must be logged in to Observable to deploy.)
 
 	yarn deploy
 
-Trying to use GitHub Desktop instead.
-If you are hosting on GitHub, remember to turn on Github Pages.
+
+
+### Hello sample
+
+Create a user account for yourself. Loren's test account:
+[https://observablehq.com/@earthscape](https://observablehq.com/@earthscape)
+
+Deployed project built above:
+
+[earthscape.observablehq.cloud/hello-framework/](https://earthscape.observablehq.cloud/hello-framework/)
+
+Change the visibility of your hosted project:
+
+In your Observable account -> go to projects -> 3-dot menu to the right of your project name
+
+
+### Hello sample - Self-Hosting Attempts
+
+Our [observable self hosted test](https://github.com/ModelEarth/observable/) is built with the hello example, whereas [GordonSmith/framework](https://github.com/GordonSmith/framework) used a fork of the [framework website](https://github.com/observablehq/framework).
+
 
 THE BIG QUESTION - How do we view unbroken static dist files using GitHub Pages?
 
-How do we toggle deploy between self-hosting and deploying to Observable?
+How do we toggle deploy between deploying to self-hosting and to Observable? (This option seems to be bypassed duing the commands)
 
 How do we run either of the following?
 These are at the bottom here: [model.earth/observable](https://model.earth/observable/)
@@ -117,13 +136,14 @@ These are at the bottom here: [model.earth/observable](https://model.earth/obser
 	yarn observable
 	yarn observable help
 
+If you are hosting on GitHub, do we turn on Github Pages?
+What Actions do we need to add?
 
 The answer is likely to be found in the [Observable Forum](https://talk.observablehq.com/).
 
 We are following this post for a solution:
 [Self Hosting post](https://talk.observablehq.com/t/announcing-observable-2-0/8744/8)
 A reply links to a sample of forking the Observable website and its Github Actions.
-
 
 Here's the action GordonSmith is using successfully (but what are the steps and settings?):
 https://github.com/GordonSmith/framework/actions/runs/7920241316
@@ -141,27 +161,12 @@ This might have info on adding: feat: Deploy docs to github.io #1
 https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
 
 
-
-### Hello sample
-
-Our [observable self hosted test](https://github.com/ModelEarth/observable/) is built with the hello example, whereas [GordonSmith/framework](https://github.com/GordonSmith/framework) used a fork of the [framework website](https://github.com/observablehq/framework).
-
-
-Our Hello sample failed attempts:
+Our self-hosting  Hello sample failed attempts:
 [model.earth/observable/dist](https://model.earth/observable/dist/)
 [model.earth/observable-dist](https://model.earth/observable-dist/)
 
 Placing dist at the root of a site also fails:
 [earthscape.github.io](https://earthscape.github.io/)
-
-So far, only works for us when deploying to observable hosting:
-
-[earthscape.observablehq.cloud/hello-framework/](https://earthscape.observablehq.cloud/hello-framework/)
-
-Create a user account for yourself. We test with:
-[https://observablehq.com/@earthscape](https://observablehq.com/@earthscape)
-
-
 
 These steps didn't work yet:
 
@@ -182,6 +187,8 @@ Deploy framework content to Pages
 
 
 ## Added localsite repo as a submodule
+
+This is neat because the Readme pages then appear in the left navigation.
 
 Run in the docs folder: <!-- Or you can append "docs/" and run in repo's root. -->
 
