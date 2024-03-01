@@ -13,6 +13,8 @@ Starting with 2019, [ZIP Codes Business Patterns (ZBP)](https://www.census.gov/d
 
 ### County Business Patterns (CBP)
 
+"The Business Patterns series covers most of the country’s economic activity, but excludes data on self-employed individuals, employees of private households, railroad employees, agricultural production employees, and most government employees."
+
 State-county-naics files previouly resided in [us/state](https://github.com/modelearth/community-data/tree/master/us/state) <span class="local" style="display:none">- <a href="../../../us/state">view on localhost</a></span>
 
 USEPA has these 2 crosswalks. (There are no naics industry titles in these.)
@@ -51,14 +53,15 @@ US36005-census-naics6-2020.csv for a single county. Not needed currently. -->
 - Establishments - Other (Number of Extablishments)  
 - Employees - Employment FlowAmount (Number of Employees)  
 - Payroll - US Dollars (Annual Wages)
+<!--
 - Population - Included with our [Machine Learning](/machine-learning/) output
 - Sqkm or Sqmiles - To be added
-
+-->
 
 **For Industry Comparisons**
 
-We send the annual naics files to: [/community-data/us/state-naics-update/](/community-data/us/state-naics-update/)
-Currently we then move manually to: [/community-data/us/state-naics/](/community-data/us/state-naics/)
+We send the annual naics files to: /community-data/industries/naics/us/counties-update/
+Following local review, we manually move to: [/community-data/industries/naics/us/counties/](/community-data/industries/naics/us/counties/)
 
 For each year, there are 3 for the US, and 6 for each state:  
 
