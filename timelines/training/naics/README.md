@@ -87,10 +87,8 @@ People = Employees
 Pay = Payroll
 -->
 
-As a reference, the prior structure for zcta (zip code) was:
-
-zcta, JobsTotal, JobsAgriculture, JobsEntertainment,…
-Population, Poverty, PovertyUnder18, Education,WorkExperience, WorkingFulltime, WorkingFulltime_Poverty, y
+As a reference, the prior structure for zcta (zip code) training data was:
+Zcta, JobsTotal, JobsAgriculture, JobsEntertainment, Population, Poverty, PovertyUnder18, Education, WorkExperience, y
 
 Ronan is working on a similar pivot in [prep/industries](../../prep/industries/) for timelines, except the timeline rows are years.
 

@@ -1,4 +1,3 @@
-
 [Active Projects](../../io/)
 
 # Timelines ML
@@ -17,7 +16,6 @@ Prediction from changes in naics industry levels for zips and counties.
 ## TO DO
 [Debug our Install steps for SQLite in a browser](sqlite/) from the phiresky timeline
 [Resulting SQLite Timeline](https://phiresky.github.io/blog/2021/hosting-sqlite-databases-on-github-pages/) - by phiresky. Includes filter for selecting countries
-[Use Tensorflow ML in Javascript with Google's international API data](https://www.tensorflow.org/js/demos)
 
 ## ADD DATA SOURCES
 
