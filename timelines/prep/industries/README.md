@@ -12,3 +12,11 @@ Run the following in your webroot - so output can be sent to the community-forec
 Then run:
 
 	python naics-timelines.py
+
+
+**Output will be saved as:**
+community-forecasting/industries/naics/US/AK/US-AK-census-naics4-establishments.csv
+community-forecasting/industries/naics/US/AK/US-AK-census-naics4-employees.csv
+community-forecasting/industries/naics/US/AK/US-AK-census-naics4-payroll.csv
+
+Sample data on the [tabulator page](../../tabulator/)
