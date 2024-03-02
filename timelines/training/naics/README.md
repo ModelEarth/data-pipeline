@@ -16,7 +16,7 @@ TO DO:
 2.) Output annual training files
 3.) Use Random Forest to make forecasting based on naics industry levels:
 - Top ten Maine counties at risk of increased poverty - Use Google Data Commons API for county data
-- Top ten Maine counties likely to have declining bee populations - Find a data source (county or zip)
+- Top ten Maine counties likely to have declining [bee populations](../../../research/bees/) - Find a data source (county or zip)
 - Top ten Maine counties likely to have declining tree canopy - Find a data source (county or zip)
 
 4.) [Create an easy way for non-coders to setup Observable visualizations](/data-pipeline/timelines/observable) - Kargil and others

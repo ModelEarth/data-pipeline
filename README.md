@@ -9,19 +9,22 @@ Our implementation of the [US EPA Industry Input-Output Charts](../../../io/char
 <!--
     12-digit FIPS Code - state, county, tract, block group
     https://www.policymap.com/2012/08/tips-on-fips-a-quick-guide-to-geographic-place-codes-part-iii/
--->
+--><br>
 
 
-# US EPA Data Source and Integrations
-
-[BEA Global Value Chains](https://www.bea.gov/data/special-topics/global-value-chains)
-
-BLS, EPA's USEEIO and Flowsa (BEA, Energy, Water, more)
+# Data Source and Integrations
 
 ## US Census - County Business Patterns (CBP)
 
+[We process annual US naics industry levels](industries/naics/)
+CSV files are saved for counties and states. Zip and country-wide files coming soon.
+Results are used to [compare local industries](../localsite/info)
 
 ## US Bureau of Labor Statistics (BLS)
+
+We integrate with US EPA's USEEIO and Flowsa (BEA, Energy, Water, more)
+[BEA Global Value Chains](https://www.bea.gov/data/special-topics/global-value-chains)
+
 
 <!--
 Quarterly Census of Employment and Wages (QCEW) - Includes Latitude and Longitude of establishments
