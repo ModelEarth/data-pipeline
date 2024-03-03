@@ -103,31 +103,36 @@ Python pulls from the [US Census CBP&nbsp;API](https://www.census.gov/data/devel
 
 The Jupyter Notebook for industry data preparation resides in [naics-annual.ipynb](naics-annual.ipynb).
 
-Open Jupyter Notebook with this command in the folder process/python/bea then click naics-annual.ipynb and run each step:
-
-	jupyter-notebook
-
-Or you can run [naics-annual.ipynb](process/python/naics-annual.ipynb) from the command line:  
-
-	jupyter nbconvert --to notebook --inplace --execute naics-annual.ipynb
-
-If the above does not work,
-you may need to run `pip install notebook` after installing Python.  
-
-	pip install notebook
-
-You may also need to create a virtual environment and install libraries.
+In the current folder, create a virtual environment and install libraries.
 
 	python3 -m venv env &&
 	source env/bin/activate &&
 	pip install pandas  &&
 	pip install tqdm
 
-Avoid pip3 in virtual environment
+Avoid pip3 in virtual environment.
 
-If you encounter [500: Internal Server Error](https://stackoverflow.com/questions/36851746/jupyter-notebook-500-internal-server-error)
 
+<!-- Added steps here to avoid 500 error.
+This error also occured when not in virtual env.
+ -->
+Run if you've encounter [500: Internal Server Error](https://stackoverflow.com/questions/36851746/jupyter-notebook-500-internal-server-error)
+
+This can also give you a newer Juyter interface:
+
+	pip install notebook &&
 	pip install --upgrade nbconvert
+
+
+
+
+Open Jupyter Notebook with this command then click naics-annual.ipynb and run each step:
+
+	jupyter-notebook
+
+Or you can run [naics-annual.ipynb](process/python/naics-annual.ipynb) from the command line:  
+
+	jupyter nbconvert --to notebook --inplace --execute naics-annual.ipynb
 
 
 <!--
