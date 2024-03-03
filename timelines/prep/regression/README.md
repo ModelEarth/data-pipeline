@@ -2,11 +2,11 @@
 
 The regression script uses prior years to project forward employment levels. Linear projections seem conservative. Alternative methods could be explored.  
 
-
-1.) Use steps in ../all/README.md to generate files in output folder.
+After using steps in ../all/README.md to generate files in output folder.
 
 2.) Run: 
 
+    cd ../regression &&
     python regressor.py  
 
 regressor.py runs tsclean.py.  It generates projected years in data/raw, but doesn't output to a combo file.  
@@ -16,7 +16,17 @@ regressor.py runs tsclean.py.  It generates projected years in data/raw, but doe
 
     python mergezip.py ../zipcodes/zcta/zip_to_zcta_2018.csv ../../../community-usa/data/zip/ data/
 
+To try instead:
+
+    python mergezip.py ../ZIPCodetoZCTACrosswalk2022UDS.xlsx ../../../community-usa/data/zip/ data/
+
+
 combo_zcta_sm.csv   to get data to 2020
+
+
+
+
+
 
 DON'T DO THIS
 
@@ -31,12 +41,12 @@ OLD:
 tsclean.py creates combo_zcta_sm.csv from files in raw folder, up to last=2016.  
 
 NEW:  
-tsclean.py creates combo_zcta_sm.csv from files in input/[year]/[year]_zcta_sm.csv, up to last=2016.  
+tsclean.py creates combo_zcta_sm.csv from files in input/[year]/[year]\_zcta\_sm.csv, up to last=2016.  
 
 Then use tsclean.py to:
 
-A. Send the projected years to input/[year]/[year]_zcta_sm_projected.csv  
-B. Create combo_zcta_sm_projection.csv  
+A. Send the projected years to input/[year]/[year]\_zcta\_sm\_projected.csv  
+B. Create combo\_zcta\_sm\_projection.csv  
 
 
 Run:  
