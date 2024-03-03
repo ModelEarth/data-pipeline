@@ -29,10 +29,10 @@ Fips, Naics, Establishments, Employees, Payroll
 
 ### Always start a virtual environment first
 
-Run in your modelearth webroot since you'll be sending files to data repos.
+Run in your webroot since you'll be sending output to the community-forecasting repos.
 
-	python3 -m venv env && source env/bin/activate
-	&& cd data-pipeline/timelines/prep/all
+	python3 -m venv env && source env/bin/activate &&
+	cd data-pipeline/timelines/prep/all
 
 ### Output SQLite script for years
 Create a sqlite generator for each year: zcta\_2017.SQL.txt  
