@@ -15,8 +15,8 @@ Then run:
 
 
 **Output will be saved as:**
-community-forecasting/industries/naics/US/AK/US-AK-census-naics4-establishments.csv
-community-forecasting/industries/naics/US/AK/US-AK-census-naics4-employees.csv
-community-forecasting/industries/naics/US/AK/US-AK-census-naics4-payroll.csv
+community-timelines/industries/naics4/US/states/AK/US-AK-census-naics4-establishments.csv
+community-timelines/industries/naics4/US/states/AK/US-AK-census-naics4-employees.csv
+community-timelines/industries/naics4/US/states/AK/US-AK-census-naics4-payroll.csv
 
 Sample data on the [tabulator page](../../tabulator/)

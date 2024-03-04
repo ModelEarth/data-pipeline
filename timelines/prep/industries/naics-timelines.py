@@ -52,7 +52,7 @@ states = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID"
 
 years = [2017, 2018, 2019, 2020]  
 #output_base = os.path.join(base_dir, "outputs") 
-output_base = "../../../../community-timelines/industries/naics4/states"
+output_base = "../../../../community-timelines/industries/naics4/US/states"
 
 aggregate_and_save_data(states, years, output_base)
 
