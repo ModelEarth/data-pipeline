@@ -11,10 +11,10 @@
 "0400000US44","Rhode Island",null,"2019","11511","Support activities for crop production","4","54","2219","44",
 "0400000US44","Rhode Island",null,"2019","115112","Soil preparation, planting, and cultivating","4","54","2219","44",
 "0400000US44","Rhode Island",null,"2019","1152","Support activities for animal production","12","37","1310","44",
+"0400000US44","Rhode Island",null,"2019","212","Mining (except oil and gas)","13","147","11308","44",
 "0400000US44","Rhode Island",null,"2019","11521","Support activities for animal production","12","37","1310","44",
 "0400000US44","Rhode Island",null,"2019","115210","Support activities for animal production","12","37","1310","44",
 "0400000US44","Rhode Island",null,"2019","21","Mining, quarrying, and oil and gas extraction","14","148","11346","44",
-"0400000US44","Rhode Island",null,"2019","212","Mining (except oil and gas)","13","147","11308","44",
 "0400000US44","Rhode Island",null,"2019","2123","Nonmetallic mineral mining and quarrying","13","147","11308","44",
 "0400000US44","Rhode Island",null,"2019","21231","Stone mining and quarrying","3","36","2617","44",
 "0400000US44","Rhode Island",null,"2019","212319","Other crushed and broken stone mining and quarrying","3","36","2617","44",
@@ -1403,5 +1403,5 @@
 "0400000US44","Rhode Island",null,"2019","81394","Political organizations","7","19","415","44",
 "0400000US44","Rhode Island",null,"2019","813940","Political organizations","7","19","415","44",
 "0400000US44","Rhode Island",null,"2019","81399","Other similar organizations (except business, professional, labor, and political organizations)","35","180","13443","44",
-"0400000US44","Rhode Island",null,"2019","813990","Other similar organizations (except business, professional, labor, and political organizations)","35","180","13443","44",
-"0400000US44","Rhode Island",null,"2019","99","Industries not classified","32","43","1472","44"
+"0400000US44","Rhode Island",null,"2019","99","Industries not classified","32","43","1472","44",
+"0400000US44","Rhode Island",null,"2019","813990","Other similar organizations (except business, professional, labor, and political organizations)","35","180","13443","44"

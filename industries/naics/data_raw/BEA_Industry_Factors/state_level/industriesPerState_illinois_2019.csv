@@ -9,10 +9,10 @@
 "0400000US17","Illinois",null,"2019","11331","Logging","24","49","1517","17",
 "0400000US17","Illinois",null,"2019","113310","Logging","24","49","1517","17",
 "0400000US17","Illinois",null,"2019","114","Fishing, hunting and trapping","10","55","3225","17",
+"0400000US17","Illinois",null,"2019","11421","Hunting and trapping","7","53","3104","17",
 "0400000US17","Illinois",null,"2019","1141","Fishing","3","2","121","17",
 "0400000US17","Illinois",null,"2019","11411","Fishing","3","2","121","17",
 "0400000US17","Illinois",null,"2019","1142","Hunting and trapping","7","53","3104","17",
-"0400000US17","Illinois",null,"2019","11421","Hunting and trapping","7","53","3104","17",
 "0400000US17","Illinois",null,"2019","114210","Hunting and trapping","7","53","3104","17",
 "0400000US17","Illinois",null,"2019","115","Support activities for agriculture and forestry","288","1751","81272","17",
 "0400000US17","Illinois",null,"2019","1151","Support activities for crop production","145","1275","66726","17",
@@ -1794,7 +1794,6 @@
 "0400000US17","Illinois",null,"2019","721191","Bed-and-breakfast inns","32","85","1359","17",
 "0400000US17","Illinois",null,"2019","721199","All other traveler accommodation","24","206","4660","17",
 "0400000US17","Illinois",null,"2019","99","Industries not classified","241","305","7846","17",
-"0400000US17","Illinois",null,"2019","813990","Other similar organizations (except business, professional, labor, and political organizations)","961","6602","298013","17",
 "0400000US17","Illinois",null,"2019","72121","RV (recreational vehicle) parks and recreational camps","133","487","16603","17",
 "0400000US17","Illinois",null,"2019","721211","RV (recreational vehicle) parks and campgrounds","70","180","5894","17",
 "0400000US17","Illinois",null,"2019","721214","Recreational and vacation camps (except campgrounds)","63","307","10709","17",
@@ -1909,4 +1908,5 @@
 "0400000US17","Illinois",null,"2019","813930","Labor unions and similar labor organizations","807","8879","343906","17",
 "0400000US17","Illinois",null,"2019","81394","Political organizations","121","440","17856","17",
 "0400000US17","Illinois",null,"2019","813940","Political organizations","121","440","17856","17",
-"0400000US17","Illinois",null,"2019","81399","Other similar organizations (except business, professional, labor, and political organizations)","961","6602","298013","17"
+"0400000US17","Illinois",null,"2019","81399","Other similar organizations (except business, professional, labor, and political organizations)","961","6602","298013","17",
+"0400000US17","Illinois",null,"2019","813990","Other similar organizations (except business, professional, labor, and political organizations)","961","6602","298013","17"
