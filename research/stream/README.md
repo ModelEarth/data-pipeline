@@ -2,10 +2,11 @@
 
 # Streamlit 
 
-
 ## Random Forests for Honey Bees
 
-[Streamlit Real or Fake (our RealityStream)](https://github.com/ModelEarth/RealityStream) - Logistic Regression, Random Forest and Support Vector Machines.
+[Kishor's Image Repo](https://github.com/mannurkishorreddy/streamlit-replicate-img-app) - [Our Fork](https://github.com/ModelEarth/replicate)
+
+[Our RealityStream](https://github.com/ModelEarth/RealityStream) - Logistic Regression, Random Forest and Support Vector Machines <!-- probably-->from [Streamlit App Gallery](https://streamlit.io/gallery)
 
 The Prompt CSV files contain Top 4 Industries in Maine and Oregon, with 4 images of each
 
