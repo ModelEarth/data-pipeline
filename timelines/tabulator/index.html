@@ -162,7 +162,19 @@ function displayTabulators() {
             // End year loop
         });
     });
+    
+    // Define the mapping of NAICS IDs to industry names
+    var industryMap = {};
 
+    // Load the CSV file containing industry names and NAICS IDs
+    d3.csv("/output/industry_names.csv").then(function (data) {
+                // Create the mapping of NAICS IDs to industry names
+                data.forEach(function (row) {
+                    industryMap[row.Naics] = row.IndustryName;
+                });
+
+
+    
     var table2 = new Tabulator("#example-table", {
      
         layout:"fitColumns",      //fit columns to width of table
@@ -183,6 +195,7 @@ function displayTabulators() {
             {formatter:"rowSelection", titleFormatter:"rowSelection", hozAlign:"center", headerHozAlign:"center", width:10, headerSort:false, cellClick:function(e, cell){ cell.getRow().toggleSelect();
             }},
             {title:"NAICS", field:"Naics", maxWidth:80, editor:"input"},
+            { title: "Industry Name", field: "Naics", minWidth: 100, hozAlign: "left", maxWidth: 300, formatter: function (cell) { return industryMap[cell.getValue()] || cell.getValue(); } },
             {title:"Establishments", field:"Establishments", hozAlign:"right", maxWidth:100, editor:"input"},
             {title:"Establishments", field:"Establishments", hozAlign:"left", formatter:"progress", editor:true, cssClass:"tabulatorBar"},
             {title:"Employees", field:"Employees", hozAlign:"right", maxWidth:100, editor:"input"},
@@ -191,7 +204,7 @@ function displayTabulators() {
 
     });
 
-
+    
     // table3  
     
     //var csvRootTimeline = "https://github.com/ModelEarth/community-data/industries/naics/US/";
