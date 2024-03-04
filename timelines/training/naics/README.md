@@ -20,17 +20,28 @@ Sijia, Kargil, Alison, Irene, Honglin, Ronan, Lily, Luwei, Wenxi, Magie and more
 2.) Training files are output to our community-timelines repo.
 3.) TO DO - Use Random Forest forecasting based on naics industry levels - Sijia will copy our old .py file to the current naics folder. Place it in a "python" subfolder.
 4.) TO DO - Aiming for these results:
-- Top ten Maine counties at risk of increased poverty - Use Google Data Commons API for county poverty data and international data. Pull with an [Observable Data Loader](../../../timelines/observable/)
+- Top ten Maine counties at risk of increased poverty - Use Google Data Commons API for county poverty data and international data. Pull with an [Observable Data Loader](../../../timelines/observable/) - Kargil, Parth and others
 - Top ten Maine counties likely to have declining [bee populations](../../../research/bees/) - Irene
 - Top ten Maine counties likely to have [declining tree canopy](/data-pipeline/research/canopy/) - Find a data source (county or zip)
 
-4.) [Create an easy way for non-coders to setup Observable visualizations](/data-pipeline/timelines/observable) - Kargil and others
+4.) [Create an easy way for non-coders to setup Observable visualizations](/data-pipeline/timelines/observable) - Kargil, Parth and others
 5.) [Apply y=1 on-the-fly](/data-pipeline/research/bees/) with Javascript and [Observable](../../observable/).
 6.) Use [Tensorflow.org](https://www.tensorflow.org/js/demos) for [Neural Network predictions](https://www.tensorflow.org/s/results/?q=neural%20networks).
 
+### Javascript Display in Tabulator
+
+In javascript, we'll populate "Density" for each county and append it as a column in Tabulator. [Tabulator work in progress](/data-pipeline/timelines/tabulator/).
+
+Density = Population / Km2
+
+Density can also be thought of as PopPerKm2 (divided by 1000)
+100,000 people living in an 80 Km2 county = 1250 people per Km2 = Density of 1.25
+When displaying, we will multiply Density and Population by 1000.
+
+
 ### Start a virtual environment
 
-Run in your modelearth webroot since you'll be sending files to data repos.
+Run python in your modelearth webroot since you'll be sending files to data repos.
 
       python3 -m venv env && source env/bin/activate
       && cd data-pipeline/timelines/training/naics
@@ -53,7 +64,7 @@ View source files on GitHub: [industries/naics/US/counties/ME](https://github.co
 
 ### 2. Output annual training files
 
-Project Contact: Yanqing (Lily)
+In Progress - CoLab link at the top of this page.
 
 Output: One row per location (county) with columns for all naics4 industries with 3 attributes.
 
