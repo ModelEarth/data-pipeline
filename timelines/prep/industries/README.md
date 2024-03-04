@@ -14,7 +14,8 @@ Then run:
 	python naics-timelines.py
 
 
-**Output will be saved as:**
+**Output is saved to:**
+[community-timelines/industries/naics4/US/states/](https://github.com/ModelEarth/community-timelines/tree/main/industries/naics4/US/states)
 community-timelines/industries/naics4/US/states/AK/US-AK-census-naics4-establishments.csv
 community-timelines/industries/naics4/US/states/AK/US-AK-census-naics4-employees.csv
 community-timelines/industries/naics4/US/states/AK/US-AK-census-naics4-payroll.csv
