@@ -1,17 +1,15 @@
 [Active Projects](../../../io/)
 
-# Tabulator Sample for Timeline
+# Timeline Data Samples
 
-TO DO - Within Javascript in the current page:
+To do within Javascript in the current page:
 
-1.) Loop through files from 2017 to 2020 using Javascript
+DONE Rupesh: Table4 Loops through files from 2017 to 2020 using Javascript.
 
-File source: /community-data/industries/naics/US/counties/
+TO DO Rupesh: Table4 Pivot incoming data to show 1 column per year for Establishments.
 
-2.) Pivot each file into a year row array in Javascript.
+TO DO Dinesh: Table2 - Add columns with names of industries after table loads with [NAICS Lookup](https://model.earth/community-data/us/id_lists/industry_id_list.csv)
 
-3.) Append to a new table4 Tabulator asynchronously.
-
-4.) Merge names of industries into table2 using our [NAICS Lookup](https://model.earth/community-data/us/id_lists/industry_id_list.csv)
+TO DO: Add a table5 and populate a Density column using Population/Km2. [Data source](https://model.earth/community-timelines/training/naic4/US/counties/2017/US-AK-training-naics4-counties-2017.csv) - Km2 is not yet in CSV.
 
 

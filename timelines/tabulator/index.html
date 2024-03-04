@@ -29,34 +29,37 @@
 
     <div id="readmeDiv"></div>
 
-    <h2>Time Table - Rows for Years</h2>
-    
-    Table 4: From Javascript (Establishments)
+    While working, move the table you are working on to the top here in index.html:<br><br>
+
+
+    <h2>Table 1. Timeline Data from JSON - Rows for Years</h2>
+    <div id="timeline-table-fromjson"></div>
+    <br>
+
+
+    <h2 id="tabPageTitle">Table 2: Maine Industries 2020</h2>
+    This data will be flipped into 3 multi-year datasets for: Establishments, Employees and Payroll.<br><br>
+	<div id="example-table"></div>
+    <br>
+
+
+    <h2>Table 3: From Python File (Establishments)</h2>
+    Source: <a href="https://github.com/ModelEarth/community-timelines/tree/main/industries/naics4/US/states">community-timelines actual</a>
+    <div id="timeline-table-python"></div><br>
+
+
+    <h2>Table 4: From Javascript (Establishments)</h2>
+    Multiple files appended asynchronously for years 2017 to 2021.<br>
+    File source: <a href="https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/counties">/community-data/industries/naics/US/counties/</a>
     <div id="timeline-table"></div>
     <div id="table4-count"></div>
     <br><br>
 
-    Table 3: From Python File (Establishments)
-    <div id="timeline-table-python"></div>
-    <br><br>
-
-    Table 1: From JSON
-    <div id="timeline-table-fromjson"></div>
-    <br>
-
-    <h2 id="tabPageTitle">Arkansas Industries 2020</h2>
-    This data will be flipped into 3 multi-year datasets for: Establishments, Employees and Payroll.<br><br>
-
-    Table 2:
-	<div id="example-table"></div>
-    <br>
 
     <div style="margin-top:8px">
        <a href="http://tabulator.info/docs/" target="_blank">Tabulator Documentation</a> |
        <a href="https://tabulator.info/docs/5.6/data" target="_blank">About Loading Data from .CSV</a>
-    </div>
-
-    <br>
+    </div><br>
     <div id="pythonDiv"></div>
 
 </div>
@@ -100,10 +103,22 @@ function displayTabulators() {
     //setTimeout(() => {
     //    table1.setData(csvYearData);
     //},800);
+
+    // json sample
+    let csvYearData1 = [
+        {Year:"2017", Naics12:"12345", Naics23:"555"}, 
+        {Year:"2018", Naics12:"78787", Naics23:"777"},
+        {Year:"2019", Naics12:"3343", Naics23:"888"},
+        {Year:"2020", Naics12:"4343", Naics23:"465"},
+        {Year:"2021", Naics12:"5343", Naics23:"3322"},
+        {Year:"2022", Naics12:"6343", Naics23:"1010"},
+        {Year:"2023", Naics12:"7343", Naics23:"3247"},
+    ];
+
     table1.on("tableBuilt", function() {
         // Now the table is initialized, you can set your data
         //table.setData(yourData);
-        table1.setData(csvYearData4);
+        table1.setData(csvYearData1);
     });
 
     table1.on("dataLoaded", function(data){
@@ -113,7 +128,7 @@ function displayTabulators() {
 
     var csvRoot = "https://model.earth/community-data/industries/naics/US/counties/";
     csvRoot = "/community-data/industries/naics/US/counties/";
-    var csvFile = csvRoot + "AK/US-AK-census-naics4-2020.csv";
+    var csvFile = csvRoot + "ME/US-ME-census-naics4-2020.csv";
     
     hash = getHash();
     if (hash.state) {
@@ -176,13 +191,19 @@ function displayTabulators() {
 
     });
 
-    var csvRootTimeline = "https://github.com/ModelEarth/data-pipeline/timelines/tabulator/outputs/";
-    csvRootTimeline = "/data-pipeline/timelines/tabulator/outputs/";
-    var csvFileTimeline = csvRootTimeline + "US-AK-census-naics4-employees.csv";
+
+    // table3  
+    
+    //var csvRootTimeline = "https://github.com/ModelEarth/community-data/industries/naics/US/";
+    var csvRootTimeline = "https://model.earth/community-timelines/industries/naics4/US/states/";
+    var csvFileTimeline = csvRootTimeline + "ME/US-ME-census-naics4-establishments.csv";
+
+    // Local AK files
+    //csvRootTimeline = "/data-pipeline/timelines/tabulator/outputs/";
+    //csvFileTimeline = csvRootTimeline + "US-AK-census-naics4-employees.csv";
 
     d3.csv(csvFileTimeline).then(function(data) {
         console.log("Python file loaded " + csvFileTimeline);
-        
         
         // TO DO: Append each year to an array of year rows called yearRecords
 
@@ -196,6 +217,7 @@ function displayTabulators() {
 }
 displayTabulators();
 
+// table3
 function tableDisplay(columns,data) {
     console.log("Python file data:");
     console.log(data); // An array of objects
@@ -255,20 +277,6 @@ function table4Display() {
         ],
         autoColumns:true,
     });
-    table4.on("dataLoaded", function(data){
-        
-        //alert("loaded")
-        /*
-        
-        */
-    });
-
-    // TO DO - Find Tabulator command triggered once table is ready.
-    // BugBug - wait for table load instead. setTimeout prevents TypeError: Cannot read properties of null (reading 'verticalFillMode')
-    //setTimeout(() => {
-    //    table4.setData(csvYearData4);
-    //},800);
-
     table4.on("tableBuilt", function() {
         // Now the table is initialized, you can set your data
         // Not ideal here, move to table4.setData(data) below so files start loading faster.
@@ -279,27 +287,26 @@ function table4Display() {
 
         loadScript(theroot + 'js/d3.v5.min.js', function(results) {
             waitForVariable('customD3loaded', function() {
-            // Loop through years 2017 to 2020.
-            for (let year = 2017; year <= 2021; year++) {
-                let csvFile = "https://raw.githubusercontent.com/ModelEarth/community-data/master/industries/naics/US/counties/AK/US-AK-census-naics6-counties-" + year + ".csv";
-                
-                d3.csv(csvFile).then(function(data) {
-                    console.log("Census File loaded for " + year + ". " + csvFile);
-                    console.log(data); // An array of objects
+                // Loop through years
+                for (let year = 2017; year <= 2021; year++) {
+                    // Optional: could also use https://model.earth/community-data/industries/naics/US/counties/
+                    let csvFile = "https://raw.githubusercontent.com/ModelEarth/community-data/master/industries/naics/US/counties/ME/US-ME-census-naics6-counties-" + year + ".csv";
                     
-                    // TO DO: wait until table4 tabulator is built
-                    table4.setData(data);
-                    table4count = table4count + data.length-1;
+                    d3.csv(csvFile).then(function(data) {
+                        console.log("Census File loaded for " + year + ". " + csvFile);
+                        console.log(data); // An array of objects
+                        
+                        // TO DO: wait until table4 tabulator is built
+                        table4.setData(data);
+                        table4count = table4count + data.length-1;
 
-                    $("#table4_totalcount").remove(); // Prevent dup - this will also remove events bound to the element.
-                    let totalcount_div = Object.assign(document.createElement('div'),{id:"table4_totalcount",style:"margin-bottom:10px"})
-                    $("#table4-count").append(totalcount_div);
-                    totalcount_div.innerHTML = table4count  + " rows";
+                        $("#table4_totalcount").remove(); // Prevent dup - this will also remove events bound to the element.
+                        let totalcount_div = Object.assign(document.createElement('div'),{id:"table4_totalcount",style:"margin-bottom:10px"})
+                        $("#table4-count").append(totalcount_div);
+                        totalcount_div.innerHTML = table4count  + " rows";
 
-                });
-                
-            }
-            // End year loop
+                    });
+                }
             });
         });
     }
@@ -308,17 +315,6 @@ document.addEventListener('hashChangeEvent', function (elem) {
     displayTabulators();
 });
 table4Display();
-
-// To Delete
-let csvYearData4 = [
-    {Year:"2017", Naics12:"12345", Naics23:"555"}, 
-    {Year:"2018", Naics12:"78787", Naics23:"777"},
-    {Year:"2019", Naics12:"3343", Naics23:"888"},
-    {Year:"2020", Naics12:"4343", Naics23:"465"},
-    {Year:"2021", Naics12:"5343", Naics23:"3322"},
-    {Year:"2022", Naics12:"6343", Naics23:"1010"},
-    {Year:"2023", Naics12:"7343", Naics23:"3247"},
-];
 
 // process year CSV data (parse, pivot, etc.)
 function processData(csvData, year) {
