@@ -4,9 +4,9 @@
 
 To do within Javascript in the current page:
 
-DONE Rupesh: Table4 Loops through files from 2017 to 2020 using Javascript.
+DONE Rupesh: Table4 - Loop through files from 2017 to 2020 using Javascript.
 
-TO DO Rupesh: Table4 Pivot incoming data to show 1 column per year for Establishments.
+TO DO Rupesh: Table4 - Pivot incoming data to show 1 column per year for Establishments.
 
 TO DO Dinesh: Table2 - Add columns with names of industries after table loads with [NAICS Lookup](https://model.earth/community-data/us/id_lists/industry_id_list.csv)
 
