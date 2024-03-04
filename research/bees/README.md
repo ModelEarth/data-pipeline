@@ -1,8 +1,9 @@
+[Training Data ML](../../timelines/training/naics/)
 # Bee the Predictor (y=1 training data)
 
 ## Datasets
 
-Pull from Google Data Commons using [REST](https://docs.datacommons.org/api/rest/v2/getting_started) and store with a [Observable Data Loader](https://docs.datacommons.org/api/rest/v2).
+Pull from Google Data Commons using [REST](https://docs.datacommons.org/api/rest/v2/getting_started) and store with a [Observable Data Loader](https://observablehq.com/framework/loaders).
 
 These will be used to populate the y=1 value for our [naics training data](../../timelines/training/naics).
 
