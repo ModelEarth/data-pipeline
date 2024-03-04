@@ -4,10 +4,10 @@
 "0400000US37","North Carolina",null,"2019","113","Forestry and logging","487","2918","130935","37",
 "0400000US37","North Carolina",null,"2019","1131","Timber tract operations","17","132","9228","37",
 "0400000US37","North Carolina",null,"2019","11311","Timber tract operations","17","132","9228","37",
-"0400000US37","North Carolina",null,"2019","113210","Forest nurseries and gathering of forest products","8","68","3115","37",
 "0400000US37","North Carolina",null,"2019","113110","Timber tract operations","17","132","9228","37",
 "0400000US37","North Carolina",null,"2019","1132","Forest nurseries and gathering of forest products","8","68","3115","37",
 "0400000US37","North Carolina",null,"2019","11321","Forest nurseries and gathering of forest products","8","68","3115","37",
+"0400000US37","North Carolina",null,"2019","113210","Forest nurseries and gathering of forest products","8","68","3115","37",
 "0400000US37","North Carolina",null,"2019","1133","Logging","462","2718","118592","37",
 "0400000US37","North Carolina",null,"2019","114111","Finfish fishing","13","25","776","37",
 "0400000US37","North Carolina",null,"2019","11331","Logging","462","2718","118592","37",
@@ -1828,6 +1828,7 @@
 "0400000US37","North Carolina",null,"2019","812332","Industrial launderers","51","2628","116277","37",
 "0400000US37","North Carolina",null,"2019","8129","Other personal services","1391","8528","176127","37",
 "0400000US37","North Carolina",null,"2019","99","Industries not classified","323","497","11557","37",
+"0400000US37","North Carolina",null,"2019","813990","Other similar organizations (except business, professional, labor, and political organizations)","237","2213","107552","37",
 "0400000US37","North Carolina",null,"2019","81291","Pet care (except veterinary) services","751","5211","108908","37",
 "0400000US37","North Carolina",null,"2019","812910","Pet care (except veterinary) services","751","5211","108908","37",
 "0400000US37","North Carolina",null,"2019","81292","Photofinishing","8","57","1737","37",
@@ -1862,5 +1863,4 @@
 "0400000US37","North Carolina",null,"2019","813930","Labor unions and similar labor organizations","145","982","14857","37",
 "0400000US37","North Carolina",null,"2019","81394","Political organizations","61","119","7798","37",
 "0400000US37","North Carolina",null,"2019","813940","Political organizations","61","119","7798","37",
-"0400000US37","North Carolina",null,"2019","81399","Other similar organizations (except business, professional, labor, and political organizations)","237","2213","107552","37",
-"0400000US37","North Carolina",null,"2019","813990","Other similar organizations (except business, professional, labor, and political organizations)","237","2213","107552","37"
+"0400000US37","North Carolina",null,"2019","81399","Other similar organizations (except business, professional, labor, and political organizations)","237","2213","107552","37"
