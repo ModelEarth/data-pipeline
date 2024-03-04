@@ -25,9 +25,10 @@ Sijia, Kargil, Alison, Irene, Honglin, Ronan, Lily, Luwei, Wenxi, Magie and more
 - Top ten Maine counties likely to have declining [bee populations](../../../research/bees/) - Irene
 - Top ten Maine counties likely to have [declining tree canopy](/data-pipeline/research/canopy/) - Find a data source (county or zip)
 
-4.) [Create an easy way for non-coders to setup Observable visualizations](/data-pipeline/timelines/observable) - Kargil, Parth and others
-5.) [Apply y=1 on-the-fly](/data-pipeline/research/bees/) with Javascript and [Observable](../../observable/).
-6.) Use [Tensorflow.org](https://www.tensorflow.org/js/demos) for [Neural Network predictions](https://www.tensorflow.org/s/results/?q=neural%20networks).
+5.) Find equivalent data for China, or geneate with ML and Google Data Commons.
+6.) [Create an easy way for non-coders to setup Observable visualizations](/data-pipeline/timelines/observable) - Kargil, Parth and others
+7.) [Apply y=1 on-the-fly](/data-pipeline/research/bees/) with Javascript and [Observable](../../observable/).
+8.) Use [Tensorflow.org](https://www.tensorflow.org/js/demos) for [Neural Network predictions](https://www.tensorflow.org/s/results/?q=neural%20networks).
 
 ### Javascript Display in Tabulator
 
