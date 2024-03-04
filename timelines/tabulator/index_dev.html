@@ -148,14 +148,6 @@ function displayTabulators() {
         });
     });
 
-    // Load industry ID list CSV file
-    d3.csv("C:/Users/vadla/OneDrive/Documents/data-pipeline/timelines/tabulator/outputs/industry_id_list.csv").then(function(industryData) {
-    // Parse industry data and store in a suitable data structure for lookup
-    var industryMap = {};
-    industryData.forEach(function(row) {
-        industryMap[row.relevant_naics] = row.industry_detail;
-    });
-
     var table2 = new Tabulator("#example-table", {
      
         layout:"fitColumns",      //fit columns to width of table
@@ -176,8 +168,6 @@ function displayTabulators() {
             {formatter:"rowSelection", titleFormatter:"rowSelection", hozAlign:"center", headerHozAlign:"center", width:10, headerSort:false, cellClick:function(e, cell){ cell.getRow().toggleSelect();
             }},
             {title:"NAICS", field:"Naics", maxWidth:80, editor:"input"},
-            // New column for industry name
-            {title: "Industry Name",field: "IndustryID",formatter: function(cell) { return industryMap[cell.getValue()] || cell.getValue();}, maxWidth:80, editor:"input" },
             {title:"Establishments", field:"Establishments", hozAlign:"right", maxWidth:100, editor:"input"},
             {title:"Establishments", field:"Establishments", hozAlign:"left", formatter:"progress", editor:true, cssClass:"tabulatorBar"},
             {title:"Employees", field:"Employees", hozAlign:"right", maxWidth:100, editor:"input"},
