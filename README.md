@@ -3,7 +3,7 @@
 
 [Our Community Data Repo](/community-data/) contains state, county and zip code data generated for regional [Industry&nbsp;IO&nbsp;Charts](https://model.earth/localsite/info/), [Map&nbsp;Topics](#appview=topics&geoview=country) and [timelines](timelines). &nbsp;View our [Active Projects](/io/).
 
-Our implementation of the [US EPA Industry Input-Output Charts](../../../io/charts/) uses static json files containing [USEEIO API data](https://github.com/modelearth/io/tree/main/build/api) for fast page loads.
+Our implementation of the [US EPA Industry Input-Output Charts](../io/charts/) uses static json files containing [USEEIO API data](https://github.com/modelearth/io/tree/main/build/api) for fast page loads.
 
 
 <!--
@@ -78,11 +78,11 @@ View our [Flowsa Python scripts](flowsa)
 
 #### Embeddable Datasets
 <!-- ../#mapview=country -->
-[Community Model Pages](../../../apps) - Parameters for [embedding in local sites](../../../localsite/)
+[Community Model Pages](../apps) - Parameters for [embedding in local sites](../localsite/)
 
-[Impact Charts](../../../io/charts/) - US Environmentally-Extended Input-Output (USEEIO) - Goods and Services 
+[Impact Charts](../io/charts/) - US Environmentally-Extended Input-Output (USEEIO) - Goods and Services 
 
-[Impact Profiles](../../../io/template/) - Using Environmental Product Declarations (EPDs)
+[Impact Profiles](../io/template/) - Using Environmental Product Declarations (EPDs)
 
 
 #### Data Sources and Prep
@@ -91,16 +91,16 @@ View our [Flowsa Python scripts](flowsa)
 
 [Machine Learning Imputation Algorithms for NAICS industries](https://github.com/modelearth/machine-learning/) - US Bureau of Labor Statistics (BLS)
 
-[Impact Heatmap from JSON](/io/build/sector_list.html?view=mosaic&count=50) - [Earlier Goods and Service Heatmap Mockup](../../../community/start/dataset/)
+[Impact Heatmap from JSON](/io/build/sector_list.html?view=mosaic&count=50) - [Earlier Goods and Service Heatmap Mockup](../community/start/dataset/)
 
 
 #### Opportunties for further integration
 
-[Google Data Commons Setup](datacommons)  
+[Google Data Commons Setup](../localsite/info/data/datacommons)  
 
-[DataUSA.io Setup](datausa)  
+[DataUSA.io Setup](../localsite/info/data/datausa/)  
 
-[Census Reporter](../../../community/resources/censusreporter/)
+[Census Reporter](../community/resources/censusreporter/)
 <!--
 
 [EPA Flowsa Setup](flowsa) - includes U.S. Bureau of Labor Statistics (BLS) industry data  
