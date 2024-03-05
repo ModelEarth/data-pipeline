@@ -22,6 +22,10 @@ We recommend upgrading your OS before starting if your current version is more t
 And download the React DevTools for a better development experience:
 [https://reactjs.org/link/react-devtools](https://reactjs.org/link/react-devtools)
 
+IMPORTANT: Try using "npm ci" here rather than "npm install"
+"npm ci" avoids changing the package-lock.json file, which creates conflicts.
+(Haven't confirmed yet if package-lock.json was getting changed.)
+
 	npm install next@latest react@latest react-dom@latest
 	npm install -g react-devtools
 
