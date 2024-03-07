@@ -40,37 +40,71 @@ Start a virtual environment in the local folder.
 	python3 -m venv env &&
 	source env/bin/activate
 
+Add env/ the .gitignore file.
+
 <!--
 IMPORTANT: Try using "npm ci" here rather than "npm install"
 "npm ci" avoids changing the package-lock.json file, which creates conflicts.
 (Haven't confirmed yet if package-lock.json was getting changed.)
 -->
 
-Install React and React Devtools (try skipping this)
+	npm install
 
-	npm install next@latest react@latest react-dom@latest
+Error: Cannot read properties of undefined .pnp.cjs
+This relates to nextJS.
+
+Could not resolve dependency:
+npm ERR! peer react@"^15.3.2 || ^16.0.0" from react-katex@2.0.2
+npm ERR! node_modules/react-katex
+npm ERR!   react-katex@"^2.0.2" from the root project
+
+Tried this, did not fix:
+
+	yarn add react-katex
+
+	npm list
+	npm install
+
+
+Install React and React Devtools (Skipped this March 7, but let's try upgrading in our fork)
+
+	npm install next@latest react@latest react-dom@latest &&
 	npm install -g react-devtools
 
 ---
+
+next-blog@workspace:.: This package doesn't seem to be present in your lockfile; run "yarn install" to update the lockfile
+
+	yarn install
 
 Run these commands in the blog folder (These are from the [blog folder readme](https://github.com/phiresky/blog/)):
 
 	yarn posts &&
 	yarn dev
 
-"yarn dev" provides the hot-reloading dev server at 
+"yarn dev" provides the hot-reloading dev server. View the blog page at:  
 [localhost:3000/blog/2021/hosting-sqlite-databases-on-github-pages](http://localhost:3000/blog/2021/hosting-sqlite-databases-on-github-pages/)
 
 You can view a list of all the blog posts at [localhost:3000/blog/](http://localhost:3000/blog/)
+
+Error to resolve - not finding SQLite data.
+
+![blog sqlite error](blog-sqlite-error.png "Any ideas?")
+
+Once we fix the error above, the next step is to deploy to GitHub Pages. 
+
+## Deploy to GitHub Pages
+
+Once the steps are completed, we'll have a page like [Phiresky's SQLite blog](https://phiresky.github.io/blog/2021/hosting-sqlite-databases-on-github-pages/) 
 
 In a new command window:
 
 	yarn build  &&
 	yarn commit
 
----
 
-(4) If you get an error with the "yarn dev" command, to resolve "SWC Failed to Load", include "--force" based on: https://nextjs.org/docs/messages/failed-loading-swc and run these 3 commands
+
+If you get an error with the "yarn dev" command, to resolve "SWC Failed to Load", include "--force" based on: https://nextjs.org/docs/messages/failed-loading-swc and run these 3 commands
 
 	npm install --force
 	npm audit fix --force
