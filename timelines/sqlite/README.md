@@ -1,10 +1,11 @@
-[Community Data](/community-data/) 
+[Timelines ML](../) 
+
+The following aims to run [Phiresky's excellent SQLite timeline sample](https://phiresky.github.io/blog/2021/hosting-sqlite-databases-on-github-pages/) locally and then on GitHub Pages.
+
 
 # SQLite in Browser
 
 Try [Steps for deploying a React App to Github Pages](https://gist.github.com/vre2h/da9db3733c238c174d13670fb77c1f1a)
-
-The steps below aim to run [Phiresky's excellent SQLite timeline sample](https://phiresky.github.io/blog/2021/hosting-sqlite-databases-on-github-pages/) locally and on GitHub Pages.
 
 Fork [our fork](https://github.com/ModelEarth/blog) of Phiresky's blog sample, then clone to your local computer.
 
@@ -22,9 +23,22 @@ We recommend upgrading your OS before starting if your current version is more t
 And download the React DevTools for a better development experience:
 [https://reactjs.org/link/react-devtools](https://reactjs.org/link/react-devtools)
 
+Clone the blog into your webroot
+
+	git clone https://github.com/modelearth/blog blog
+
+Start a virtual environment in the local folder.
+
+	python3 -m venv env &&
+	source env/bin/activate
+
+<!--
 IMPORTANT: Try using "npm ci" here rather than "npm install"
 "npm ci" avoids changing the package-lock.json file, which creates conflicts.
 (Haven't confirmed yet if package-lock.json was getting changed.)
+-->
+
+Install React and React Devtools (try skipping this)
 
 	npm install next@latest react@latest react-dom@latest
 	npm install -g react-devtools
@@ -42,6 +56,15 @@ In our fork, Nextjs is migrated to the new version which uses RUST.
 
 	yarn posts &&
 	yarn dev
+
+
+On your local computer by going here:
+[http://localhost:3000/blog/2021/hosting-sqlite-databases-on-github-pages/](http://localhost:3000/blog/2021/hosting-sqlite-databases-on-github-pages/)
+
+And you can view a list of all the blog posts at [localhost:3000/blog/](http://localhost:3000/blog/)
+
+
+
 
 New command window
 
@@ -66,16 +89,6 @@ B. Transformation error (Topic reference is used, but the pipelineOperator plugi
 -->
 
 
-## Local Sample of SQLite Blog
-
-Once the steps are completed, you should see the following page:
-https://phiresky.github.io/blog/2021/hosting-sqlite-databases-on-github-pages/
-
-
-On your local computer by going here:
-[http://localhost:3000/blog/2021/hosting-sqlite-databases-on-github-pages/](http://localhost:3000/blog/2021/hosting-sqlite-databases-on-github-pages/)
-
-And you can view a list of all the blog posts at [localhost:3000/blog/](http://localhost:3000/blog/)
 
 
 ### Additional notes
