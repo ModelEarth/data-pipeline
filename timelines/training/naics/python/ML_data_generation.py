@@ -106,14 +106,14 @@ def main(year,state,naics_value):
     df=df.merge(urban_df,how="left",on="Fips")
     column_data = df.pop('UrbanPercent')
     df.insert(loc=7, column='UrbanPercent', value=column_data)
-    print(df)
+    # print(df)
     output_dir = f"../output/{year}"
     os.makedirs(output_dir, exist_ok=True)
     path = f"{output_dir}/US-{state}-training-naics{naics_value}-counties-{year}.csv"
     df.to_csv(path, header=True, index=False)
 
 if __name__=='__main__':
-    sys.exit(main(sys.argv[1], sys.argv[2]), sys.argv[3])
+    sys.exit(main(sys.argv[1], sys.argv[2], sys.argv[3]))
 
 """
 year_range=range(2017,2022)
