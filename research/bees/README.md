@@ -3,7 +3,9 @@
 
 ## Datasets
 
-Pull from Google Data Commons using [REST](https://docs.datacommons.org/api/rest/v2/getting_started) and store with a [Observable Data Loader](https://observablehq.com/framework/loaders).
+[Our RealityStream Repo](https://github.com/ModelEarth/RealityStream) contains three ML Classification Models: Logistic Regression, Random Forest and Support Vector Machines.
+
+We're also pulling y=1 data from Google Data Commons using [REST](https://docs.datacommons.org/api/rest/v2/getting_started) and store with a [Observable Data Loader](https://observablehq.com/framework/loaders).
 
 These will be used to populate the y=1 value for our [naics training data](../../timelines/training/naics).
 
