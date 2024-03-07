@@ -1,0 +1,6 @@
+pandas
+numpy
+geopandas
+requests
+geopy
+censusdata
