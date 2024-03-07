@@ -25,7 +25,15 @@ And download the React DevTools for a better development experience:
 
 Clone the blog into your webroot
 
+	git clone https://github.com/phiresky/blog blog &&
+	cd blog
+
+<!--
 	git clone https://github.com/modelearth/blog blog
+
+This was probably un-done:
+In our fork, Nextjs is migrated to the new version which uses RUST.
+-->
 
 Start a virtual environment in the local folder.
 
@@ -45,28 +53,17 @@ Install React and React Devtools (try skipping this)
 
 ---
 
-(2) Clone our fork from: [https://github.com/localsite/blog](https://github.com/localsite/blog)
-(Use the green "Code" button and open with Github Desktop to download.)
-
-In our fork, Nextjs is migrated to the new version which uses RUST.
-
----
-
-(3) Run these 4 commands in the blog folder (These are from the blog folder readme):
+Run these commands in the blog folder (These are from the [blog folder readme](https://github.com/phiresky/blog/)):
 
 	yarn posts &&
 	yarn dev
 
+"yarn dev" provides the hot-reloading dev server at 
+[localhost:3000/blog/2021/hosting-sqlite-databases-on-github-pages](http://localhost:3000/blog/2021/hosting-sqlite-databases-on-github-pages/)
 
-On your local computer by going here:
-[http://localhost:3000/blog/2021/hosting-sqlite-databases-on-github-pages/](http://localhost:3000/blog/2021/hosting-sqlite-databases-on-github-pages/)
+You can view a list of all the blog posts at [localhost:3000/blog/](http://localhost:3000/blog/)
 
-And you can view a list of all the blog posts at [localhost:3000/blog/](http://localhost:3000/blog/)
-
-
-
-
-New command window
+In a new command window:
 
 	yarn build  &&
 	yarn commit
