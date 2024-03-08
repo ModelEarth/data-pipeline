@@ -8,7 +8,7 @@ The following aims to run [Phiresky's excellent SQLite timeline sample](https://
 
 Unresolved Error: Could not load httpvfs config: 404 Not Found
 
-![blog sqlite error](blog-sqlite-error.png "Any ideas?")
+![blog sqlite error](sqlite-404-error.png "Any ideas?")
 
 
 # SQLite in Browser
@@ -172,7 +172,7 @@ Once you successfully run `yarn dev`, run the following whenever you open a new 
 Not finding SQLite data.
 Error: Could not load httpvfs config: 404 Not Found
 
-![blog sqlite error](blog-sqlite-error.png "Any ideas?")
+![blog sqlite error](sqlite-404-error.png "Any ideas?")
 
 Once we fix the error above, the next step is to deploy to GitHub Pages. 
 
