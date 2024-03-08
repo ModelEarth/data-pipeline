@@ -14,7 +14,7 @@ Prediction from changes in naics industry levels for zips and counties.
 [Observable Self-Hosting Notes](observable/)
 
 ## TO DO
-[Debug our Install steps for SQLite in a browser](sqlite/) from the phiresky timeline
+[Figure out last step for SQLite in a browser](sqlite/phiresky/) from the phiresky timeline
 [Resulting SQLite Timeline](https://phiresky.github.io/blog/2021/hosting-sqlite-databases-on-github-pages/) - by phiresky. Includes filter for selecting countries
 
 ## ADD DATA SOURCES
