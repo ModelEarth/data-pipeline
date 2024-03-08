@@ -7,10 +7,64 @@ Observable is by Mike Bostock, the New York Times data scientist who created D3.
 
 Check out the [Observable Data Loaders](https://observablehq.com/framework/loaders)
 
+### Tips
+
+Use Yarn for self-hosting because the deploy.yml script requires yarn. (Link at end of [Getting Started]](https://observablehq.com/framework/getting-started#3.-publish))
+
+To see a new page in the sidebar, use Ctrl-C to stop the local server. Then use up arrow (↑) to re-run the command to start the preview server (npm run dev or yarn dev). Your browser should refresh.
+
+To view your dist folder, run at your "dist" folder and go to: http://127.0.0.1:8080
+(Or you can run in the parent folder and add "dist" to the command.)
+
+	npx http-server
+
+<!--
+Invoking a server with `python -m http.server 8888` requires manually adding .html to side navigation.
+-->
+
+Add new repo to GitHub from the cmd.
+(This cmd are displayed when you say no README when creating a repo in GitHub.)
+
+	echo "# hello-framework" >> README.md
+	git init
+	git add README.md
+	git commit -m "first commit"
+	git branch -M main
+	git remote add origin https://github.com/ModelEarth/hello-framework.git
+	git push -u origin main
+
+OR create a "hello-framework" repo first in GitHub.com
+Avoid adding a README since you already have one.
+
+This might only work if the repo was created with cmds above.
+Run to deploy to the manually created repo.  Updates your local .git/config file.
+
+	git remote add origin https://github.com/ModelEarth/hello-framework.git &&
+	git branch -M main &&
+	git push -u origin main
+
+Third command resulted in error:
+
+error: src refspec main does not match any  
+error: failed to push some refs to 'https://github.com/ModelEarth/hello-framework.git'  
+(base) helix@localhost hello-framework % 
+
+So instead, pulled empty folder via GitHub Desktop and retained .git folder (deleting existing .git folder) 
+Remove dist/ from .gitignore file to deploy, and point GitHub Pages at the dist folder.
+
+**Deploying via GitHub Actions**
+You can schedule builds and deploy your project automatically on commit, or on a schedule.
+
+Actions tab > Set up a workflow yourself
+
+[deploy.yml](https://github.com/observablehq/framework/blob/main/.github/workflows/deploy.yml)
+
 
 ## Notes on Initial Install
 
 Based on the [Observable Install Steps](https://observablehq.com/framework/getting-started#3.-publish)
+
+IMPORTANT: Use Yarn if you are doing self-hosting on GitHub becauase deploy.yml is looking for yarn.lock.
 
 In the webroot, we ran yarn because it's faster and more secure than: npm init @observablehq
 
