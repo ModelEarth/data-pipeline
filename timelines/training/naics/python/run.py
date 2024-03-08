@@ -18,12 +18,16 @@ state_list=['AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA',
 'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM',
 'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX',
 'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY']
-for k in [2,4]:
+# for k in [2,4]: script does not work for naics2 now. Add this in TODO.
+for k in [4]:
     for i in year_range:
         for j in state_list:
-            print(f"Starting task for naics{k}, year{i}, state{j}")
+            print(f"Starting task for naics{k}, year{i}, state{j}...")
             try:
                 ML_data_generation.main(i,j,k)
-                print(f"naics{k}:{i}:{j} has been saved")
+                print(f"Succeed. naics{k}:{i}:{j} has been saved.")
+                print("=================================")
             except:
+                print(f"Failed to generate output for naics{k}, year{i}, state{j}.")
+                print("=================================")
                 continue
