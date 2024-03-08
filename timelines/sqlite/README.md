@@ -1,5 +1,9 @@
 [Timelines ML](../) 
 
+The timeline chart is [React Recharts D3](https://recharts.org/en-US/storybook)
+Defined in phiresky's [FtsDemo.tsx TypeScript](https://github.com/phiresky/blog/blob/master/client/sqlite-httpvfs/FtsDemo.tsx)
+
+
 The following aims to run [Phiresky's excellent SQLite timeline sample](https://phiresky.github.io/blog/2021/hosting-sqlite-databases-on-github-pages/) locally and then on GitHub Pages.
 
 
@@ -58,6 +62,7 @@ npm ERR! peer react@"^15.3.2 || ^16.0.0" from react-katex@2.0.2
 npm ERR! node_modules/react-katex
 npm ERR!   react-katex@"^2.0.2" from the root project
 
+<!--
 Tried this, did not fix:
 
 	yarn add react-katex
@@ -70,7 +75,7 @@ Install React and React Devtools (Skipped this March 7, but let's try upgrading 
 
 	npm install next@latest react@latest react-dom@latest &&
 	npm install -g react-devtools
-
+-->
 ---
 
 next-blog@workspace:.: This package doesn't seem to be present in your lockfile; run "yarn install" to update the lockfile
