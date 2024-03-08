@@ -6,6 +6,10 @@ Defined in phiresky's [FtsDemo.tsx TypeScript](https://github.com/phiresky/blog/
 
 The following aims to run [Phiresky's excellent SQLite timeline sample](https://phiresky.github.io/blog/2021/hosting-sqlite-databases-on-github-pages/) locally and then on GitHub Pages.
 
+Unresolved Error: Could not load httpvfs config: 404 Not Found
+
+![blog sqlite error](blog-sqlite-error.png "Any ideas?")
+
 
 # SQLite in Browser
 
@@ -13,7 +17,7 @@ Try [Steps for deploying a React App to Github Pages](https://gist.github.com/vr
 
 Fork [our fork](https://github.com/ModelEarth/blog) of Phiresky's blog sample, then clone to your local computer.
 
-Please add to the steps below on installing the SQLite blog. [Fork to edit current page](https://github.com/ModelEarth/data-pipeline/tree/main/timelines/sqlite).
+Please add to the steps below on installing the SQLite blog. [Fork to edit current page](https://github.com/ModelEarth/data-pipeline/tree/main/timelines/sqlite/phiresky/).
 
 You could use this [Pandoc GitHub Action](https://github.com/pandoc/pandoc-action-example) to convert documents on GitHub's servers with every push, to avoid building locally.
 
@@ -45,6 +49,38 @@ Optional: start a virtual environment in the local folder and add env/ to the .g
 	source env/bin/activate
 
 
+Tried this to
+
+	yarn up
+
+Source: https://stackoverflow.com/questions/41914056/get-yarn-install-to-fix-errors-yarn-check-finds
+
+These eliminiate warnings by fetching from the remote registry:
+
+	yarn add react-katex &&
+	yarn add webpack &&
+	yarn add prop-types &&
+	yarn add recharts
+
+Maybe this too:
+
+	yarn add react-katex
+
+Maybe
+
+	yarn react
+
+Later got
+Internal Error: next-blog@workspace:
+Maybe run
+
+	yarn add next-blog
+
+Now you hopefully see no more resolution steps listed.
+
+	yarn up
+
+
 <!--
 Tried this, did not fix:
 
@@ -68,39 +104,14 @@ phiresky says to run `yarn install` to install all dependencies. (Says do not ru
 	yarn install
 
 
-Results in message:
+You may need to install pandoc if you have not done so previously. See the Pandoc Install Notes at the bottom of this page.
 
-	➤ YN0000: ┌ Resolution step
-	➤ YN0060: │ next-blog@workspace:. provides react (p04a35) with version 18.2.0, which doesn't satisfy what react-katex requests
-	➤ YN0002: │ next-blog@workspace:. doesn't provide webpack (p119f0), requested by ts-loader
-	➤ YN0002: │ next-blog@workspace:. doesn't provide webpack (pb0499), requested by url-loader
-	➤ YN0002: │ recharts@npm:2.1.12 [b12ba] doesn't provide prop-types (p64d7f), requested by react-smooth
-	➤ YN0000: │ Some peer dependencies are incorrectly met; run yarn explain peer-requirements <hash> for details, where <hash> is the six-letter p-prefixed code
+The blog site uses yarn pnp, so no node_modules folder is needed.
+Therefore don't run `npm install` - Doing so creates a node_modules folder.
+The alternative:`npm ci` is not an option because there is no package-lock.json file.
+Otherwise it is not a newer alternative to `npm install` which does not change the package-lock.json file.
 
-These eliminiate warnings by fetching from the remote registry
-
-	yarn add react-katex
-
-	yarn add webpack
-
-	yarn add prop-types
-
-	yarn add recharts
-
-	yarn install
-
-<!-- the issue is you need to install pandoc (see the error spawn pandoc ENOENT)-->
-
-<!--
-IMPORTANT: Try using "npm ci" here rather than "npm install"
-"npm ci" avoids changing the package-lock.json file, which creates conflicts.
-(Haven't confirmed yet if package-lock.json was getting changed.)
--->
-
-Uses yarn pnp, so no node_modules folder is needed.
-Therefore don't run npm install
 HOWEVER, running `npm install` will tell you this specific dependency to resolve.
-
 
 Error: Cannot read properties of undefined .pnp.cjs
 This relates to nextJS.
@@ -110,31 +121,62 @@ npm ERR! peer react@"^15.3.2 || ^16.0.0" from react-katex@2.0.2
 npm ERR! node_modules/react-katex
 npm ERR!   react-katex@"^2.0.2" from the root project
 
+### Fixes applied in our Fork of the "blog" repo
+
+Fixed nextjs link error.  Invalid <Link> with <a> child. Please remove <a> or use <Link legacyBehavior>
+
+	npx @next/codemod new-link --force
+
+You might need to add [Pandoc GitHub Action](https://github.com/pandoc/pandoc-action-example) in your fork of [our fork](https://github.com/ModelEarth/blog) to convert documents on GitHub's servers with every push (or maybe just building locally is fine).
 
 
 
+When there was no longer the error above, Internal Error: next-blog@workspace:.: This package doesn't seem to be present in your lockfile; run "yarn install" to update the lockfile. <!-- `yarn up` did not work here. -->
+
+	yarn install
 
 Run these commands in the blog folder (These are from the [blog folder readme](https://github.com/phiresky/blog/)):
+"yarn dev" provides the hot-reloading dev server.
 
 	yarn posts &&
 	yarn dev
 
-"yarn dev" provides the hot-reloading dev server. View the blog page at:  
-[localhost:3000/blog/2021/hosting-sqlite-databases-on-github-pages](http://localhost:3000/blog/2021/hosting-sqlite-databases-on-github-pages/)
+Success, returned:
 
-You can view a list of all the blog posts at [localhost:3000/blog/](http://localhost:3000/blog/)
+Next.js 14.1.3
+Local: http://localhost:3000 (Returns 404, so go to /blog and page link instead)
+
+These should now work:
+[localhost:3000/blog/](http://localhost:3000/blog/)
+[http://localhost:3000/blog/2021/hosting-sqlite-databases-on-github-pages](http://localhost:3000/blog/2021/hosting-sqlite-databases-on-github-pages/)
 
 
-To continues to send cmds to the virtual environment, run when you open a new terminal in the blog folder:
+## No Luck yet? - Then drop the `npm install` bomb
+
+Still not working, run `npm install` which generates a package-lock.json file and ideally should not be necessary.
+
+	npm install	
+
+Then go up and run `yarn install` again.
+
+---
+
+## `yarn posts` and `yarn dev` now worked...
+
+Once you successfully run `yarn dev`, run the following whenever you open a new terminal (in the blog folder) to send cmds to the virtual environment.
 
 	source env/bin/activate
 
+## Current Error
 
-Error to resolve - not finding SQLite data.
+Not finding SQLite data.
+Error: Could not load httpvfs config: 404 Not Found
 
 ![blog sqlite error](blog-sqlite-error.png "Any ideas?")
 
 Once we fix the error above, the next step is to deploy to GitHub Pages. 
+
+
 
 ## Deploy to GitHub Pages
 
@@ -163,11 +205,7 @@ B. Transformation error (Topic reference is used, but the pipelineOperator plugi
 -->
 
 
-
-
-### Additional notes
-
-Let Loren know if you used any of the following and we can move into steps above:
+### Pandoc Install Notes
 
 Ran to update pandoc. You may need to upgrade your OS and brew.
 
@@ -187,10 +225,4 @@ brew upgrade
 brew install pandoc
 
 
-### Fixes applied in our Fork of the "blog" repo
 
-Fixed nextjs link error.  Invalid <Link> with <a> child. Please remove <a> or use <Link legacyBehavior>
-
-	npx @next/codemod new-link --force
-
-You might need to add [Pandoc GitHub Action](https://github.com/pandoc/pandoc-action-example) in your fork of [our fork](https://github.com/ModelEarth/blog) to convert documents on GitHub's servers with every push (or maybe just building locally is fine).
