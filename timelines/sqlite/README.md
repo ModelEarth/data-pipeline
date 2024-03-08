@@ -77,13 +77,15 @@ Results in message:
 	➤ YN0002: │ recharts@npm:2.1.12 [b12ba] doesn't provide prop-types (p64d7f), requested by react-smooth
 	➤ YN0000: │ Some peer dependencies are incorrectly met; run yarn explain peer-requirements <hash> for details, where <hash> is the six-letter p-prefixed code
 
-This eliminiate first warning
+These eliminiate warnings by fetching from the remote registry
 
 	yarn add react-katex
 
 	yarn add webpack
 
-	yarn add proptypes
+	yarn add prop-types
+
+	yarn add recharts
 
 	yarn install
 
