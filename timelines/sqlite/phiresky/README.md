@@ -109,7 +109,7 @@ You may need to install pandoc if you have not done so previously. See the Pando
 The blog site uses yarn pnp, so no node_modules folder is needed.
 Therefore don't run `npm install` - Doing so creates a node_modules folder.
 The alternative:`npm ci` is not an option because there is no package-lock.json file.
-Otherwise it is not a newer alternative to `npm install` which does not change the package-lock.json file.
+Otherwise `npm ci` is a newer alternative to `npm install` which does not change the package-lock.json file.
 
 HOWEVER, running `npm install` will tell you this specific dependency to resolve.
 
