@@ -39,12 +39,10 @@ This was probably un-done:
 In our fork, Nextjs is migrated to the new version which uses RUST.
 -->
 
-Start a virtual environment in the local folder.
+Optional: start a virtual environment in the local folder and add env/ to the .gitignore file.
 
 	python3 -m venv env &&
 	source env/bin/activate
-
-Add env/ to the .gitignore file.
 
 
 <!--
@@ -70,7 +68,7 @@ phiresky says to run `yarn install` to install all dependencies. (Says do not ru
 	yarn install
 
 
-Results in error:
+Results in message:
 
 	➤ YN0000: ┌ Resolution step
 	➤ YN0060: │ next-blog@workspace:. provides react (p04a35) with version 18.2.0, which doesn't satisfy what react-katex requests
@@ -79,6 +77,15 @@ Results in error:
 	➤ YN0002: │ recharts@npm:2.1.12 [b12ba] doesn't provide prop-types (p64d7f), requested by react-smooth
 	➤ YN0000: │ Some peer dependencies are incorrectly met; run yarn explain peer-requirements <hash> for details, where <hash> is the six-letter p-prefixed code
 
+This eliminiate first warning
+
+	yarn add react-katex
+
+	yarn add webpack
+
+	yarn add proptypes
+
+	yarn install
 
 <!-- the issue is you need to install pandoc (see the error spawn pandoc ENOENT)-->
 
@@ -90,9 +97,7 @@ IMPORTANT: Try using "npm ci" here rather than "npm install"
 
 Uses yarn pnp, so no node_modules folder is needed.
 Therefore don't run npm install
-HOWEVER, running `npm install` will tell you the specific dependency to resolve.
-
-	npm install
+HOWEVER, running `npm install` will tell you this specific dependency to resolve.
 
 
 Error: Cannot read properties of undefined .pnp.cjs
