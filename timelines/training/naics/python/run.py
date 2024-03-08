@@ -11,6 +11,7 @@ Instructions:
     python run.py
 '''
 import ML_data_generation
+import datetime
 
 year_range=range(2017,2022)
 state_list=['AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA',
@@ -18,8 +19,8 @@ state_list=['AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA',
 'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM',
 'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX',
 'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY']
-# for k in [2,4]: script does not work for naics2 now. Add this in TODO.
-for k in [4]:
+for k in [2,4,6]:
+    print(f"Start time: {datetime.datetime.now()}")
     for i in year_range:
         for j in state_list:
             print(f"Starting task for naics{k}, year{i}, state{j}...")
@@ -31,3 +32,4 @@ for k in [4]:
                 print(f"Failed to generate output for naics{k}, year{i}, state{j}.")
                 print("=================================")
                 continue
+    print(f"Output for naics{k} finished. End time: {datetime.datetime.now()}")

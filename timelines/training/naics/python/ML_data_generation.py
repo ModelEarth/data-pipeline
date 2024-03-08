@@ -12,17 +12,17 @@ def get_df(url):
         df = pd.read_csv(StringIO(response.text))
         return df
     except:
-        return np.nan
+        return pd.DataFrame()
 
 def get_name_population_cencusdata(year,fips):
     try:
         import censusdata
-        state_fips_code = str(fips)[0:-3]
-        county_fips_code= str(fips)[-3:]
+        state_fips_code = fips[0:-3]
+        county_fips_code= fips[-3:]
         data = pd.DataFrame(censusdata.download('acs5', year, censusdata.censusgeo([('state', state_fips_code), ('county',county_fips_code )]), ['B01003_001E']))
         data=data.reset_index().rename(columns={'index': 'county',"B01003_001E":"total_population"})
         data.county=data.county.apply(lambda x: str(x).split(",")[0])
-        return data.county[0],data.total_population[0]
+        return data.county[0],round(int(data.total_population[0])/1000)
     except:
             return '',np.nan
 
@@ -79,6 +79,7 @@ def get_urban_percent(year,state_fp):
     block_gp_population = get_census_block_population(year,state_fp)
     df = block_gp_area.merge(block_gp_population, on="GEOID", how="inner")
     df_result = pd.DataFrame(round(df[df["total_population"] >= 1500].groupby("Fips")["Km2"].sum()/df.groupby("Fips")["Km2"].sum(),2))
+    df_result = df_result.fillna(0)
     df_result = df_result.reset_index().rename(columns={'index': 'Fips',"Km2":"UrbanPercent"})
     return df_result
 
@@ -87,10 +88,12 @@ def get_urban_percent(year,state_fp):
 def main(year,state,naics_value):
     url = f"https://model.earth/community-data/industries/naics/US/counties/{state}/US-{state}-census-naics{naics_value}-counties-{year}.csv"
     df=get_df(url)
-    df=df.pivot_table(index="Fips", columns='Naics', values=["Establishments","Employees","Payroll"]).reset_index()
+    df=df.rename(columns={"Establishments":"Est","Employees":"Emp","Payroll":"Pay"})
+    df=df.pivot_table(index="Fips", columns='Naics', values=["Est","Emp","Pay"]).reset_index()
     df.columns = [f"{a}-{str(b)}" for a,b in df.columns]
     sorted_columns = ["Fips-"]+sorted(df.columns[1:], key=lambda x: int(x.split('-')[-1]))
     df = df[sorted_columns].rename(columns={"Fips-":"Fips"})
+    df.Fips=df.Fips.apply(lambda x: '0'+str(x) if len(str(x))==4 else str(x))
     df.insert(loc=1, column='Name', value=df.Fips.apply(lambda x:get_name_population_cencusdata(year,x)[0]))
     df.insert(loc=2, column='Population', value=df.Fips.apply(lambda x:get_name_population_cencusdata(year,x)[1]))
     df.insert(loc=3, column='Longitude', value=df.Name.apply(lambda x:get_long_lat(x)[0]))
@@ -106,14 +109,13 @@ def main(year,state,naics_value):
     df=df.merge(urban_df,how="left",on="Fips")
     column_data = df.pop('UrbanPercent')
     df.insert(loc=7, column='UrbanPercent', value=column_data)
-    # print(df)
-    output_dir = f"../output/{year}"
+    output_dir = f"output/{year}"
     os.makedirs(output_dir, exist_ok=True)
     path = f"{output_dir}/US-{state}-training-naics{naics_value}-counties-{year}.csv"
     df.to_csv(path, header=True, index=False)
 
 if __name__=='__main__':
-    sys.exit(main(sys.argv[1], sys.argv[2], sys.argv[3]))
+    sys.exit(main(int(sys.argv[1]), sys.argv[2], sys.argv[3]))
 
 """
 year_range=range(2017,2022)
