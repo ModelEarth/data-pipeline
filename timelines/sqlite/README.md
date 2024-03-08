@@ -44,23 +44,8 @@ Start a virtual environment in the local folder.
 	python3 -m venv env &&
 	source env/bin/activate
 
-Add env/ the .gitignore file.
+Add env/ to the .gitignore file.
 
-<!--
-IMPORTANT: Try using "npm ci" here rather than "npm install"
-"npm ci" avoids changing the package-lock.json file, which creates conflicts.
-(Haven't confirmed yet if package-lock.json was getting changed.)
--->
-
-	npm install
-
-Error: Cannot read properties of undefined .pnp.cjs
-This relates to nextJS.
-
-Could not resolve dependency:
-npm ERR! peer react@"^15.3.2 || ^16.0.0" from react-katex@2.0.2
-npm ERR! node_modules/react-katex
-npm ERR!   react-katex@"^2.0.2" from the root project
 
 <!--
 Tried this, did not fix:
@@ -80,7 +65,47 @@ Install React and React Devtools (Skipped this March 7, but let's try upgrading 
 
 next-blog@workspace:.: This package doesn't seem to be present in your lockfile; run "yarn install" to update the lockfile
 
+phiresky says to run `yarn install` to install all dependencies. (Says do not run npm install typescript)
+
 	yarn install
+
+
+Results in error:
+
+	➤ YN0000: ┌ Resolution step
+	➤ YN0060: │ next-blog@workspace:. provides react (p04a35) with version 18.2.0, which doesn't satisfy what react-katex requests
+	➤ YN0002: │ next-blog@workspace:. doesn't provide webpack (p119f0), requested by ts-loader
+	➤ YN0002: │ next-blog@workspace:. doesn't provide webpack (pb0499), requested by url-loader
+	➤ YN0002: │ recharts@npm:2.1.12 [b12ba] doesn't provide prop-types (p64d7f), requested by react-smooth
+	➤ YN0000: │ Some peer dependencies are incorrectly met; run yarn explain peer-requirements <hash> for details, where <hash> is the six-letter p-prefixed code
+
+
+<!-- the issue is you need to install pandoc (see the error spawn pandoc ENOENT)-->
+
+<!--
+IMPORTANT: Try using "npm ci" here rather than "npm install"
+"npm ci" avoids changing the package-lock.json file, which creates conflicts.
+(Haven't confirmed yet if package-lock.json was getting changed.)
+-->
+
+Uses yarn pnp, so no node_modules folder is needed.
+Therefore don't run npm install
+HOWEVER, running `npm install` will tell you the specific dependency to resolve.
+
+	npm install
+
+
+Error: Cannot read properties of undefined .pnp.cjs
+This relates to nextJS.
+
+Could not resolve dependency:
+npm ERR! peer react@"^15.3.2 || ^16.0.0" from react-katex@2.0.2
+npm ERR! node_modules/react-katex
+npm ERR!   react-katex@"^2.0.2" from the root project
+
+
+
+
 
 Run these commands in the blog folder (These are from the [blog folder readme](https://github.com/phiresky/blog/)):
 
@@ -91,6 +116,12 @@ Run these commands in the blog folder (These are from the [blog folder readme](h
 [localhost:3000/blog/2021/hosting-sqlite-databases-on-github-pages](http://localhost:3000/blog/2021/hosting-sqlite-databases-on-github-pages/)
 
 You can view a list of all the blog posts at [localhost:3000/blog/](http://localhost:3000/blog/)
+
+
+To continues to send cmds to the virtual environment, run when you open a new terminal in the blog folder:
+
+	source env/bin/activate
+
 
 Error to resolve - not finding SQLite data.
 
