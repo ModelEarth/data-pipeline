@@ -113,6 +113,9 @@ Using the root will allow you to send output to the community-data repo.
 
 Avoid pip3 in virtual environments.
 
+To run new cmds in the same virtual environment, in a new prompt run:
+
+	source env/bin/activate
 
 <!-- Added steps here to avoid 500 error.
 This error also occured when not in virtual env.

@@ -22,6 +22,9 @@ OSX / Linux:
 Windows:
 `\.venv\Scripts\activate.bat`
 
+To run new cmds in the same virtual environment, in a new prompt run:
+
+	source env/bin/activate
 
 comtrade-script.py script not working yet. Generated blank row_ID .csv file previously. 
 

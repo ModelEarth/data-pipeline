@@ -24,12 +24,13 @@ To view your dist folder, run at your "dist" folder and go to: http://127.0.0.1:
 Invoking a server with `python -m http.server 8888` requires manually adding .html to side navigation.
 -->
 
-**Add new repo to GitHub from the cmd.**
-(This cmd are displayed when you say no README when creating a repo in GitHub.)
+**Add a new repo to GitHub using a cmd**
+(These cmds are displayed when you say no README when creating a repo in GitHub.)
+
+BUG: The final push step is not working. Probably needs a special login from the GitHub website. Also does not work when repo already added. Add how-to here.
 
 	echo "# hello-framework" >> README.md
 	git init
-	git add README.md
 	git commit -m "first commit"
 	git branch -M main
 	git remote add origin https://github.com/ModelEarth/hello-framework.git
@@ -51,8 +52,11 @@ error: src refspec main does not match any
 error: failed to push some refs to 'https://github.com/ModelEarth/hello-framework.git'  
 (base) helix@localhost hello-framework % 
 
-So instead, pull empty folder via GitHub Desktop and retain .git folder (deleting existing .git folder) 
-Remove dist/ from .gitignore file to deploy, and point GitHub Pages at the dist folder.
+So instead, renmae the local folder and pull down a repo using GitHub Desktop.  
+Copy everyting but the initial .git folder into the newly created repo.  
+Remove dist/ from .gitignore file to deploy.  
+Turn on GitHub Pages at the site root and view by including /dist in your URL.  
+404 will appear at the root.
 
 **Deploying via GitHub Actions**
 You can schedule builds and deploy your project automatically on commit, or on a schedule.

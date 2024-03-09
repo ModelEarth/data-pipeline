@@ -120,6 +120,10 @@ You may also need to create a virtual environment and install libraries.
 
 Avoid pip3 in virtual environment. Just "pip" without the 3.
 
+To run new cmds in the same virtual environment, in a new prompt run:
+
+		source env/bin/activate
+
 If you encounter [500: Internal Server Error](https://stackoverflow.com/questions/36851746/jupyter-notebook-500-internal-server-error)
 
 	pip install --upgrade nbconvert

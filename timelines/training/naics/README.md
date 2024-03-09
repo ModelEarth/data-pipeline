@@ -51,7 +51,10 @@ Run python in your modelearth webroot since you'll be sending files to data repo
       python3 -m venv env && source env/bin/activate
       && cd data-pipeline/timelines/training/naics
 
+To run new cmds in the same virtual environment, in a new prompt run:
 
+      source env/bin/activate
+      
 ## Current Projects
 
 ### 1. Prepare Python that loads naics4 data into Pandas for 2017 to 2021 for Maine

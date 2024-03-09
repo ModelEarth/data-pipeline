@@ -34,6 +34,10 @@ Run in your webroot since you'll be sending output to the community-forecasting 
 	python3 -m venv env && source env/bin/activate &&
 	cd data-pipeline/timelines/prep/all
 
+To run new cmds in the same virtual environment, in a new prompt run:
+
+	source env/bin/activate
+	
 ### Output SQLite script for years
 Create a sqlite generator for each year: zcta\_2017.SQL.txt  
 These import data from [input/2017/2017_zcta_industries_sm.csv](input/2017/2017_zcta_industries_sm.csv)

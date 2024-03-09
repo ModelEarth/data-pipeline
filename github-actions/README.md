@@ -8,13 +8,17 @@ Run on our [Python comtrade script](../international/comtrade) to populate folde
 ## Build from source
 
 Create a virtual environment (OSX / Linux / Windows):
-`python3 -m venv .venv`
+`python3 -m venv env`
 
 OSX / Linux:
-`source .venv/bin/activate`
+`source env/bin/activate`
 
 Windows:
-`\.venv\Scripts\activate.bat`
+`\env\Scripts\activate.bat`
+
+To run new cmds in the same virtual environment, in a new prompt run:
+
+	source env/bin/activate
 
 Running `make dependencies` will install BeautifulSoup4
 
