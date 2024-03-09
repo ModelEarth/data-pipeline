@@ -2,6 +2,8 @@
 
 # Observable
 
+Assistance from Mike Bostock on [how to deploy to GitHub Pages](https://github.com/observablehq/framework/discussions/1030).
+
 [Observable Framework](https://observablehq.com/framework/) - for static site generation
 Observable is by Mike Bostock, the New York Times data scientist who created D3.
 
