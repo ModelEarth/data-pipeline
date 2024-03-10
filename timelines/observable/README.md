@@ -2,7 +2,7 @@
 
 # Observable
 
-Assistance from Mike Bostock on [how to deploy to GitHub Pages](https://github.com/observablehq/framework/discussions/1030).
+Assistance from Mike Bostock on [how to deploy to GitHub Pages](https://github.com/observablehq/framework/discussions/1030) - deploy.yml files to use with hello-framework, and how to avoid broken pages by adding a .nojekyll file when not using deploy.yml.
 
 [Observable Framework](https://observablehq.com/framework/) - for static site generation
 Observable is by Mike Bostock, the New York Times data scientist who created D3.
@@ -11,11 +11,9 @@ Check out the [Observable Data Loaders](https://observablehq.com/framework/loade
 
 ## Tips
 
-Use Yarn for self-hosting because the deploy.yml script requires yarn. deploy.yml link is at the end of [Getting Started](https://observablehq.com/framework/getting-started).
-
 To see a new page in the sidebar, use Ctrl-C to stop the local server. Then use up arrow (↑) to re-run the command to start the preview server (npm run dev or yarn dev). Your browser should refresh.
 
-To view your dist folder, run at your "dist" folder and go to: http://127.0.0.1:8080
+To view your dist folder, run the npx server at your "dist" folder and go to: http://127.0.0.1:8080
 (Or you can run in the parent folder and add "dist" to the command.)
 
 	npx http-server
