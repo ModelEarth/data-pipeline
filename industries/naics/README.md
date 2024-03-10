@@ -128,7 +128,7 @@ This can also give you a newer Juyter interface:
 	pip install --upgrade nbconvert
 
 Open Jupyter Notebook with this command then click naics-annual.ipynb and run each step:
-<!-- if this cd has 500 error again, remove the cd and stay launch jupyter in the root. -->
+<!-- if this cmd has 500 error again, remove the cd line and launch jupyter in the root. -->
 
 	cd data-pipeline/industries/naics &&
 	jupyter-notebook

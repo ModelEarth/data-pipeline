@@ -5,8 +5,12 @@
 North American Industry Classification System (NAICS)
 We're creating a new Random Forest process informed [by the prior zip code zcta process](../../prep/all)
 
-[Our RealityStream (Upcoming)](https://github.com/ModelEarth/RealityStream)  
+Upcoming Streamlit: [Our RealityStream](https://github.com/ModelEarth/RealityStream) and [Facebook Prophet](https://github.com/ModelEarth/prophet/) 
 Logistic Regression, Random Forest and Support Vector Machines
+
+[Learn more at facebook.github.io/prophet](https://facebook.github.io/prophet/)
+Prophet is robust to outliers, missing data, and dramatic time series changes
+Prophet works best with time series that have strong seasonal effects.
 
 We're using the state of Maine (ME) for our sample counties.  
 We're using NAICS levels 2 and 4 in our training files.
