@@ -1,26 +1,40 @@
-[Community Data](/community-data/) 
+[Active Projects](/io/) 
 
 # Observable
 
-Assistance from Mike Bostock on [how to deploy to GitHub Pages](https://github.com/observablehq/framework/discussions/1030) - deploy.yml files to use with hello-framework, and how to avoid broken pages by adding a .nojekyll file when not using deploy.yml.
+[Observable Framework](https://observablehq.com/framework/) - The open static framework for visualization generation and data loaders
 
-[Observable Framework](https://observablehq.com/framework/) - for static site generation
+Fork our [Observable DataCommons](https://github.com/ModelEarth/data-commons) - Pulls from Google's [UN Data Commons](/data-pipeline/international/)
+
 Observable is by Mike Bostock, the New York Times data scientist who created D3.
+Mike Bostock provided assistance on [how to deploy to GitHub Pages](https://github.com/observablehq/framework/discussions/1030)
+- Examples of deploy.yml files to use with [hello-framework install sample](https://observablehq.com/framework/)
+- Without deploy.yml how to avoid broken pages by adding a .nojekyll
 
-Check out the [Observable Data Loaders](https://observablehq.com/framework/loaders)
+Check out our implementation of the [Observable Data Loaders](https://github.com/kargilthakur/Observables-DataLoader/tree/master/docs)
 
-## Tips
+#### Dev Tips
 
-To see a new page in the sidebar, use Ctrl-C to stop the local server. Then use up arrow (↑) to re-run the command to start the preview server (npm run dev or yarn dev). Your browser should refresh.
+1.) When coding, to see a new page in the sidebar, use Ctrl-C to stop the local server. Then use up arrow (↑) to re-run the command to start the preview server (npm run dev or yarn dev). Your browser should refresh.
 
-To view your dist folder, run the npx server at your "dist" folder and go to: http://127.0.0.1:8080
+2.) To view your dist folder, run the npx server at your "dist" folder and go to: http://127.0.0.1:8080
 (Or you can run in the parent folder and add "dist" to the command.)
 
 	npx http-server
 
-<!--
-Invoking a server with `python -m http.server 8888` requires manually adding .html to side navigation.
--->
+Invoking a server with 'python -m http.server 8888' requires manually adding .html to side navigation link.
+
+<br>
+
+# Hello Framework - setup notes
+
+Avoid the following by working in our [Observable DataCommons](https://github.com/ModelEarth/data-commons)
+
+Create a folder for your focus area. Match the folder name to one of the [UN's 17 Goals](/data-pipeline/international/).
+
+## Setup steps we used
+
+https://observablehq.com/framework/getting-started
 
 **Add a new repo to GitHub using a cmd**
 (These cmds are displayed when you say no README when creating a repo in GitHub.)
@@ -50,7 +64,7 @@ error: src refspec main does not match any
 error: failed to push some refs to 'https://github.com/ModelEarth/hello-framework.git'  
 (base) helix@localhost hello-framework % 
 
-So instead, renmae the local folder and pull down a repo using GitHub Desktop.  
+So instead, rename the local folder and pull down a repo using GitHub Desktop.  
 Copy everyting but the initial .git folder into the newly created repo.  
 Remove dist/ from .gitignore file to deploy.  
 Turn on GitHub Pages at the site root and view by including /dist in your URL.  
