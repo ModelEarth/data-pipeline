@@ -23,10 +23,16 @@ for k in [2,4,6]:
     print(f"Start time: {datetime.datetime.now()}")
     for i in year_range:
         for j in state_list:
+#             if i==2017 and j in ['AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA',
+# 'HI', 'IA', 'ID', 'IL', 'IN'] or j=='ME':
+#                 continue
             print(f"Starting task for naics{k}, year{i}, state{j}...")
+            start_time = datetime.datetime.now()
             try:
                 ML_data_generation.main(i,j,k)
+                end_time = datetime.datetime.now()
                 print(f"Succeed. naics{k}:{i}:{j} has been saved.")
+                print(f"Execution time: {end_time}")
                 print("=================================")
             except:
                 print(f"Failed to generate output for naics{k}, year{i}, state{j}.")

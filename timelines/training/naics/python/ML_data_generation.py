@@ -1,6 +1,7 @@
 import pandas as pd
 import geopandas as gpd
 import requests
+import censusdata
 from io import StringIO
 from geopy.geocoders import Nominatim
 import os, re, sys
@@ -16,10 +17,11 @@ def get_df(url):
 
 def get_name_population_cencusdata(year,fips):
     try:
-        import censusdata
         state_fips_code = fips[0:-3]
         county_fips_code= fips[-3:]
-        data = pd.DataFrame(censusdata.download('acs5', year, censusdata.censusgeo([('state', state_fips_code), ('county',county_fips_code )]), ['B01003_001E']))
+        api_key='25064f2ad0d7a1f2dfb6e603cbc4b096410bb414'
+        data = pd.DataFrame(censusdata.download('acs5', year, censusdata.censusgeo([('state', state_fips_code), ('county',county_fips_code )]), ['B01003_001E'], 
+                                                key=api_key))
         data=data.reset_index().rename(columns={'index': 'county',"B01003_001E":"total_population"})
         data.county=data.county.apply(lambda x: str(x).split(",")[0])
         return data.county[0],round(int(data.total_population[0])/1000)
@@ -37,8 +39,8 @@ def get_long_lat(name):
     except:
         return np.nan,np.nan
 
-def get_area(year, state_fp):
-    test = gpd.read_file(f'https://www2.census.gov/geo/tiger/GENZ{year}/shp/cb_{year}_us_county_500k.zip')
+def get_area(test, state_fp):
+    # test = gpd.read_file(f'https://www2.census.gov/geo/tiger/GENZ{year}/shp/cb_{year}_us_county_500k.zip')
     tost = test.copy()
     tost= tost.to_crs({'init': 'epsg:3035'})
     tost["Km2"] = round(tost['geometry'].area/ 10**6,2)
@@ -68,8 +70,9 @@ def get_full_code(input_string):
     return full_code
 
 def get_census_block_population(year,state_fp):
-    import censusdata
-    data = pd.DataFrame(censusdata.download('acs5', year, censusdata.censusgeo([('state', state_fp), ('county','*'), ('block group', '*')]), ['B01003_001E']))
+    api_key='25064f2ad0d7a1f2dfb6e603cbc4b096410bb414'
+    data = pd.DataFrame(censusdata.download('acs5', year, censusdata.censusgeo([('state', state_fp), ('county','*'), ('block group', '*')]), ['B01003_001E'],
+                                            key=api_key))
     data=data.reset_index().rename(columns={'index': 'GEOID',"B01003_001E":"total_population"})
     data.GEOID=data.GEOID.apply(lambda x: get_full_code(str(x)))
     return data
@@ -99,7 +102,8 @@ def main(year,state,naics_value):
     df.insert(loc=3, column='Longitude', value=df.Name.apply(lambda x:get_long_lat(x)[0]))
     df.insert(loc=4, column='Latitude', value=df.Name.apply(lambda x:get_long_lat(x)[1]))
     state_code=str(df.Fips[0])[0:2]
-    area_df=get_area(year,state_code)
+    test = gpd.read_file(f'https://www2.census.gov/geo/tiger/GENZ{year}/shp/cb_{year}_us_county_500k.zip')
+    area_df=get_area(test, state_code)
     df.Fips=df.Fips.astype(str)
     df=df.merge(area_df,how="left",on="Fips")
     column_data = df.pop('Km2')
