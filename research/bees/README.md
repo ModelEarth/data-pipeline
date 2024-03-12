@@ -12,7 +12,7 @@ We'll be using both python and javascript to merge y=1 values for counties into 
 ### Bee Pollinators
 
 - Bee Pollinators USDA
-- [Bee Pollinator Decline](https://sustainableagriculture.net/blog/pnas-wild-bee-study/) - Is there an accessible (free) source?
+<!-- - [Bee Pollinator Decline](https://sustainableagriculture.net/blog/pnas-wild-bee-study/) -->
 
 
 ### Additional y=1
