@@ -6,7 +6,7 @@ North American Industry Classification System (NAICS)
 We're creating a new Random Forest process informed [by the prior zip code zcta process](../../prep/all)
 
 ### Our Streamlit Forecasting ML Apps
-- [Facebook Prophet](https://github.com/ModelEarth/prophet/) - Upload time series dataset to train, evaluate and optimize forecasting models in a few clicks. All you have to do is to 
+- [Facebook Prophet](https://github.com/ModelEarth/prophet/) - Upload time series dataset to train, evaluate and optimize forecasting models in a few clicks.
 - [RealityStream](https://github.com/ModelEarth/RealityStream) - Logistic Regression, Random Forest and Support Vector Machines
 
 TO DO: Preload Maine data sample in Facebook Prophet.

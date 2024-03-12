@@ -2,16 +2,46 @@
 
 # Observable
 
-[Observable Framework](https://observablehq.com/framework/) - The open static framework for visualization generation and data loaders
+ The open static framework for D3 visualization generation and API Data Loaders.
 
-Fork our [Observable DataCommons](https://github.com/ModelEarth/data-commons) - Pulls from Google's [UN Data Commons](/data-pipeline/international/)
+Check out our implementation of [Observable Data Loaders](https://github.com/kargilthakur/Observables-DataLoader/tree/master/docs)
 
-Observable is by Mike Bostock, the New York Times data scientist who created D3.
+[Our Observable DataCommons](/data-commons/docs/) combo features Google's [International Data API](/data-pipeline/international/)
+
+[Observable Framework](https://observablehq.com/framework/) is by Mike Bostock, the New York Times data scientist who created D3.
+
 Mike Bostock provided assistance on [how to deploy to GitHub Pages](https://github.com/observablehq/framework/discussions/1030)
 - Examples of deploy.yml files to use with [hello-framework install sample](https://observablehq.com/framework/)
-- Without deploy.yml how to avoid broken pages by adding a .nojekyll
+- Without deploy.yml you can avoid broken pages by adding a .nojekyll file
 
-Check out our implementation of the [Observable Data Loaders](https://github.com/kargilthakur/Observables-DataLoader/tree/master/docs)
+<style>
+table {
+    display: block;
+    width: 100%;
+    width: max-content;
+    max-width: 100%;
+    overflow: auto;
+    border: 1px solid #ccc;
+}
+table th {
+	text-align: left;
+	font-size: 16px;
+	padding: 6px;
+	border-bottom: 1px solid #ccc;
+}
+table td {
+	padding: 6px;
+}
+</style>
+
+| Command           | Description                                              |
+| ----------------- | -------------------------------------------------------- |
+| `yarn install`            | Install or reinstall dependencies                        |
+| `yarn dev`        | Start local preview server                               |
+| `yarn build`      | Build your static site, generating `./dist`              |
+| `yarn deploy`     | Deploy your project to Observable                        |
+| `yarn clean`      | Clear the local data loader cache                        |
+| `yarn observable` | Run commands like `observable help`                      |
 
 #### Dev Tips
 
@@ -28,9 +58,9 @@ Invoking a server with 'python -m http.server 8888' requires manually adding .ht
 
 # Hello Framework - setup notes
 
-Avoid the following by working in our [Observable DataCommons](https://github.com/ModelEarth/data-commons)
+You can avoid the following set steps by forking our [Observable DataCommons](https://github.com/ModelEarth/data-commons).
 
-Create a folder for your focus area. Match the folder name to one of the [UN's 17 Goals](/data-pipeline/international/).
+[Visualizing Common Goals](/data-commons/docs/) - placeholders for UN Sustainable Development Goals (SDGs)
 
 ## Setup steps we used
 

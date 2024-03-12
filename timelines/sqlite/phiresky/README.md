@@ -10,6 +10,10 @@ Unresolved Error: Could not load httpvfs config: 404 Not Found
 
 ![blog sqlite error](sqlite-404-error.png "Any ideas?")
 
+<!--
+	Later, update mext-blog version if it didn't automatically.
+	https://github.com/tscanlin/next-blog?tab=readme-ov-file
+-->
 
 # SQLite in Browser
 
