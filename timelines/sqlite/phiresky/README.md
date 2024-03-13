@@ -9,7 +9,7 @@ The following aims to run [Phiresky's excellent SQLite timeline sample](https://
 Unresolved Error: Could not load httpvfs config: 404 Not Found
 
 ![blog sqlite error](sqlite-404-error.png "Any ideas?")
-
+[Posted as issue](https://github.com/phiresky/blog/issues/13)
 <!--
 	Later, update mext-blog version if it didn't automatically.
 	https://github.com/tscanlin/next-blog?tab=readme-ov-file
