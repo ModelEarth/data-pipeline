@@ -54,15 +54,13 @@ We're using NAICS levels 2 and 4 in our training files.
 
 TO DO (Sijia): Random Forest forecasting. - Sijia will copy our prior .py file into a CoLab. We will update it for both FIPS and ZCTA.
 
-TO DO: Web page displaying Maine counties at risk of increased poverty - Use Google Data Commons API for FIPS county poverty target data and international target data. Pull with an [Observable Data Loader](../../../timelines/observable/)
+TO DO: Web page displaying US counties at risk of increased poverty - Use Google Data Commons API for FIPS county poverty target data and international target data. Pull with an [Observable Data Loader](../../../timelines/observable/)
 
-TO DO: Web page displaying Industries that predict improving bee populations.
+TO DO: Find equivalent coounty data for India and China (Country Census or Google Data Commons)
 
-TO DO: Web page displaying top ten counties in the US likely to have declining [bee populations](../../../research/bees/)
+TO DO: Web page displaying Industries that predict improving and declining [bee populations](../../../research/bees/)
 
 TO DO: Web page displaying Top ten Maine counties likely to have [declining tree canopy](/data-pipeline/research/canopy/) - Find a data source (county or zip)
-
-TO DO: Find equivalent data for India and China
 
 TO DO: Use [Tensorflow.org](https://www.tensorflow.org/js/demos) for [Neural Network predictions](https://www.tensorflow.org/s/results/?q=neural%20networks) with our training data.
 
