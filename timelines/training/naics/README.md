@@ -27,8 +27,8 @@ Timeline files are output to [community-timelines/industries](https://github.com
 - [Facebook Prophet](https://github.com/ModelEarth/prophet/) - Upload time series dataset to train, evaluate and optimize forecasting models in a few clicks.
 - [RealityStream](https://github.com/ModelEarth/RealityStream) - Logistic Regression, Random Forest and Support Vector Machines
 
-TO DO: Genearte RealityStream's original output for Job descriptions, add link in RealityStream repo.
-TO DO: Document how non-coders can contribute to our [Data-Commons](/data-commons/) repo using [ObservableHQ.com](https://ObservableHQ.com)
+TO DO: Genearte RealityStream's original output for Job descriptions, add link in RealityStream repo. - Honglin
+TO DO: Document how to use Data Loaders in [Data-Commons](/data-commons/) and charts in [ObservableHQ.com Desktop](https://ObservableHQ.com) - Anna
 TO DO: Apply target to FIPS on-the-fly with Javascript and [bee data from Irene](/data-pipeline/research/bees/)
 TO DO: Apply target to FIPS using your [goal data](/data-commons/dist/) in our [Observable Data Commons](/data-commons/).
 
@@ -52,13 +52,13 @@ We're using NAICS levels 2 and 4 in our training files.
 
 ## Data Prep and Presentation
 
-TO DO (Sijia): Random Forest forecasting. - Sijia will copy our prior .py file into a CoLab. We will update it for both FIPS and ZCTA.
+TO DO: Random Forest forecasting. - Copy some of our prior .py file into a CoLab. We will update it for both FIPS and ZCTA. - Sijia
 
 TO DO: Web page displaying US counties at risk of increased poverty - Use Google Data Commons API for FIPS county poverty target data and international target data. Pull with an [Observable Data Loader](../../../timelines/observable/)
 
-TO DO: Find equivalent coounty data for India and China (Country Census or Google Data Commons)
+TO DO: Find equivalent county data for India and China (Country Census or Google Data Commons)
 
-TO DO: Web page displaying Industries that predict improving and declining [bee populations](../../../research/bees/)
+TO DO: Web page displaying Industries that predict improving and declining [bee populations](../../../research/bees/) - Irene
 
 TO DO: Web page displaying Top ten Maine counties likely to have [declining tree canopy](/data-pipeline/research/canopy/) - Find a data source (county or zip)
 
