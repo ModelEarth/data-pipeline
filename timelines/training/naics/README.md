@@ -28,9 +28,10 @@ Timeline files are output to [community-timelines/industries](https://github.com
 - [RealityStream](https://github.com/ModelEarth/RealityStream) - Logistic Regression, Random Forest and Support Vector Machines
 
 TO DO: Genearte RealityStream's original output for Job descriptions, add link in RealityStream repo.
-TO DO: Apply target to FIPS on-the-fly with Javascript and [bee data]](/data-pipeline/research/bees/)
-TO DO: Apply target to FIPS in our [Observable Data Commons](/data-commons/).
 TO DO: Document how non-coders can contribute to our [Data-Commons](/data-commons/) repo using [ObservableHQ.com](https://ObservableHQ.com)
+TO DO: Apply target to FIPS on-the-fly with Javascript and [bee data from Irene](/data-pipeline/research/bees/)
+TO DO: Apply target to FIPS using your [goal data](/data-commons/dist/) in our [Observable Data Commons](/data-commons/).
+
 
 [Learn more at facebook.github.io/prophet](https://facebook.github.io/prophet/)
 Prophet is robust to outliers, missing data, and dramatic time series changes
