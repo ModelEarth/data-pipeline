@@ -10,6 +10,6 @@ TO DO Rupesh: Table4 - Pivot incoming data to show 1 column per year for Establi
 
 TO DO Dinesh: Table2 - Add columns with names of industries after table loads with [NAICS Lookup](https://model.earth/community-data/us/id_lists/industry_id_list.csv)
 
-TO DO: Add a table5 and populate a Density column using Population/Km2. [Data source](https://model.earth/community-timelines/training/naic4/US/counties/2017/US-AK-training-naics4-counties-2017.csv) - Km2 is not yet in CSV.
+TO DO: Add a table5 and populate a Density column using Population/Km2. [Data source](https://model.earth/community-timelines/training/naics4/US/counties/2017/US-AK-training-naics4-counties-2017.csv) - Km2 is not yet in CSV.
 
 

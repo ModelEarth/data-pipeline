@@ -1,6 +1,6 @@
 '''
 This file will automatically run ML_data_generation.py in a loop. 
-Output will be data files for all states from 2017-2022 for naics2 and naic4.
+Output will be data files for all states from 2017-2022 for naics2 and naics4.
 Paths of generated output follows: f"{output_dir}/US-{state}-training-naics{naics_value}-counties-{year}.csv"
 
 Instructions:
