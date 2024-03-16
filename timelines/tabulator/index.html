@@ -162,60 +162,83 @@ function displayTabulators() {
             // End year loop
         });
     });
-
-    var table2 = new Tabulator("#example-table", {
-     
-        layout:"fitColumns",      //fit columns to width of table
-        responsiveLayout:"hide",  //hide columns that dont fit on the table
-        //tooltips:true,          //show tool tips on cells
-        maxHeight:"500px",        // For frozenRows
-        addRowPos:"top",          //when adding a new row, add it to the top of the table
-        history:true,             //allow undo and redo actions on the table
-        paginationSize:7,         //allow 7 rows per page of data
-        movableColumns:true,      //allow column order to be changed
-        resizableRows:true,       //allow row order to be changed
-        initialSort:[             //set the initial sort order of the data
-            {column:"progress", dir:"desc"},
-        ],
-
-        columns:[                 //define the table columns
-
-            {formatter:"rowSelection", titleFormatter:"rowSelection", hozAlign:"center", headerHozAlign:"center", width:10, headerSort:false, cellClick:function(e, cell){ cell.getRow().toggleSelect();
-            }},
-            {title:"NAICS", field:"Naics", maxWidth:80, editor:"input"},
-            {title:"Establishments", field:"Establishments", hozAlign:"right", maxWidth:100, editor:"input"},
-            {title:"Establishments", field:"Establishments", hozAlign:"left", formatter:"progress", editor:true, cssClass:"tabulatorBar"},
-            {title:"Employees", field:"Employees", hozAlign:"right", maxWidth:100, editor:"input"},
-            {title:"Payroll", field:"Payroll", hozAlign:"right", maxWidth:100, editor:"input"},
-        ],
-
-    });
-
-
-    // table3  
-    
-    //var csvRootTimeline = "https://github.com/ModelEarth/community-data/industries/naics/US/";
-    var csvRootTimeline = "https://model.earth/community-timelines/industries/naics4/US/states/";
-    var csvFileTimeline = csvRootTimeline + "ME/US-ME-census-naics4-establishments.csv";
-
-    // Local AK files
-    //csvRootTimeline = "/data-pipeline/timelines/tabulator/outputs/";
-    //csvFileTimeline = csvRootTimeline + "US-AK-census-naics4-employees.csv";
-
-    d3.csv(csvFileTimeline).then(function(data) {
-        console.log("Python file loaded " + csvFileTimeline);
-        
-        // TO DO: Append each year to an array of year rows called yearRecords
-
-        // TO DO:  Append each year to an array of year rows asynchronously as file loads.
-
-        tableDisplay(data["columns"],data); // For table3
-    });
-
-
-
 }
+
 displayTabulators();
+
+function displayTabulators() {
+    var csvRoot = "https://model.earth/community-data/industries/naics/US/states/";
+    var csvFile;
+    var hash = getHash();
+    if (hash.state) {
+        csvFile = csvRoot + hash.state + "/US" + hash.state + "-census-naics4-2020.csv";
+        $("#tabPageTitle").html(hash.state + " Industries 2020");
+    } else {
+        csvFile = csvRoot + "ME/US-ME-census-naics4-2020.csv";
+    }
+
+    // Load the first CSV file
+    d3.csv(csvFile).then(function(data) {
+        console.log("CSV File loaded " + csvFile);
+        console.log(data);
+
+        var industryCSV = "https://model.earth/community-data/us/id_lists/industry_id_list.csv";
+        // Load the second CSV file
+        d3.csv(industryCSV).then(function(industryData) {
+            console.log("Industry CSV File loaded " + industryCSV);
+            console.log(industryData);
+
+            // Merge industry details into the table data based on relevant NAICS codes
+            data.forEach(function(row) {
+                var relevantNaics = row.Naics;
+
+                // Find the matching industry detail based on relevant NAICS code
+                var matchedIndustry = industryData.find(function(industry) {
+                    return industry.relevant_naics === relevantNaics;
+                });
+
+                // Merge the matched industry detail into the table data row
+                if (matchedIndustry) {
+                    row.Industry_Detail = matchedIndustry.industry_detail;
+                }
+            });
+
+// Log the merged data to the console for debugging
+console.log("Merged data:", data);
+
+            // Initialize table2 with the merged data
+            var table2 = new Tabulator("#example-table", {
+                data: data,
+                layout: "fitColumns",
+                responsiveLayout: "hide",
+                maxHeight: "500px",
+                addRowPos: "top",
+                history: true,
+                paginationSize: 7,
+                movableColumns: true,
+                resizableRows: true,
+                initialSort: [{ column: "progress", dir: "desc" }],
+                columns: [
+                    {formatter:"rowSelection", titleFormatter:"rowSelection", hozAlign:"center", headerHozAlign:"center", width:10, headerSort:false, cellClick:function(e, cell){ cell.getRow().toggleSelect(); }},
+                    {title:"NAICS", field:"Naics", maxWidth:80, editor:"input"},
+                    {title:"Industry Detail", field:"Industry_Detail", maxWidth:150, editor:"input"},
+                    {title:"Establishments", field:"Establishments", hozAlign:"right", maxWidth:150, editor:"input"},
+                    {title:"Establishments", field:"Establishments", hozAlign:"left", formatter:"progress", editor:true, cssClass:"tabulatorBar"},
+                    {title:"Employees", field:"Employees", hozAlign:"right", maxWidth:100, editor:"input"},
+                    {title:"Payroll", field:"Payroll", hozAlign:"right", maxWidth:100, editor:"input"},
+                ]
+            });
+        }).catch(function(error) {
+            console.log("Error loading Industry CSV file: " + error);
+        });
+    }).catch(function(error) {
+        console.log("Error loading CSV file: " + error);
+    });
+}
+
+// Call the displayTabulators function
+displayTabulators();
+
 
 // table3
 function tableDisplay(columns,data) {
