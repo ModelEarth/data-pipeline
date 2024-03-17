@@ -7,7 +7,14 @@
 <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
 
 <title>Training Data for ML</title>
-<script type="text/javascript" src="../../../../localsite/js/localsite.js?showheader=true&showsearchXX=true"></script>
+
+<script type="text/javascript" src="/localsite/js/d3.v5.min.js" id="/localsite/js/d3.v5.min.js"></script>
+<script type="text/javascript" src="/localsite/js/localsite.js?showheader=true&showsearch=true"></script>
+<script type="text/javascript" src="https://unpkg.com/tabulator-tables/dist/js/tabulator.min.js"></script>
+<script type="text/javascript" src="/localsite/js/earthscape.js" id="/localsite/js/earthscape.js"></script>
+<link type="text/css" rel="stylesheet" href="https://unpkg.com/tabulator-tables/dist/css/tabulator.min.css">
+<link type="text/css" rel="stylesheet" href="/localsite/css/base.css" id="/localsite/css/base.css">
+<link type="text/css" rel="stylesheet" href="/localsite/css/base-tabulator.css" id="/localsite/css/base-tabulator.css">
 
 <style>
 hr {
@@ -15,11 +22,56 @@ hr {
 	border-top: 1px solid #ddd;
 }
 </style>
+
+<style>
+.tabulator-cell {
+  text-align: right;
+}
+</style>
+<script>
+  let my = {};
+  let timelineDataroot = "https://model.earth/community-timelines/training/naics2/US/counties/2021/";
+  my.dataset = timelineDataroot + "US-ME-training-naics2-counties-2021.csv";
+  my.elementID = "earthscape1";
+  my.maxHeight = "300px";
+  // my.chartType = "timeline"; // Or chord, sankey, graph
+  loadEarthScape(my);
+
+  // Dang, why do changes to my after funtion become available in function?
+  // my.elementID = "earthscape2";
+
+  // TO DO: Figure out how to avoid
+  let my2 = {};
+
+  my2.dataset = timelineDataroot + "US-AK-training-naics2-counties-2021.csv";
+  my2.elementID = "earthscape2";
+  my2.maxHeight = "300px";
+  loadEarthScape(my2);
+
+  let my3 = {};
+
+  my3.dataset = timelineDataroot + "US-NY-training-naics2-counties-2021.csv";
+  my3.elementID = "earthscape3";
+  my3.maxHeight = "300px";
+  loadEarthScape(my3);
+</script>
+
 </head>
 
 <body>
 
 <div class="content contentpadding" style="padding-bottom: 8px;">
+
+  <h2>Training Data</h2>
+  Maine 2021 - <a href="https://github.com/ModelEarth/community-timelines/tree/main/training/">community-timelines/training</a><br>
+  <div id="earthscape1" style="overflow-x: auto;"></div>
+  <br>
+  Alaska 2021<br>
+  <div id="earthscape2" style="overflow-x: auto;"></div>
+  <br>
+  New York 2021<br>
+  <div id="earthscape3" style="overflow-x: auto;"></div>
+  <br>
 
 	<div id="readmeDiv"></div>
 

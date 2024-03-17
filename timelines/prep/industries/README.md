@@ -1,4 +1,4 @@
-[Community Data](/community-data/) 
+[Timeline ML](../../) 
 
 # Industries Timeline Data Prep
 
@@ -19,5 +19,3 @@ Then run:
 community-timelines/industries/naics4/US/states/AK/US-AK-census-naics4-establishments.csv
 community-timelines/industries/naics4/US/states/AK/US-AK-census-naics4-employees.csv
 community-timelines/industries/naics4/US/states/AK/US-AK-census-naics4-payroll.csv
-
-Sample data on the [tabulator page](../../tabulator/)
