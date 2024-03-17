@@ -35,6 +35,15 @@ hr {
 	loadEarthScape(my);
 </script>
 
+<script>
+	let my2 = {};
+	let timelineDataroot2 = "https://raw.githubusercontent.com/ModelEarth/community-timelines/main/training/naics2/US/counties/";
+	my2.dataset = timelineDataroot2 + "2017/US-ME-training-naics2-counties-2017.csv";
+	my2.elementID = "earthscape2";
+	// my.chartType = "timeline"; // Or chord, sankey, graph
+	loadEarthScape2(my2);
+</script>
+
 </head>
 
 <body>
@@ -47,6 +56,12 @@ hr {
 	<h2>Timeline Data</h2>
 	Maine establishments prior to projections: <a href="https://github.com/ModelEarth/community-timelines/tree/main/industries/">community-timelines/industries</a>
 	<div id="earthscape1" style="overflow-x: auto;;"></div>
+	<br>
+
+	<h2>Urban Density (Polpulation/sq.km)</h2>
+	<div id="earthscape2" style="overflow-x: auto;;"></div>
+	Source: <a href="https://github.com/ModelEarth/community-timelines/tree/main/training">community-timelines/training</a>
+	
 	<br>
 
 </div>
