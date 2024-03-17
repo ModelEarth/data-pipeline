@@ -29,30 +29,27 @@
 
     <div id="readmeDiv"></div>
 
-    While working, move the table you are working on to the top here in index.html:<br><br>
-
-
     <h2>Table 1. Timeline Data from JSON - Rows for Years</h2>
-    <div id="timeline-table-fromjson"></div>
+    <div id="timeline-table-fromjson" style="overflow-x: auto;"></div>
     <br>
 
-
     <h2 id="tabPageTitle">Table 2: Maine Industries 2020</h2>
-    This data will be flipped into 3 multi-year datasets for: Establishments, Employees and Payroll.<br><br>
-	<div id="example-table"></div>
+    
+    <div id="example-table" style="overflow-x: auto;"></div>
     <br>
 
 
     <h2>Table 3: From Python File (Establishments)</h2>
     Source: <a href="https://github.com/ModelEarth/community-timelines/tree/main/industries/naics4/US/states">community-timelines actual</a>
-    <div id="timeline-table-python"></div><br>
+    <div id="timeline-table-python" style="overflow-x: auto;"></div><br>
 
 
     <h2>Table 4: From Javascript (Establishments)</h2>
     Multiple files appended asynchronously for years 2017 to 2021.<br>
+    TO DO: This data will be flipped into 3 multi-year datasets for: Establishments, Employees and Payroll.<br><br>
     File source: <a href="https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/counties">/community-data/industries/naics/US/counties/</a>
     <div id="timeline-table"></div>
-    <div id="table4-count"></div>
+    <div id="table4-count" style="overflow-x: auto;margin-top:10px"></div>
     <br><br>
 
 
@@ -64,7 +61,7 @@
 
 </div>
 <script>
-function displayTabulators() {
+function displayTabulators1() {
     let csvYearData = [
         {Year:"2017", Naics12:"12345", Naics23:"555"}, 
         {Year:"2018", Naics12:"78787", Naics23:"777"},
@@ -77,8 +74,8 @@ function displayTabulators() {
 
     var table1 = new Tabulator("#timeline-table-fromjson", {
      
-        layout:"fitColumns",      //fit columns to width of table
-        responsiveLayout:"hide",  //hide columns that dont fit on the table
+        //layout:"fitColumns",      //fit columns to width of table
+        //responsiveLayout:"hide",  //hide columns that dont fit on the table
         //tooltips:true,          //show tool tips on cells
         maxHeight:"250px",        // For frozenRows
         addRowPos:"top",          //when adding a new row, add it to the top of the table
@@ -163,10 +160,10 @@ function displayTabulators() {
         });
     });
 }
+displayTabulators1();
 
-displayTabulators();
-
-function displayTabulators() {
+// Table 2
+function displayTabulators2() {
     var csvRoot = "https://model.earth/community-data/industries/naics/US/states/";
     var csvFile;
     var hash = getHash();
@@ -237,7 +234,7 @@ console.log("Merged data:", data);
 }
 
 // Call the displayTabulators function
-displayTabulators();
+displayTabulators2();
 
 
 // table3
@@ -254,8 +251,8 @@ function tableDisplay(columns,data) {
 
     var table3 = new Tabulator("#timeline-table-python", {
         data:data,
-        layout:"fitColumns",      //fit columns to width of table
-        responsiveLayout:"hide",  //hide columns that dont fit on the table
+        //layout:"fitColumns",      //fit columns to width of table
+        //responsiveLayout:"hide",  //hide columns that dont fit on the table
         //tooltips:true,          //show tool tips on cells
         maxHeight:"500px",        // For frozenRows
         addRowPos:"top",          //when adding a new row, add it to the top of the table
@@ -263,15 +260,24 @@ function tableDisplay(columns,data) {
         paginationSize:7,         //allow 7 rows per page of data
         movableColumns:true,      //allow column order to be changed
         resizableRows:true,       //allow row order to be changed
-        initialSort:[             //set the initial sort order of the data
-            {column:"progress", dir:"desc"},
-        ],
         autoColumns:true,
+        scrollHorizontal: true,
     });
+
 }
-document.addEventListener('hashChangeEvent', function (elem) {
-    displayTabulators();
+var csvRootTimeline = "https://model.earth/community-timelines/industries/naics4/US/states/";
+var csvFileTimeline = csvRootTimeline + "ME/US-ME-census-naics4-establishments.csv";
+
+d3.csv(csvFileTimeline).then(function(data) {
+    console.log("Python file loaded " + csvFileTimeline);
+    
+    // TO DO: Append each year to an array of year rows called yearRecords
+
+    // TO DO:  Append each year to an array of year rows asynchronously as file loads.
+
+    tableDisplay(data["columns"],data); // For table3
 });
+
 
 var table4count = 0;
 function table4Display() {
@@ -286,8 +292,8 @@ function table4Display() {
     // columns:columns,
 
     var table4 = new Tabulator("#timeline-table", {
-        layout:"fitColumns",      //fit columns to width of table
-        responsiveLayout:"hide",  //hide columns that dont fit on the table
+        //layout:"fitColumns",      //fit columns to width of table
+        //responsiveLayout:"hide",  //hide columns that dont fit on the table
         //tooltips:true,          //show tool tips on cells
         maxHeight:"500px",        // For frozenRows
         addRowPos:"top",          //when adding a new row, add it to the top of the table
@@ -334,9 +340,6 @@ function table4Display() {
         });
     }
 }
-document.addEventListener('hashChangeEvent', function (elem) {
-    displayTabulators();
-});
 table4Display();
 
 // process year CSV data (parse, pivot, etc.)
@@ -351,7 +354,11 @@ function processData(csvData, year) {
   return parsedData;
 }
 
-
+document.addEventListener('hashChangeEvent', function (elem) {
+    displayTabulators1();
+    displayTabulators2();
+    table4Display();
+});
 
 
 
