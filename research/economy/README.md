@@ -1,3 +1,5 @@
+[Active Projects](../../../io/)
+
 # Deep Learning Economy
 
 [Our Input-Output Model](/io/about/matrix/) includes [commodity vector q](https://smmtool.app.cloud.gov/api/USEEIOv2.0.1-411/matrix/q) from the [EPA Widget API](/io/charts/).

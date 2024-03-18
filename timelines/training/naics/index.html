@@ -28,6 +28,22 @@ hr {
   text-align: right;
 }
 </style>
+
+
+</head>
+
+<body>
+
+<div class="content contentpadding" style="padding-bottom: 8px;">
+	<div id="readmeDiv"></div>
+</div>
+
+<script>
+  loadMarkdown("README.md", "readmeDiv", "_parent");
+</script>
+
+
+
 <script>
   let my = {};
   let timelineDataroot = "https://model.earth/community-timelines/training/naics2/US/counties/2021/";
@@ -56,12 +72,7 @@ hr {
   loadEarthScape(my3);
 </script>
 
-</head>
-
-<body>
-
-<div class="content contentpadding" style="padding-bottom: 8px;">
-
+<div class="content contentpadding">
   <h2>Training Data</h2>
   Maine 2021 - <a href="https://github.com/ModelEarth/community-timelines/tree/main/training/">community-timelines/training</a><br>
   <div id="earthscape1" style="overflow-x: auto;"></div>
@@ -76,21 +87,16 @@ hr {
   UrbanPercent = UrbanKm2 / Km2<br>
   UrbanKm2 = UrbanPercent * Km2<br><br>
 
-  UrbanDensity is the average population for all urban Census Blocks with over 1500/KM2.<br><br>
-
-	<div id="readmeDiv"></div>
-
+  UrbanDensity is the average population for all urban Census Blocks with over 1500/KM2.<br>
 </div>
 
-<script>
-  loadMarkdown("README.md", "readmeDiv", "_parent");
-</script>
+<hr><br>
 
 <div class="content contentpadding" style="padding-top:0px">
 <!-- For D3 Embedded CSV Sheet -->
 
-  <b style='font-size:19px'>Random Forest Classifier</b><br><br> 
-  
+  <b style='font-size:19px'>Random Forest Classifier</b><br>
+  Example, not from the data above.<br><br> 
 
     <div style="overflow:scroll; max-width:100%;">
         <div class="eTable" id="forestTable"></div>

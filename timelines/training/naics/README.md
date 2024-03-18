@@ -14,7 +14,10 @@ Two data structures are generated from our [community-data industry source files
 TO DO: Update source files to pull generate zip code data (ZTCA)
 
 ### Our FIPS Rows for Training (one file per year)
-Training files are output to [community-timelines/training](https://github.com/ModelEarth/community-timelines/tree/main/training) by python/ML-bkup.ipynb from [Our CoLab on Google](https://colab.research.google.com/drive/1wmJ3V9eqD8KbmBiP-hLeSstwOUt5iS2V?usp=sharing)
+Training files are output to [community-timelines/training](https://github.com/ModelEarth/community-timelines/tree/main/training) by python/ML-bkup.ipynb from [Our CoLab on Google](https://colab.research.google.com/drive/1wmJ3V9eqD8KbmBiP-hLeSstwOUt5iS2V?usp=sharing)  
+Our IDs for States and counties = Federal Information Processing Standard (FIPS)  
+Our "geo" hash value appends the country to the front of FIPS.  
+Example: US state 12, county 345 would be US12345
 
 ### Our Year Rows for Timelines (years 2017 to 2021)
 Establishments, Employees, Payroll
