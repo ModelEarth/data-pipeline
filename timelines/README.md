@@ -30,4 +30,3 @@ Time series regression is a statistical method for predicting a future response 
 [Line Race](../../line-race.html) - [Apache eChart](https://echarts.apache.org/examples/en/editor.html?c=line-race)
 
 Regression is a statistical method that attempts to determine the strength and character of the relationship between one dependent variable (usually denoted by Y) and a series of other variables (known as independent variables).
-
