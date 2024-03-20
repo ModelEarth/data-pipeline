@@ -5,7 +5,7 @@
 
 [Our RealityStream Repo](https://github.com/ModelEarth/RealityStream) contains three ML Classification Models: Logistic Regression, Random Forest and Support Vector Machines.
 
-To run locally, place a copy of our [CoLab](https://colab.research.google.com/drive/1o7HXhOl_NWhVm4Nn6L-sjDHsn0bokgeI?usp=sharing) in [Location Stream](/RealityStream/models/location-forest/).
+To run locally, place a copy of our [CoLab](https://colab.research.google.com/drive/1o7HXhOl_NWhVm4Nn6L-sjDHsn0bokgeI?usp=sharing) in our [Location Forest](/RealityStream/models/location-forest/).
 
 We're also pulling y=1 data from the Google Data Commons API using [REST](https://docs.datacommons.org/api/rest/v2/getting_started) via [Observable Data Loaders](https://observablehq.com/framework/loaders).
 
