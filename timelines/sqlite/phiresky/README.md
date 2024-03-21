@@ -6,10 +6,11 @@ Defined in phiresky's [FtsDemo.tsx TypeScript](https://github.com/phiresky/blog/
 
 The following aims to run [Phiresky's excellent SQLite timeline sample](https://phiresky.github.io/blog/2021/hosting-sqlite-databases-on-github-pages/) locally and then on GitHub Pages.
 
-Unresolved Error: Could not load httpvfs config: 404 Not Found
-
-![blog sqlite error](sqlite-404-error.png "Any ideas?")
+Unresolved Error (see below): Could not load httpvfs config: 404 Not Found
 [Posted as issue](https://github.com/phiresky/blog/issues/13)
+
+<a href="https://phiresky.github.io/blog/2021/hosting-sqlite-databases-on-github-pages/"><img src="timeline-sample.png" alt="timeline sample" style="width:100%;max-width:900px;"></a>
+
 <!--
 	Later, update mext-blog version if it didn't automatically.
 	https://github.com/tscanlin/next-blog?tab=readme-ov-file
