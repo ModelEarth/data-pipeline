@@ -45,8 +45,7 @@
 
     <h2>Table 4: From Javascript (Establishments)</h2>
     Multiple files appended asynchronously for years 2017 to 2021.<br>
-    TO DO: This data will be flipped into 3 multi-year datasets for: Establishments, Employees and Payroll.<br><br>
-    File source: <a href="https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/counties">/community-data/industries/naics/US/counties</a> &nbsp;
+    File source: <a href="https://github.com/ModelEarth/community-data/tree/master/industries/naics/US">/community-data/industries/naics/US/counties</a> &nbsp;
     Same as our <a href="../prep/industries">Industry Timeline Data Prep (python)</a> - 50 states
     <div id="timeline-table"></div>
     <div id="table4-count" style="overflow-x: auto;margin-top:10px"></div><br><br>
@@ -272,81 +271,69 @@ d3.csv(csvFileTimeline).then(function(data) {
     tableDisplay(data["columns"],data); // For table3
 });
 
-
 var table4count = 0;
-function table4Display() {
-    console.log("Python file data:");
-    //console.log(data); // An array of objects
-    console.log("Python file columns:");
-    //console.log(columns);
 
-    // TO DO:
-    // Why does adding columns:columns WITHOUT autoColumns:true produce error:
-    // TypeError: Cannot use 'in' operator to search for '0' in Year
-    // columns:columns,
+function table4Display() {
+    var tableData = [];
 
     var table4 = new Tabulator("#timeline-table", {
-        //layout:"fitColumns",      //fit columns to width of table
-        //responsiveLayout:"hide",  //hide columns that dont fit on the table
-        //tooltips:true,          //show tool tips on cells
-        maxHeight:"500px",        // For frozenRows
-        addRowPos:"top",          //when adding a new row, add it to the top of the table
-        history:true,             //allow undo and redo actions on the table
-        paginationSize:7,         //allow 7 rows per page of data
-        movableColumns:true,      //allow column order to be changed
-        resizableRows:true,       //allow row order to be changed
-        initialSort:[             //set the initial sort order of the data
-            {column:"progress", dir:"desc"},
+        layout: "fitColumns",
+        maxHeight: "500px",
+        addRowPos: "top",
+        history: true,
+        paginationSize: 7,
+        movableColumns: true,
+        resizableRows: true,
+        columns: [
+            { title: "Naics", field: "Naics" },
+            { title: "2017", field: "Establishments2017" },
+            { title: "2018", field: "Establishments2018" },
+            { title: "2019", field: "Establishments2019" },
+            { title: "2020", field: "Establishments2020" },
+            { title: "2021", field: "Establishments2021" },
         ],
-        autoColumns:true,
-    });
-    table4.on("tableBuilt", function() {
-        // Now the table is initialized, you can set your data
-        // Not ideal here, move to table4.setData(data) below so files start loading faster.
-        table4YearFiles();
     });
 
-    function table4YearFiles() {
+    table4.on("tableBuilt", function () {
+        loadYearFiles(2017);
+    });
 
-        loadScript(theroot + 'js/d3.v5.min.js', function(results) {
-            waitForVariable('customD3loaded', function() {
-                // Loop through years
-                for (let year = 2017; year <= 2021; year++) {
-                    // Optional: could also use https://model.earth/community-data/industries/naics/US/counties/
-                    let csvFile = "https://raw.githubusercontent.com/ModelEarth/community-data/master/industries/naics/US/counties/ME/US-ME-census-naics6-counties-" + year + ".csv";
-                    
-                    d3.csv(csvFile).then(function(data) {
-                        console.log("Census File loaded for " + year + ". " + csvFile);
-                        console.log(data); // An array of objects
-                        
-                        // TO DO: wait until table4 tabulator is built
-                        table4.setData(data);
-                        table4count = table4count + data.length-1;
+    function loadYearFiles(year) {
+        if (year <= 2021) {
+            let csvFile = "https://raw.githubusercontent.com/ModelEarth/community-data/master/industries/naics/US/states/ME/US-ME-census-naics4-" + year + ".csv";
 
-                        $("#table4_totalcount").remove(); // Prevent dup - this will also remove events bound to the element.
-                        let totalcount_div = Object.assign(document.createElement('div'),{id:"table4_totalcount",style:"margin-bottom:10px"})
-                        $("#table4-count").append(totalcount_div);
-                        totalcount_div.innerHTML = table4count  + " rows";
+            d3.csv(csvFile).then(function (data) {
+                console.log("Census File loaded for " + year + ". " + csvFile);
+                console.log(data);
 
+                data.forEach(function (row) {
+                    let existingRow = tableData.find(function (r) {
+                        return r.Naics === row.Naics;
                     });
-                }
+
+                    if (!existingRow) {
+                        existingRow = { Naics: row.Naics };
+                        tableData.push(existingRow);
+                    }
+
+                    existingRow["Establishments" + year] = row.Establishments;
+                });
+
+                table4count += data.length - 1;
+                $("#table4_totalcount").remove();
+                let totalcount_div = Object.assign(document.createElement('div'), { id: "table4_totalcount", style: "margin-bottom:10px" });
+                $("#table4-count").append(totalcount_div);
+                totalcount_div.innerHTML = table4count + " rows";
+
+                table4.setData(tableData);
+
+                loadYearFiles(year + 1);
             });
-        });
+        }
     }
 }
-table4Display();
 
-// process year CSV data (parse, pivot, etc.)
-function processData(csvData, year) {
-  // parse CSV data into an array of objects
-  const parsedData = csvData
-    .split('\n')
-    .map(line => {
-      const [fips, naics, establishments, employees, payroll] = line.split(',');
-      return { fips, naics, establishments, employees, payroll, year };
-    });
-  return parsedData;
-}
+table4Display();
 
 document.addEventListener('hashChangeEvent', function (elem) {
     displayTabulators1();
