@@ -6,9 +6,9 @@
 [RealityStream](/RealityStream)
 
 **Image Generation**
-[Replicate from prompts in CSV file](/Replicate)
-- [Gallery from GitHub (JQuery)](/Replicate/images/)
-- [Gallery from GitHub (React)](/Replicate/gallery/) - Coming Soon
+[Replicate from prompts in CSV file](/replicate)
+- [Gallery from GitHub (JQuery)](/replicate/images/)
+- [Gallery from GitHub (React)](/replicate/gallery/) - Coming Soon
 
 ---
 [AI Community Visualizations](../)
