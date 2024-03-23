@@ -5,22 +5,6 @@ import os
 import json
 import pandas as pd
 
-state_info = "USEEIOv2.0.1-411"
-
-#url_Q = f"https://smmtool.app.cloud.gov/api/{state_info}/matrix/q"
-url_Q = f"https://raw.githubusercontent.com/ModelEarth/io/main/build/api/{state_info}/matrix/Q.json"
-#url_D = f"https://smmtool.app.cloud.gov/api/{state_info}/matrix/D"
-url_D = f"https://raw.githubusercontent.com/ModelEarth/io/main/build/api/{state_info}/matrix/D.json"
-#url_indicator = f"https://smmtool.app.cloud.gov/api/{state_info}/indicators"
-url_indicator = f"https://raw.githubusercontent.com/ModelEarth/io/main/build/api/{state_info}/indicators.json"
-#url_sector = f"https://smmtool.app.cloud.gov/api/{state_info}/sectors" 
-url_sector = f"https://raw.githubusercontent.com/ModelEarth/io/main/build/api/{state_info}/sectors.json"
-
-data_D = np.array(requests.get(url_D).json())
-data_Q = np.array(requests.get(url_Q).json()).reshape(-1)
-data_indicator = requests.get(url_indicator).json()
-data_sector = requests.get(url_sector).json()
-
 def get_code_index(data_indicator):
     for i in data_indicator:
         if i["code"]=="JOBS":
@@ -53,16 +37,29 @@ def format_cell(input, format):
         # Format with scientific notation with one digit after decimal
         return f"{input:.1f}"
 
-indicator_JOBS = get_code_index(data_indicator)
-D_JOBS = data_D[indicator_JOBS["index"]]
-outputs = []
-for s in data_sector:
-    sector_index = s["index"]
-    output = {}
-    output["Commodity"] = s["name"]
-    output["Location"] = s["location"]
-    output["TotalCommodityOutput"] = format_cell(round(data_Q[sector_index]),"easy")
-    output["Jobs"] = format_cell(round(data_Q[sector_index] * D_JOBS[sector_index]),"easy")
-    outputs.append(output)
+all_states_info = ["AKEEIOv1.0-s-20","ALEEIOv1.0-s-20","AREEIOv1.0-s-20","AZEEIOv1.0-s-20","CAEEIOv1.0-s-20","COEEIOv1.0-s-20","CTEEIOv1.0-s-20","DEEEIOv1.0-s-20","FLEEIOv1.0-s-20","GAEEIOv1.0-s-20","HIEEIOv1.0-s-20","IAEEIOv1.0-s-20","IDEEIOv1.0-s-20","ILEEIOv1.0-s-20","INEEIOv1.0-s-20","KSEEIOv1.0-s-20","KYEEIOv1.0-s-20","LAEEIOv1.0-s-20","MAEEIOv1.0-s-20","MDEEIOv1.0-s-20","MEEEIOv1.0-s-20","MIEEIOv1.0-s-20","MNEEIOv1.0-s-20","MOEEIOv1.0-s-20","MSEEIOv1.0-s-20","MTEEIOv1.0-s-20","NCEEIOv1.0-s-20","NDEEIOv1.0-s-20","NEEEIOv1.0-s-20","NHEEIOv1.0-s-20","NJEEIOv1.0-s-20","NMEEIOv1.0-s-20","NVEEIOv1.0-s-20","NYEEIOv1.0-s-20","OHEEIOv1.0-s-20","OKEEIOv1.0-s-20","OREEIOv1.0-s-20","PAEEIOv1.0-s-20","RIEEIOv1.0-s-20","SCEEIOv1.0-s-20","SDEEIOv1.0-s-20","TNEEIOv1.0-s-20","TXEEIOv1.0-s-20","UTEEIOv1.0-s-20","VAEEIOv1.0-s-20","VTEEIOv1.0-s-20","WAEEIOv1.0-s-20","WIEEIOv1.0-s-20","WVEEIOv1.0-s-20","WYEEIOv1.0-s-20"]
 
-pd.DataFrame(outputs).to_csv(f"{state_info}.csv",index=False)
+for state_info in all_states_info:
+    url_Q = f"https://raw.githubusercontent.com/ModelEarth/OpenFootprint/main/impacts/2020/{state_info}/matrix/q.json"
+    url_D = f"https://raw.githubusercontent.com/ModelEarth/OpenFootprint/main/impacts/2020/{state_info}/matrix/D.json"
+    url_indicator = f"https://raw.githubusercontent.com/ModelEarth/OpenFootprint/main/impacts/2020/{state_info}/indicators.json"
+    url_sector = f"https://raw.githubusercontent.com/ModelEarth/OpenFootprint/main/impacts/2020/{state_info}/sectors.json"
+
+    data_D = np.array(requests.get(url_D).json())
+    data_Q = np.array(requests.get(url_Q).json()).reshape(-1)
+    data_indicator = requests.get(url_indicator).json()
+    data_sector = requests.get(url_sector).json()
+
+    indicator_JOBS = get_code_index(data_indicator)
+    D_JOBS = data_D[indicator_JOBS["index"]]
+    outputs = []
+    for s in data_sector:
+        sector_index = s["index"]
+        output = {}
+        output["Commodity"] = s["name"]
+        output["Location"] = s["location"]
+        output["TotalCommodityOutput"] = format_cell(round(data_Q[sector_index]),"easy")
+        output["Jobs"] = format_cell(round(data_Q[sector_index] * D_JOBS[sector_index]),"easy")
+        outputs.append(output)
+
+    pd.DataFrame(outputs).to_csv(f"{state_info}.csv",index=False)
