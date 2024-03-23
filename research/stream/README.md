@@ -11,7 +11,7 @@
 - [Gallery from GitHub (React)](/replicate/gallery/) - Coming Soon
 
 ---
-[AI Community Visualizations](../)
+[AI Community Visualizations](../) | [Fork on GitHub](https://github.com/modelearth/replicate/)
 <!--
 ## AI Images Generated from Replicate API
 
