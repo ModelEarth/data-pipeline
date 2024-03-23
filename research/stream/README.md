@@ -2,16 +2,16 @@
 
 # StreamLit extensions
 
-ML Classification Models
+**ML Classification Models**
 [RealityStream](/RealityStream)
 
-Image Generation
-[Replicate from CSV](/Replicate) - [Gallery from GitHub](/Replicate/gallery/model-earth-image-gallery/) - [Public Gallery (coming soon)](/Replicate/gallery/model-earth-image-gallery/image-gallery/public/)
+**Image Generation**
+[Replicate from prompts in CSV file](/Replicate)
+- [Gallery from GitHub (JQuery)](/Replicate/images/)
+- [Gallery from GitHub (React)](/Replicate/gallery/) - Coming Soon
 
-<br>
 ---
-[AI Community Visualization Research](../)
-
+[AI Community Visualizations](../)
 <!--
 ## AI Images Generated from Replicate API
 
