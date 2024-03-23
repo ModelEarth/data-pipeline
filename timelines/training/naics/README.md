@@ -3,7 +3,10 @@
 # NAICS Training Data for ML
 
 North American Industry Classification System (NAICS)
+TO DO: [Update NAICS source files to include zip code data (ZTCA)](/data-pipeline/industries/naics/)
+<!--
 We're creating a new Random Forest process informed [by the prior zip code zcta process](../../prep/all)
+-->
 
 <!--
 Our ML Group - Sijia, Kargil, Alison, Irene, Honglin, Ronan, Lily, Luwei, Wenxi, Magie and more.
@@ -11,30 +14,31 @@ Our ML Group - Sijia, Kargil, Alison, Irene, Honglin, Ronan, Lily, Luwei, Wenxi,
 
 Two data structures are generated from our [community-data industry source files](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US).
 
-TO DO: Update source files to pull generate zip code data (ZTCA)
 
-### Our FIPS Rows for Training (one file per year)
+### 1. Our Year Rows for Timelines (years 2017 to 2021)
+Establishments, Employees, Payroll
+
+Timeline files are output to [community-timelines/industries](https://github.com/ModelEarth/community-timelines/tree/main/industries) by [naics-timelines.py](../../prep/industries/) - Ronan
+
+### 2. Our FIPS Location Rows for Training (one file per year)
 Training files are output to [community-timelines/training](https://github.com/ModelEarth/community-timelines/tree/main/training) by python/ML-bkup.ipynb from [Our CoLab on Google](https://colab.research.google.com/drive/1wmJ3V9eqD8KbmBiP-hLeSstwOUt5iS2V?usp=sharing)  
 Our IDs for States and counties = Federal Information Processing Standard (FIPS)  
 Our "geo" hash value appends the country to the front of FIPS.  
 Example: US state 12, county 345 would be US12345
 
-### Our Year Rows for Timelines (years 2017 to 2021)
-Establishments, Employees, Payroll
-
-Timeline files are output to [community-timelines/industries](https://github.com/ModelEarth/community-timelines/tree/main/industries) by [naics-timelines.py](../../prep/industries/) - Ronan
-
 ---
 
-### Our Streamlit Forecasting ML Apps
-- [Facebook Prophet](https://github.com/ModelEarth/prophet/) - Upload time series dataset to train, evaluate and optimize forecasting models in a few clicks.
-- [RealityStream](https://github.com/ModelEarth/RealityStream) - Logistic Regression, Random Forest and Support Vector Machines
+### Our RealityStream ML Forecasting Models
+[RealityStream](https://github.com/ModelEarth/RealityStream) - Logistic Regression, Random Forest and Support Vector Machines
 
-TO DO: Genearte RealityStream's original output for Job descriptions, add link in RealityStream repo. - Honglin
+
+TO DO: Format RealityStream's [output for Job descriptions](/RealityStream/output/jobs/) - Honglin
 TO DO: Document how to use Data Loaders in [Data-Commons](/data-commons/) and charts in [ObservableHQ.com Desktop](https://ObservableHQ.com) - Anna
-TO DO: Apply target to FIPS on-the-fly with Javascript and [bee data from Irene](/data-pipeline/research/bees/)
-TO DO: Apply target to FIPS using your [goal data](/data-commons/dist/) in our [Observable Data Commons](/data-commons/).
+TO DO: Apply target to Industry FIPS on-the-fly with Javascript - [Industry data and bees](/RealityStream/models/Location-Forest/)
+TO DO: Apply target to Industry FIPS using your [goal data](/data-commons/dist/) in our [Observable Data Commons](/data-commons/).
 
+
+[Facebook Prophet](https://github.com/ModelEarth/prophet/) - Upload time series dataset to train, evaluate and optimize forecasting models in a few clicks.
 
 [Learn more at facebook.github.io/prophet](https://facebook.github.io/prophet/)
 Prophet is robust to outliers, missing data, and dramatic time series changes
@@ -50,7 +54,7 @@ Prophet works best with time series that have strong seasonal effects.
 We're using the state of Maine (ME) for our sample counties.  
 We're using NAICS levels 2 and 4 in our training files.
 
-- [Bee the Predictor](/data-pipeline/research/bees/) - with [TensorFlow Javascript](https://www.tensorflow.org/js/demos) - Irene
+- [Bee the Predictor](/data-pipeline/research/bees/) - Irene
 - [Tree Canopy Data](/data-pipeline/research/canopy/)
 
 ## Data Prep and Presentation
