@@ -34,14 +34,7 @@ hr {
 	loadEarthScape(my);
 </script>
 
-<script>
-	let my2 = {};
-	let timelineDataroot2 = "https://raw.githubusercontent.com/ModelEarth/community-timelines/main/training/naics2/US/counties/";
-	my2.dataset = timelineDataroot2 + "this_is_year/US-ME-training-naics2-counties-this_is_year.csv";
-	my2.elementID = "earthscape2";
-	// my.chartType = "timeline"; // Or chord, sankey, graph
-	loadEarthScape2(my2);
-</script>
+
 
 </head>
 
@@ -51,16 +44,27 @@ hr {
 
 	<div id="readmeDiv"></div>
 
-	<h2>Timeline Data</h2>
-	Maine establishments prior to projections: <a href="https://github.com/ModelEarth/community-timelines/tree/main/industries/">community-timelines/industries</a><br><br>
+	<h2>Maine Establishments Timeline</h2>
+	<a href="https://github.com/ModelEarth/community-timelines/tree/main/industries/">community-timelines/industries</a><br><br>
 	<div id="earthscape1" style="overflow-x: auto;"></div>
 	<br>
 
-	<h2>Urban Density (Polpulation/sq.km)</h2>
-	<div id="earthscape2" style="overflow-x: auto;;"></div>
-	Source: <a href="https://github.com/ModelEarth/community-timelines/tree/main/training">community-timelines/training</a>
 	
+	<h2>Maine Industries by County - 2021</h2>
+	Includes population, for each industry: employees, establishments, payroll<br>
+	<a href="/RealityStream/">For RealityStream models</a> - UrbanDensity (Population over 1500 people/sqkm)<br><br>
+
+	<div id="earthscape2" style="overflow-x: auto;;"></div><br>
+	Source: <a href="https://github.com/ModelEarth/community-timelines/tree/main/training">community-timelines/training</a>
 	<br>
+	<script>
+		let my2 = {};
+		let timelineDataroot2 = "https://raw.githubusercontent.com/ModelEarth/community-timelines/main/training/naics2/US/counties/";
+		my2.dataset = timelineDataroot2 + "2021/US-ME-training-naics2-counties-2021.csv";
+		my2.elementID = "earthscape2";
+		// my.chartType = "timeline"; // Or chord, sankey, graph
+		loadEarthScape(my2);
+	</script>
 
 </div>
 
