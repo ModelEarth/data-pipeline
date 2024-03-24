@@ -1,21 +1,21 @@
 [Active Projects](../../io/)
 
-# Timelines ML
+# Annual Industry and Census Data Timelines
 
-Prediction from changes in naics industry levels for zips and counties.
+[NAICS Training Data for ML](training/naics/) - ML Team
+[Random Forest Prep](prep/all/) - [RBF](/RealityStream/output/blinks/) - Sijia
 
-## Using Annual Industry and Census Data
+[RealityStream - ML Classification Models](/RealityStream)
+Targets: Bees, Jobs, Blinks, [Prosperity](/RealityStream/output/prosperity/)
 
-[NAICS Data Prep - New Random Forest](training/naics/) - For [StreamLit ML & AI images](../research/stream/)
-[NAICS Data Prep - Prior Random Forest](prep/all/)
+[Tabulators using Javascript](tabulator/) - Rupesh
+[Industries Timeline Data Prep](prep/industries/) - Ronan
+[Observable Data Commons](/data-commons/dist/) - Everyone
+[Observable Notes](observable/)
 
-[Tabulator using Javascript](tabulator/)
-[Python for State File Timelines](prep/industries/)
-[Observable Self-Hosting Notes](observable/)
+[SQLite in Browser](sqlite/phiresky/) from the phiresky timeline
+[Image Generation](../research/stream/)
 
-## TO DO
-[Figure out last step for SQLite in a browser](sqlite/phiresky/) from the phiresky timeline
-[Resulting SQLite Timeline](https://phiresky.github.io/blog/2021/hosting-sqlite-databases-on-github-pages/) - by phiresky. Includes filter for selecting countries
 
 ## ADD DATA SOURCES
 

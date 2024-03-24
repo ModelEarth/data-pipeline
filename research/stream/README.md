@@ -1,11 +1,7 @@
 [Active Projects](/io/) 
 
-# StreamLit extensions
+# Image Generation
 
-**ML Classification Models**
-[RealityStream](/RealityStream)
-
-**Image Generation**
 [Replicate from prompts in CSV file](/replicate)
 - [Gallery from GitHub (JQuery)](/replicate/images/)
 - [Gallery from GitHub (React)](/replicate/gallery/) - Coming Soon
