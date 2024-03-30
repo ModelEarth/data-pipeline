@@ -58,8 +58,8 @@ for state_info in all_states_info:
         output = {}
         output["Commodity"] = s["name"]
         output["Location"] = s["location"]
-        output["TotalCommodityOutput"] = format_cell(round(data_Q[sector_index]),"easy")
+        output["Output"] = format_cell(round(data_Q[sector_index]),"easy")
         output["Jobs"] = format_cell(round(data_Q[sector_index] * D_JOBS[sector_index]),"easy")
         outputs.append(output)
 
-    pd.DataFrame(outputs).to_csv(f"{state_info}.csv",index=False)
+    pd.DataFrame(outputs).to_csv(f"states/commodities/2020/{state_info}.csv",index=False)

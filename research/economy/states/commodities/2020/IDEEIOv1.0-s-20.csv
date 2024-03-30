@@ -1,0 +1,147 @@
+Commodity,Location,TotalCommodityOutput,Jobs
+"Oilseeds, grains, vegetables, fruits, animal farms and aquaculture",US-ID,9.4 Billion,17.6 K
+"Raw forest products, wild-caught fish and game, agriculture and forestry support",US-ID,952.6 Million,6.0 K
+Unrefined oil and gas,US-ID,654.0,0.0
+"Metal ores, dimensional stone, nonmetallic minerals",US-ID,772.2 Million,1.5 K
+Well drilling and support activities for mining,US-ID,141.3 Million,374.0
+"Electricity, natural gas, drinking water, and wastewater treatment",US-ID,2.6 Billion,3.7 K
+Construction,US-ID,9.6 Billion,54.3 K
+"Wood products (e.g. plywood, veneer)",US-ID,2.1 Billion,6.6 K
+"Clay, glass, cement, concrete, and other nonmetallic mineral products",US-ID,348.3 Million,1.7 K
+Primary and secondary ferrous and nonferrous metals,US-ID,435.7 Million,400.0
+Fabricated metal products (e.g. architectural and structural metal products),US-ID,1.3 Billion,5.1 K
+Machinery (except computers),US-ID,689.4 Million,3.3 K
+"Computers and relevant parts, conductors, measuring devices, communication devices",US-ID,2.4 Billion,9.0 K
+"Lights and light fixtures, switch boards, transformers, and home appliances",US-ID,383.2 Million,1.5 K
+On-road vehicles (excluding motorcycles) and accompanying parts,US-ID,563.8 Million,2.5 K
+"Other vehicles (e.g. aircraft, water vessels), missiles, and accompanying parts",US-ID,219.3 Million,1.1 K
+Furniture and shelving,US-ID,256.0 Million,1.8 K
+"Medical supplies, entertainment and sporting goods, fashion goods, advertising products",US-ID,374.7 Million,2.4 K
+Food and beverage and tobacco products,US-ID,9.2 Billion,20.4 K
+Textiles and textile-dervied products (except clothes),US-ID,83.4 Million,328.0
+Clothing and leather,US-ID,45.5 Million,345.0
+Paper products and paper production facilities,US-ID,910.2 Million,1.8 K
+Print media and printing support,US-ID,186.8 Million,1.1 K
+"Petroleum fuels, asphalt, and other petroleum and coal products",US-ID,153.0 Million,144.0
+"Agricultural, pharamceutical, industrial, and commercial chemicals",US-ID,1.0 Billion,3.4 K
+Plastics and rubber products,US-ID,722.4 Million,1.9 K
+Wholesale trade,US-ID,8.9 Billion,29.8 K
+Vehicles and parts sales,US-ID,1.1 Billion,9.7 K
+Food and beverage stores,US-ID,1.5 Billion,14.0 K
+General merchandise stores,US-ID,1.7 Billion,17.5 K
+Other retail,US-ID,6.3 Billion,39.5 K
+Air transport,US-ID,201.4 Million,1.0 K
+Rail transport,US-ID,587.6 Million,0.0
+"Water transport (boats, ships, ferries)",US-ID,29.1 Million,67.0
+Truck transport,US-ID,2.3 Billion,10.2 K
+Passenger ground transport,US-ID,167.6 Million,1.9 K
+Pipeline transport,US-ID,33.9 Million,54.0
+"Couriers, messengers, transportation for leisure activities",US-ID,993.3 Million,6.8 K
+Warehouses,US-ID,282.7 Million,2.4 K
+"Media, literature, and software",US-ID,527.0 Million,2.0 K
+Film and sound-based entertainment,US-ID,63.8 Million,607.0
+"Radio, TV, telecommunication",US-ID,1.2 Billion,2.5 K
+"Data processing, internet publishing, and other information services",US-ID,497.2 Million,1.7 K
+"Monetary authorities, depository and nondepository credit intermediation and related activities",US-ID,2.4 Billion,11.2 K
+"Financial investments, exchanges, and advising",US-ID,1.0 Billion,3.1 K
+"Insurance agencies, carriers, and brokerages",US-ID,3.4 Billion,10.5 K
+"Funds, trusts, and financial vehicles",US-ID,1.3 Billion,106.0
+Housing,US-ID,12.6 Billion,994.0
+Other real estate,US-ID,3.3 Billion,6.0 K
+"Renting and leasing of goods, equipment, vehicles and nonfinancial intangible assets",US-ID,1.3 Billion,3.9 K
+Legal services,US-ID,700.8 Million,3.7 K
+Computer programming and systems design,US-ID,1.4 Billion,8.7 K
+"Miscellaneous professional, scientific, and technical services",US-ID,7.5 Billion,42.5 K
+Company and enterprise management,US-ID,1.7 Billion,7.0 K
+Administrative and support services,US-ID,4.7 Billion,43.2 K
+Waste management and remediation services,US-ID,1.2 Billion,4.0 K
+Educational institutions and services,US-ID,1.3 Billion,50.1 K
+"Healthcare professions, laboratories, and ambulances",US-ID,5.0 Billion,44.2 K
+Hospitals,US-ID,5.3 Billion,32.7 K
+"Nursing, community, mental health, and substance abuse facilities",US-ID,1.1 Billion,15.8 K
+"Child day care, community food services, housing services, and other relief services",US-ID,829.3 Million,15.8 K
+"Performing arts, spectator sports, museums, and related activities",US-ID,159.0 Million,1.8 K
+"Amusement facilities, gambling facilities, resort and recreation facilities",US-ID,847.5 Million,10.0 K
+Hotels and campgrounds,US-ID,635.3 Million,8.7 K
+Food and beverage establishments,US-ID,3.8 Billion,60.5 K
+"Other services, except government",US-ID,3.5 Billion,24.4 K
+Federal general government (defense),US-ID,1.3 Billion,1.6 K
+Federal general government (nondefense),US-ID,1.9 Billion,598.0
+Federal electric utilities and postal service,US-ID,311.2 Million,2.0 K
+State and local general government,US-ID,9.2 Billion,1.4 K
+Other state and local government enterprises including transit and utilities,US-ID,290.4 Million,12.0
+"Scrap, used and secondhand goods",US-ID,54.7 Million,127.0
+Noncomparable imports and rest-of-the-world adjustment,US-ID,13.6 Million,4.0
+"Oilseeds, grains, vegetables, fruits, animal farms and aquaculture",RoUS,386.6 Billion,779.1 K
+"Raw forest products, wild-caught fish and game, agriculture and forestry support",RoUS,61.7 Billion,452.2 K
+Unrefined oil and gas,RoUS,204.6 Billion,101.4 K
+"Metal ores, dimensional stone, nonmetallic minerals",RoUS,77.1 Billion,136.5 K
+Well drilling and support activities for mining,RoUS,88.5 Billion,231.0 K
+"Electricity, natural gas, drinking water, and wastewater treatment",RoUS,683.5 Billion,949.4 K
+Construction,RoUS,1859.8 Billion,7.5 Million
+"Wood products (e.g. plywood, veneer)",RoUS,111.6 Billion,391.3 K
+"Clay, glass, cement, concrete, and other nonmetallic mineral products",RoUS,129.1 Billion,383.9 K
+Primary and secondary ferrous and nonferrous metals,RoUS,213.4 Billion,353.4 K
+Fabricated metal products (e.g. architectural and structural metal products),RoUS,336.1 Billion,1.3 Million
+Machinery (except computers),RoUS,348.0 Billion,961.2 K
+"Computers and relevant parts, conductors, measuring devices, communication devices",RoUS,314.5 Billion,878.9 K
+"Lights and light fixtures, switch boards, transformers, and home appliances",RoUS,129.7 Billion,380.7 K
+On-road vehicles (excluding motorcycles) and accompanying parts,RoUS,618.5 Billion,873.4 K
+"Other vehicles (e.g. aircraft, water vessels), missiles, and accompanying parts",RoUS,221.6 Billion,673.5 K
+Furniture and shelving,RoUS,67.3 Billion,346.4 K
+"Medical supplies, entertainment and sporting goods, fashion goods, advertising products",RoUS,173.5 Billion,544.5 K
+Food and beverage and tobacco products,RoUS,958.3 Billion,2.0 Million
+Textiles and textile-dervied products (except clothes),RoUS,45.6 Billion,184.9 K
+Clothing and leather,RoUS,21.4 Billion,123.2 K
+Paper products and paper production facilities,RoUS,184.1 Billion,350.7 K
+Print media and printing support,RoUS,65.5 Billion,314.0 K
+"Petroleum fuels, asphalt, and other petroleum and coal products",RoUS,386.5 Billion,116.8 K
+"Agricultural, pharamceutical, industrial, and commercial chemicals",RoUS,724.5 Billion,807.6 K
+Plastics and rubber products,RoUS,235.9 Billion,680.8 K
+Wholesale trade,RoUS,2050.7 Billion,5.5 Million
+Vehicles and parts sales,RoUS,236.6 Billion,1.4 Million
+Food and beverage stores,RoUS,253.5 Billion,2.7 Million
+General merchandise stores,RoUS,244.8 Billion,2.8 Million
+Other retail,RoUS,1097.9 Billion,6.6 Million
+Air transport,RoUS,124.7 Billion,456.5 K
+Rail transport,RoUS,71.6 Billion,766.0
+"Water transport (boats, ships, ferries)",RoUS,39.8 Billion,66.1 K
+Truck transport,RoUS,369.2 Billion,1.4 Million
+Passenger ground transport,RoUS,82.9 Billion,620.7 K
+Pipeline transport,RoUS,60.2 Billion,57.8 K
+"Couriers, messengers, transportation for leisure activities",RoUS,285.4 Billion,1.7 Million
+Warehouses,RoUS,159.0 Billion,1.5 Million
+"Media, literature, and software",RoUS,352.1 Billion,611.2 K
+Film and sound-based entertainment,RoUS,124.9 Billion,276.0 K
+"Radio, TV, telecommunication",RoUS,744.3 Billion,779.7 K
+"Data processing, internet publishing, and other information services",RoUS,341.4 Billion,597.7 K
+"Monetary authorities, depository and nondepository credit intermediation and related activities",RoUS,948.7 Billion,2.4 Million
+"Financial investments, exchanges, and advising",RoUS,691.0 Billion,989.7 K
+"Insurance agencies, carriers, and brokerages",RoUS,1353.2 Billion,2.4 Million
+"Funds, trusts, and financial vehicles",RoUS,191.7 Billion,82.0 K
+Housing,RoUS,2301.1 Billion,379.4 K
+Other real estate,RoUS,1398.8 Billion,1.3 Million
+"Renting and leasing of goods, equipment, vehicles and nonfinancial intangible assets",RoUS,481.8 Billion,869.2 K
+Legal services,RoUS,370.9 Billion,1.1 Million
+Computer programming and systems design,RoUS,581.3 Billion,2.6 Million
+"Miscellaneous professional, scientific, and technical services",RoUS,2316.7 Billion,8.9 Million
+Company and enterprise management,RoUS,656.1 Billion,2.2 Million
+Administrative and support services,RoUS,1029.8 Billion,8.0 Million
+Waste management and remediation services,RoUS,127.7 Billion,498.2 K
+Educational institutions and services,RoUS,402.9 Billion,10.3 Million
+"Healthcare professions, laboratories, and ambulances",RoUS,1126.3 Billion,7.6 Million
+Hospitals,RoUS,1146.0 Billion,6.8 Million
+"Nursing, community, mental health, and substance abuse facilities",RoUS,257.7 Billion,3.4 Million
+"Child day care, community food services, housing services, and other relief services",RoUS,237.9 Billion,4.0 Million
+"Performing arts, spectator sports, museums, and related activities",RoUS,126.2 Billion,562.0 K
+"Amusement facilities, gambling facilities, resort and recreation facilities",RoUS,155.2 Billion,1.5 Million
+Hotels and campgrounds,RoUS,144.5 Billion,1.4 Million
+Food and beverage establishments,RoUS,865.6 Billion,10.7 Million
+"Other services, except government",RoUS,872.9 Billion,4.8 Million
+Federal general government (defense),RoUS,699.2 Billion,553.8 K
+Federal general government (nondefense),RoUS,459.0 Billion,1.1 Million
+Federal electric utilities and postal service,RoUS,70.6 Billion,506.5 K
+State and local general government,RoUS,1907.4 Billion,4.3 Million
+Other state and local government enterprises including transit and utilities,RoUS,110.8 Billion,47.0 K
+"Scrap, used and secondhand goods",RoUS,8.3 Billion,22.6 K
+Noncomparable imports and rest-of-the-world adjustment,RoUS,3.2 Billion,7.8 K

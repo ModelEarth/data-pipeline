@@ -52,24 +52,20 @@ hr {
   my.maxHeight = "300px";
   // my.chartType = "timeline"; // Or chord, sankey, graph
   loadEarthScape(my);
+  
+  my = {}; // Drops entanglement
 
-  // Dang, why do changes to my after funtion become available in function?
-  // my.elementID = "earthscape2";
+  my.dataset = timelineDataroot + "US-AK-training-naics2-counties-2021.csv";
+  my.elementID = "earthscape2";
+  //my.maxHeight = "300px";
+  loadEarthScape(my);
 
-  // TO DO: Figure out how to avoid
-  let my2 = {};
+  my = {}; // Drops entanglement
 
-  my2.dataset = timelineDataroot + "US-AK-training-naics2-counties-2021.csv";
-  my2.elementID = "earthscape2";
-  my2.maxHeight = "300px";
-  loadEarthScape(my2);
-
-  let my3 = {};
-
-  my3.dataset = timelineDataroot + "US-NY-training-naics2-counties-2021.csv";
-  my3.elementID = "earthscape3";
-  my3.maxHeight = "300px";
-  loadEarthScape(my3);
+  my.dataset = timelineDataroot + "US-NY-training-naics2-counties-2021.csv";
+  my.elementID = "earthscape3";
+  //my.maxHeight = "300px";
+  loadEarthScape(my);
 </script>
 
 <div class="content contentpadding">
@@ -124,7 +120,9 @@ hr {
 </style>
 <script type="text/javascript" charset="utf-8">
   loadScript(theroot + 'js/d3.v5.min.js', function(results) { // For getScale
+
 	waitForVariable('customD3loaded', function() {
+    var waitForJQuery = setInterval(function () { // Waits for $ within jquery.min.js file to become available.
     $(document).ready(function () {
         const csvFile = "../../prep/all/output/2016/2016_random_forest_poverty.csv";
         // SyntaxError: await is only valid in async functions and the top level bodies of modules
@@ -159,6 +157,7 @@ hr {
           table.appendChild(thead);
           table.appendChild(tbody);
         });
+      });
     });
     });
   });
