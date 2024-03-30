@@ -16,11 +16,11 @@ To run JobsD+q-2csv.py
 
 TO DO:
 
-Remove .0
-Loop through array of 2-char state abbreviations. Rerun to increase from 42 to 50.
-Incude all of USA USEEIOv2.0.1-411 (save in same folder with states)
+1. Remove .0
+2. Loop through an array of 2-char state abbreviations. Rerun to increase from 42 to 50 states.
+3. Also include USEEIOv2.0.1-411 (save in same folder with the states)
 
 TO DO: Find international commodity and/or economic data in [Google Data Commons](https://docs.datacommons.org/api/) or [UN Comtade Data](/data-pipeline/international/)
 
-TO DO: Wes - Add notes here on which commodities are excluded (small business, gov, etc.)
+TO DO: Ask Wes for notes to add here on which commodities are excluded (small business, gov, etc.)
 
