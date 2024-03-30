@@ -113,16 +113,17 @@ Using the root will allow you to send output to the community-data repo.
 
 Avoid pip3 in virtual environments.
 
-To run new cmds in the same virtual environment, in a new prompt run:
+To run new cmds in the same virtual environment, in a new terminal run:
 
 	source env/bin/activate
 
-<!-- Added steps here to avoid 500 error.
-This error also occured when not in virtual env.
- -->
+In Windows run:
+
+	\env\Scripts\activate.bat
+
 Run if you've previously encountered [500: Internal Server Error](https://stackoverflow.com/questions/36851746/jupyter-notebook-500-internal-server-error)
 
-This can also give you a newer Juyter interface:
+If your verion of Conda is old, this will give you a newer Jupyter interface:
 
 	pip install notebook &&
 	pip install --upgrade nbconvert
