@@ -1,3 +1,9 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[1]:
+
+
 import numpy as np
 import pandas as pd
 import requests
@@ -23,21 +29,49 @@ def format_cell(input, format):
     # Format as easy
     if input >= 1e9:
         # Round to billions
-        return f"{input / 1e9:.1f} Billion"
+        input1=str(round(input / 1e9,1))
+        input1=input1.replace('.0', '')
+        return input1+' Billion'
     elif input >= 1e6:
         # Round to millions
-        return f"{input / 1e6:.1f} Million"
+        #return f"{input / 1e6:.1f} Million"
+        input1=str(round(input / 1e6,1))
+        input1=input1.replace('.0', '')
+        return input1+' Million'
     elif input >= 1e3:
         # Round to thousands
-        return f"{input / 1e3:.1f} K"
+        #return f"{input / 1e3:.1f} K"
+        input1=str(round(input / 1e3,1))
+        input1=input1.replace('.0', '')
+        return input1+' K'
     elif input >= 100:
         # Round to one decimal
-        return f"{input:.1f}"
+        return f"{input}"
     else:
         # Format with scientific notation with one digit after decimal
         return f"{input:.1f}"
 
-all_states_info = ["AKEEIOv1.0-s-20","ALEEIOv1.0-s-20","AREEIOv1.0-s-20","AZEEIOv1.0-s-20","CAEEIOv1.0-s-20","COEEIOv1.0-s-20","CTEEIOv1.0-s-20","DEEEIOv1.0-s-20","FLEEIOv1.0-s-20","GAEEIOv1.0-s-20","HIEEIOv1.0-s-20","IAEEIOv1.0-s-20","IDEEIOv1.0-s-20","ILEEIOv1.0-s-20","INEEIOv1.0-s-20","KSEEIOv1.0-s-20","KYEEIOv1.0-s-20","LAEEIOv1.0-s-20","MAEEIOv1.0-s-20","MDEEIOv1.0-s-20","MEEEIOv1.0-s-20","MIEEIOv1.0-s-20","MNEEIOv1.0-s-20","MOEEIOv1.0-s-20","MSEEIOv1.0-s-20","MTEEIOv1.0-s-20","NCEEIOv1.0-s-20","NDEEIOv1.0-s-20","NEEEIOv1.0-s-20","NHEEIOv1.0-s-20","NJEEIOv1.0-s-20","NMEEIOv1.0-s-20","NVEEIOv1.0-s-20","NYEEIOv1.0-s-20","OHEEIOv1.0-s-20","OKEEIOv1.0-s-20","OREEIOv1.0-s-20","PAEEIOv1.0-s-20","RIEEIOv1.0-s-20","SCEEIOv1.0-s-20","SDEEIOv1.0-s-20","TNEEIOv1.0-s-20","TXEEIOv1.0-s-20","UTEEIOv1.0-s-20","VAEEIOv1.0-s-20","VTEEIOv1.0-s-20","WAEEIOv1.0-s-20","WIEEIOv1.0-s-20","WVEEIOv1.0-s-20","WYEEIOv1.0-s-20"]
+
+# In[2]:
+
+
+state_list=['AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
+'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME',
+'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM',
+'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX',
+'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY']
+all_states_info=[state+'EEIOv1.0-s-20' for state in state_list]
+all_states_info.append('USEEIOv2.0.1-411')
+
+
+# In[ ]:
+
+
+
+
+
+# In[3]:
+
 
 for state_info in all_states_info:
     url_Q = f"https://raw.githubusercontent.com/ModelEarth/OpenFootprint/main/impacts/2020/{state_info}/matrix/q.json"
@@ -58,8 +92,22 @@ for state_info in all_states_info:
         output = {}
         output["Commodity"] = s["name"]
         output["Location"] = s["location"]
-        output["Output"] = format_cell(round(data_Q[sector_index]),"easy")
-        output["Jobs"] = format_cell(round(data_Q[sector_index] * D_JOBS[sector_index]),"easy")
+        output["Raw_output"]=round(data_Q[sector_index])
+        output["Raw_Jobs"]=round(data_Q[sector_index] * D_JOBS[sector_index])
+        output["Output"] = format_cell(output["Raw_output"],"easy")
+        output["Jobs"] = format_cell(output["Raw_Jobs"],"easy")
         outputs.append(output)
+    
+    df=pd.DataFrame(outputs)
+    df=df.sort_values(by=["Raw_output"],ascending=False)
+    df=df[["Commodity","Location","Output","Jobs"]]
+    output_dir = f"states/commodities/2020"
+    os.makedirs(output_dir, exist_ok=True)
+    df.to_csv(f"{output_dir}/{state_info}.csv",index=False)
 
-    pd.DataFrame(outputs).to_csv(f"states/commodities/2020/{state_info}.csv",index=False)
+
+# In[ ]:
+
+
+
+
