@@ -21,4 +21,4 @@ TO DO: Add notes regarding which commodities are excluded (small business, gov, 
 
 TO DO: Find international commodity data in [Google Data Commons](https://docs.datacommons.org/api/) and display [EXIOBASE charts](https://exiobase.eu).
 
-Learn about [Input-Output Model Construction](/io/about/matrix/). View [Javascript version]().
+Learn about [Input-Output Model Construction](/io/about/matrix/). &nbsp;View [Javascript Open Footprint](/useeio.js/footprint/).
