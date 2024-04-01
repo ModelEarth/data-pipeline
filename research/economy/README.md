@@ -14,13 +14,10 @@ To run JobsD+q-2csv.py
 	pip install requests &&
 	python JobsD+q-2csv.py
 
-TO DO:
 
-1. Remove .0
-2. Loop through an array of 2-char state abbreviations. Rerun to increase from 42 to 50 states.
-3. Also include USEEIOv2.0.1-411 (save in same folder with the states)
+TO DO: We'll omit Rest of US (RoUS) rows, but first let's document why RoUS values differ for each state.
 
-TO DO: Find international commodity and/or economic data in [Google Data Commons](https://docs.datacommons.org/api/) or [UN Comtade Data](/data-pipeline/international/)
+TO DO: Find international commodity data in [Google Data Commons](https://docs.datacommons.org/api/).
 
-TO DO: Ask Wes for notes to add here on which commodities are excluded (small business, gov, etc.)
+TO DO: Ask Wes for notes to add regarding which commodities are excluded (small business, gov, etc.)
 
