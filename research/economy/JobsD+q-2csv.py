@@ -2,8 +2,6 @@
 # coding: utf-8
 
 # In[1]:
-
-
 import numpy as np
 import pandas as pd
 import requests
@@ -27,10 +25,15 @@ def format_cell(input, format):
         return f"{input:.1f}"
 
     # Format as easy
-    if input >= 1e9:
+    if input >= 1e12:
+        # Round to billions
+        input1=str(round(input / 1e12,1))
+        # input1=input1.replace('.0', '')
+        return input1+' Trillion'
+    elif input >= 1e9:
         # Round to billions
         input1=str(round(input / 1e9,1))
-        input1=input1.replace('.0', '')
+        # input1=input1.replace('.0', '')
         return input1+' Billion'
     elif input >= 1e6:
         # Round to millions
@@ -53,8 +56,6 @@ def format_cell(input, format):
 
 
 # In[2]:
-
-
 state_list=['AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
 'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME',
 'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM',
@@ -64,15 +65,11 @@ all_states_info=[state+'EEIOv1.0-s-20' for state in state_list]
 all_states_info.append('USEEIOv2.0.1-411')
 
 
-# In[ ]:
-
-
-
-
-
 # In[3]:
+output_dir = f"states/commodities/2020"
+os.makedirs(output_dir, exist_ok=True)
 
-
+# In[4]:
 for state_info in all_states_info:
     url_Q = f"https://raw.githubusercontent.com/ModelEarth/OpenFootprint/main/impacts/2020/{state_info}/matrix/q.json"
     url_D = f"https://raw.githubusercontent.com/ModelEarth/OpenFootprint/main/impacts/2020/{state_info}/matrix/D.json"
@@ -92,21 +89,17 @@ for state_info in all_states_info:
         output = {}
         output["Commodity"] = s["name"]
         output["Location"] = s["location"]
-        output["Raw_output"]=round(data_Q[sector_index])
-        output["Raw_Jobs"]=round(data_Q[sector_index] * D_JOBS[sector_index])
-        output["Output"] = format_cell(output["Raw_output"],"easy")
-        output["Jobs"] = format_cell(output["Raw_Jobs"],"easy")
+        output["Commodities"]=round(data_Q[sector_index])
+        output["Employees"]=round(data_Q[sector_index] * D_JOBS[sector_index])
+        output["Output"] = format_cell(output["Commodities"],"easy") # Raw_output
+        output["Jobs"] = format_cell(output["Employees"],"easy") # Raw Jobs
         outputs.append(output)
     
     df=pd.DataFrame(outputs)
-    df=df.sort_values(by=["Raw_output"],ascending=False)
-    df=df[["Commodity","Location","Output","Jobs"]]
-    output_dir = f"states/commodities/2020"
-    os.makedirs(output_dir, exist_ok=True)
+    df=df.sort_values(by=["Commodities"],ascending=False)
+
+    df=df[["Commodity","Location","Commodities","Output","Employees","Jobs"]]
     df.to_csv(f"{output_dir}/{state_info}.csv",index=False)
-
-
-# In[ ]:
 
 
 
