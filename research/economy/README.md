@@ -15,9 +15,9 @@ To run JobsD+q-2csv.py
 	python JobsD+q-2csv.py
 
 
-TO DO: We'll omit Rest of US (RoUS) rows, but first let's document why RoUS values differ for each state.
+TO DO: We'll omit Rest of US (RoUS) rows, but first let's document why RoUS values differ from US output.
 
 TO DO: Find international commodity data in [Google Data Commons](https://docs.datacommons.org/api/).
 
-TO DO: Ask Wes for notes to add regarding which commodities are excluded (small business, gov, etc.)
+TO DO: Add notes regarding which commodities are excluded (small business, gov, etc.)
 
