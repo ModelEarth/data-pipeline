@@ -17,7 +17,8 @@ To run JobsD+q-2csv.py
 
 TO DO: We'll omit Rest of US (RoUS) rows, but first let's document why RoUS values differ from US output.
 
-TO DO: Find international commodity data in [Google Data Commons](https://docs.datacommons.org/api/).
-
 TO DO: Add notes regarding which commodities are excluded (small business, gov, etc.)
 
+TO DO: Find international commodity data in [Google Data Commons](https://docs.datacommons.org/api/) and display [EXIOBASE charts](https://exiobase.eu).
+
+Learn about [Input-Output Model Construction](/io/about/matrix/). View [Javascript version]().
