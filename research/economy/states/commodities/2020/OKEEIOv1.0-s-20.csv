@@ -1,147 +1,147 @@
-Commodity,Location,TotalCommodityOutput,Jobs
-"Oilseeds, grains, vegetables, fruits, animal farms and aquaculture",US-OK,6.6 Billion,7.9 K
-"Raw forest products, wild-caught fish and game, agriculture and forestry support",US-OK,495.5 Million,1.6 K
-Unrefined oil and gas,US-OK,16.6 Billion,9.2 K
-"Metal ores, dimensional stone, nonmetallic minerals",US-OK,796.9 Million,1.8 K
-Well drilling and support activities for mining,US-OK,7.4 Billion,16.2 K
-"Electricity, natural gas, drinking water, and wastewater treatment",US-OK,7.6 Billion,16.6 K
-Construction,US-OK,15.8 Billion,86.9 K
-"Wood products (e.g. plywood, veneer)",US-OK,645.5 Million,1.9 K
-"Clay, glass, cement, concrete, and other nonmetallic mineral products",US-OK,2.1 Billion,6.7 K
-Primary and secondary ferrous and nonferrous metals,US-OK,1.2 Billion,3.4 K
-Fabricated metal products (e.g. architectural and structural metal products),US-OK,5.3 Billion,22.4 K
-Machinery (except computers),US-OK,6.2 Billion,20.4 K
-"Computers and relevant parts, conductors, measuring devices, communication devices",US-OK,988.8 Million,4.5 K
-"Lights and light fixtures, switch boards, transformers, and home appliances",US-OK,809.4 Million,3.7 K
-On-road vehicles (excluding motorcycles) and accompanying parts,US-OK,3.1 Billion,5.1 K
-"Other vehicles (e.g. aircraft, water vessels), missiles, and accompanying parts",US-OK,2.4 Billion,15.1 K
-Furniture and shelving,US-OK,318.3 Million,2.2 K
-"Medical supplies, entertainment and sporting goods, fashion goods, advertising products",US-OK,1.0 Billion,4.6 K
-Food and beverage and tobacco products,US-OK,7.2 Billion,20.5 K
-Textiles and textile-dervied products (except clothes),US-OK,167.1 Million,836.0
-Clothing and leather,US-OK,137.7 Million,629.0
-Paper products and paper production facilities,US-OK,3.1 Billion,3.7 K
-Print media and printing support,US-OK,334.5 Million,2.0 K
-"Petroleum fuels, asphalt, and other petroleum and coal products",US-OK,7.5 Billion,3.5 K
-"Agricultural, pharamceutical, industrial, and commercial chemicals",US-OK,2.6 Billion,4.9 K
-Plastics and rubber products,US-OK,2.7 Billion,8.7 K
-Wholesale trade,US-OK,16.0 Billion,54.1 K
-Vehicles and parts sales,US-OK,1.9 Billion,18.3 K
-Food and beverage stores,US-OK,2.2 Billion,21.0 K
-General merchandise stores,US-OK,3.8 Billion,37.8 K
-Other retail,US-OK,11.1 Billion,84.1 K
-Air transport,US-OK,1.4 Billion,1.4 K
-Rail transport,US-OK,1.3 Billion,0.0
-"Water transport (boats, ships, ferries)",US-OK,13.3 Million,69.0
-Truck transport,US-OK,4.6 Billion,19.0 K
-Passenger ground transport,US-OK,213.2 Million,1.2 K
-Pipeline transport,US-OK,8.1 Billion,3.1 K
-"Couriers, messengers, transportation for leisure activities",US-OK,2.3 Billion,15.6 K
-Warehouses,US-OK,1.8 Billion,21.3 K
-"Media, literature, and software",US-OK,1.4 Billion,3.1 K
-Film and sound-based entertainment,US-OK,147.2 Million,909.0
-"Radio, TV, telecommunication",US-OK,5.7 Billion,9.7 K
-"Data processing, internet publishing, and other information services",US-OK,505.5 Million,2.7 K
-"Monetary authorities, depository and nondepository credit intermediation and related activities",US-OK,5.1 Billion,27.6 K
-"Financial investments, exchanges, and advising",US-OK,1.7 Billion,5.4 K
-"Insurance agencies, carriers, and brokerages",US-OK,7.0 Billion,18.9 K
-"Funds, trusts, and financial vehicles",US-OK,1.6 Billion,334.0
-Housing,US-OK,21.9 Billion,2.5 K
-Other real estate,US-OK,5.7 Billion,10.8 K
-"Renting and leasing of goods, equipment, vehicles and nonfinancial intangible assets",US-OK,3.7 Billion,11.7 K
-Legal services,US-OK,2.2 Billion,12.2 K
-Computer programming and systems design,US-OK,2.2 Billion,14.7 K
-"Miscellaneous professional, scientific, and technical services",US-OK,13.2 Billion,77.7 K
-Company and enterprise management,US-OK,4.7 Billion,19.9 K
-Administrative and support services,US-OK,10.1 Billion,87.4 K
-Waste management and remediation services,US-OK,1.1 Billion,4.8 K
-Educational institutions and services,US-OK,2.8 Billion,114.8 K
-"Healthcare professions, laboratories, and ambulances",US-OK,10.8 Billion,80.6 K
-Hospitals,US-OK,11.7 Billion,72.4 K
-"Nursing, community, mental health, and substance abuse facilities",US-OK,2.3 Billion,35.3 K
-"Child day care, community food services, housing services, and other relief services",US-OK,1.9 Billion,32.7 K
-"Performing arts, spectator sports, museums, and related activities",US-OK,452.6 Million,4.5 K
-"Amusement facilities, gambling facilities, resort and recreation facilities",US-OK,1.2 Billion,30.2 K
-Hotels and campgrounds,US-OK,738.2 Million,13.1 K
-Food and beverage establishments,US-OK,10.3 Billion,142.4 K
-"Other services, except government",US-OK,8.3 Billion,45.0 K
-Federal general government (defense),US-OK,6.1 Billion,21.4 K
-Federal general government (nondefense),US-OK,6.1 Billion,2.3 K
-Federal electric utilities and postal service,US-OK,989.2 Million,5.4 K
-State and local general government,US-OK,27.1 Billion,15.5 K
-Other state and local government enterprises including transit and utilities,US-OK,862.0 Million,62.0
-"Scrap, used and secondhand goods",US-OK,94.2 Million,183.0
-Noncomparable imports and rest-of-the-world adjustment,US-OK,43.3 Million,17.0
-"Oilseeds, grains, vegetables, fruits, animal farms and aquaculture",RoUS,389.5 Billion,788.8 K
-"Raw forest products, wild-caught fish and game, agriculture and forestry support",RoUS,62.1 Billion,456.5 K
-Unrefined oil and gas,RoUS,188.0 Billion,92.0 K
-"Metal ores, dimensional stone, nonmetallic minerals",RoUS,77.1 Billion,136.2 K
-Well drilling and support activities for mining,RoUS,81.2 Billion,215.3 K
-"Electricity, natural gas, drinking water, and wastewater treatment",RoUS,678.5 Billion,935.2 K
-Construction,RoUS,1853.7 Billion,7.5 Million
-"Wood products (e.g. plywood, veneer)",RoUS,113.0 Billion,396.0 K
-"Clay, glass, cement, concrete, and other nonmetallic mineral products",RoUS,127.3 Billion,379.0 K
-Primary and secondary ferrous and nonferrous metals,RoUS,212.6 Billion,350.4 K
-Fabricated metal products (e.g. architectural and structural metal products),RoUS,332.1 Billion,1.3 Million
-Machinery (except computers),RoUS,342.5 Billion,943.9 K
-"Computers and relevant parts, conductors, measuring devices, communication devices",RoUS,315.9 Billion,883.9 K
-"Lights and light fixtures, switch boards, transformers, and home appliances",RoUS,129.3 Billion,378.6 K
-On-road vehicles (excluding motorcycles) and accompanying parts,RoUS,615.9 Billion,870.8 K
-"Other vehicles (e.g. aircraft, water vessels), missiles, and accompanying parts",RoUS,219.4 Billion,659.2 K
-Furniture and shelving,RoUS,67.3 Billion,346.0 K
-"Medical supplies, entertainment and sporting goods, fashion goods, advertising products",RoUS,172.8 Billion,542.4 K
-Food and beverage and tobacco products,RoUS,960.2 Billion,2.0 Million
-Textiles and textile-dervied products (except clothes),RoUS,45.5 Billion,184.4 K
-Clothing and leather,RoUS,21.4 Billion,122.9 K
-Paper products and paper production facilities,RoUS,181.9 Billion,348.9 K
-Print media and printing support,RoUS,65.3 Billion,313.1 K
-"Petroleum fuels, asphalt, and other petroleum and coal products",RoUS,379.2 Billion,113.6 K
-"Agricultural, pharamceutical, industrial, and commercial chemicals",RoUS,722.9 Billion,806.1 K
-Plastics and rubber products,RoUS,233.9 Billion,674.0 K
+Commodity,Location,Output,Jobs
+"Miscellaneous professional, scientific, and technical services",RoUS,2311 Billion,8.8 Million
+Housing,RoUS,2291.8 Billion,377.8 K
 Wholesale trade,RoUS,2043.7 Billion,5.5 Million
-Vehicles and parts sales,RoUS,235.7 Billion,1.4 Million
+State and local general government,RoUS,1889.5 Billion,4.2 Million
+Construction,RoUS,1853.7 Billion,7.5 Million
+Other real estate,RoUS,1396.3 Billion,1.3 Million
+"Insurance agencies, carriers, and brokerages",RoUS,1349.6 Billion,2.4 Million
+Hospitals,RoUS,1139.6 Billion,6.7 Million
+"Healthcare professions, laboratories, and ambulances",RoUS,1120.5 Billion,7.6 Million
+Other retail,RoUS,1093.2 Billion,6.6 Million
+Administrative and support services,RoUS,1024.4 Billion,7.9 Million
+Food and beverage and tobacco products,RoUS,960.2 Billion,2 Million
+"Monetary authorities, depository and nondepository credit intermediation and related activities",RoUS,946 Billion,2.4 Million
+"Other services, except government",RoUS,868 Billion,4.8 Million
+Food and beverage establishments,RoUS,859.1 Billion,10.6 Million
+"Radio, TV, telecommunication",RoUS,739.9 Billion,772.5 K
+"Agricultural, pharamceutical, industrial, and commercial chemicals",RoUS,722.9 Billion,806.1 K
+Federal general government (defense),RoUS,694.4 Billion,534 K
+"Financial investments, exchanges, and advising",RoUS,690.4 Billion,987.4 K
+"Electricity, natural gas, drinking water, and wastewater treatment",RoUS,678.5 Billion,935.2 K
+Company and enterprise management,RoUS,653 Billion,2.2 Million
+On-road vehicles (excluding motorcycles) and accompanying parts,RoUS,615.9 Billion,870.8 K
+Computer programming and systems design,RoUS,580.5 Billion,2.6 Million
+"Renting and leasing of goods, equipment, vehicles and nonfinancial intangible assets",RoUS,479.5 Billion,861.4 K
+Federal general government (nondefense),RoUS,454.8 Billion,1.1 Million
+Educational institutions and services,RoUS,401.5 Billion,10.2 Million
+"Oilseeds, grains, vegetables, fruits, animal farms and aquaculture",RoUS,389.5 Billion,788.8 K
+"Petroleum fuels, asphalt, and other petroleum and coal products",RoUS,379.2 Billion,113.6 K
+Legal services,RoUS,369.4 Billion,1.1 Million
+Truck transport,RoUS,366.9 Billion,1.4 Million
+"Media, literature, and software",RoUS,351.2 Billion,610 K
+Machinery (except computers),RoUS,342.5 Billion,943.9 K
+"Data processing, internet publishing, and other information services",RoUS,341.4 Billion,596.6 K
+Fabricated metal products (e.g. architectural and structural metal products),RoUS,332.1 Billion,1.3 Million
+"Computers and relevant parts, conductors, measuring devices, communication devices",RoUS,315.9 Billion,883.9 K
+"Couriers, messengers, transportation for leisure activities",RoUS,284.1 Billion,1.7 Million
+"Nursing, community, mental health, and substance abuse facilities",RoUS,256.5 Billion,3.4 Million
 Food and beverage stores,RoUS,252.9 Billion,2.7 Million
 General merchandise stores,RoUS,242.7 Billion,2.7 Million
-Other retail,RoUS,1093.2 Billion,6.6 Million
-Air transport,RoUS,123.6 Billion,456.2 K
-Rail transport,RoUS,70.9 Billion,765.0
-"Water transport (boats, ships, ferries)",RoUS,39.9 Billion,66.1 K
-Truck transport,RoUS,366.9 Billion,1.4 Million
-Passenger ground transport,RoUS,82.9 Billion,621.3 K
-Pipeline transport,RoUS,52.2 Billion,54.7 K
-"Couriers, messengers, transportation for leisure activities",RoUS,284.1 Billion,1.7 Million
-Warehouses,RoUS,157.5 Billion,1.5 Million
-"Media, literature, and software",RoUS,351.2 Billion,610.0 K
-Film and sound-based entertainment,RoUS,124.8 Billion,275.7 K
-"Radio, TV, telecommunication",RoUS,739.9 Billion,772.5 K
-"Data processing, internet publishing, and other information services",RoUS,341.4 Billion,596.6 K
-"Monetary authorities, depository and nondepository credit intermediation and related activities",RoUS,946.0 Billion,2.4 Million
-"Financial investments, exchanges, and advising",RoUS,690.4 Billion,987.4 K
-"Insurance agencies, carriers, and brokerages",RoUS,1349.6 Billion,2.4 Million
+"Child day care, community food services, housing services, and other relief services",RoUS,236.8 Billion,4 Million
+Vehicles and parts sales,RoUS,235.7 Billion,1.4 Million
+Plastics and rubber products,RoUS,233.9 Billion,674 K
+"Other vehicles (e.g. aircraft, water vessels), missiles, and accompanying parts",RoUS,219.4 Billion,659.2 K
+Primary and secondary ferrous and nonferrous metals,RoUS,212.6 Billion,350.4 K
 "Funds, trusts, and financial vehicles",RoUS,191.5 Billion,80.9 K
-Housing,RoUS,2291.8 Billion,377.8 K
-Other real estate,RoUS,1396.3 Billion,1.3 Million
-"Renting and leasing of goods, equipment, vehicles and nonfinancial intangible assets",RoUS,479.5 Billion,861.4 K
-Legal services,RoUS,369.4 Billion,1.1 Million
-Computer programming and systems design,RoUS,580.5 Billion,2.6 Million
-"Miscellaneous professional, scientific, and technical services",RoUS,2311.0 Billion,8.8 Million
-Company and enterprise management,RoUS,653.0 Billion,2.2 Million
-Administrative and support services,RoUS,1024.4 Billion,7.9 Million
-Waste management and remediation services,RoUS,127.8 Billion,496.8 K
-Educational institutions and services,RoUS,401.5 Billion,10.2 Million
-"Healthcare professions, laboratories, and ambulances",RoUS,1120.5 Billion,7.6 Million
-Hospitals,RoUS,1139.6 Billion,6.7 Million
-"Nursing, community, mental health, and substance abuse facilities",RoUS,256.5 Billion,3.4 Million
-"Child day care, community food services, housing services, and other relief services",RoUS,236.8 Billion,4.0 Million
-"Performing arts, spectator sports, museums, and related activities",RoUS,125.9 Billion,559.2 K
+Unrefined oil and gas,RoUS,188 Billion,92 K
+Paper products and paper production facilities,RoUS,181.9 Billion,348.9 K
+"Medical supplies, entertainment and sporting goods, fashion goods, advertising products",RoUS,172.8 Billion,542.4 K
+Warehouses,RoUS,157.5 Billion,1.5 Million
 "Amusement facilities, gambling facilities, resort and recreation facilities",RoUS,154.8 Billion,1.4 Million
 Hotels and campgrounds,RoUS,144.4 Billion,1.4 Million
-Food and beverage establishments,RoUS,859.1 Billion,10.6 Million
-"Other services, except government",RoUS,868.0 Billion,4.8 Million
-Federal general government (defense),RoUS,694.4 Billion,534.0 K
-Federal general government (nondefense),RoUS,454.8 Billion,1.1 Million
-Federal electric utilities and postal service,RoUS,69.9 Billion,502.6 K
-State and local general government,RoUS,1889.5 Billion,4.2 Million
+"Lights and light fixtures, switch boards, transformers, and home appliances",RoUS,129.3 Billion,378.6 K
+Waste management and remediation services,RoUS,127.8 Billion,496.8 K
+"Clay, glass, cement, concrete, and other nonmetallic mineral products",RoUS,127.3 Billion,379 K
+"Performing arts, spectator sports, museums, and related activities",RoUS,125.9 Billion,559.2 K
+Film and sound-based entertainment,RoUS,124.8 Billion,275.7 K
+Air transport,RoUS,123.6 Billion,456.2 K
+"Wood products (e.g. plywood, veneer)",RoUS,113 Billion,396 K
 Other state and local government enterprises including transit and utilities,RoUS,110.2 Billion,46.1 K
+Passenger ground transport,RoUS,82.9 Billion,621.3 K
+Well drilling and support activities for mining,RoUS,81.2 Billion,215.3 K
+"Metal ores, dimensional stone, nonmetallic minerals",RoUS,77.1 Billion,136.2 K
+Rail transport,RoUS,70.9 Billion,765
+Federal electric utilities and postal service,RoUS,69.9 Billion,502.6 K
+Furniture and shelving,RoUS,67.3 Billion,346 K
+Print media and printing support,RoUS,65.3 Billion,313.1 K
+"Raw forest products, wild-caught fish and game, agriculture and forestry support",RoUS,62.1 Billion,456.5 K
+Pipeline transport,RoUS,52.2 Billion,54.7 K
+Textiles and textile-dervied products (except clothes),RoUS,45.5 Billion,184.4 K
+"Water transport (boats, ships, ferries)",RoUS,39.9 Billion,66.1 K
+State and local general government,US-OK,27.1 Billion,15.5 K
+Housing,US-OK,21.9 Billion,2.5 K
+Clothing and leather,RoUS,21.4 Billion,122.9 K
+Unrefined oil and gas,US-OK,16.6 Billion,9.2 K
+Wholesale trade,US-OK,16 Billion,54.1 K
+Construction,US-OK,15.8 Billion,86.9 K
+"Miscellaneous professional, scientific, and technical services",US-OK,13.2 Billion,77.7 K
+Hospitals,US-OK,11.7 Billion,72.4 K
+Other retail,US-OK,11.1 Billion,84.1 K
+"Healthcare professions, laboratories, and ambulances",US-OK,10.8 Billion,80.6 K
+Food and beverage establishments,US-OK,10.3 Billion,142.4 K
+Administrative and support services,US-OK,10.1 Billion,87.4 K
+"Other services, except government",US-OK,8.3 Billion,45 K
 "Scrap, used and secondhand goods",RoUS,8.2 Billion,22.4 K
+Pipeline transport,US-OK,8.1 Billion,3.1 K
+"Electricity, natural gas, drinking water, and wastewater treatment",US-OK,7.6 Billion,16.6 K
+"Petroleum fuels, asphalt, and other petroleum and coal products",US-OK,7.5 Billion,3.5 K
+Well drilling and support activities for mining,US-OK,7.4 Billion,16.2 K
+Food and beverage and tobacco products,US-OK,7.2 Billion,20.5 K
+"Insurance agencies, carriers, and brokerages",US-OK,7 Billion,18.9 K
+"Oilseeds, grains, vegetables, fruits, animal farms and aquaculture",US-OK,6.6 Billion,7.9 K
+Machinery (except computers),US-OK,6.2 Billion,20.4 K
+Federal general government (nondefense),US-OK,6.1 Billion,2.3 K
+Federal general government (defense),US-OK,6.1 Billion,21.4 K
+Other real estate,US-OK,5.7 Billion,10.8 K
+"Radio, TV, telecommunication",US-OK,5.7 Billion,9.7 K
+Fabricated metal products (e.g. architectural and structural metal products),US-OK,5.3 Billion,22.4 K
+"Monetary authorities, depository and nondepository credit intermediation and related activities",US-OK,5.1 Billion,27.6 K
+Company and enterprise management,US-OK,4.7 Billion,19.9 K
+Truck transport,US-OK,4.6 Billion,19 K
+General merchandise stores,US-OK,3.8 Billion,37.8 K
+"Renting and leasing of goods, equipment, vehicles and nonfinancial intangible assets",US-OK,3.7 Billion,11.7 K
 Noncomparable imports and rest-of-the-world adjustment,RoUS,3.2 Billion,7.7 K
+On-road vehicles (excluding motorcycles) and accompanying parts,US-OK,3.1 Billion,5.1 K
+Paper products and paper production facilities,US-OK,3.1 Billion,3.7 K
+Educational institutions and services,US-OK,2.8 Billion,114.8 K
+Plastics and rubber products,US-OK,2.7 Billion,8.7 K
+"Agricultural, pharamceutical, industrial, and commercial chemicals",US-OK,2.6 Billion,4.9 K
+"Other vehicles (e.g. aircraft, water vessels), missiles, and accompanying parts",US-OK,2.4 Billion,15.1 K
+"Couriers, messengers, transportation for leisure activities",US-OK,2.3 Billion,15.6 K
+"Nursing, community, mental health, and substance abuse facilities",US-OK,2.3 Billion,35.3 K
+Legal services,US-OK,2.2 Billion,12.2 K
+Computer programming and systems design,US-OK,2.2 Billion,14.7 K
+Food and beverage stores,US-OK,2.2 Billion,21 K
+"Clay, glass, cement, concrete, and other nonmetallic mineral products",US-OK,2.1 Billion,6.7 K
+Vehicles and parts sales,US-OK,1.9 Billion,18.3 K
+"Child day care, community food services, housing services, and other relief services",US-OK,1.9 Billion,32.7 K
+Warehouses,US-OK,1.8 Billion,21.3 K
+"Financial investments, exchanges, and advising",US-OK,1.7 Billion,5.4 K
+"Funds, trusts, and financial vehicles",US-OK,1.6 Billion,334
+"Media, literature, and software",US-OK,1.4 Billion,3.1 K
+Air transport,US-OK,1.4 Billion,1.4 K
+Rail transport,US-OK,1.3 Billion,0.0
+Primary and secondary ferrous and nonferrous metals,US-OK,1.2 Billion,3.4 K
+"Amusement facilities, gambling facilities, resort and recreation facilities",US-OK,1.2 Billion,30.2 K
+Waste management and remediation services,US-OK,1.1 Billion,4.8 K
+"Medical supplies, entertainment and sporting goods, fashion goods, advertising products",US-OK,1 Billion,4.6 K
+Federal electric utilities and postal service,US-OK,989.2 Million,5.4 K
+"Computers and relevant parts, conductors, measuring devices, communication devices",US-OK,988.8 Million,4.5 K
+Other state and local government enterprises including transit and utilities,US-OK,862 Million,62.0
+"Lights and light fixtures, switch boards, transformers, and home appliances",US-OK,809.4 Million,3.7 K
+"Metal ores, dimensional stone, nonmetallic minerals",US-OK,796.9 Million,1.8 K
+Hotels and campgrounds,US-OK,738.2 Million,13.1 K
+"Wood products (e.g. plywood, veneer)",US-OK,645.5 Million,1.9 K
+"Data processing, internet publishing, and other information services",US-OK,505.5 Million,2.7 K
+"Raw forest products, wild-caught fish and game, agriculture and forestry support",US-OK,495.5 Million,1.6 K
+"Performing arts, spectator sports, museums, and related activities",US-OK,452.6 Million,4.5 K
+Print media and printing support,US-OK,334.5 Million,2 K
+Furniture and shelving,US-OK,318.3 Million,2.2 K
+Passenger ground transport,US-OK,213.2 Million,1.2 K
+Textiles and textile-dervied products (except clothes),US-OK,167.1 Million,836
+Film and sound-based entertainment,US-OK,147.2 Million,909
+Clothing and leather,US-OK,137.7 Million,629
+"Scrap, used and secondhand goods",US-OK,94.2 Million,183
+Noncomparable imports and rest-of-the-world adjustment,US-OK,43.3 Million,17.0
+"Water transport (boats, ships, ferries)",US-OK,13.3 Million,69.0

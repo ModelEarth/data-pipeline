@@ -1,147 +1,147 @@
-Commodity,Location,TotalCommodityOutput,Jobs
-"Oilseeds, grains, vegetables, fruits, animal farms and aquaculture",US-NJ,2.0 Billion,7.4 K
-"Raw forest products, wild-caught fish and game, agriculture and forestry support",US-NJ,1.0 Billion,3.8 K
-Unrefined oil and gas,US-NJ,163.3 Million,49.0
-"Metal ores, dimensional stone, nonmetallic minerals",US-NJ,687.6 Million,1.1 K
-Well drilling and support activities for mining,US-NJ,96.3 Million,231.0
-"Electricity, natural gas, drinking water, and wastewater treatment",US-NJ,18.2 Billion,22.0 K
-Construction,US-NJ,45.5 Billion,158.6 K
-"Wood products (e.g. plywood, veneer)",US-NJ,723.5 Million,2.9 K
-"Clay, glass, cement, concrete, and other nonmetallic mineral products",US-NJ,3.4 Billion,9.8 K
-Primary and secondary ferrous and nonferrous metals,US-NJ,2.3 Billion,4.1 K
-Fabricated metal products (e.g. architectural and structural metal products),US-NJ,5.7 Billion,20.0 K
-Machinery (except computers),US-NJ,4.3 Billion,12.1 K
-"Computers and relevant parts, conductors, measuring devices, communication devices",US-NJ,5.9 Billion,21.3 K
-"Lights and light fixtures, switch boards, transformers, and home appliances",US-NJ,2.2 Billion,6.1 K
-On-road vehicles (excluding motorcycles) and accompanying parts,US-NJ,1.1 Billion,2.0 K
-"Other vehicles (e.g. aircraft, water vessels), missiles, and accompanying parts",US-NJ,615.0 Million,3.2 K
-Furniture and shelving,US-NJ,1.3 Billion,6.5 K
-"Medical supplies, entertainment and sporting goods, fashion goods, advertising products",US-NJ,2.9 Billion,6.1 K
-Food and beverage and tobacco products,US-NJ,25.0 Billion,57.9 K
-Textiles and textile-dervied products (except clothes),US-NJ,939.4 Million,3.6 K
-Clothing and leather,US-NJ,608.9 Million,4.2 K
-Paper products and paper production facilities,US-NJ,3.5 Billion,8.7 K
-Print media and printing support,US-NJ,2.3 Billion,9.9 K
-"Petroleum fuels, asphalt, and other petroleum and coal products",US-NJ,16.7 Billion,2.6 K
-"Agricultural, pharamceutical, industrial, and commercial chemicals",US-NJ,3.6 Billion,3.5 K
-Plastics and rubber products,US-NJ,5.9 Billion,13.5 K
-Wholesale trade,US-NJ,89.4 Billion,199.7 K
-Vehicles and parts sales,US-NJ,4.4 Billion,31.2 K
-Food and beverage stores,US-NJ,12.7 Billion,92.4 K
-General merchandise stores,US-NJ,7.7 Billion,60.9 K
-Other retail,US-NJ,30.9 Billion,184.1 K
-Air transport,US-NJ,3.8 Billion,16.4 K
-Rail transport,US-NJ,622.9 Million,45.0
-"Water transport (boats, ships, ferries)",US-NJ,786.7 Million,1.0 K
-Truck transport,US-NJ,10.4 Billion,36.5 K
-Passenger ground transport,US-NJ,2.7 Billion,20.0 K
-Pipeline transport,US-NJ,386.5 Million,646.0
-"Couriers, messengers, transportation for leisure activities",US-NJ,11.5 Billion,66.0 K
-Warehouses,US-NJ,7.6 Billion,69.7 K
-"Media, literature, and software",US-NJ,8.3 Billion,16.0 K
-Film and sound-based entertainment,US-NJ,1.7 Billion,4.5 K
-"Radio, TV, telecommunication",US-NJ,21.4 Billion,22.8 K
-"Data processing, internet publishing, and other information services",US-NJ,8.5 Billion,14.6 K
-"Monetary authorities, depository and nondepository credit intermediation and related activities",US-NJ,15.6 Billion,63.7 K
-"Financial investments, exchanges, and advising",US-NJ,22.4 Billion,38.6 K
-"Insurance agencies, carriers, and brokerages",US-NJ,41.4 Billion,72.1 K
-"Funds, trusts, and financial vehicles",US-NJ,2.1 Billion,300.0
-Housing,US-NJ,106.5 Billion,10.3 K
-Other real estate,US-NJ,27.3 Billion,32.5 K
-"Renting and leasing of goods, equipment, vehicles and nonfinancial intangible assets",US-NJ,12.0 Billion,24.2 K
-Legal services,US-NJ,10.7 Billion,35.3 K
-Computer programming and systems design,US-NJ,18.5 Billion,81.4 K
-"Miscellaneous professional, scientific, and technical services",US-NJ,108.7 Billion,287.0 K
-Company and enterprise management,US-NJ,32.6 Billion,81.2 K
-Administrative and support services,US-NJ,37.6 Billion,243.9 K
-Waste management and remediation services,US-NJ,4.7 Billion,14.1 K
-Educational institutions and services,US-NJ,11.8 Billion,285.0 K
-"Healthcare professions, laboratories, and ambulances",US-NJ,37.1 Billion,223.2 K
-Hospitals,US-NJ,36.9 Billion,160.9 K
-"Nursing, community, mental health, and substance abuse facilities",US-NJ,8.1 Billion,95.7 K
-"Child day care, community food services, housing services, and other relief services",US-NJ,6.6 Billion,95.3 K
-"Performing arts, spectator sports, museums, and related activities",US-NJ,3.1 Billion,11.1 K
-"Amusement facilities, gambling facilities, resort and recreation facilities",US-NJ,4.1 Billion,35.6 K
-Hotels and campgrounds,US-NJ,3.3 Billion,34.4 K
-Food and beverage establishments,US-NJ,20.1 Billion,231.2 K
-"Other services, except government",US-NJ,23.3 Billion,135.8 K
-Federal general government (defense),US-NJ,5.9 Billion,9.9 K
-Federal general government (nondefense),US-NJ,7.1 Billion,1.0 K
-Federal electric utilities and postal service,US-NJ,1.1 Billion,15.7 K
-State and local general government,US-NJ,60.5 Billion,3.8 K
-Other state and local government enterprises including transit and utilities,US-NJ,1.9 Billion,82.0
-"Scrap, used and secondhand goods",US-NJ,183.6 Million,215.0
-Noncomparable imports and rest-of-the-world adjustment,US-NJ,49.9 Million,7.0
-"Oilseeds, grains, vegetables, fruits, animal farms and aquaculture",RoUS,394.1 Billion,789.1 K
-"Raw forest products, wild-caught fish and game, agriculture and forestry support",RoUS,61.6 Billion,453.9 K
-Unrefined oil and gas,RoUS,204.4 Billion,101.4 K
-"Metal ores, dimensional stone, nonmetallic minerals",RoUS,77.2 Billion,136.8 K
-Well drilling and support activities for mining,RoUS,88.5 Billion,231.1 K
-"Electricity, natural gas, drinking water, and wastewater treatment",RoUS,667.9 Billion,929.1 K
-Construction,RoUS,1824.0 Billion,7.4 Million
-"Wood products (e.g. plywood, veneer)",RoUS,112.9 Billion,395.0 K
-"Clay, glass, cement, concrete, and other nonmetallic mineral products",RoUS,126.0 Billion,375.9 K
-Primary and secondary ferrous and nonferrous metals,RoUS,211.6 Billion,349.7 K
-Fabricated metal products (e.g. architectural and structural metal products),RoUS,331.7 Billion,1.3 Million
-Machinery (except computers),RoUS,344.4 Billion,952.4 K
-"Computers and relevant parts, conductors, measuring devices, communication devices",RoUS,311.0 Billion,866.8 K
-"Lights and light fixtures, switch boards, transformers, and home appliances",RoUS,127.9 Billion,376.1 K
-On-road vehicles (excluding motorcycles) and accompanying parts,RoUS,618.0 Billion,873.8 K
-"Other vehicles (e.g. aircraft, water vessels), missiles, and accompanying parts",RoUS,221.2 Billion,671.4 K
-Furniture and shelving,RoUS,66.3 Billion,341.7 K
-"Medical supplies, entertainment and sporting goods, fashion goods, advertising products",RoUS,171.0 Billion,544.4 K
-Food and beverage and tobacco products,RoUS,942.5 Billion,1.9 Million
-Textiles and textile-dervied products (except clothes),RoUS,44.7 Billion,181.6 K
-Clothing and leather,RoUS,20.9 Billion,119.2 K
-Paper products and paper production facilities,RoUS,181.5 Billion,343.9 K
-Print media and printing support,RoUS,63.3 Billion,305.0 K
-"Petroleum fuels, asphalt, and other petroleum and coal products",RoUS,370.0 Billion,114.6 K
-"Agricultural, pharamceutical, industrial, and commercial chemicals",RoUS,722.0 Billion,810.4 K
-Plastics and rubber products,RoUS,230.8 Billion,669.1 K
+Commodity,Location,Output,Jobs
+"Miscellaneous professional, scientific, and technical services",RoUS,2215.5 Billion,8.6 Million
+Housing,RoUS,2207.2 Billion,370 K
 Wholesale trade,RoUS,1970.3 Billion,5.3 Million
-Vehicles and parts sales,RoUS,233.3 Billion,1.3 Million
+State and local general government,RoUS,1856 Billion,4.1 Million
+Construction,RoUS,1824 Billion,7.4 Million
+Other real estate,RoUS,1374.7 Billion,1.3 Million
+"Insurance agencies, carriers, and brokerages",RoUS,1315.3 Billion,2.4 Million
+Hospitals,RoUS,1114.4 Billion,6.6 Million
+"Healthcare professions, laboratories, and ambulances",RoUS,1094.2 Billion,7.4 Million
+Other retail,RoUS,1073.3 Billion,6.5 Million
+Administrative and support services,RoUS,996.9 Billion,7.8 Million
+Food and beverage and tobacco products,RoUS,942.5 Billion,1.9 Million
+"Monetary authorities, depository and nondepository credit intermediation and related activities",RoUS,935.4 Billion,2.4 Million
+"Other services, except government",RoUS,853 Billion,4.7 Million
+Food and beverage establishments,RoUS,849.3 Billion,10.5 Million
+"Radio, TV, telecommunication",RoUS,724.1 Billion,759.4 K
+"Agricultural, pharamceutical, industrial, and commercial chemicals",RoUS,722 Billion,810.4 K
+Federal general government (defense),RoUS,694.5 Billion,545.5 K
+"Financial investments, exchanges, and advising",RoUS,669.6 Billion,954.2 K
+"Electricity, natural gas, drinking water, and wastewater treatment",RoUS,667.9 Billion,929.1 K
+Company and enterprise management,RoUS,625.2 Billion,2.2 Million
+On-road vehicles (excluding motorcycles) and accompanying parts,RoUS,618 Billion,873.8 K
+Computer programming and systems design,RoUS,564.2 Billion,2.5 Million
+"Renting and leasing of goods, equipment, vehicles and nonfinancial intangible assets",RoUS,471.1 Billion,848.9 K
+Federal general government (nondefense),RoUS,453.9 Billion,1.1 Million
+"Oilseeds, grains, vegetables, fruits, animal farms and aquaculture",RoUS,394.1 Billion,789.1 K
+Educational institutions and services,RoUS,392.4 Billion,10 Million
+"Petroleum fuels, asphalt, and other petroleum and coal products",RoUS,370 Billion,114.6 K
+Truck transport,RoUS,361.1 Billion,1.4 Million
+Legal services,RoUS,360.9 Billion,1.1 Million
+Machinery (except computers),RoUS,344.4 Billion,952.4 K
+"Media, literature, and software",RoUS,344.3 Billion,597.3 K
+"Data processing, internet publishing, and other information services",RoUS,333.3 Billion,584.5 K
+Fabricated metal products (e.g. architectural and structural metal products),RoUS,331.7 Billion,1.3 Million
+"Computers and relevant parts, conductors, measuring devices, communication devices",RoUS,311 Billion,866.8 K
+"Couriers, messengers, transportation for leisure activities",RoUS,274.9 Billion,1.7 Million
+"Nursing, community, mental health, and substance abuse facilities",RoUS,250.7 Billion,3.3 Million
 Food and beverage stores,RoUS,242.4 Billion,2.7 Million
 General merchandise stores,RoUS,238.8 Billion,2.7 Million
-Other retail,RoUS,1073.3 Billion,6.5 Million
-Air transport,RoUS,121.2 Billion,441.2 K
-Rail transport,RoUS,71.6 Billion,720.0
-"Water transport (boats, ships, ferries)",RoUS,39.1 Billion,65.2 K
-Truck transport,RoUS,361.1 Billion,1.4 Million
-Passenger ground transport,RoUS,80.4 Billion,602.5 K
-Pipeline transport,RoUS,59.9 Billion,57.2 K
-"Couriers, messengers, transportation for leisure activities",RoUS,274.9 Billion,1.7 Million
-Warehouses,RoUS,151.8 Billion,1.4 Million
-"Media, literature, and software",RoUS,344.3 Billion,597.3 K
-Film and sound-based entertainment,RoUS,123.2 Billion,272.1 K
-"Radio, TV, telecommunication",RoUS,724.1 Billion,759.4 K
-"Data processing, internet publishing, and other information services",RoUS,333.3 Billion,584.5 K
-"Monetary authorities, depository and nondepository credit intermediation and related activities",RoUS,935.4 Billion,2.4 Million
-"Financial investments, exchanges, and advising",RoUS,669.6 Billion,954.2 K
-"Insurance agencies, carriers, and brokerages",RoUS,1315.3 Billion,2.4 Million
-"Funds, trusts, and financial vehicles",RoUS,190.9 Billion,78.8 K
-Housing,RoUS,2207.2 Billion,370.0 K
-Other real estate,RoUS,1374.7 Billion,1.3 Million
-"Renting and leasing of goods, equipment, vehicles and nonfinancial intangible assets",RoUS,471.1 Billion,848.9 K
-Legal services,RoUS,360.9 Billion,1.1 Million
-Computer programming and systems design,RoUS,564.2 Billion,2.5 Million
-"Miscellaneous professional, scientific, and technical services",RoUS,2215.5 Billion,8.6 Million
-Company and enterprise management,RoUS,625.2 Billion,2.2 Million
-Administrative and support services,RoUS,996.9 Billion,7.8 Million
-Waste management and remediation services,RoUS,124.1 Billion,486.1 K
-Educational institutions and services,RoUS,392.4 Billion,10.0 Million
-"Healthcare professions, laboratories, and ambulances",RoUS,1094.2 Billion,7.4 Million
-Hospitals,RoUS,1114.4 Billion,6.6 Million
-"Nursing, community, mental health, and substance abuse facilities",RoUS,250.7 Billion,3.3 Million
+Vehicles and parts sales,RoUS,233.3 Billion,1.3 Million
 "Child day care, community food services, housing services, and other relief services",RoUS,232.1 Billion,3.9 Million
-"Performing arts, spectator sports, museums, and related activities",RoUS,123.2 Billion,552.4 K
+Plastics and rubber products,RoUS,230.8 Billion,669.1 K
+"Other vehicles (e.g. aircraft, water vessels), missiles, and accompanying parts",RoUS,221.2 Billion,671.4 K
+Primary and secondary ferrous and nonferrous metals,RoUS,211.6 Billion,349.7 K
+Unrefined oil and gas,RoUS,204.4 Billion,101.4 K
+"Funds, trusts, and financial vehicles",RoUS,190.9 Billion,78.8 K
+Paper products and paper production facilities,RoUS,181.5 Billion,343.9 K
+"Medical supplies, entertainment and sporting goods, fashion goods, advertising products",RoUS,171 Billion,544.4 K
 "Amusement facilities, gambling facilities, resort and recreation facilities",RoUS,151.9 Billion,1.4 Million
+Warehouses,RoUS,151.8 Billion,1.4 Million
 Hotels and campgrounds,RoUS,141.8 Billion,1.4 Million
-Food and beverage establishments,RoUS,849.3 Billion,10.5 Million
-"Other services, except government",RoUS,853.0 Billion,4.7 Million
-Federal general government (defense),RoUS,694.5 Billion,545.5 K
-Federal general government (nondefense),RoUS,453.9 Billion,1.1 Million
-Federal electric utilities and postal service,RoUS,69.8 Billion,492.1 K
-State and local general government,RoUS,1856.0 Billion,4.1 Million
+"Lights and light fixtures, switch boards, transformers, and home appliances",RoUS,127.9 Billion,376.1 K
+"Clay, glass, cement, concrete, and other nonmetallic mineral products",RoUS,126 Billion,375.9 K
+Waste management and remediation services,RoUS,124.1 Billion,486.1 K
+Film and sound-based entertainment,RoUS,123.2 Billion,272.1 K
+"Performing arts, spectator sports, museums, and related activities",RoUS,123.2 Billion,552.4 K
+Air transport,RoUS,121.2 Billion,441.2 K
+"Wood products (e.g. plywood, veneer)",RoUS,112.9 Billion,395 K
 Other state and local government enterprises including transit and utilities,RoUS,109.1 Billion,45.7 K
+"Miscellaneous professional, scientific, and technical services",US-NJ,108.7 Billion,287 K
+Housing,US-NJ,106.5 Billion,10.3 K
+Wholesale trade,US-NJ,89.4 Billion,199.7 K
+Well drilling and support activities for mining,RoUS,88.5 Billion,231.1 K
+Passenger ground transport,RoUS,80.4 Billion,602.5 K
+"Metal ores, dimensional stone, nonmetallic minerals",RoUS,77.2 Billion,136.8 K
+Rail transport,RoUS,71.6 Billion,720
+Federal electric utilities and postal service,RoUS,69.8 Billion,492.1 K
+Furniture and shelving,RoUS,66.3 Billion,341.7 K
+Print media and printing support,RoUS,63.3 Billion,305 K
+"Raw forest products, wild-caught fish and game, agriculture and forestry support",RoUS,61.6 Billion,453.9 K
+State and local general government,US-NJ,60.5 Billion,3.8 K
+Pipeline transport,RoUS,59.9 Billion,57.2 K
+Construction,US-NJ,45.5 Billion,158.6 K
+Textiles and textile-dervied products (except clothes),RoUS,44.7 Billion,181.6 K
+"Insurance agencies, carriers, and brokerages",US-NJ,41.4 Billion,72.1 K
+"Water transport (boats, ships, ferries)",RoUS,39.1 Billion,65.2 K
+Administrative and support services,US-NJ,37.6 Billion,243.9 K
+"Healthcare professions, laboratories, and ambulances",US-NJ,37.1 Billion,223.2 K
+Hospitals,US-NJ,36.9 Billion,160.9 K
+Company and enterprise management,US-NJ,32.6 Billion,81.2 K
+Other retail,US-NJ,30.9 Billion,184.1 K
+Other real estate,US-NJ,27.3 Billion,32.5 K
+Food and beverage and tobacco products,US-NJ,25 Billion,57.9 K
+"Other services, except government",US-NJ,23.3 Billion,135.8 K
+"Financial investments, exchanges, and advising",US-NJ,22.4 Billion,38.6 K
+"Radio, TV, telecommunication",US-NJ,21.4 Billion,22.8 K
+Clothing and leather,RoUS,20.9 Billion,119.2 K
+Food and beverage establishments,US-NJ,20.1 Billion,231.2 K
+Computer programming and systems design,US-NJ,18.5 Billion,81.4 K
+"Electricity, natural gas, drinking water, and wastewater treatment",US-NJ,18.2 Billion,22 K
+"Petroleum fuels, asphalt, and other petroleum and coal products",US-NJ,16.7 Billion,2.6 K
+"Monetary authorities, depository and nondepository credit intermediation and related activities",US-NJ,15.6 Billion,63.7 K
+Food and beverage stores,US-NJ,12.7 Billion,92.4 K
+"Renting and leasing of goods, equipment, vehicles and nonfinancial intangible assets",US-NJ,12 Billion,24.2 K
+Educational institutions and services,US-NJ,11.8 Billion,285 K
+"Couriers, messengers, transportation for leisure activities",US-NJ,11.5 Billion,66 K
+Legal services,US-NJ,10.7 Billion,35.3 K
+Truck transport,US-NJ,10.4 Billion,36.5 K
+"Data processing, internet publishing, and other information services",US-NJ,8.5 Billion,14.6 K
+"Media, literature, and software",US-NJ,8.3 Billion,16 K
 "Scrap, used and secondhand goods",RoUS,8.1 Billion,22.1 K
+"Nursing, community, mental health, and substance abuse facilities",US-NJ,8.1 Billion,95.7 K
+General merchandise stores,US-NJ,7.7 Billion,60.9 K
+Warehouses,US-NJ,7.6 Billion,69.7 K
+Federal general government (nondefense),US-NJ,7.1 Billion,1 K
+"Child day care, community food services, housing services, and other relief services",US-NJ,6.6 Billion,95.3 K
+Federal general government (defense),US-NJ,5.9 Billion,9.9 K
+"Computers and relevant parts, conductors, measuring devices, communication devices",US-NJ,5.9 Billion,21.3 K
+Plastics and rubber products,US-NJ,5.9 Billion,13.5 K
+Fabricated metal products (e.g. architectural and structural metal products),US-NJ,5.7 Billion,20 K
+Waste management and remediation services,US-NJ,4.7 Billion,14.1 K
+Vehicles and parts sales,US-NJ,4.4 Billion,31.2 K
+Machinery (except computers),US-NJ,4.3 Billion,12.1 K
+"Amusement facilities, gambling facilities, resort and recreation facilities",US-NJ,4.1 Billion,35.6 K
+Air transport,US-NJ,3.8 Billion,16.4 K
+"Agricultural, pharamceutical, industrial, and commercial chemicals",US-NJ,3.6 Billion,3.5 K
+Paper products and paper production facilities,US-NJ,3.5 Billion,8.7 K
+"Clay, glass, cement, concrete, and other nonmetallic mineral products",US-NJ,3.4 Billion,9.8 K
+Hotels and campgrounds,US-NJ,3.3 Billion,34.4 K
 Noncomparable imports and rest-of-the-world adjustment,RoUS,3.2 Billion,7.6 K
+"Performing arts, spectator sports, museums, and related activities",US-NJ,3.1 Billion,11.1 K
+"Medical supplies, entertainment and sporting goods, fashion goods, advertising products",US-NJ,2.9 Billion,6.1 K
+Passenger ground transport,US-NJ,2.7 Billion,20 K
+Print media and printing support,US-NJ,2.3 Billion,9.9 K
+Primary and secondary ferrous and nonferrous metals,US-NJ,2.3 Billion,4.1 K
+"Lights and light fixtures, switch boards, transformers, and home appliances",US-NJ,2.2 Billion,6.1 K
+"Funds, trusts, and financial vehicles",US-NJ,2.1 Billion,300
+"Oilseeds, grains, vegetables, fruits, animal farms and aquaculture",US-NJ,2 Billion,7.4 K
+Other state and local government enterprises including transit and utilities,US-NJ,1.9 Billion,82.0
+Film and sound-based entertainment,US-NJ,1.7 Billion,4.5 K
+Furniture and shelving,US-NJ,1.3 Billion,6.5 K
+Federal electric utilities and postal service,US-NJ,1.1 Billion,15.7 K
+On-road vehicles (excluding motorcycles) and accompanying parts,US-NJ,1.1 Billion,2 K
+"Raw forest products, wild-caught fish and game, agriculture and forestry support",US-NJ,1 Billion,3.8 K
+Textiles and textile-dervied products (except clothes),US-NJ,939.4 Million,3.6 K
+"Water transport (boats, ships, ferries)",US-NJ,786.7 Million,1 K
+"Wood products (e.g. plywood, veneer)",US-NJ,723.5 Million,2.9 K
+"Metal ores, dimensional stone, nonmetallic minerals",US-NJ,687.6 Million,1.1 K
+Rail transport,US-NJ,622.9 Million,45.0
+"Other vehicles (e.g. aircraft, water vessels), missiles, and accompanying parts",US-NJ,615 Million,3.2 K
+Clothing and leather,US-NJ,608.9 Million,4.2 K
+Pipeline transport,US-NJ,386.5 Million,646
+"Scrap, used and secondhand goods",US-NJ,183.6 Million,215
+Unrefined oil and gas,US-NJ,163.3 Million,49.0
+Well drilling and support activities for mining,US-NJ,96.3 Million,231
+Noncomparable imports and rest-of-the-world adjustment,US-NJ,49.9 Million,7.0
