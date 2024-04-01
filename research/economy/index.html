@@ -48,13 +48,17 @@ function renderTable(locationID, locationFile) {
 }
 let fileEnding = "EEIOv1.0-s-20.csv";
 function initialLoad() {
-	let locationID = "ME";
+	let locationID = "US";
 	let hash = getHash();
 	if (hash.state) {
 		locationID = hash.state;
 	}
 	let locationFile = locationID + fileEnding;
-	renderTable(locationID, locationFile);
+	if (hash.state) {
+		renderTable(locationID, locationFile);
+ 	} else {
+ 		renderTable("US", "USEEIOv2.0.1-411.csv"); 
+ 	}
 }
 initialLoad();
 function hashChangedEconomy() {
@@ -63,7 +67,7 @@ function hashChangedEconomy() {
 		renderTable(hash.state, hash.state + fileEnding);
 	} else {
 		// To activate once USEEIOv2.0.1-411.csv generated.
-		// renderTable("US", "USEEIOv2.0.1-411.csv"); 
+		renderTable("US", "USEEIOv2.0.1-411.csv"); 
 	}
 }
 </script>
