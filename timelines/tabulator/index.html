@@ -119,11 +119,11 @@ function displayTabulators1() {
 
     var csvRoot = "https://model.earth/community-data/industries/naics/US/counties/";
     csvRoot = "/community-data/industries/naics/US/counties/";
-    var csvFile = csvRoot + "ME/US-ME-census-naics4-2020.csv";
+    var csvFile = csvRoot + "ME/US-ME-census-naics4-counties-2020.csv";
     
     hash = getHash();
     if (hash.state) {
-        csvFile = csvRoot + hash.state + "/US" + hash.state + "-census-naics4-2020.csv";
+        csvFile = csvRoot + hash.state + "/US" + hash.state + "-census-naics4-counties-2020.csv";
         $("#tabPageTitle").html(hash.state + " Industries 2020");
     }
 
