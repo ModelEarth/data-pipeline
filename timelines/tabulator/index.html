@@ -185,12 +185,16 @@ function displayTabulators2() {
 
                 // Find the matching industry detail based on relevant NAICS code
                 var matchedIndustry = industryData.find(function(industry) {
-                    return industry.relevant_naics === relevantNaics;
+                    // Trim the .0 from relevant_naics before comparing
+                    let trimmedRelevantNaics = industry.relevant_naics.replace(/\.0$/, '');
+                    return trimmedRelevantNaics === relevantNaics;
                 });
 
                 // Merge the matched industry detail into the table data row
                 if (matchedIndustry) {
                     row.Industry_Detail = matchedIndustry.industry_detail;
+                } else {
+                    row.Industry_Detail = "";
                 }
             });
 
@@ -212,10 +216,10 @@ console.log("Merged data:", data);
                 columns: [
                     {formatter:"rowSelection", titleFormatter:"rowSelection", hozAlign:"center", headerHozAlign:"center", width:10, headerSort:false, cellClick:function(e, cell){ cell.getRow().toggleSelect(); }},
                     {title:"NAICS", field:"Naics", maxWidth:80, editor:"input"},
-                    {title:"Industry Detail", field:"Industry_Detail", maxWidth:150, editor:"input"},
+                    {title:"Industry Detail", field:"Industry_Detail", maxWidth:200, editor:"input"},
                     {title:"Establishments", field:"Establishments", hozAlign:"right", maxWidth:150, editor:"input"},
                     {title:"Establishments", field:"Establishments", hozAlign:"left", formatter:"progress", editor:true, cssClass:"tabulatorBar"},
-                    {title:"Employees", field:"Employees", hozAlign:"right", maxWidth:100, editor:"input"},
+                    {title:"Employees", field:"Employees", hozAlign:"right", maxWidth:120, editor:"input"},
                     {title:"Payroll", field:"Payroll", hozAlign:"right", maxWidth:100, editor:"input"},
                 ]
             });
