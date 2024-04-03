@@ -289,12 +289,7 @@ function table4Display() {
         movableColumns: true,
         resizableRows: true,
         columns: [
-            { title: "Naics", field: "Naics" },
-            { title: "2017", field: "Establishments2017" },
-            { title: "2018", field: "Establishments2018" },
-            { title: "2019", field: "Establishments2019" },
-            { title: "2020", field: "Establishments2020" },
-            { title: "2021", field: "Establishments2021" },
+            { title: "Year", field: "Year", headerSort: false },
         ],
     });
 
@@ -310,25 +305,30 @@ function table4Display() {
                 console.log("Census File loaded for " + year + ". " + csvFile);
                 console.log(data);
 
+                let naicsValues = new Set();
                 data.forEach(function (row) {
-                    let existingRow = tableData.find(function (r) {
-                        return r.Naics === row.Naics;
-                    });
-
-                    if (!existingRow) {
-                        existingRow = { Naics: row.Naics };
-                        tableData.push(existingRow);
-                    }
-
-                    existingRow["Establishments" + year] = row.Establishments;
+                    naicsValues.add(row.Naics);
                 });
 
-                table4count += data.length - 1;
-                $("#table4_totalcount").remove();
-                let totalcount_div = Object.assign(document.createElement('div'), { id: "table4_totalcount", style: "margin-bottom:10px" });
-                $("#table4-count").append(totalcount_div);
-                totalcount_div.innerHTML = table4count + " rows";
+                let yearRow = { Year: year };
+                Array.from(naicsValues).forEach(naics => {
+                    let establishments = data.reduce((sum, row) => {
+                        if (row.Naics === naics) {
+                            return sum + parseInt(row.Establishments, 10);
+                        }
+                        return sum;
+                    }, 0);
+                    yearRow[naics] = establishments;
+                });
 
+                tableData.push(yearRow);
+
+                let newColumns = [
+                    { title: "Year", field: "Year", headerSort: false },
+                    ...Array.from(naicsValues).map(naics => ({ title: naics, field: naics, headerSort: false }))
+                ];
+
+                table4.setColumns(newColumns);
                 table4.setData(tableData);
 
                 loadYearFiles(year + 1);
