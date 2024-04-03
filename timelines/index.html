@@ -34,9 +34,6 @@ hr {
 	// my.chartType = "timeline"; // Or chord, sankey, graph
 	loadEarthScape(my);
 </script>
-
-
-
 </head>
 
 <body>
@@ -55,17 +52,20 @@ hr {
 	Includes population, for each industry: employees, establishments, payroll<br>
 	<a href="/RealityStream/">For RealityStream models</a> - UrbanDensity (Population over 1500 people/sqkm)<br><br>
 
+	<script>
+		my = {};
+		let timelineDataroot2 = "https://raw.githubusercontent.com/ModelEarth/community-timelines/main/training/naics2/US/counties/";
+		my.dataset = timelineDataroot2 + "2021/US-ME-training-naics2-counties-2021.csv";
+		my.elementID = "earthscape2";
+		// my.chartType = "timeline"; // Or chord, sankey, graph
+		loadEarthScape(my);
+	</script>
 	<div id="earthscape2" style="overflow-x: auto;;"></div><br>
+
 	Source: <a href="https://github.com/ModelEarth/community-timelines/tree/main/training">community-timelines/training</a>
 	<br>
-	<script>
-		let my2 = {};
-		let timelineDataroot2 = "https://raw.githubusercontent.com/ModelEarth/community-timelines/main/training/naics2/US/counties/";
-		my2.dataset = timelineDataroot2 + "2021/US-ME-training-naics2-counties-2021.csv";
-		my2.elementID = "earthscape2";
-		// my.chartType = "timeline"; // Or chord, sankey, graph
-		loadEarthScape(my2);
-	</script>
+	Also see our Tabulator example of <a href="tabulator">pivoting year files into rows (table 4)</a>.
+	
 
 </div>
 
