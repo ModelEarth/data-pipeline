@@ -134,6 +134,8 @@ function displayTabulators1() {
         console.log("Year " + i);
     }
 
+    // Needs work, appends empty rows
+    /*
     let yearRecords = [];
     loadScript(theroot + 'js/d3.v5.min.js', function(results) {
         waitForVariable('customD3loaded', function() {
@@ -147,12 +149,13 @@ function displayTabulators1() {
                     // TO DO: Append each year to an array of year rows called yearRecords
 
                     // TO DO:  Append each year to an array of year rows asynchronously as file loads.
-                    table2.setData(data);
+                    table1.setData(data);
                 });
             // 
             // End year loop
         });
     });
+    */
 }
 displayTabulators1();
 
@@ -281,7 +284,6 @@ function table4Display() {
     var tableData = [];
 
     var table4 = new Tabulator("#timeline-table", {
-        layout: "fitColumns",
         maxHeight: "500px",
         addRowPos: "top",
         history: true,
