@@ -1,5 +1,16 @@
 [Timelines ML](../../) 
 
+TO DO: Try running CORS with the following to fix the SQLite file not found error.
+
+From <a href="https://github.com/modelearth/useeio.js">useeio.js repo instructions</a><br>
+
+	npm install http-server -g<br><br>
+
+host the data folder on port 8080, allowing CORS<br>
+
+	http-server ./data -p 8080 --cors
+
+
 The timeline chart is [React Recharts D3](https://recharts.org/en-US/storybook)
 Defined in phiresky's [FtsDemo.tsx TypeScript](https://github.com/phiresky/blog/blob/master/client/sqlite-httpvfs/FtsDemo.tsx)
 
