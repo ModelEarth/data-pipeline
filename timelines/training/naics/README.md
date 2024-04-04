@@ -32,7 +32,7 @@ Example: US state 12, county 345 would be US12345
 [RealityStream](https://github.com/ModelEarth/RealityStream) - Logistic Regression, Random Forest and Support Vector Machines
 
 
-TO DO: Format RealityStream's [output for Job descriptions](/RealityStream/output/jobs/) - Honglin
+TO DO: Format RealityStream's [Output for Bee Populations](/RealityStream/output/bees/)
 TO DO: Document how to use Data Loaders in [Data-Commons](/data-commons/) and charts in [ObservableHQ.com Desktop](https://ObservableHQ.com) - Anna
 TO DO: Apply target to Industry FIPS on-the-fly with Javascript - [Industry data and bees](/RealityStream/models/Location-Forest/)
 TO DO: Apply target to Industry FIPS using your [goal data](/data-commons/dist/) in our [Observable Data Commons](/data-commons/).
