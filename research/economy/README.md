@@ -15,6 +15,10 @@ To run JobsD+q-2csv.py
 	python JobsD+q-2csv.py
 
 
+TO DO: When clicking an "easy" column (Output or Jobs), sort on prior column. Then hide "Commodities" and "Employees" above.
+
+An alternative approach would be to sort and then convert the cell display to the "easy" format.
+
 TO DO: We'll omit Rest of US (RoUS) rows, but first let's document why RoUS values differ from US output.
 
 TO DO: Add notes regarding which commodities are excluded (small business, gov, etc.)
