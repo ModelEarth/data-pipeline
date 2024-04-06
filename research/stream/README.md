@@ -1,3 +1,7 @@
+<video width="100%" style="max-width:280px;float:right" controls>
+<source src="videos/ME-biking1.mp4" type="video/mp4">
+</video>
+
 [Active Projects](/io/) 
 
 # Image Generation
@@ -5,6 +9,8 @@
 [Storyboards from prompts in CSV file](/replicate)
 - [Gallery from GitHub (JQuery)](/replicate/images/)
 - [Gallery from GitHub (React)](/replicate/gallery/view/)
+
+The video to the right was assembled in CapCut. Music was added there also.
 
 ---
 [AI Community Visualizations](../) | [Fork on GitHub](https://github.com/modelearth/replicate/) | [Bee the Predictor](/RealityStream/input/bees/)
