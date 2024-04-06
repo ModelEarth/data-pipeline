@@ -2,12 +2,12 @@
 
 # Image Generation
 
-[Replicate from prompts in CSV file](/replicate)
+[Storyboards from prompts in CSV file](/replicate)
 - [Gallery from GitHub (JQuery)](/replicate/images/)
 - [Gallery from GitHub (React)](/replicate/gallery/view/)
 
 ---
-[AI Community Visualizations](../) | [Fork on GitHub](https://github.com/modelearth/replicate/)
+[AI Community Visualizations](../) | [Fork on GitHub](https://github.com/modelearth/replicate/) | [Bee the Predictor](/RealityStream/input/bees/)
 <!--
 ## AI Images Generated from Replicate API
 
