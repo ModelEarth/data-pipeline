@@ -30,24 +30,14 @@ Example: US state 12, county 345 would be US12345
 
 ### Our RealityStream ML Forecasting Models
 [RealityStream](https://github.com/ModelEarth/RealityStream) - Logistic Regression, Random Forest and Support Vector Machines
+[Industry Features for RealityStream Testing (Maine Naics2 Counties 2021)](https://github.com/ModelEarth/community-timelines/blob/main/training/naics2/US/counties/2021/US-ME-training-naics2-counties-2021.csv)
 
-
-TO DO: Format RealityStream's [Output for Bee Populations](/RealityStream/output/bees/)
+TO DO: Add industry titles to RealityStream's [Output for Bee Populations](/RealityStream/output/bees/) - Irene
 TO DO: Document how to use Data Loaders in [Data-Commons](/data-commons/) and charts in [ObservableHQ.com Desktop](https://ObservableHQ.com) - Anna
-TO DO: Apply target to Industry FIPS on-the-fly with Javascript - [Industry data and bees](/RealityStream/models/Location-Forest/)
-TO DO: Apply target to Industry FIPS using your [goal data](/data-commons/dist/) in our [Observable Data Commons](/data-commons/).
+TO DO: Apply target to [Industry FIPS](https://github.com/ModelEarth/community-timelines/blob/main/training/naics2/US/counties/2021/US-ME-training-naics2-counties-2021.csv) on-the-fly with Javascript - [Industry data and bees](/RealityStream/models/Location-Forest/)
+TO DO: Generate target .CSV with FIPS or count using [goal data](/data-commons/dist/) in our [Observable Data Commons](/data-commons/).
+TO DO: Tree Canopy Target Data from [GDC Forest Cover](https://datacommons.org/explore/#q=US+counties+forest+cover+percent&client=ui_query) using Data Pull - Jing
 
-
-[Facebook Prophet](https://github.com/ModelEarth/prophet/) - Upload time series dataset to train, evaluate and optimize forecasting models in a few clicks.
-
-[Learn more at facebook.github.io/prophet](https://facebook.github.io/prophet/)
-Prophet is robust to outliers, missing data, and dramatic time series changes
-Prophet works best with time series that have strong seasonal effects.
-
-
-<div style="background:#fff; padding:20px; max-width:1000px">
-  <img src="input_format.png" style="width:100%;"><br>
-</div>
 
 ## Bee/Tree/Poverty as Target Column (y=1)
 
@@ -100,6 +90,21 @@ END
 
 AS y -- the povertyBinary for >= 2% in coming year, and no decline for current year.
 -->
+
+## Facebook Prophet
+
+TO DO: Pull [industry timeline data for all states](https://github.com/ModelEarth/community-timelines/) into our Facebook Prophet fork. Test with one state first.
+
+[Facebook Prophet](https://github.com/ModelEarth/prophet/) - Upload time series dataset to train, evaluate and optimize forecasting models in a few clicks.
+
+[Learn more at facebook.github.io/prophet](https://facebook.github.io/prophet/)
+Prophet is robust to outliers, missing data, and dramatic time series changes
+Prophet works best with time series that have strong seasonal effects.
+
+
+<div style="background:#fff; padding:20px; max-width:1000px">
+  <img src="input_format.png" style="width:100%;"><br>
+</div>
 
 
 ## Recent Projects
