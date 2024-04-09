@@ -29,7 +29,7 @@ Example: US state 12, county 345 would be US12345
 ---
 
 ### Our RealityStream ML Forecasting Models
-[RealityStream](https://github.com/ModelEarth/RealityStream) - Logistic Regression, Random Forest and Support Vector Machines
+[RealityStream](/RealityStream) - Logistic Regression, Random Forest and Support Vector Machines
 [Industry Features for RealityStream Testing (Maine Naics2 Counties 2021)](https://github.com/ModelEarth/community-timelines/blob/main/training/naics2/US/counties/2021/US-ME-training-naics2-counties-2021.csv)
 
 TO DO: Add industry titles to RealityStream's [Output for Bee Populations](/RealityStream/output/bees/) - Irene
