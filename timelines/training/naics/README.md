@@ -124,11 +124,9 @@ View source files on GitHub: [industries/naics/US/counties/ME](https://github.co
 
 ### Output Timeline Files
 
-DONE - CoLab link at the top of this page. Project Contact: Ronan
+DONE - Output one row per location (county) with columns for all naics4 industries with 3 attributes.
 
-Output: One row per location (county) with columns for all naics4 industries with 3 attributes.
-
-[prep/industries](../../prep/industries/)
+[prep/industries](../../prep/industries/) Project Contact: Ronan
 
 <!--
 Attributes:
@@ -160,15 +158,14 @@ The following attribute names are equivalent:
 Firms = Establishments
 People = Employees
 Pay = Payroll
--->
+
+
+
+
+### Display results of Random Forest
 
 As a reference, the prior structure for zcta (zip code) training data was:
 Zcta, JobsTotal, JobsAgriculture, JobsEntertainment, Population, Poverty, PovertyUnder18, Education, WorkExperience, y
 
-
----
-<br>
-
-### Display results of Random Forest
-
 Sample from prior zcta process:
+-->
