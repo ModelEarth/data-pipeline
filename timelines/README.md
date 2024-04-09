@@ -6,7 +6,7 @@
 [Random Forest Prep](prep/all/) - [RBF](/RealityStream/output/blinks/) - Sijia
 
 [RealityStream - ML Classification Models](/RealityStream)
-Targets: Bees, Jobs, Blinks, [Prosperity](/RealityStream/output/prosperity/)
+Targets: Jobs, Bees, Blinks, [Industries](/RealityStream/input/industries/)
 
 [Tabulators using Javascript](tabulator/) - Rupesh
 [Industries Timeline Data Prep](prep/industries/) - Ronan

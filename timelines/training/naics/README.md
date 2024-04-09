@@ -3,7 +3,10 @@
 # NAICS Training Data for ML
 
 North American Industry Classification System (NAICS)
+
 TO DO: [Update NAICS source files to include zip code data (ZTCA)](/data-pipeline/industries/naics/)
+
+TO DO: [Send industries data to Random Bits Forest](/RealityStream/input/industries/)
 <!--
 We're creating a new Random Forest process informed [by the prior zip code zcta process](../../prep/all)
 -->
