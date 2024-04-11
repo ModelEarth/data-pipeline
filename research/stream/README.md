@@ -13,7 +13,7 @@
 The video to the right was assembled in CapCut. Music was added there also.
 
 ---
-[AI Community Visualizations](../) | [Fork on GitHub](https://github.com/modelearth/replicate/) | [Bee the Predictor](/RealityStream/input/bees/)
+[Storyboard Generator](../) | [Fork on GitHub](https://github.com/modelearth/replicate/) | [Bee the Predictor](/RealityStream/input/bees/)
 <!--
 ## AI Images Generated from Replicate API
 
