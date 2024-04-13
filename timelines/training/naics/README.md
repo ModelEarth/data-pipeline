@@ -8,6 +8,8 @@ TO DO: [Update NAICS source files to include zip code data (ZTCA)](/data-pipelin
 
 TO DO: [Send industries data to Random Bits Forest](/RealityStream/input/industries/)
 <!--
+Lily, Sijia, Alison, Irene, Honglin, Ronan, Luwei, Wenxi, Magie
+
 We're creating a new Random Forest process informed [by the prior zip code zcta process](../../prep/all)
 -->
 

@@ -1,4 +1,4 @@
-[Active Projects](../../../io/)
+[Active Projects](../../../projects/)
 
 # Timeline Data Samples
 

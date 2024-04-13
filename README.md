@@ -1,7 +1,7 @@
 [Community Data](/community-data/)
 # Data Pipeline
 
-[Our Community Data Repo](/community-data/) contains state, county and zip code data generated for regional [Industry&nbsp;IO&nbsp;Charts](https://model.earth/localsite/info/), [Map&nbsp;Topics](#appview=topics&geoview=country) and [timelines](timelines). &nbsp;View our [Active Projects](/io/) and [Our Data Commons](/data-commons/dist/).
+[Our Community Data Repo](/community-data/) contains state, county and zip code data generated for regional [Industry&nbsp;IO&nbsp;Charts](https://model.earth/localsite/info/), [Map&nbsp;Topics](#appview=topics&geoview=country) and [timelines](timelines). &nbsp;View our [Active Projects](/projects/) and [Our Data Commons](/data-commons/dist/).
 
 Our implementation of the [US EPA Industry Input-Output Charts](../io/charts/) uses static json files containing [USEEIO API data](https://github.com/modelearth/io/tree/main/build/api) for fast page loads.
 
