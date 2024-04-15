@@ -4,7 +4,7 @@
 
 North American Industry Classification System (NAICS)
 
-TO DO: [Update NAICS source files to include zip code data (ZTCA)](/data-pipeline/industries/naics/)
+TO DO: [Update NAICS source files to include zip code data (ZTCA)](/data-pipeline/industries/naics/) - Aashish
 
 TO DO: [Send industries data to Random Bits Forest](/RealityStream/input/industries/)
 <!--

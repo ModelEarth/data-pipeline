@@ -8,7 +8,7 @@
 - [Counties](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/counties)
 - [Zip](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/zip) - coming soon
 
-In Progress: We'll be sending 50 states files to the zip folder above. We'll use the same naics-annual.ipynb python used to generate the country, states and counties files. 
+In Progress (Aashish): We'll be sending 50 states files to the zip folder above. We'll use the same naics-annual.ipynb python used to generate the country, states and counties files. 
 
 A parameter called "loclevel" will be added to toggle to the zip code output so we can reuse the exiting naics-annual.ipynb file.
 <br>
