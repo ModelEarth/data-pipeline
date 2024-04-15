@@ -2,13 +2,22 @@
 
 # Process Industries
 
-For States, Counties and Zip Codes
+[Our Community Datasets](http://model.earth/community-data/) for industries reside in:
+- [Country](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/country)
+- [States](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/states)
+- [Counties](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/counties)
+- [Zip](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/zip) - coming soon
 
-TO DO: Send 50 state files to /community-data/industries/naics/US/country
+In Progress: We'll be sending 50 states files to the zip folder above. We'll use the same naics-annual.ipynb python used to generate the country, states and counties files. 
+
+A parameter called "loclevel" will be added to toggle to the zip code output so we can reuse the exiting naics-annual.ipynb file.
+<br>
 
 ### NAICS Zip Code data
 
-Starting with 2019, [ZIP Codes Business Patterns (ZBP)](https://www.census.gov/data/developers/data-sets/cbp-zbp/zbp-api.html) are available in the County Business Patterns (CBP) API which we also use for state and county naics processing.  [Process zips code zcta prior to 2019](/community-data/process/naics/)
+Starting with 2019, [ZIP Codes Business Patterns (ZBP)](https://www.census.gov/data/developers/data-sets/cbp-zbp/zbp-api.html) are available in the County Business Patterns (CBP) API that use for state and county naics processing.
+
+[Processing for zips codes prior to 2019](/community-data/process/naics/)
 
 
 ### County Business Patterns (CBP)
@@ -60,21 +69,14 @@ US36005-census-naics6-2020.csv for a single county. Not needed currently. -->
 
 **For Industry Comparisons**
 
-We send the annual naics files to: /community-data/industries/naics/us/counties-update/
-Following local review, we manually move to: [/community-data/industries/naics/us/counties/](/community-data/industries/naics/us/counties/)
+We'll initially send the annual zip code files to: /community-data/industries/naics/us/zip-update/
+Following local review, we'll manually move to: [/community-data/industries/naics/us/zip/](/community-data/industries/naics/us/zip/)
 
-For each year, there are 3 for the US, and 6 for each state:  
+For each year, there will be 3 zip code files for each state:  
 
-US/country/US-census-naics2-2023.csv
-US/country/US-census-naics4-2023.csv
-US/country/US-census-naics6-2023.csv
-
-US/counties/NY/US-NY-census-naics2-2023.csv
-US/counties/NY/US-NY-census-naics4-2023.csv
-US/counties/NY/US-NY-census-naics6-2023.csv
-US/counties/NY/US-NY-census-naics2-counties-2023.csv
-US/counties/NY/US-NY-census-naics4-counties-2023.csv
-US/counties/NY/US-NY-census-naics6-counties-2023.csv
+US/zip/NY/US-NY-census-naics2-zip-2023.csv
+US/zip/NY/US-NY-census-naics4-zip-2023.csv
+US/zip/NY/US-NY-census-naics6-zip-2023.csv
 
 <!--
 Here are the 4 year old files we're eliminating:
@@ -134,7 +136,7 @@ Open Jupyter Notebook with this command then click naics-annual.ipynb and run ea
 	cd data-pipeline/industries/naics &&
 	jupyter-notebook
 
-Or you can run [naics-annual.ipynb](process/python/naics-annual.ipynb) from the command line:  
+Or you can run [naics-annual.ipynb](naics-annual.ipynb) from the command line:  
 
 	cd data-pipeline/industries/naics &&
 	jupyter nbconvert --to notebook --inplace --execute naics-annual.ipynb
