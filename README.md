@@ -1,7 +1,7 @@
 [Community Data](/community-data/)
 # Data Pipeline
 
-[Our Community Datasets Repo](/community-data/) contains state, county and zip code data generated for regional [ML&nbsp;Timelines](timelines) and [Industry&nbsp;IO&nbsp;Charts](https://model.earth/localsite/info/)<!--[Map&nbsp;Topics](#appview=topics&geoview=country)-->.
+[Our Community Datasets](/community-data/) and [Community Timelines Repo](https://github.com/modelearth/community-timelines/) contain state, county and zip code data generated for regional [ML&nbsp;Timelines for Forecasting](timelines) and [Industry&nbsp;Supply-Chain IO&nbsp;Charts](https://model.earth/localsite/info/)<!--[Map&nbsp;Topics](#appview=topics&geoview=country)-->.
 
 View our [Active Projects](/projects/) and our [Observable Data Commons Dev](/data-commons/dist/).
 
@@ -9,7 +9,7 @@ Our implementation of the [US EPA Industry Input-Output Charts](../io/charts/) u
 
 We are working toward adding a [Requests Agent](/requests/) to [Open WebUI](/projects/src) and [Earthscape](/earthscape/app).
 
-[Learn about the three APIs](/io/coders) were are combining for requests: FDA, See Click Fix, Open Collective
+[Learn about the three APIs](/io/coders) we are combining for requests: [FDA](/data-commons/docs/food/), See Click Fix, Open Collective
 
 <!--
     12-digit FIPS Code - state, county, tract, block group
