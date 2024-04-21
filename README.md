@@ -1,22 +1,27 @@
 [Community Data](/community-data/)
 # Data Pipeline
 
-[Our Community Datasets Repo](/community-data/) contains state, county and zip code data generated for regional [Industry&nbsp;IO&nbsp;Charts](https://model.earth/localsite/info/), [Map&nbsp;Topics](#appview=topics&geoview=country) and [timelines](timelines). &nbsp;View our [Active Projects](/projects/) and [Our Data Commons](/data-commons/dist/).
+[Our Community Datasets Repo](/community-data/) contains state, county and zip code data generated for regional [ML&nbsp;Timelines](timelines) and [Industry&nbsp;IO&nbsp;Charts](https://model.earth/localsite/info/)<!--[Map&nbsp;Topics](#appview=topics&geoview=country)-->.
 
-Our implementation of the [US EPA Industry Input-Output Charts](../io/charts/) uses static json files containing [USEEIO API data](https://github.com/modelearth/io/tree/main/build/api) for fast page loads.
+View our [Active Projects](/projects/) and our [Observable Data Commons Dev](/data-commons/dist/).
 
+Our implementation of the [US EPA Industry Input-Output Charts](../io/charts/) uses static json files containing [USEEIO API data](https://github.com/modelearth/io/tree/main/build/api) for fast loading pages.
+
+We are working toward adding a [Requests Agent](/requests/) to [Open WebUI](/projects/src) and [Earthscape](/earthscape/app).
+
+[Learn about the three APIs](/io/coders) were are combining for requests: FDA, See Click Fix, Open Collective
 
 <!--
     12-digit FIPS Code - state, county, tract, block group
     https://www.policymap.com/2012/08/tips-on-fips-a-quick-guide-to-geographic-place-codes-part-iii/
---><br>
-
+-->
+<br>
 
 # Data Source and Integrations
 
 ## US Census - County Business Patterns (CBP)
 
-[We process annual US naics industry levels](industries/naics/)
+[We process annual US naics industry levels](timelines/)
 CSV files are saved for counties and states. Zip and country-wide files coming soon.
 Results are used to [compare local industries](../localsite/info)
 

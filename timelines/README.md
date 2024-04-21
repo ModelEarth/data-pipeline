@@ -19,6 +19,46 @@ The following two datasets are generated from our [community-data naics files](h
 Establishments, Employees, Payroll
 Timeline files are output to [community-timelines/industries](https://github.com/ModelEarth/community-timelines/tree/main/industries) by [naics-timelines.py](prep/industries/) - By Ronan
 
+
+<!--
+Attributes:
+Industry's Establishments per 1000 people
+Industry's Employees per 1000 people
+Industry's Average pay per Employee
+
+Python library pulls the county population by year.
+Let's also include the value of the center latitude and longitude.
+We could include the county name, then see if the model predicts differently without it.
+
+A file called columns.md could be output with a list of the column values:
+
+Fips
+Name
+Population
+Latitude
+Longitude
+Naics X Establishments per 1000
+Naics X Employees per 1000
+Naics X Average pay
+[repeat]
+
+
+Fips, N1111-Firms, N1111-People, N1111-Pay, N2222-Firms, N2222-People, N2222-Pay, ...
+
+The following attribute names are equivalent:
+
+Firms = Establishments
+People = Employees
+Pay = Payroll
+
+### Display results of Random Forest
+
+As a reference, the prior structure for zcta (zip code) training data was:
+Zcta, JobsTotal, JobsAgriculture, JobsEntertainment, Population, Poverty, PovertyUnder18, Education, WorkExperience, y
+
+Sample from prior zcta process:
+-->
+
 ### 2. Our FIPS Location Rows for Training (one file per year)
 Training files are output to [community-timelines/training](https://github.com/ModelEarth/community-timelines/tree/main/training) by python/ML-bkup.ipynb from [Our CoLab on Google](https://colab.research.google.com/drive/1wmJ3V9eqD8KbmBiP-hLeSstwOUt5iS2V?usp=sharing)  
 
@@ -125,61 +165,6 @@ https://model.earth/community-data/industries/naics/US/counties/ME/US-ME-census-
 View source files on GitHub: [industries/naics/US/counties/ME](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/counties/ME)
 
 ---
-
-
-### Output Timeline Files
-
-DONE - Output one row per location (county) with columns for all naics4 industries with 3 attributes.
-
-[prep/industries](../../prep/industries/) Project Contact: Ronan
-
-<!--
-Attributes:
-Industry's Establishments per 1000 people
-Industry's Employees per 1000 people
-Industry's Average pay per Employee
-
-Python library pulls the county population by year.
-Let's also include the value of the center latitude and longitude.
-We could include the county name, then see if the model predicts differently without it.
-
-A file called columns.md could be output with a list of the column values:
-
-Fips
-Name
-Population
-Latitude
-Longitude
-Naics X Establishments per 1000
-Naics X Employees per 1000
-Naics X Average pay
-[repeat]
-
-
-Fips, N1111-Firms, N1111-People, N1111-Pay, N2222-Firms, N2222-People, N2222-Pay, ...
-
-The following attribute names are equivalent:
-
-Firms = Establishments
-People = Employees
-Pay = Payroll
-
-
-
-
-### Display results of Random Forest
-
-As a reference, the prior structure for zcta (zip code) training data was:
-Zcta, JobsTotal, JobsAgriculture, JobsEntertainment, Population, Poverty, PovertyUnder18, Education, WorkExperience, y
-
-Sample from prior zcta process:
--->
-
-
-
-
-
-
 
 # Annual Industry and Census Data Timelines
 
