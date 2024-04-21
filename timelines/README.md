@@ -156,13 +156,13 @@ Prophet works best with time series that have strong seasonal effects.
 
 ### Prepare Python that loads naics data into Pandas for 2017 to 2021 for Maine
 
-DONE - Project Contacts: Yanqing (Lily) and Sijia
+Project Contacts: Sijia and Yanqing (Lily)
 
-Source files. Load these directly from the URL into Pandas.
+View source files on GitHub: [industries/naics/US/counties/](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/counties/ME)
 
-https://model.earth/community-data/industries/naics/US/counties/ME/US-ME-census-naics4-counties-2021.csv
+[Our CoLab](https://colab.research.google.com/drive/1HJnuilyEFjBpZLrgxDa4S0diekwMeqnh?usp=sharing) loads all years. (Backup: [prep/industries/naics-all-years-bkup.ipynb]modelearth/data-pipeline/timelines/prep/industries/naics-all-years-bkup.ipynb)
 
-View source files on GitHub: [industries/naics/US/counties/ME](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/counties/ME)
+Output resides at [community-timelines/training/all-year-factors](https://github.com/ModelEarth/community-timelines/tree/main/training/all-year-factors)
 
 ---
 
