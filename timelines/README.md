@@ -2,42 +2,30 @@
 
 # Timelines for Forecasting
 
-We have TO DO projects listed throughout this page for our ML team.
+TO DO projects are listed throughout this page for our ML team.
 
-Our Machine Learning development resides in [RealityStream](/RealityStream).
+Our Machine Learning forecasting models reside in [RealityStream](/RealityStream).
+
+ML Team: Sijia, Lily, Irene, Honglin, Ronan, Luwei, Wenxi, Magie, Ivy, Aashish
 
 
 ## NAICS Training Data for ML
 
 North American Industry Classification System (NAICS)
-
-
-<!--
-
-
-We're creating a new Random Forest process informed [by the prior zip code zcta process](../../prep/all)
--->
-
-<!--
-Our ML Group - Sijia, Kargil, Alison, Irene, Honglin, Ronan, Lily, Luwei, Wenxi, Magie and more.
--->
-
-Two data structures are generated from our [community-data industry source files](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US).
+The following two datasets are generated from our [community-data naics files](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US).
 
 
 ### 1. Our Year Rows for Timelines (years 2017 to 2021)
 Establishments, Employees, Payroll
-
-Timeline files are output to [community-timelines/industries](https://github.com/ModelEarth/community-timelines/tree/main/industries) by [naics-timelines.py](../../prep/industries/) - By Ronan
+Timeline files are output to [community-timelines/industries](https://github.com/ModelEarth/community-timelines/tree/main/industries) by [naics-timelines.py](prep/industries/) - By Ronan
 
 ### 2. Our FIPS Location Rows for Training (one file per year)
 Training files are output to [community-timelines/training](https://github.com/ModelEarth/community-timelines/tree/main/training) by python/ML-bkup.ipynb from [Our CoLab on Google](https://colab.research.google.com/drive/1wmJ3V9eqD8KbmBiP-hLeSstwOUt5iS2V?usp=sharing)  
 
-ML Team: Sijia, Lily, Irene, Honglin, Ronan, Luwei, Wenxi, Magie, Ivy, Aashish
 
 Our IDs for States and counties = Federal Information Processing Standard (FIPS)  
 Our "geo" hash value appends the country to the front of FIPS.  
-Example: US state 12, county 345 would be US12345
+Example: US12345 (US state 12, county 345)
 
 TO DO: [Send industries data to Random Bits Forest](/RealityStream/input/industries/)
 
