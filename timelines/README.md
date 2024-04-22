@@ -160,7 +160,7 @@ Project Contacts: Sijia and Yanqing (Lily)
 
 View source files on GitHub: [industries/naics/US/counties/](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/counties/ME)
 
-[Our CoLab](https://colab.research.google.com/drive/1HJnuilyEFjBpZLrgxDa4S0diekwMeqnh?usp=sharing) loads all years. (Backup: [prep/industries/naics-all-years-bkup.ipynb]modelearth/data-pipeline/timelines/prep/industries/naics-all-years-bkup.ipynb)
+[Our CoLab](https://colab.research.google.com/drive/1HJnuilyEFjBpZLrgxDa4S0diekwMeqnh?usp=sharing) loads all years. Backup: [prep/industries/naics-all-years-bkup.ipynb](https://github.com/ModelEarth/data-pipeline/blob/main/timelines/prep/industries/naics-all-years-bkup.ipynb)
 
 Output resides at [community-timelines/training/all-year-factors](https://github.com/ModelEarth/community-timelines/tree/main/training/all-year-factors)
 
