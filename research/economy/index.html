@@ -37,38 +37,9 @@ hr {
 document.addEventListener('hashChangeEvent', function (elem) {
     hashChangedEconomy();
 }, false);
-function renderTable(locationID, locationFile) {
-	let my = {};
-	let folderPath = "states/commodities/2020/";
-	my.dataset = folderPath + locationFile;
-	my.elementID = "earthscape1";
-	// my.chartType = "timeline"; // Or chord, sankey, graph
-	loadEarthScape(my);
-	if (document.readyState !== 'loading') {
-		const elem = document.getElementById("stateName");
-		elem.textContent = locationID;
-	} else {
-		document.addEventListener("DOMContentLoaded", function(event) { // Doc Ready
-			const elem = document.getElementById("stateName");
-			elem.textContent = locationID;
-		});
-	}
-}
+
 let fileEnding = "EEIOv1.0-s-20.csv";
-function initialLoad() {
-	let locationID = "US";
-	let hash = getHash();
-	if (hash.state) {
-		locationID = hash.state;
-	}
-	let locationFile = locationID + fileEnding;
-	if (hash.state) {
-		renderTable(locationID, locationFile);
- 	} else {
- 		renderTable("US", "USEEIOv2.0.1-411.csv"); 
- 	}
-}
-initialLoad();
+
 function hashChangedEconomy() {
 	let hash = getHash();
 	if (hash.state) {
@@ -78,6 +49,95 @@ function hashChangedEconomy() {
 		renderTable("US", "USEEIOv2.0.1-411.csv"); 
 	}
 }
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const table = new Tabulator("#earthscape1", {
+        layout: "fitColumns",
+        columns: [
+            { title: "Commodity", field: "Commodity" },
+            { title: "Location", field: "Location" },
+            { title: "Commodities", field: "Commodities" },
+            {
+                title: "Output",
+                field: "Output",
+                headerSort: true,
+                sorter: (a, b, aField, aRow, bRow, desc) => {
+                    const sortResult = parseFloat(a) - parseFloat(b);
+                    table.hideColumn("Commodities");
+                    table.hideColumn("Employees");
+                    return sortResult;
+                }
+            },
+            { title: "Employees", field: "Employees", headerSort: true },
+            {
+                title: "Jobs",
+                field: "Jobs",
+                headerSort: true,
+                sorter: (a, b, aField, aRow, bRow, desc) => {
+                    const sortResult = parseFloat(a) - parseFloat(b);
+                    table.hideColumn("Commodities");
+                    table.hideColumn("Employees");
+                    return sortResult;
+                }
+            }
+        ]
+    });
+
+    initialLoad(table);
+});
+
+function initialLoad(table) {
+    let locationID = "US";
+    let hash = getHash();
+    if (hash.state) {
+        locationID = hash.state;
+    }
+    let locationFile = hash.state ? locationID + fileEnding : undefined;
+    renderTable(table, locationID, locationFile);
+}
+
+function renderTable(table, locationID, locationFile) {
+    let folderPath = "states/commodities/2020/";
+    let dataset;
+
+    if (locationFile) {
+        dataset = folderPath + locationFile;
+    } else {
+        dataset = folderPath + "USEEIOv2.0.1-411.csv";
+    }
+
+    fetch(dataset)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.text();
+        })
+        .then(data => {
+            let rows = data.split('\n').slice(1); // Remove header row
+            let tableData = rows.map(row => {
+                let cols = row.split(',');
+                return {
+                    Commodity: cols[0],
+                    Location: cols[1],
+                    Commodities: cols[2],
+                    Output: cols[3],
+                    Employees: cols[4],
+                    Jobs: cols[5]
+                };
+            });
+
+            table.setData(tableData);
+
+            const elem = document.getElementById("stateName");
+            if (elem) {
+                elem.textContent = locationID;
+            }
+        })
+        .catch(error => console.error(error));
+}
+
 </script>
 
 </head>
