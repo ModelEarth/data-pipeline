@@ -34,27 +34,17 @@ hr {
 }
 </style>
 <script>
-document.addEventListener('hashChangeEvent', function (elem) {
-    hashChangedEconomy();
-}, false);
+
+
 
 let fileEnding = "EEIOv1.0-s-20.csv";
 
-function hashChangedEconomy() {
-	let hash = getHash();
-	if (hash.state) {
-		renderTable(hash.state, hash.state + fileEnding);
-	} else {
-		// To activate once USEEIOv2.0.1-411.csv generated.
-		renderTable("US", "USEEIOv2.0.1-411.csv"); 
-	}
-}
+let tabulatorTable; // Declare tabulatorTable variable in the global scope
 
-
-document.addEventListener("DOMContentLoaded", function() {
-    const table = new Tabulator("#earthscape1", {
-        layout: "fitColumns",
-        columns: [
+function initializeTabulator() {
+            tabulatorTable = new Tabulator("#earthscape1", {
+                layout: "fitColumns",
+                columns: [
             { title: "Commodity", field: "Commodity" },
             { title: "Location", field: "Location" },
             { title: "Commodities", field: "Commodities" },
@@ -64,8 +54,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 headerSort: true,
                 sorter: (a, b, aField, aRow, bRow, desc) => {
                     const sortResult = parseFloat(a) - parseFloat(b);
-                    table.hideColumn("Commodities");
-                    table.hideColumn("Employees");
+                    tabulatorTable.hideColumn("Commodities");
+                    tabulatorTable.hideColumn("Employees");
                     return sortResult;
                 }
             },
@@ -76,28 +66,34 @@ document.addEventListener("DOMContentLoaded", function() {
                 headerSort: true,
                 sorter: (a, b, aField, aRow, bRow, desc) => {
                     const sortResult = parseFloat(a) - parseFloat(b);
-                    table.hideColumn("Commodities");
-                    table.hideColumn("Employees");
+                    tabulatorTable.hideColumn("Commodities");
+                    tabulatorTable.hideColumn("Employees");
                     return sortResult;
                 }
             }
         ]
     });
 
-    initialLoad(table);
-});
+    initialLoad(tabulatorTable);
 
-function initialLoad(table) {
+	// Call hashChangedEconomy after the table is initialized
+    window.addEventListener("hashchange", hashChangedEconomy, false);
+    hashChangedEconomy();
+
+}
+
+function initialLoad(tabulatorTable) {
     let locationID = "US";
     let hash = getHash();
     if (hash.state) {
         locationID = hash.state;
     }
     let locationFile = hash.state ? locationID + fileEnding : undefined;
-    renderTable(table, locationID, locationFile);
+    renderTable(tabulatorTable, locationID, locationFile);
 }
 
-function renderTable(table, locationID, locationFile) {
+
+function renderTable(tabulatorTable, locationID, locationFile) {
     let folderPath = "states/commodities/2020/";
     let dataset;
 
@@ -128,7 +124,7 @@ function renderTable(table, locationID, locationFile) {
                 };
             });
 
-            table.setData(tableData);
+            tabulatorTable.setData(tableData);
 
             const elem = document.getElementById("stateName");
             if (elem) {
@@ -138,6 +134,30 @@ function renderTable(table, locationID, locationFile) {
         .catch(error => console.error(error));
 }
 
+
+function hashChangedEconomy() {
+    let hash = getHash();
+    if (hash.state) {
+        renderTable(tabulatorTable, hash.state, hash.state + fileEnding);
+    } else {
+        renderTable(tabulatorTable, "US", "USEEIOv2.0.1-411.csv");
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+            // Check if the Tabulator library is loaded
+            if (typeof Tabulator !== 'undefined') {
+                initializeTabulator();
+            } else {
+                // Wait for the Tabulator library to load
+                const script = document.createElement('script');
+                script.src = 'https://unpkg.com/tabulator-tables/dist/js/tabulator.min.js';
+                script.onload = initializeTabulator;
+                document.head.appendChild(script);
+            }
+        });
+
+		
 </script>
 
 </head>
