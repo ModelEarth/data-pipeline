@@ -42,32 +42,30 @@ let fileEnding = "EEIOv1.0-s-20.csv";
 let tabulatorTable; // Declare tabulatorTable variable in the global scope
 
 function initializeTabulator() {
-            tabulatorTable = new Tabulator("#earthscape1", {
-                layout: "fitColumns",
-                columns: [
+    tabulatorTable = new Tabulator("#earthscape1", {
+        layout: "fitColumns",
+        columns: [
             { title: "Commodity", field: "Commodity" },
             { title: "Location", field: "Location" },
-            { title: "Commodities", field: "Commodities" },
+            { title: "Commodities", field: "Commodities", visible: false }, // Hide "Commodities" column initially
             {
                 title: "Output",
                 field: "Output",
                 headerSort: true,
                 sorter: (a, b, aField, aRow, bRow, desc) => {
                     const sortResult = parseFloat(a) - parseFloat(b);
-                    tabulatorTable.hideColumn("Commodities");
-                    tabulatorTable.hideColumn("Employees");
+                    tabulatorTable.hideColumn("Commodities"); // Hide "Employees" column when sorting "Output"
                     return sortResult;
                 }
             },
-            { title: "Employees", field: "Employees", headerSort: true },
+            { title: "Employees", field: "Employees", visible: false, headerSort: true }, // Hide "Employees" column initially
             {
                 title: "Jobs",
                 field: "Jobs",
                 headerSort: true,
                 sorter: (a, b, aField, aRow, bRow, desc) => {
                     const sortResult = parseFloat(a) - parseFloat(b);
-                    tabulatorTable.hideColumn("Commodities");
-                    tabulatorTable.hideColumn("Employees");
+                    tabulatorTable.hideColumn("Employees"); // Hide "Employees" column when sorting "Jobs"
                     return sortResult;
                 }
             }
@@ -113,19 +111,20 @@ function renderTable(tabulatorTable, locationID, locationFile) {
         .then(data => {
             let rows = data.split('\n').slice(1); // Remove header row
             let tableData = rows.map(row => {
-                let cols = row.split(',');
+                let cols = row.match(/(?:[^",]+|"[^"]*")+/g); // Split row using regex to handle quotes and commas
+				if (!cols) return null; // Skip this row if cols is null
+                let commodity = cols[0].trim();
                 return {
-                    Commodity: cols[0],
+                    Commodity: commodity,
                     Location: cols[1],
                     Commodities: cols[2],
                     Output: cols[3],
                     Employees: cols[4],
                     Jobs: cols[5]
                 };
-            });
+            }).filter(Boolean);
 
             tabulatorTable.setData(tableData);
-
             const elem = document.getElementById("stateName");
             if (elem) {
                 elem.textContent = locationID;
@@ -157,7 +156,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
 
-		
+
 </script>
 
 </head>
