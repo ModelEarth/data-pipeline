@@ -47,23 +47,18 @@ function initializeTabulator() {
         columns: [
             { title: "Commodity", field: "Commodity" },
             { title: "Location", field: "Location" },
-            { title: "Commodities", field: "Commodities", visible: false }, // Hide "Commodities" column initially
-            {
-                title: "Output",
-                field: "Output",
-                headerSort: true,
+            { title: "Commodities", field: "Commodities", visible: false, dir: "desc" }, // Hide "Commodities" column initially
+            { title: "Output", field: "Output", headerSort: true, dir: "desc",
                 sorter: (a, b, aField, aRow, bRow, desc) => {
                     const sortResult = parseFloat(a) - parseFloat(b);
                     tabulatorTable.hideColumn("Commodities"); // Hide "Employees" column when sorting "Output"
                     return sortResult;
                 }
             },
-            { title: "Employees", field: "Employees", visible: false, headerSort: true }, // Hide "Employees" column initially
-            {
-                title: "Jobs",
-                field: "Jobs",
-                headerSort: true,
+            { title: "Employees", field: "Employees", visible: false, headerSort: true, dir: "desc" }, // Hide "Employees" column initially
+            { title: "Jobs", field: "Jobs", headerSort: true, dir: "desc",
                 sorter: (a, b, aField, aRow, bRow, desc) => {
+                	//console.log("jobs clicked");
                     const sortResult = parseFloat(a) - parseFloat(b);
                     tabulatorTable.hideColumn("Employees"); // Hide "Employees" column when sorting "Jobs"
                     return sortResult;
