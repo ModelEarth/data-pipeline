@@ -7,11 +7,11 @@ We calculate the upstream direct requirements, direct impacts, and direct downst
 
 To run JobsD+q-2csv.py
 
-	python3 -m venv env &&
-	source env/bin/activate &&
-	pip install numpy &&
-	pip install pandas &&
-	pip install requests &&
+	python3 -m venv env
+	source env/bin/activate
+	pip install numpy
+	pip install pandas
+	pip install requests
 	python JobsD+q-2csv.py
 
 

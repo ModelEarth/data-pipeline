@@ -113,8 +113,8 @@ you may need to run `pip install notebook` after installing Python.
 
 You may also need to create a virtual environment and install libraries.
 
-	python3 -m venv env &&
-	source env/bin/activate &&
+	python3 -m venv env
+	source env/bin/activate
 	pip install pandas  &&
 	pip install tqdm
 

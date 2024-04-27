@@ -82,7 +82,7 @@ Annual zcta_[year].SQL.txt files are overwritten by automate.py.
 
 Run in your virtual env:
 	
-	pip install pandas &&
+	pip install pandas
 	pip install scikit-learn
 
 1.) Change to the "python" subfolder, run Random Forest (uses python/runOneFile.py):

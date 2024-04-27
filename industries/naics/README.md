@@ -108,8 +108,8 @@ The Jupyter Notebook for industry data preparation resides in [naics-annual.ipyn
 In your webroot, create a virtual environment and install libraries.
 Using the root will allow you to send output to the community-data repo.
 
-	python3 -m venv env &&
-	source env/bin/activate &&
+	python3 -m venv env
+	source env/bin/activate
 	pip install pandas  &&
 	pip install tqdm
 
