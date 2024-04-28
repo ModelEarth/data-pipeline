@@ -3,10 +3,13 @@
 
 ## Datasets
 
+We're planning to pull data through CoLab so we can work directly with titles.
+Our example: [LandCoverFraction_Forest.py](/data-commons/docs/conservation/) and resulting .csv data.
+
+Alternative - Find a way to easily fetch the DCID values for UN Goal timeline datasets. 
 Pull from Google Data Commons using [REST](https://docs.datacommons.org/api/rest/v2/getting_started) and store with a [Observable Data Loader](https://observablehq.com/framework/loaders).
 
-These will be used to populate the y=1 value for our [naics training data](../../timelines/training/naics).
-
+Data is pulled in real-time in our [RealityStream](/RealityStream) project and combined in Pandas to populate the y=1 value for our [naics feature data](../../timelines/training/naics).
 
 
 <div style="overflow:auto; margin-top:0px; padding-right:50px">
@@ -30,3 +33,5 @@ These will be used to populate the y=1 value for our [naics training data](../..
   </div>
   
 </div>
+
+[RealityStream](/RealityStream)
