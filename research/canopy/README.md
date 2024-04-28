@@ -3,7 +3,7 @@
 
 ## Datasets
 
-We're planning to pull data through CoLab so we can work directly with titles.
+We're planning to pull data through a python CoLab so we can work directly with titles.
 Our example: [LandCoverFraction_Forest.py](/data-commons/docs/conservation/) and resulting .csv data.
 
 Alternative - Find a way to easily fetch the DCID values for UN Goal timeline datasets. 
