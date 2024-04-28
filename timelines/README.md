@@ -80,8 +80,8 @@ IN PROGRESS: [Update NAICS source files to include zip code data (ZTCA)](/data-p
 TO DO: Add industry titles to RealityStream's [Output for Bee Populations](/RealityStream/output/bees/) - Irene
 TO DO: Document how to use Data Loaders in [Data-Commons](/data-commons/) and charts in [ObservableHQ.com Desktop](https://ObservableHQ.com) - Anna
 TO DO: Apply target to [Industry FIPS](https://github.com/ModelEarth/community-timelines/blob/main/training/naics2/US/counties/2021/US-ME-training-naics2-counties-2021.csv) on-the-fly with Javascript - [Industry data and bees](/RealityStream/models/Location-Forest/)
-TO DO: Generate target .CSV with FIPS or count using [goal data](/data-commons/dist/) in our [Observable Data Commons](/data-commons/).
-TO DO: Tree Canopy Target Data from [GDC Forest Cover](https://datacommons.org/explore/#q=US+counties+forest+cover+percent&client=ui_query) using Data Pull - Jing
+TO DO: Pull target data with FIPS from our [UN goal data](/data-commons/dist/) config files. Document in our [Observable Data Commons](/data-commons/).
+TO DO: Merge Tree Canopy Target Data in our [Reality Stream Pandas](/RealityStream/input/industries/) from [GDC Forest Cover](/data-commons/docs/conservation/) using Data Pull - Jing
 
 
 ## Bee/Tree/Poverty as Target Column (y=1)
