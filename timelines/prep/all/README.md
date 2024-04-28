@@ -2,7 +2,7 @@
 
 # NAICS Timeline Data for ML
 
-Our recent work resides at [timelines/prep/](../../training/naics) and in [timelines/training/naics](../../training/naics)
+Our recent work resides at [timelines/prep/](../../prep/) and in [timelines/training/naics](../../training/naics)
 
 We're creating a new Random Forest process informed by this prior zip code zcta process.
 

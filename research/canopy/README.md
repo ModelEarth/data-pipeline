@@ -1,4 +1,4 @@
-[Training Data ML](../../timelines/training/naics/)
+[Training Data ML](../../timelines/)
 # Tree Canopy Data
 
 ## Datasets
@@ -6,9 +6,9 @@
 We're pulling Google Data Commons datasets through a python CoLab so we can work directly with titles rather than manually looking up DCID values. Our python example: [LandCoverFraction_Forest.py](/data-commons/docs/conservation/) and resulting .csv data.
 
 Alternative - Find a way to easily fetch the DCID values for UN Goal timeline datasets. 
-Pull from Google Data Commons using [REST](https://docs.datacommons.org/api/rest/v2/getting_started) and store with a [Observable Data Loader](https://observablehq.com/framework/loaders).
+Pull from Google Data Commons using [REST](https://docs.datacommons.org/api/rest/v2/getting_started) using client-side javascript.
 
-Data is pulled in real-time in our [RealityStream](/RealityStream) project and combined in Pandas to populate the y=1 value for our [naics feature data](../../timelines/training/naics).
+Data is pulled in real-time in our [RealityStream](/RealityStream) project and combined in Pandas to populate the y=1 value for our [naics feature data](../../timelines/).
 
 
 <div style="overflow:auto; margin-top:0px; padding-right:50px">

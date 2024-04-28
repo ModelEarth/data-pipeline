@@ -1,4 +1,4 @@
-[Training Data ML](../../timelines/training/naics/)
+[Training Data ML](../../timelines/)
 # Bee the Predictor (y=1 training data)
 
 ## Datasets
