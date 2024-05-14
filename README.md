@@ -3,7 +3,7 @@
 
 [Our Community Datasets](/community-data/) and [Community Timelines Repo](https://github.com/modelearth/community-timelines/) contain state, county and zip code data generated for regional [ML&nbsp;Timelines for Forecasting](timelines) and [Industry&nbsp;Supply-Chain IO&nbsp;Charts](https://model.earth/localsite/info/)<!--[Map&nbsp;Topics](#appview=topics&geoview=country)-->.
 
-View our [Active Projects](/projects/) and our [Observable Data Commons Dev](/data-commons/dist/).
+View our [Active Projects](/projects/) and our [Observable Framework Dev](/data-commons/dist/) for the [Google Data Commons API](https://docs.datacommons.org/api/).
 
 Our implementation of the [US EPA Industry Input-Output Charts](../io/charts/) uses static json files containing [USEEIO API data](https://github.com/modelearth/io/tree/main/build/api) for fast loading pages.
 

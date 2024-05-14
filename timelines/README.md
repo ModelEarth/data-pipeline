@@ -172,7 +172,7 @@ Targets: Jobs, Bees, Blinks, [Industries](/RealityStream/input/industries/)
 
 ## ADD DATA SOURCES
 
-[International Data from Google Data Commons API](../international/)
+[International Data from Google Data Commons API](../../../data-commons/)
 [Worldbank Development Indicators](https://github.com/phiresky/world-development-indicators-sqlite/) - by phiresky
 
 ## Time Regression Examples
