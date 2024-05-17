@@ -1,16 +1,33 @@
 [Active Projects](../../projects/)
 
-# Timelines for Forecasting
+# ML for Community Forecasting Timelines
 
-TO DO projects are listed throughout this page for our ML team.
+## Our RealityStream ML Forecasting Models
+
+[RealityStream](/RealityStream) - Logistic Regression, Random Forest and Support Vector Machines
+
+<!--
+[Industry Features for RealityStream Testing (Maine Naics2 Counties 2021)](https://github.com/ModelEarth/community-timelines/blob/main/training/naics2/US/counties/2021/US-ME-training-naics2-counties-2021.csv)
+-->
+
+TO DO: Apply target to [Industry FIPS](https://github.com/ModelEarth/community-timelines/blob/main/training/naics2/US/counties/2021/US-ME-training-naics2-counties-2021.csv) on-the-fly with Javascript - [Industry data and bees](/RealityStream/models/Location-Forest/)
+TO DO: Pull target data with FIPS from our [UN goal data](/data-commons/dist/) config files. Document in our [Observable Data Commons](/data-commons/).
+TO DO: Merge Tree Canopy Target Data in our [Reality Stream Pandas](/RealityStream/input/industries/) from [GDC Forest Cover](/data-commons/docs/conservation/) using Data Pull - Jing
+
 
 Our Machine Learning forecasting models reside in [RealityStream](/RealityStream).
-
+<!--
 ML Team: Sijia, Lily, Irene, Honglin, Ronan, Luwei, Wenxi, Magie, Ivy, Aashish
-
+-->
 [Basic timelines](earthscape/) - [Earthscape tabulator](training/naics/) - [Tabulator directly](tabulator/)
 
-## NAICS Training Data for ML
+GOAL: Pull y=1 target data from the Google Data Commons API using [REST](https://docs.datacommons.org/api/rest/v2/getting_started) to merge state and county data into our naics training data. 
+
+<!--
+We probably won't use [Observable Data Loaders](https://observablehq.com/framework/loaders) since they require pre-saving data.
+-->
+
+## NAICS Data for Community Features
 
 North American Industry Classification System (NAICS)
 The following two datasets are generated from our [community-data naics files](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US).
@@ -73,16 +90,7 @@ TO DO: [Send industries data to Random Bits Forest](/RealityStream/input/industr
 IN PROGRESS: [Update NAICS source files to include zip code data (ZTCA)](/data-pipeline/industries/naics/) - Aashish
 
 
-## Our RealityStream ML Forecasting Models
 
-[RealityStream](/RealityStream) - Logistic Regression, Random Forest and Support Vector Machines
-[Industry Features for RealityStream Testing (Maine Naics2 Counties 2021)](https://github.com/ModelEarth/community-timelines/blob/main/training/naics2/US/counties/2021/US-ME-training-naics2-counties-2021.csv)
-
-TO DO: Add industry titles to RealityStream's [Output for Bee Populations](/RealityStream/output/bees/) - Irene
-TO DO: Document how to use Data Loaders in [Data-Commons](/data-commons/) and charts in [ObservableHQ.com Desktop](https://ObservableHQ.com) - Anna
-TO DO: Apply target to [Industry FIPS](https://github.com/ModelEarth/community-timelines/blob/main/training/naics2/US/counties/2021/US-ME-training-naics2-counties-2021.csv) on-the-fly with Javascript - [Industry data and bees](/RealityStream/models/Location-Forest/)
-TO DO: Pull target data with FIPS from our [UN goal data](/data-commons/dist/) config files. Document in our [Observable Data Commons](/data-commons/).
-TO DO: Merge Tree Canopy Target Data in our [Reality Stream Pandas](/RealityStream/input/industries/) from [GDC Forest Cover](/data-commons/docs/conservation/) using Data Pull - Jing
 
 
 ## Bee/Tree/Poverty as Target Column (y=1)
@@ -90,7 +98,7 @@ TO DO: Merge Tree Canopy Target Data in our [Reality Stream Pandas](/RealityStre
 We're using the state of Maine (ME) for our sample counties.  
 We're using NAICS levels 2 and 4 in our training files.
 
-- [Bee the Predictor](/data-pipeline/research/bees/) - Irene
+- [Bee the Predictor](/RealityStream/input/bees/)
 - [Tree Canopy Data](/data-pipeline/research/canopy/)
 
 ## Data Prep and Presentation
