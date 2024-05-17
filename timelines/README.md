@@ -90,10 +90,7 @@ TO DO: [Send industries data to Random Bits Forest](/RealityStream/input/industr
 IN PROGRESS: [Update NAICS source files to include zip code data (ZTCA)](/data-pipeline/industries/naics/) - Aashish
 
 
-
-
-
-## Bee/Tree/Poverty as Target Column (y=1)
+## Bees/Trees/Jobs/Income as Target Column (y=1)
 
 We're using the state of Maine (ME) for our sample counties.  
 We're using NAICS levels 2 and 4 in our training files.
