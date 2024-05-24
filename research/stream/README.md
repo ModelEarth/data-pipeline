@@ -6,7 +6,7 @@
 
 [Active Projects](/projects/) 
 
-# Image Generation
+# Storyboard Generation
 
 [Storyboards from prompts in CSV file](/replicate)
 - [Gallery from GitHub (JQuery)](/replicate/images/)
