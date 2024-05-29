@@ -17,7 +17,7 @@ TO DO: Merge Tree Canopy Target Data in our [Reality Stream Pandas](/RealityStre
 
 Our Machine Learning forecasting models reside in [RealityStream](/RealityStream).
 <!--
-ML Team: Sijia, Lily, Irene, Honglin, Ronan, Luwei, Wenxi, Magie (Haohao), Ivy, Junwei
+ML Team: Sijia, Lily, Irene, Honglin, Ronan, Luwei, Wenxi, Magie (Haohao), Ivy
 -->
 [Basic timelines](earthscape/) - [Earthscape tabulator](training/naics/) - [Tabulator directly](tabulator/)
 
@@ -87,7 +87,7 @@ Example: US12345 (US state 12, county 345)
 
 TO DO: [Send industries data to Random Bits Forest](/RealityStream/input/industries/)
 
-IN PROGRESS: [Update NAICS source files to include zip code data (ZTCA)](/data-pipeline/industries/naics/) - Junwei
+IN PROGRESS: [Update NAICS source files to include zip code data (ZTCA)](/data-pipeline/industries/naics/)
 
 
 ## Bees/Trees/Jobs/Income as Target Column (y=1)
