@@ -20,10 +20,11 @@ class ZipCodeUtility():
     
     # Gets data for one zipcode within a range of years
     def get_zip_zbp(self, zipcode):
+        cache_dir = self._zipcode_data_dir(zipcode, cache=True, year=None)
         file_handlers = {}
         for year in self.years:
             print(f"Getting data for zipcode: {zipcode}\tyear: {year}")
-            data, status_code = self._get_response_data(zipcode, year)
+            data, status_code = self._get_response_data(zipcode, year, cache_dir)
             
             if status_code != 200:
                 print(f"Failed to fetch data for year {year}")
@@ -79,6 +80,35 @@ class ZipCodeUtility():
             return '"0"'
         escaped_item = item.replace('"', '""')
         return f'"{escaped_item}"'
+    
+    def _validate_inputs(self, base_path, startYear, endYear):
+        # Check if the directory is valid
+        if not os.path.exists(base_path):
+            raise ValueError(f"Path does not exist: {base_path}")
+        if not os.path.isdir(base_path):
+            raise ValueError(f"Path is not a directory: {base_path}")
+        if not os.access(base_path, os.W_OK):
+            raise ValueError(f"No write permission on the directory: {base_path}")
+
+        # Check if the year inputs are valid
+        current_year = datetime.datetime.now().year
+        if endYear > current_year:
+            raise ValueError(f"Invalid end year: {endYear} - Cannot be greater than the current year {current_year}")
+        if startYear < 2000:
+            raise ValueError(f"Invalid start year: {startYear} - Must be 2000 or later")
+
+        return True  # If all checks pass
+
+    def _naics_year_selector(self, year):
+            if year >= 2000 and year <= 2002:
+                return "NAICS1997"
+            elif year >= 2003 and year <= 2007:
+                return "NAICS2002"
+            elif year >= 2008 and year <= 2011:
+                return "NAICS2007"
+            elif year >= 2012 and year <= 2016:
+                return "NAICS2012"
+            return "NAICS2017"
 
     # Handles NAICS codes like '31-33' by returning the length of the first part
     def _valid_naics_level(self, naics_code):
@@ -87,18 +117,6 @@ class ZipCodeUtility():
             if all(part.isdigit() for part in parts):
                 return len(parts[0])  
         return len(naics_code)
-
-    # Selects proper NAICS code for specified year
-    def _naics_year_selector(self, year):
-        if year >= 2000 and year <= 2002:
-            return "NAICS1997"
-        elif year >= 2003 and year <= 2007:
-            return "NAICS2002"
-        elif year >= 2008 and year <= 2011:
-            return "NAICS2007"
-        elif year >= 2012 and year <= 2016:
-            return "NAICS2012"
-        return "NAICS2017"
 
     # Makes file name and path
     def _make_file_name(self, zipcode, year, naics_length):
@@ -123,13 +141,13 @@ class ZipCodeUtility():
             self._escape_and_quote(line[2]),  # Employees
             self._escape_and_quote(line[3])   # Payroll
         ]
+    
     # Added caching just in case 
-    def _get_response_data(self, zipcode, year, attempt=1):
-        cache_dir = self._zipcode_data_dir(zipcode, cache=True, year=None)
+    def _get_response_data(self, zipcode, year, cache_dir, attempt=1):
         cache_file = cache_dir / f"{year}.pickle"
 
         if cache_file.exists():
-            print(f"Loading cached data for ZIP code {zipcode}, year {year}")
+            print(f"Loading cached data for {zipcode}, year {year}")
             with open(cache_file, 'rb') as file:
                 return pickle.load(file), 200
 
@@ -160,24 +178,6 @@ class ZipCodeUtility():
             print(f"Failed to fetch data: {response.status_code} - {response.text}")
             return {}, response.status_code
         
-    @staticmethod
-    def _validate_inputs(base_path, startYear, endYear):
-        # Check if the directory is valid
-        if not os.path.exists(base_path):
-            raise ValueError(f"Path does not exist: {base_path}")
-        if not os.path.isdir(base_path):
-            raise ValueError(f"Path is not a directory: {base_path}")
-        if not os.access(base_path, os.W_OK):
-            raise ValueError(f"No write permission on the directory: {base_path}")
-
-        # Check if the year inputs are valid
-        current_year = datetime.datetime.now().year
-        if endYear > current_year:
-            raise ValueError(f"Invalid end year: {endYear} - Cannot be greater than the current year {current_year}")
-        if startYear < 2000:
-            raise ValueError(f"Invalid start year: {startYear} - Must be 2000 or later")
-
-        return True  # If all checks pass
 
     # Property getters and setters
     @property
