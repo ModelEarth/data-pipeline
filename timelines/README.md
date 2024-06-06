@@ -10,9 +10,11 @@
 [Industry Features for RealityStream Testing (Maine Naics2 Counties 2021)](https://github.com/ModelEarth/community-timelines/blob/main/training/naics2/US/counties/2021/US-ME-training-naics2-counties-2021.csv)
 -->
 
-TO DO: Apply target to [Industry FIPS](https://github.com/ModelEarth/community-timelines/blob/main/training/naics2/US/counties/2021/US-ME-training-naics2-counties-2021.csv) on-the-fly with Javascript - [Industry data and bees](/RealityStream/models/Location-Forest/)
+
 TO DO: Pull target data with FIPS from our [UN goal data](/data-commons/dist/) config files. Document in our [Observable Data Commons](/data-commons/).
 TO DO: Merge Tree Canopy Target Data in our [Reality Stream Pandas](/RealityStream/input/industries/) from [GDC Forest Cover](/data-commons/docs/conservation/) using Data Pull - Jing
+
+TO DO: Use Feed View to filter data on-the-fly with Javascript for [Industry features and bees population targets](/RealityStream/models/location-forest/)
 
 
 Our Machine Learning forecasting models reside in [RealityStream](/RealityStream).
