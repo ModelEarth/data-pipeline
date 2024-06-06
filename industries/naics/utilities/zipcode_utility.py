@@ -9,20 +9,22 @@ import os
 default_path = '../../../community-data/industries/naics/US/zips'
 
 class ZipCodeUtility():
-    def __init__(self, startyear = 2000, endyear = None, api_headers = None, base_path = default_path):
+    def __init__(self, startyear = 2000, endyear = 2023, api_headers = None, base_path = default_path):
         self.api_headers = api_headers
         self.base_url = "https://api.census.gov/data"
+        self.startyear = startyear
+        self.endyear = endyear
         if endyear is None:
-            endyear = datetime.datetime.now().year - 1
+            self.endyear = datetime.datetime.now().year - 1
         if self._validate_inputs(base_path, startyear, endyear):
-            self.years = range(startyear, endyear + 1)
             self.base_path = Path(base_path)
     
     # Gets data for one zipcode within a range of years
     def get_zip_zbp(self, zipcode):
         cache_dir = self._zipcode_data_dir(zipcode, cache=True, year=None)
         file_handlers = {}
-        for year in self.years:
+        years = range(self.startyear, self.endyear+1)
+        for year in years:
             print(f"Getting data for zipcode: {zipcode}\tyear: {year}")
             data, status_code = self._get_response_data(zipcode, year, cache_dir)
             
