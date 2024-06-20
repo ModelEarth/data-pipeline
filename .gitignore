@@ -11,3 +11,4 @@ env/
 .flaskenv
 *.pyc
 *.pyo
+industries/naics/sqlite_zipcode_db/zip_data/us_economic_data.db
