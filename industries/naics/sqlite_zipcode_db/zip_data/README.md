@@ -3,7 +3,7 @@ Only run the the 'populate_database' notebook if you need to either build the sq
 
 If you don't have the database you need, go to https://drive.google.com/file/d/1J1TLVkvnEQvX31MxdF2df04BNpiaExyf/view?usp=sharing and then place it in the zip_data folder.
 
-If you are downloading new data, make sure to put the database in the folder 'zip_data', and set the 'startyear' and 'endyear' parameters for the 'ZipCodeUtility' object. It will make the download a lot faster. After you get the updated data, don't forget to replace the google drive link above! 
+If you are downloading new data, make sure to put the database in the folder 'zip_data', and set the 'startyear' and 'endyear' parameters for the 'ZipCodeUtility' object that will be used in the 'populate_database' notebook. After you get the updated data, don't forget to replace the google drive link above! 
 
 # Querying the database through Python (In progress)
 This is a work in progress. The idea here is to make Python functions to easily query the database that would be in the 'zip_data' folder. This way, you can query data in a notebook environment, and get them in a csv file format.
