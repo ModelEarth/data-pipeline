@@ -15,7 +15,8 @@
 The free version of [CapCut](https://capcut.com) was used to combine our video clips with&nbsp;music.
 
 ---
-[Storyboard Generator](../) | [Fork on GitHub](https://github.com/modelearth/replicate/) | [Bee the Predictor](/RealityStream/input/bees/)
+
+[Requests Visualization](/requests/) | [Storyboard Generator](../) | [Fork on GitHub](https://github.com/modelearth/replicate/) | [Bee the Predictor](/RealityStream/input/bees/)
 <!--
 ## AI Images Generated from Replicate API
 
