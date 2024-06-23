@@ -10,8 +10,8 @@
 [Industry Features for RealityStream Testing (Maine Naics2 Counties 2021)](https://github.com/ModelEarth/community-timelines/blob/main/training/naics2/US/counties/2021/US-ME-training-naics2-counties-2021.csv)
 -->
 
+TO DO: Generate timeline data from Google Data Commons - See our [Data Commons Timelines CoLab](https://colab.research.google.com/drive/1PF8wojIOHxDCdmadsAdkpHnb-An1ymEh?usp=sharing)
 
-TO DO: Pull target data with FIPS from our [UN goal data](/data-commons/dist/) config files. Document in our [Observable Data Commons](/data-commons/).
 TO DO: Merge Tree Canopy Target Data in our [Reality Stream Pandas](/RealityStream/input/industries/) from [GDC Forest Cover](/data-commons/docs/conservation/) using Data Pull - Jing
 
 TO DO: Use Feed View to filter data on-the-fly with Javascript for [Industry features and bees population targets](/RealityStream/models/location-forest/)
@@ -102,7 +102,7 @@ We're using NAICS levels 2 and 4 in our training files.
 
 ## Data Prep and Presentation
 
-TO DO: Random Forest forecasting. - Copy some of our prior .py file into a CoLab. We will update it for both FIPS and ZCTA. - Sijia
+<!-- We could compare prior Random Forest with code in Run Modles. - Sijia -->
 
 TO DO: Web page displaying US counties at risk of increased poverty - Use Google Data Commons API for FIPS county poverty target data and international target data. Pull with an [Observable Data Loader](../../../timelines/observable/)
 
