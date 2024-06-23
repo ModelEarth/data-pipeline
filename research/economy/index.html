@@ -135,17 +135,17 @@ function hashChangedEconomy() {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-            // Check if the Tabulator library is loaded
-            if (typeof Tabulator !== 'undefined') {
-                initializeTabulator();
-            } else {
-                // Wait for the Tabulator library to load
-                const script = document.createElement('script');
-                script.src = 'https://unpkg.com/tabulator-tables/dist/js/tabulator.min.js';
-                script.onload = initializeTabulator;
-                document.head.appendChild(script);
-            }
-        });
+    // Check if the Tabulator library is loaded
+    if (typeof Tabulator !== 'undefined') {
+        initializeTabulator();
+    } else {
+        // Wait for the Tabulator library to load
+        const script = document.createElement('script');
+        script.src = 'https://unpkg.com/tabulator-tables/dist/js/tabulator.min.js';
+        script.onload = initializeTabulator;
+        document.head.appendChild(script);
+    }
+});
 
 
 </script>
@@ -175,6 +175,9 @@ document.addEventListener("DOMContentLoaded", function() {
 </div>
 
 <div class="content contentpadding">
+
+    <a href="/useeio.js/footprint/tabulator.html" style="float:right">TO DO: Apply sort from Commodity sample</a>
+
 	<span id="stateName"></span> - 
 	<a href="#geoview=country" id="changeState">Change State</a>
 	<div id="earthscape1" style="overflow-x: auto;"></div><br>
