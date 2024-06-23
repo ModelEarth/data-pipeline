@@ -8,15 +8,15 @@
 
 # Storyboard Generation
 
-[Storyboards from prompts in CSV file](/replicate)
-- [Gallery from GitHub (JQuery)](/replicate/images/)
+[Storyboards from prompts in CSV file](/requests)
+- [Gallery from GitHub (JQuery)](/requests/images/)
 - [Gallery from GitHub (React)](/react-gallery/view/)
 
 The free version of [CapCut](https://capcut.com) was used to combine our video clips with&nbsp;music.
 
 ---
 
-[Requests Visualization](/requests/) | [Storyboard Generator](../) | [Fork on GitHub](https://github.com/modelearth/replicate/) | [Bee the Predictor](/RealityStream/input/bees/)
+[Requests Visualization](/requests/) | [Storyboard Generator](../) | [Fork on GitHub](https://github.com/modelearth/requests/) | [Bee the Predictor](/RealityStream/input/bees/)
 <!--
 ## AI Images Generated from Replicate API
 
