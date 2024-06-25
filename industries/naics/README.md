@@ -13,6 +13,20 @@ David (DONE) Added variable to send older zip data.  We use the same naics-annua
 A parameter called "loclevel" will be added to toggle to the zip code output so we can reuse the exiting naics-annual.ipynb file.
 <br>
 
+### Note from David
+
+The sqlite and zip utility folders are deprecated. We can delete them and the associated files.
+
+Key Changes:
+
+Replaced SQLite with DuckDB for its high-performance read capabilities.  
+Updated database connection logic to use DuckDB for all data operations.  
+Implemented a function that queries the database by year, industry level, and the first digit of the zipcode, which allows for more targeted data retrieval.  
+Implemented a function that exports the database to csv files for better portability.  
+Implemented a function that can rebuild the database from the csv files.  
+Optimized export_to_csv and import_csv_files functions to handle data segmentation by year and industry level.  This makes sure that each CSV file does not greatly exceed 25MB.  
+
+
 ### NAICS Zip Code data
 
 Starting with 2019, [ZIP Codes Business Patterns (ZBP)](https://www.census.gov/data/developers/data-sets/cbp-zbp/zbp-api.html) are available in the County Business Patterns (CBP) API that use for state and county naics processing.
