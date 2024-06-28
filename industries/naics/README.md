@@ -1,40 +1,6 @@
 [Data Pipeline](../../)
 
-# Process Industries
-
-[Our Community Datasets](http://model.earth/community-data/) for industries are generated for:
-- [US Country](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/country)
-- [States](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/states)
-- [Counties](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/counties)
-- [Zip](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/zip) - coming soon
-
-David (DONE) Added variable to send older zip data.  We use the same naics-annual.ipynb python to generate the country, states and counties files.
-
-A parameter called "loclevel" will be added to toggle to the zip code output so we can reuse the exiting naics-annual.ipynb file.
-<br>
-
-### Note from David
-
-The sqlite and zip utility folders are deprecated. We can delete them and the associated files.
-
-Key Changes:
-
-Replaced SQLite with DuckDB for its high-performance read capabilities.  
-Updated database connection logic to use DuckDB for all data operations.  
-Implemented a function that queries the database by year, industry level, and the first digit of the zipcode, which allows for more targeted data retrieval.  
-Implemented a function that exports the database to csv files for better portability.  
-Implemented a function that can rebuild the database from the csv files.  
-Optimized export_to_csv and import_csv_files functions to handle data segmentation by year and industry level.  This makes sure that each CSV file does not greatly exceed 25MB.  
-
-
-### NAICS Zip Code data
-
-Starting with 2019, [ZIP Codes Business Patterns (ZBP)](https://www.census.gov/data/developers/data-sets/cbp-zbp/zbp-api.html) are available in the County Business Patterns (CBP) API that use for state and county naics processing.
-
-[Processing for zips codes prior to 2019](/community-data/process/naics/)
-
-
-### County Business Patterns (CBP)
+# County Business Patterns (CBP)
 
 "The Business Patterns series covers most of the country’s economic activity, but excludes data on self-employed individuals, employees of private households, railroad employees, agricultural production employees, and most government employees."
 

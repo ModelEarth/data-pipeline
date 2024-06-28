@@ -1,13 +1,54 @@
-# DuckDB zip database
-Located in zip_data -> duck_db_manager -> database
+# Process Industries
 
-# Note: 
-Only run the the 'populate_database' notebook if for whatever reason, you don't have the required CSV files. Otherwise, instantiating a 'DuckDBManager' object will automatically build a duckdb database from the CSV files. 
+We use naics-annual.ipynb to generate country, states and county files.
+
+[Our Community Datasets](http://model.earth/community-data/) for industries are generated for:
+- [US Country](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/country)
+- [States](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/states)
+- [Counties](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/counties)
+- Zip - Coming soon
+
+Zip code files are pulled from the API and saved as DuckDB (by David C)
+
+TO DO: Output to a new zip folder at [Community-data repo](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/) 
+
+See the format of our prior zip folder
+
+<!-- Added variable to send older zip data. -->
+
+<!-- not used: parameter called "loclevel" to toggle to the zip code output in the naics-annual.ipynb file. -->
+
+### NAICS Zip Code data
+
+Starting with 2019, [ZIP Codes Business Patterns (ZBP)](https://www.census.gov/data/developers/data-sets/cbp-zbp/zbp-api.html) are available in the  
+County Business Patterns (CBP) API that use for state and county naics processing.
+
+Old page to revise: [Processing zips codes prior to 2019](https://model.earth/community-data/process/naics/)
+
+#### Note from David
+
+The sqlite and zip utility folders are deprecated. We can delete them and the associated files.
+
+Key Changes:
+
+Replaced SQLite with DuckDB for its high-performance read capabilities.  
+Updated database connection logic to use DuckDB for all data operations.  
+Implemented a function that queries the database by year, industry level, and the first digit of the zipcode, which allows for more targeted data retrieval.  
+Implemented a function that exports the database to csv files for better portability.  
+Implemented a function that can rebuild the database from the csv files.  
+Optimized export_to_csv and import_csv_files functions to handle data segmentation by year and industry level.  This makes sure that each CSV file does not greatly exceed 25MB.  
+
+
+## DuckDB zip database
+
+Located in duck\_zipcode\_db > zip\_data > duck\_db\_manager > database
+
+**Note:** Only run the the 'populate_database' notebook if for whatever reason, you don't have the required CSV files. Otherwise, instantiating a 'DuckDBManager' object will automatically build a duckdb database from the CSV files. 
 
 If you're looking to update the database, instantiate a 'ZipPopulator' object and then run 'get_zip_for_year(year)' in the populate_database notebook.
 
 
-# Querying the database through Python (In progress)
+### Querying the database through Python (In progress)
 This is a work in progress. The idea here is to make Python functions to easily query the database that would be in the 'zip_data' folder. This way, you can query data in a notebook environment, and get them in a csv file format.
 
 # Database Structure
