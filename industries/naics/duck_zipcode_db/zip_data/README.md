@@ -1,4 +1,6 @@
-# Process Industries
+# Process NAICS Industries
+
+### For use in local US EPA impact comparisons
 
 We use naics-annual.ipynb to generate country, states and county files.
 
@@ -8,11 +10,11 @@ We use naics-annual.ipynb to generate country, states and county files.
 - [Counties](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/counties)
 - Zip - Coming soon
 
-Zip code files are pulled from the API and saved as DuckDB (by David C)
+Zip code files are pulled from the API and saved as DuckDB here in the [duck\_zipcode\_db](https://github.com/ModelEarth/data-pipeline/tree/main/industries/naics/duck_zipcode_db) subfolder (by David C)
 
-TO DO: Output to a new zip folder at [Community-data repo](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/) 
+TO DO: Output to a new zip folder at [community-data repo](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/) 
 
-See the format of our prior zip folder
+See the [format of our prior nested zip folders: 3/0/3/1/8](https://github.com/ModelEarth/community-data/tree/master/us/zipcodes/naics/3/0/3/1/8)
 
 <!-- Added variable to send older zip data. -->
 
