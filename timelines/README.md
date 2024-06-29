@@ -14,7 +14,7 @@ TO DO: [UN Goal Timelines](/data-commons) - Pull timeline data files for each go
 
 TO DO: Merge Tree Canopy Target Data in our [Reality Stream Pandas](/RealityStream/input/industries/) from [GDC Forest Cover](/data-commons/docs/conservation/) using Data Pull - Jing
 
-TO DO: [Use Feed View](/feed/view/) to assemble parameters.yaml on-the-fly for [Industry features and bees population targets](/RealityStream/models/location-forest/)
+TO DO: [Use Feed View](/feed/view/) to assemble parameters.yaml on-the-fly and pass as #parameters to our [Run Modles CoLab](/RealityStream/input/industries/).
 
 <!--
 ML Team: Sijia, Lily, Irene, Honglin, Ronan, Luwei, Wenxi, Magie (Haohao), Ivy
