@@ -5,7 +5,7 @@
 
 View our [Active Projects](/projects/) and our [Observable Framework Dev](/data-commons/dist/) for the [Google Data Commons API](https://docs.datacommons.org/api/).
 
-Our implementation of the [US EPA Industry Input-Output Charts](../io/charts/) uses static json files containing [USEEIO API data](https://github.com/modelearth/io/tree/main/build/api) for fast loading pages.
+[Our SQL implementation](/io/about/) of the [US EPA Industry Input-Output Charts](../io/charts/) pulls from static json files containing [USEEIO API data](https://github.com/ModelEarth/OpenFootprint/tree/main/impacts/2020). Static json also provides fast loading pages.
 
 We are working toward adding a [Requests Agent](/requests/) to [Open WebUI](/projects/src) and [Earthscape](/earthscape/app).
 
