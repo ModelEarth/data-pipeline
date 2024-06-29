@@ -4,7 +4,7 @@
 
 ## Our RealityStream ML Forecasting Models
 
-[RealityStream](/RealityStream) - Logistic Regression, Random Forest and Support Vector Machines
+TO DO: [RealityStream](/RealityStream) - Logistic Regression, Random Forest and Support Vector Machines
 
 <!--
 [Industry Features for RealityStream Testing (Maine Naics2 Counties 2021)](https://github.com/ModelEarth/community-timelines/blob/main/training/naics2/US/counties/2021/US-ME-training-naics2-counties-2021.csv)
@@ -14,20 +14,13 @@ TO DO: [UN Goal Timelines](/data-commons) - Pull timeline data files for each go
 
 TO DO: Merge Tree Canopy Target Data in our [Reality Stream Pandas](/RealityStream/input/industries/) from [GDC Forest Cover](/data-commons/docs/conservation/) using Data Pull - Jing
 
-TO DO: Use Feed View to filter data on-the-fly with Javascript for [Industry features and bees population targets](/RealityStream/models/location-forest/)
+TO DO: [Use Feed View](/feed/view/) to assemble parameters.yaml on-the-fly for [Industry features and bees population targets](/RealityStream/models/location-forest/)
 
-
-Our Machine Learning forecasting models reside in [RealityStream](/RealityStream).
 <!--
 ML Team: Sijia, Lily, Irene, Honglin, Ronan, Luwei, Wenxi, Magie (Haohao), Ivy
 -->
 [Basic timelines](earthscape/) - [Earthscape tabulator](training/naics/) - [Tabulator directly](tabulator/)
 
-GOAL: Pull y=1 target data from the Google Data Commons API using [REST](https://docs.datacommons.org/api/rest/v2/getting_started) to merge state and county data into our naics training data. 
-
-<!--
-We probably won't use [Observable Data Loaders](https://observablehq.com/framework/loaders) since they require pre-saving data.
--->
 
 ## NAICS Data for Community Features
 
