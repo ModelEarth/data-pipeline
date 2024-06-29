@@ -10,7 +10,7 @@
 [Industry Features for RealityStream Testing (Maine Naics2 Counties 2021)](https://github.com/ModelEarth/community-timelines/blob/main/training/naics2/US/counties/2021/US-ME-training-naics2-counties-2021.csv)
 -->
 
-TO DO: Generate timeline data from Google Data Commons - See our [Data Commons Timelines CoLab](https://colab.research.google.com/drive/1PF8wojIOHxDCdmadsAdkpHnb-An1ymEh?usp=sharing)
+TO DO: [UN Goal Timelines](/data-commons) - Pull timeline data files for each goal
 
 TO DO: Merge Tree Canopy Target Data in our [Reality Stream Pandas](/RealityStream/input/industries/) from [GDC Forest Cover](/data-commons/docs/conservation/) using Data Pull - Jing
 
