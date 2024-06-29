@@ -12,7 +12,7 @@ TO DO: [RealityStream](/RealityStream) - Logistic Regression, Random Forest and 
 
 TO DO: [UN Goal Timelines](/data-commons) - Pull timeline data files for each goal
 
-TO DO: Merge Tree Canopy Target Data in our [Reality Stream Pandas](/RealityStream/input/industries/) from [GDC Forest Cover](/data-commons/docs/conservation/) using Data Pull - Jing
+TO DO: Create parameter-canopy.yaml with paths to [forest coverage data](/data-commons/docs/conservation/) to pass into [Run Models](/RealityStream/input/industries/) - Jing
 
 TO DO: [Use Feed View](/feed/view/) to assemble parameters.yaml on-the-fly and pass as #parameters to our [Run Modles CoLab](/RealityStream/input/industries/).
 
