@@ -6,10 +6,11 @@ from tqdm import tqdm
 from itertools import repeat
 
 class DataExporter:
-    def __init__(self, export_dir, db_path):
+    def __init__(self, export_dir, db_path, threads = 4):
         self.export_dir = export_dir
         os.makedirs(self.export_dir, exist_ok=True)
         self.db_path = db_path
+        self.threads = threads
         logging.basicConfig(level=logging.INFO)
 
     def _fetch_geo_ids(self):
