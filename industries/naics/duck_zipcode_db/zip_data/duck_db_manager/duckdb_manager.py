@@ -4,22 +4,22 @@ import pandas as pd
 from tqdm import tqdm
 import os
 import math
+import csv
+
 
 class DuckDBManager:
     def __init__(self, db_path='database/us_economic_data.duckdb', export_dir='database/exported_tables'):
         self.db_path = db_path
         self.export_dir = export_dir
+        self.conn = None  # Placeholder for the database connection
         self._connect_db()
-        self._close_db()
 
     def _connect_db(self):
-        if os.path.exists(self.db_path):
-            self.conn = duckdb.connect(self.db_path)
-        else:
+        """Establishes a database connection."""
+        if not os.path.exists(self.db_path):
             print(f"Database {self.db_path} does not exist. Creating new database...")
-            self.conn = duckdb.connect(self.db_path)
-            self._create_tables()
-            self.import_all_csv_files()
+        self.conn = duckdb.connect(self.db_path)
+        self._create_tables()
 
     def _close_db(self):
         if self.conn:
@@ -66,7 +66,6 @@ class DuckDBManager:
 
 
     def export_to_csv(self):
-        self._connect_db()
         os.makedirs(self.export_dir, exist_ok=True)
         
         self.conn.execute(f"COPY (SELECT * FROM DimNaics) TO '{self.export_dir}/DimNaics.csv' WITH (FORMAT CSV, HEADER TRUE)")
@@ -131,12 +130,10 @@ class DuckDBManager:
                     """
                     self.conn.execute(query)
 
-        self._close_db()
 
 
 
     def import_csv_files(self, table_name):
-        self._connect_db()
         
         csv_files = [f for f in os.listdir(self.export_dir) if f.endswith('.csv') and f.startswith(table_name)]
         if not csv_files:
@@ -151,20 +148,16 @@ class DuckDBManager:
             SELECT * FROM read_csv_auto('{csv_file_path}')
             ''')
 
-        self._close_db()
 
 
     def check_row_length(self, tablename):
-        self._connect_db()
         
         query = f"SELECT COUNT(*) FROM {tablename}"
         result = self.conn.execute(query).fetchone()
         
-        self._close_db()
         return result[0]
 
     def import_all_csv_files(self):
-        self._connect_db()
         self._create_tables()
 
         self.import_csv_files('DataEntry')
@@ -172,10 +165,8 @@ class DuckDBManager:
         self.import_csv_files('DimYear')
         self.import_csv_files('DimZipCode')
 
-        self._close_db()
 
     def get_schema(self):
-        self._connect_db()
 
         schema = {}
         tables = self.conn.execute("SHOW TABLES").fetchall()
@@ -185,17 +176,14 @@ class DuckDBManager:
             columns = self.conn.execute(f"PRAGMA table_info({table_name})").fetchall()
             schema[table_name] = [(col[1], col[2]) for col in columns]  # (column_name, data_type)
 
-        self._close_db()
         return schema
 
 
     def execute_query(self, query):
-        self._connect_db()
         
         result = self.conn.execute(query)
         df = result.fetchdf()
         
-        self._close_db()
         return df
     
     def filter_by_year_zip_industry(self, year, zip_prefix, industry_level):
@@ -242,3 +230,35 @@ class DuckDBManager:
         return bool(csv_files)
 
 
+    def export_geo_nested_csv(self):
+        """Exports data entries to nested directories based on GeoID, skips if file exists."""
+        base_dir = os.path.join(self.export_dir, "nested_zip")
+        os.makedirs(base_dir, exist_ok=True)
+
+        geo_ids = self.conn.execute("SELECT DISTINCT GeoID FROM DataEntry").fetchall()
+        for (geo_id,) in tqdm(geo_ids, desc="Processing GeoIDs"):
+            path_components = [base_dir] + list(geo_id)
+            geo_path = os.path.join(*path_components)
+            os.makedirs(geo_path, exist_ok=True)
+
+            combinations = self.conn.execute(f"""
+                SELECT DISTINCT Year, IndustryLevel FROM DataEntry WHERE GeoID = '{geo_id}'
+            """).fetchall()
+
+            for year, industry_level in combinations:
+                chunk_file_path = os.path.join(geo_path, f"data_{year}_{industry_level}.csv")
+                # Check if the file already exists
+                if os.path.exists(chunk_file_path):
+                    print(f"Skipping existing file: {chunk_file_path}")
+                    continue
+                query = f"""
+                COPY (
+                    SELECT * FROM DataEntry WHERE GeoID = '{geo_id}' AND Year = {year} AND IndustryLevel = {industry_level}
+                ) TO '{chunk_file_path}' WITH (FORMAT CSV, HEADER TRUE)
+                """
+                self.conn.execute(query)
+
+
+    def close(self):
+        if self.conn:
+            self.conn.close()
