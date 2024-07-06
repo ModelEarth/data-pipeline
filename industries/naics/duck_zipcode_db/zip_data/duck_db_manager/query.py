@@ -26,7 +26,7 @@ class DataQueryManager:
         if industry_level:
             conditions.append(f"IndustryLevel = {industry_level}")
 
-        query = "SELECT * FROM DataEntry WHERE " + " AND ".join(conditions)
+        query = "SELECT GeoID AS Zipcode,NaicsCode,Year,Establishments,Employees,Payroll FROM DataEntry WHERE " + " AND ".join(conditions)
         
         if conn is None:
             with duckdb.connect(self.db_path) as conn:
