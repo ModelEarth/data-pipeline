@@ -3,66 +3,104 @@ import logging
 import duckdb
 from multiprocessing import Pool
 from tqdm import tqdm
-from itertools import repeat
+import query as q
+import re
 
 class DataExporter:
-    def __init__(self, export_dir, db_path, threads=4):
+    def __init__(self, db_path='database/us_economic_data.duckdb', threads=4, export_dir='zip'):
         self.export_dir = export_dir
         os.makedirs(self.export_dir, exist_ok=True)
         self.db_path = db_path
         self.threads = threads
+        self.qm = q.DataQueryManager(db_path=self.db_path, export_dir=self.export_dir)
         logging.basicConfig(level=logging.INFO)
 
     def _fetch_geo_ids(self):
         with duckdb.connect(self.db_path, read_only=True) as conn:
-            return conn.execute("SELECT DISTINCT GeoID FROM DataEntry").fetchall()
+            try:
+                geo_ids = conn.execute("SELECT GeoID FROM DimZipCode").fetchall()
+                return [geo_id[0] for geo_id in geo_ids]
+            except Exception as e:
+                logging.error(f"Failed to fetch GeoIDs: {e}")
+                return []
 
-    def _export_geo_data(self, args):
-        geo_id, geo_path = args
-        nested_path = os.path.join(geo_path, *list(geo_id))
-        os.makedirs(nested_path, exist_ok=True)
+    def _fetch_years(self):
         with duckdb.connect(self.db_path, read_only=True) as conn:
-            combinations = conn.execute(f"SELECT DISTINCT Year, IndustryLevel FROM DataEntry WHERE GeoID = '{geo_id}'").fetchall()
-            for year, industry_level in combinations:
-                chunk_file_path = os.path.join(nested_path, f"data_{year}_{industry_level}.csv")
-                if os.path.exists(chunk_file_path):
-                    logging.info(f"Skipping existing file: {chunk_file_path}")
-                    continue
-                query = f"""
-                    COPY (
-                        SELECT GeoID,NaicsCode,Establishments,Employees,Payroll FROM DataEntry WHERE GeoID = '{geo_id}' AND Year = {year} AND IndustryLevel = '{industry_level}'
-                    ) TO '{chunk_file_path}' WITH (FORMAT CSV, HEADER)
-                """
-                conn.execute(query)
+            try:
+                years = conn.execute("SELECT Year FROM DimYear").fetchall()
+                return [year[0] for year in years]
+            except Exception as e:
+                logging.error(f"Failed to fetch Years: {e}")
+                return []
 
-    def _export_geo_data_for_year(self, args):
-        geo_id, geo_path, year = args
-        nested_path = os.path.join(geo_path, *list(geo_id))
+    def make_csv(self, zipcode, year=None, industry_level=None):
+        if not (zipcode.isdigit() and len(zipcode) == 5):
+            raise ValueError("Zipcode must be a string of exactly 5 digits.")
+        
+        nested_path = os.path.join(self.export_dir, *list(zipcode))
         os.makedirs(nested_path, exist_ok=True)
+
+        filename_parts = ['US', zipcode]
+        if industry_level:
+            filename_parts.append(f'census-naics{industry_level}')
+        if year:
+            filename_parts.append(f'zipcode-{year}')
+        filename = "-".join(filename_parts) + ".csv"
+        filepath = os.path.join(nested_path, filename)
+
         with duckdb.connect(self.db_path, read_only=True) as conn:
-            combinations = conn.execute(f"SELECT DISTINCT IndustryLevel FROM DataEntry WHERE GeoID = '{geo_id}' AND Year = {year}").fetchall()
-            for industry_level in combinations:
-                chunk_file_path = os.path.join(nested_path, f"data_{year}_{industry_level}.csv")
-                if os.path.exists(chunk_file_path):
-                    logging.info(f"Skipping existing file: {chunk_file_path}")
-                    continue
-                query = f"""
-                    COPY (
-                        SELECT GeoID,NaicsCode,Establishments,Employees,Payroll FROM DataEntry WHERE GeoID = '{geo_id}' AND Year = {year} AND IndustryLevel = '{industry_level}'
-                    ) TO '{chunk_file_path}' WITH (FORMAT CSV, HEADER)
-                """
-                conn.execute(query)
+            results = self.qm.filter(zipcode=zipcode, year=year, industry_level=industry_level, conn=conn)
+            results.to_csv(filepath, index=False)
+        
+        return filepath
 
-    def export_geo_nested_csv(self):
+    def worker(self, args):
+        geo_id, year = args
+        return self.make_csv(geo_id, year=year)
+                    
+    def export_all_geo_year_data(self):
         geo_ids = self._fetch_geo_ids()
-        tasks = [(geo_id, self.export_dir) for geo_id, in geo_ids]
+        years = self._fetch_years()
+        all_combinations = [(geo_id, year) for geo_id in geo_ids for year in years]
 
-        with Pool(processes=self.threads) as pool:
-            list(tqdm(pool.imap_unordered(self._export_geo_data, tasks), total=len(tasks), desc="Processing GeoIDs"))
-
-    def export_geo_nested_csv_for_year(self, year):
+        try:
+            with Pool(processes=self.threads) as pool:
+                results = list(tqdm(pool.imap(self.worker, all_combinations), total=len(all_combinations), desc="Exporting data"))
+                return results
+        except KeyboardInterrupt:
+            print("Interrupted by user. Exiting...")
+            pool.terminate()
+            pool.join()
+            logging.info("Exporting process was interrupted by user.")
+        except Exception as e:
+            logging.error(f"An error occurred: {e}")
+            
+    def export_geo_year_data(self, year):
         geo_ids = self._fetch_geo_ids()
-        tasks = [(geo_id, self.export_dir, year) for geo_id, in geo_ids]
+        years = [year]
+        all_combinations = [(geo_id, year) for geo_id in geo_ids for year in years]
+        try:
+            with Pool(processes=self.threads) as pool:
+                results = list(tqdm(pool.imap(self.worker, all_combinations), total=len(all_combinations), desc="Exporting data"))
+                return results
+        except KeyboardInterrupt:
+            print("Interrupted by user. Exiting...")
+            pool.terminate()
+            pool.join()
+            logging.info("Exporting process was interrupted by user.")
+        except Exception as e:
+            logging.error(f"An error occurred: {e}")
 
-        with Pool(processes=self.threads) as pool:
-            list(tqdm(pool.imap_unordered(self._export_geo_data_for_year, tasks), total=len(tasks), desc=f"Processing GeoIDs for Year {year}"))
+    def debug_export_all_geo_year_data(self):
+        geo_ids = self._fetch_geo_ids()
+        years = self._fetch_years()
+
+        for geo_id in tqdm(geo_ids, desc="GeoID Export"):
+            for year in tqdm(years, desc="Year Export", leave=False):
+                try:
+                    self.make_csv(geo_id, year=year)
+                except Exception as e:
+                    logging.error(f"Failed to export data for GeoID {geo_id} and Year {year}: {e}")
+
+
+
