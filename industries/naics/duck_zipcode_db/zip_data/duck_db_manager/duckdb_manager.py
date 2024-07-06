@@ -96,7 +96,7 @@ class DuckDBManager:
             print(f"Error creating tables: {e}")
 
 
-    def export_to_csv(self):
+    def save_to_csv(self):
         try:
             self._connect_db()
             os.makedirs(self.export_dir, exist_ok=True)
@@ -114,7 +114,7 @@ class DuckDBManager:
             max_file_size = 25 * 1024 * 1024
 
             # Loop through each valid year and industry level to export the corresponding DataEntry data
-            for year_tuple in tqdm(valid_years, desc="Exporting DataEntry CSV files"):
+            for year_tuple in tqdm(valid_years, desc="Saving DataEntry CSV files"):
                 year = year_tuple[0]  # Extract the year from the tuple
                 for industry_level in industry_levels:
                     # Get the total number of rows for the current year and industry level
