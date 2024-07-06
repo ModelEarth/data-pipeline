@@ -10,7 +10,7 @@ TO DO: [RealityStream](/RealityStream) - Logistic Regression, Random Forest and 
 [Industry Features for RealityStream Testing (Maine Naics2 Counties 2021)](https://github.com/ModelEarth/community-timelines/blob/main/training/naics2/US/counties/2021/US-ME-training-naics2-counties-2021.csv)
 -->
 
-TO DO: [UN Goal Timelines](/data-commons) - Pull timeline data files for each goal
+TO DO: [UN Goal Timelines](/data-commons) - Javascript loading timeline progress for each goal
 
 TO DO: Create parameter-canopy.yaml with paths to [forest coverage data](/data-commons/docs/conservation/) to pass into [Run Models](/RealityStream/input/industries/) - Jing
 
@@ -73,7 +73,7 @@ Sample from prior zcta process:
 -->
 
 ### 2. Our FIPS Location Rows for Training (one file per year)
-Training files are output to [community-timelines/training](https://github.com/ModelEarth/community-timelines/tree/main/training) by python/ML-bkup.ipynb from [Our CoLab on Google](https://colab.research.google.com/drive/1wmJ3V9eqD8KbmBiP-hLeSstwOUt5iS2V?usp=sharing)  
+Training files are output to [community-timelines/training](https://github.com/ModelEarth/community-timelines/tree/main/training) by [ML-bkup.ipynb](https://github.com/ModelEarth/data-pipeline/tree/main/timelines/training/naics/python) from [Our CoLab on Google](https://colab.research.google.com/drive/1wmJ3V9eqD8KbmBiP-hLeSstwOUt5iS2V?usp=sharing)  
 
 
 Our IDs for States and counties = Federal Information Processing Standard (FIPS)  
@@ -99,11 +99,8 @@ We're using NAICS levels 2 and 4 in our training files.
 
 TO DO: Web page displaying US counties at risk of increased poverty - Use Google Data Commons API for FIPS county poverty target data and international target data. Pull with an [Observable Data Loader](../../../timelines/observable/)
 
-TO DO: Find equivalent county data for India and China (Country Census or Google Data Commons)
 
-TO DO: Web page displaying Industries that predict improving and declining [bee populations](../../../research/bees/) - Irene
-
-TO DO: Web page displaying Top ten Maine counties likely to have [declining tree canopy](/data-pipeline/research/canopy/) - Find a data source (county or zip)
+TO DO: Top ten counties in each state likely to have [declining tree canopy](/data-pipeline/research/canopy/)
 
 TO DO: Use [Tensorflow.org](https://www.tensorflow.org/js/demos) for [Neural Network predictions](https://www.tensorflow.org/s/results/?q=neural%20networks) with our training data.
 
