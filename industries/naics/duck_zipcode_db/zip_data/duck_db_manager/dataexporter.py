@@ -88,6 +88,8 @@ class DataExporter:
         geo_ids = self._fetch_geo_ids()
         years = [year]
         all_combinations = [(geo_id, year, level) for geo_id in geo_ids for year in years for level in levels]
+        levels = [2,4,6]
+
         try:
             with Pool(processes=self.threads) as pool:
                 results = list(tqdm(pool.imap(self.worker, all_combinations), total=len(all_combinations), desc="Exporting data"))
