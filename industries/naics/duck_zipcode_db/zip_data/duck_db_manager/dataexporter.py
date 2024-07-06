@@ -18,7 +18,11 @@ class DataExporter:
     def _fetch_geo_ids(self):
         with duckdb.connect(self.db_path, read_only=True) as conn:
             try:
-                geo_ids = conn.execute("SELECT GeoID FROM DimZipCode").fetchall()
+                geo_ids = conn.execute("""
+                    SELECT GeoID 
+                    FROM DimZipCode 
+                    WHERE GeoID IN (SELECT DISTINCT GeoID FROM DataEntry)
+                """).fetchall()
                 return [geo_id[0] for geo_id in geo_ids]
             except Exception as e:
                 logging.error(f"Failed to fetch GeoIDs: {e}")
@@ -27,7 +31,11 @@ class DataExporter:
     def _fetch_years(self):
         with duckdb.connect(self.db_path, read_only=True) as conn:
             try:
-                years = conn.execute("SELECT Year FROM DimYear").fetchall()
+                years = conn.execute("""
+                    SELECT Year 
+                    FROM DimYear 
+                    WHERE Year IN (SELECT DISTINCT Year FROM DataEntry)
+                """).fetchall()
                 return [year[0] for year in years]
             except Exception as e:
                 logging.error(f"Failed to fetch Years: {e}")
@@ -55,13 +63,14 @@ class DataExporter:
         return filepath
 
     def worker(self, args):
-        geo_id, year = args
-        return self.make_csv(geo_id, year=year)
+        geo_id, year, level = args
+        return self.make_csv(geo_id, year=year,industry_level=level)
                     
     def export_all_geo_year_data(self):
         geo_ids = self._fetch_geo_ids()
         years = self._fetch_years()
-        all_combinations = [(geo_id, year) for geo_id in geo_ids for year in years]
+        levels = [2,4,6]
+        all_combinations = [(geo_id, year, level) for geo_id in geo_ids for year in years for level in levels]
 
         try:
             with Pool(processes=self.threads) as pool:
@@ -78,7 +87,7 @@ class DataExporter:
     def export_geo_year_data(self, year):
         geo_ids = self._fetch_geo_ids()
         years = [year]
-        all_combinations = [(geo_id, year) for geo_id in geo_ids for year in years]
+        all_combinations = [(geo_id, year, level) for geo_id in geo_ids for year in years for level in levels]
         try:
             with Pool(processes=self.threads) as pool:
                 results = list(tqdm(pool.imap(self.worker, all_combinations), total=len(all_combinations), desc="Exporting data"))
