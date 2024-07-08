@@ -9,7 +9,7 @@ View our [Active Projects](/projects/) and our [Observable Framework Dev](/data-
 
 We are working toward adding a [Requests Agent](/requests/) to [Open WebUI](/projects/src) and [Earthscape](/earthscape/app).
 
-[Learn about the three APIs](/io/coders) we are combining for requests: [FDA](/data-commons/docs/food/), See Click Fix, Open Collective
+[Learn about the APIs](/io/coders) we are combining for requests: [USDA](/data-commons/docs/food/), See Click Fix, Google Data Commons
 
 <!--
     12-digit FIPS Code - state, county, tract, block group
