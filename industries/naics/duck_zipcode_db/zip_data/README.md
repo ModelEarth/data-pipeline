@@ -56,7 +56,7 @@ Updated database connection logic to use DuckDB for all data operations.
 Implemented a function that queries the database by year, industry level, and the first digit of the zipcode, which allows for more targeted data retrieval.  
 Implemented a function that exports the database to csv files for better portability.  
 Implemented a function that can rebuild the database from the csv files.  
-Optimized export_to_csv and import_csv_files functions to handle data segmentation by year and industry level.  This makes sure that each CSV file does not greatly exceed 25MB.  
+Optimized export\_to\_csv and import\_csv\_files functions to handle data segmentation by year and industry level.  This makes sure that each CSV file does not greatly exceed 25MB. (Loren adds: Let's avoid deploying the year-industry files. We could instead rebuild DuckDB from the zipcode files in 3/0/3/1/8 folders.)  
 
 Also from David:
 
