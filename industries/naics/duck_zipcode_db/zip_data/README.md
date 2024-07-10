@@ -8,11 +8,27 @@ We use naics-annual.ipynb to generate country, states and county files.
 - [US Country](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/country)
 - [States](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/states)
 - [Counties](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/counties)
-- Zip - Coming soon
+- [Zip](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/zip) - Coming soon
 
-Zip code files are pulled from the API and saved as DuckDB here in the [duck\_zipcode\_db](https://github.com/ModelEarth/data-pipeline/tree/main/industries/naics/duck_zipcode_db) subfolder (by David C)
+Zip code files are pulled from the Census API and saved as DuckDB here in the [duck\_zipcode\_db](https://github.com/ModelEarth/data-pipeline/tree/main/industries/naics/duck_zipcode_db) subfolder (by David C)
 
-TO DO: Output to a new zip folder at [community-data repo](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/) 
+Badri ran this in VS Code terminal. Launch in "naics" folder using `code .`
+
+	python3 -m venv env
+	source env/bin/activate
+	python -m pip install ipykernel -U --force-reinstall
+	pip install duckdb
+	pip install pandas
+	pip install tqdm
+
+Hit "Change Kernel"
+
+**Go to:** naics/duck\_zipcode\_db/zip\_data/duck\_db\_manager/duckdb\_database.ipynb
+
+Run the 1st and 4th cells in duckdb\_database.ipynb
+
+
+TO DO: Output to a new folder called "zip" in [community-data repo](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/) 
 
 See the [format of our prior nested zip folders: 3/0/3/1/8](https://github.com/ModelEarth/community-data/tree/master/us/zipcodes/naics/3/0/3/1/8)
 
@@ -31,7 +47,9 @@ Old page to revise: [Processing zips codes prior to 2019](https://model.earth/co
 
 The sqlite and zip utility folders are deprecated. We can delete them and the associated files.
 
-Key Changes:
+TO DO: Delete the folders as David has advised. Thanks!
+
+Key Changes (this is a note from David):
 
 Replaced SQLite with DuckDB for its high-performance read capabilities.  
 Updated database connection logic to use DuckDB for all data operations.  
@@ -40,6 +58,7 @@ Implemented a function that exports the database to csv files for better portabi
 Implemented a function that can rebuild the database from the csv files.  
 Optimized export_to_csv and import_csv_files functions to handle data segmentation by year and industry level.  This makes sure that each CSV file does not greatly exceed 25MB.  
 
+Also from David:
 
 ## DuckDB zip database
 
