@@ -60,6 +60,9 @@
 
 </div>
 <script>
+// Avoid using frozenRows:1 since it causes first row 
+// to reside to the right, visible when scrolling header.
+
 function displayTabulators1() {
     let csvYearData = [
         {Year:"2017", Naics12:"12345", Naics23:"555"}, 
