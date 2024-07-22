@@ -4,8 +4,10 @@
 
 ## Our RealityStream ML Forecasting Models
 
-TO DO: [RealityStream](/RealityStream) - Logistic Regression, Random Forest and Support Vector Machines
+IN PROGRESS: [Timelines from Google Datacommons API](earthscape/datacommons.html) via javascript - Mehul
 
+TO DO: [RealityStream](/RealityStream) - We're sending location data to Machine Learning models
+Logistic Regression, Random Forest, Support Vector Machines, XGBoost
 <!--
 [Industry Features for RealityStream Testing (Maine Naics2 Counties 2021)](https://github.com/ModelEarth/community-timelines/blob/main/training/naics2/US/counties/2021/US-ME-training-naics2-counties-2021.csv)
 -->
@@ -19,7 +21,9 @@ TO DO: [Use Feed View](/feed/view/) to assemble parameters.yaml on-the-fly and p
 <!--
 ML Team: Sijia, Lily, Irene, Honglin, Ronan, Luwei, Wenxi, Magie (Haohao), Ivy
 -->
-[Basic timelines](earthscape/) - [Earthscape tabulator](training/naics/) - [Tabulator directly](tabulator/)
+
+TO DO: Load both timeline display and Tabulator with [earthscape.js](/localsite/js/earthscape.js) 
+[Basic timelines](earthscape/) - [Data Commons timelines](earthscape/datacommons.html) - [Earthscape tabulator](training/naics/) - [Tabulator directly](tabulator/)
 
 
 ## NAICS Data for Community Features
