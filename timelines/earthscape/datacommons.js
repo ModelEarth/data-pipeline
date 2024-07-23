@@ -1,5 +1,5 @@
 async function fetchCountyGeoIds(graphVariable, entityId) {
-    // Fetch all geoIds containing geoId/06 in name + are counties
+    // Fetch all geoIds containing geoId in name + are counties
     const response = await fetch(`https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&entity.expression=${entityId}%3C-containedInPlace%2B%7BtypeOf%3ACounty%7D&select=date&select=entity&select=value&select=variable&variable.dcids=${graphVariable}`, {
         method: 'POST',
         headers: {
@@ -74,18 +74,16 @@ async function getFormattedData(graphVariable, entityId) {
 
 document.addEventListener('DOMContentLoaded', () => {
     const selectElement = document.getElementById('graphVariable');
-    const h2Element = document.querySelector('h2');
-    let graphVariable = 'LandCoverFraction_Forest';
-    let showAll = false;
-    let entityId = 'geoId/06'
+    let graphVariable = 'Count_Person';
+    let showAll = 'showTop5';
+    let entityId = 'geoId/01'
     let myChart;
 
     // Function to update the H2 tag text and chart title
     const updateTexts = () => {
         const selectedOptionText = selectElement.options[selectElement.selectedIndex].text;
-        h2Element.textContent = `${selectedOptionText} - Top 5 Counties`;
         if (myChart) {
-            myChart.options.plugins.title.text = `${selectedOptionText} - Top 5 Counties`;
+            myChart.options.plugins.title.text = `${selectedOptionText}`;
             myChart.update();
         }
     };
@@ -102,15 +100,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         const years = [...yearsSet];
         
-        // Showing all counties or top 5 counties only
+        // Showing all or top 5 or bottom 5 counties
         let selectedData;
-        if (showAll) {
-            selectedData = data;
-        } else {
-            data.forEach(county => {
-                county.averageLandCover = county.observations.reduce((sum, obs) => sum + obs.value, 0) / county.observations.length;
-            });
+        data.forEach(county => {
+            county.averageLandCover = county.observations.reduce((sum, obs) => sum + obs.value, 0) / county.observations.length;
+        });
+        if (showAll == 'showTop5') {
             selectedData = data.sort((a, b) => b.averageLandCover - a.averageLandCover).slice(0, 5);
+        } 
+        else if (showAll == 'showBottom5') {
+            selectedData = data.sort((a, b) => a.averageLandCover - b.averageLandCover).slice(0, 5);
+        }
+        else {
+            selectedData = data;
         }
 
         // Get datasets
@@ -140,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     },
                     title: {
                         display: true,
-                        text: `${selectElement.options[selectElement.selectedIndex].text} - Top 5 Counties`
+                        text: `${selectElement.options[selectElement.selectedIndex].text}`
                     }
                 },
                 scales: {
@@ -171,9 +173,12 @@ document.addEventListener('DOMContentLoaded', () => {
     updateTexts();
     getGraph(showAll, graphVariable, entityId);
 
-    document.getElementById('showAllToggle').addEventListener('change', (event) => {
-        showAll = event.target.checked;
-        getGraph(showAll, graphVariable, entityId);
+    document.forms['countyShow'].addEventListener('change', function(event) {
+        if (event.target.name === 'countyShow') {
+            showAll = document.querySelector('input[name="countyShow"]:checked').value;
+            getGraph(showAll, graphVariable, entityId);
+        }
+        updateTexts();
     });
 
     document.getElementById('graphVariable').addEventListener('change', (event) => {
@@ -188,7 +193,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-async function getCountryGraph(graphVariable, selectedCountries) {
+async function getCountryGraph(graphVariable) {
+    // Get countries from URL
+    let selectedCountries;
+    const currentUrl = window.location.href;
+    const equalParams = currentUrl.split('='); 
+    const countryParams = equalParams[equalParams.length - 1];
+    selectedCountries = countryParams.split(',');
+
     // Fetch country codes for selected countries
     const response = await fetch('https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI', {
         method: 'POST',
@@ -306,4 +318,10 @@ async function getCountryGraph(graphVariable, selectedCountries) {
     myChart = new Chart(ctx, config);
 }
 
-getCountryGraph('Count_Person', ["United States", "China", "Russia", "Mexico", "Aruba", "India"]);
+document.addEventListener('DOMContentLoaded', () => {
+    getCountryGraph('Count_Person');
+})
+
+document.addEventListener('hashChangeEvent', () => {
+    getCountryGraph('Count_Person');
+})

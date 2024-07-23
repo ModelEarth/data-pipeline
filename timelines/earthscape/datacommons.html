@@ -19,14 +19,14 @@
 
         <a href="../">Timelines</a><br>
     
-        <h2></h2>
+        <h2>County Data</h2>
         <br>
         <select id="entityId">
-            <option value="geoId/01">Alabama</option>
+            <option value="geoId/01" selected>Alabama</option>
             <option value="geoId/02">Alaska</option>
             <option value="geoId/04">Arizona</option>
             <option value="geoId/05">Arkansas</option>
-            <option value="geoId/06" selected>California</option>
+            <option value="geoId/06">California</option>
             <option value="geoId/08">Colorado</option>
             <option value="geoId/09">Connecticut</option>
             <option value="geoId/10">Delaware</option>
@@ -76,16 +76,21 @@
             <option value="geoId/72">Puerto Rico</option>
         </select>
         <select id="graphVariable">
-            <option value="Count_Person">County Populations</option>
-            <option value="LandCoverFraction_Forest" selected>Land Covered by Forests</option>
+            <option value="Count_Person" selected>County Populations</option>
+            <option value="LandCoverFraction_Forest">Land Covered by Forests</option>
         </select>
         <br>
-        <label>
-            <input type="checkbox" id="showAllToggle">
-            Show All
-        </label>
+        <form name="countyShow">
+            <label> <input value="showAll" type="radio" name="countyShow" />All Counties </label>
+            <label> <input value="showTop5" type="radio" name="countyShow" checked />Top 5 </label>
+            <label> <input value="showBottom5" type="radio" name="countyShow" />Bottom 5 </label>
+        </form>
         <canvas id="myChart"></canvas>
-        <h2></h2>
+        <h2>Country Data</h2>
+        <p>
+            Developers Note: Chart is only displayed when url has a hashtag at the end: #country=IN,CN,US <br>
+            To change displayed countries, change the URL hashtag.
+        </p>
         <canvas id="countryChart"></canvas>
         <div id="earthscape1"></div>
         <br>
@@ -97,3 +102,4 @@
 	<a href="https://chatgpt.com/share/e0e882e9-9a14-4677-abf5-399e509db10d">Source: ChatGPT</a><br><br>
 	<a href="/feed/view/#feed=LandCoverFraction_Forest">Our working feed request</a> -->
 </body>
+
