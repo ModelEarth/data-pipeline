@@ -67,7 +67,7 @@ async function getCountyChart(chartVariable, entityId, showAll, chartText) {
             yearsSet.add(obs.date);
         });
     });
-    const years = [...yearsSet];
+    const years = [...yearsSet].sort((a, b) => a - b);
     
     // Showing all or top 5 or bottom 5 counties
     let selectedData;
@@ -132,11 +132,11 @@ async function getCountyChart(chartVariable, entityId, showAll, chartText) {
     };
 
     // Delete chart if it already exists
-    if (myChart instanceof Chart) {
-        myChart.destroy();
+    if (countyChart instanceof Chart) {
+        countyChart.destroy();
     }
-    const ctx = document.getElementById('myChart').getContext('2d');
-    myChart = new Chart(ctx, config);
+    const ctx = document.getElementById('countyChart').getContext('2d');
+    countyChart = new Chart(ctx, config);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -233,7 +233,7 @@ async function getCountryChart(chartVariable, facetId) {
             yearsSet.add(obs.date);
         });
     });
-    const years = [...yearsSet];
+    const years = [...yearsSet].sort((a, b) => a - b);
 
     // Get datasets
     const datasets = formattedData.map(country => {
@@ -283,11 +283,11 @@ async function getCountryChart(chartVariable, facetId) {
     };
 
     // Delete chart if it already exists
-    if (myChart instanceof Chart) {
-        myChart.destroy();
+    if (countryChart instanceof Chart) {
+        countryChart.destroy();
     }
     const ctx = document.getElementById('countryChart').getContext('2d');
-    myChart = new Chart(ctx, config);
+    countryChart = new Chart(ctx, config);
 
     // Use the following to track hash changes -
     // document.addEventListener('hashChangeEvent', () => {
@@ -302,5 +302,125 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 document.addEventListener('hashChangeEvent', () => {
+    console.log('check');
     getCountryChart('Count_Person', '3981252704');
+})
+
+async function getStateChart(chartVariable, statesList, facetId) {
+    // For US States only
+    // Fetch geoIds of all given states
+    const response = await fetch('https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            "nodes": statesList,
+            "property": "<-description{typeOf:State}->dcid"
+        })
+    });
+    const data = await response.json();
+    
+    // Make a dictionary of state code -> name
+    const stateCodes = {};
+    data.entities.forEach(entity => {
+        if (entity.node && entity.candidates && entity.candidates[0] && entity.candidates[0].dcid) {
+            stateCodes[entity.candidates[0].dcid] = entity.node;
+        }
+    });
+
+    // Fetch data for states and selected variable
+    const geoIds = Object.keys(stateCodes);
+    const url = `https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&variable.dcids=${chartVariable}&${geoIds.map(id => `entity.dcids=${id}`).join('&')}`
+    const response2 = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            "date": "",
+            "select": ["date", "entity", "value", "variable"]
+        })
+    })
+    const data2 = await response2.json();
+    
+    // Use facetId to build formatted data
+    const formattedData = []
+    for (const geoId of geoIds) {
+        formattedData.push({
+            state: stateCodes[geoId],
+            observations: data2.byVariable[chartVariable].byEntity[geoId].orderedFacets.find((element) => element.facetId == facetId)['observations']
+        })
+    }
+
+    // Get unique years
+    let yearsSet = new Set();
+    formattedData.forEach(state => {
+        state.observations.forEach(obs => {
+            yearsSet.add(obs.date);
+        });
+    });
+    const years = [...yearsSet].sort((a, b) => a - b);
+    console.log(years);
+
+    // Get datasets
+    const datasets = formattedData.map(state => {
+        return {
+            label: state.state,
+            data: years.map(year => {
+                const observation = state.observations.find(obs => obs.date === year);
+                return observation ? observation.value : null;
+            }),
+            borderColor: 'rgb(' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ')',
+            backgroundColor: 'rgba(0, 0, 0, 0)',
+        };
+    });
+    
+    const config = {
+        type: 'line',
+        data: {
+            labels: years,
+            datasets: datasets
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Population'
+                }
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Year'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Population'
+                    }
+                }
+            }
+        }
+    };
+
+    // Delete chart if it already exists
+    if (stateChart instanceof Chart) {
+        stateChart.destroy();
+    }
+    const ctx = document.getElementById('stateChart').getContext('2d');
+    stateChart = new Chart(ctx, config);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    chartVariable = 'Count_Person';
+    statesList = ['Florida', 'New Jersey', 'New York State', 'New Mexico', 'Alaska']; // 'New York' does not work, use 'New York State' - idk why
+    facetId = '2176550201';
+    getStateChart(chartVariable, statesList, facetId);
 })
