@@ -1,21 +1,21 @@
-[Community Data](/community-data/)
+[Active Projects](/projects/)
 # Data Pipeline
 
-[Our Community Datasets](/community-data/) and [Community Timelines Repo](https://github.com/modelearth/community-timelines/) contain state, county and zip code data generated for regional [ML&nbsp;Timelines for Forecasting](timelines) and [Industry&nbsp;Supply-Chain IO&nbsp;Charts](https://model.earth/localsite/info/)<!--[Map&nbsp;Topics](#appview=topics&geoview=country)-->.
+Our [Community-Data](/community-data/) and [Community-Timelines](https://github.com/modelearth/community-timelines/) repos contain state, county and [zip code data](industries/naics/) generated for [Industry&nbsp;Supply-Chain IO&nbsp;Charts](https://model.earth/localsite/info/) and [Community Forecasting Timelines](timelines).
 
-View our [Active Projects](/projects/) and our [Observable Framework Dev](/data-commons/) for the [Google Data Commons API](https://docs.datacommons.org/api/).
+[Our Industry Input-Output Charts](../io/charts/) pull from static json files containing [USEEIO API state data](https://github.com/ModelEarth/OpenFootprint/tree/main/impacts/2020).
 
-[Our SQL implementation](/io/about/) of the [US EPA Industry Input-Output Charts](../io/charts/) pulls from static json files containing [USEEIO API data](https://github.com/ModelEarth/OpenFootprint/tree/main/impacts/2020). Static json also provides fast loading pages.
+[International Trade Flow SQL](/useeio.js/footprint/) and [US State USEEIO SQL](/io/about/) will allow us to provide starters for Databricks and Microsoft BI using the [GDC API](https://docs.datacommons.org/api/) in our [Observable Framework UN Goals repo](/data-commons/).
 
-We are working toward adding a [Requests Agent](/requests/) to [Open WebUI](/projects/src) and [Earthscape](/earthscape/app).
+[We meet 3 times a week](/io/coders) to work with data from the [USDA](/data-commons/docs/food/), [See Click Fix](/feed/view/#feed=311) and [GDC UN Goals](/data-commons/).  
+We're developing a [Feed Player](/feed/dist/) and [Requests Agent](/requests/) for [Open WebUI](/projects/src) and [Earthscape](/earthscape/app).
 
-[Learn about the APIs](/io/coders) we are combining for requests: [USDA](/data-commons/docs/food/), See Click Fix, Google Data Commons
 
 <!--
     12-digit FIPS Code - state, county, tract, block group
     https://www.policymap.com/2012/08/tips-on-fips-a-quick-guide-to-geographic-place-codes-part-iii/
 -->
-<br>
+
 
 # Data Source and Integrations
 
