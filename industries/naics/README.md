@@ -47,16 +47,6 @@ US36005-census-naics6-2020.csv for a single county. Not needed currently. -->
 - Sqkm or Sqmiles - To be added
 -->
 
-**For Industry Comparisons**
-
-We'll initially send the annual zip code files to: /community-data/industries/naics/us/zip-update/
-Following local review, we'll manually move to: [/community-data/industries/naics/us/zip/](/community-data/industries/naics/us/zip/)
-
-For each year, there will be 3 zip code files for each state:  
-
-US/zip/NY/US-NY-census-naics2-zip-2023.csv
-US/zip/NY/US-NY-census-naics4-zip-2023.csv
-US/zip/NY/US-NY-census-naics6-zip-2023.csv
 
 <!--
 Here are the 4 year old files we're eliminating:

@@ -8,11 +8,48 @@ We use naics-annual.ipynb to generate country, states and county files.
 - [US Country](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/country)
 - [States](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/states)
 - [Counties](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/counties)
-- [Zip](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/zip) - Coming soon
+- [Zip](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/) - Coming soon
 
-Zip code files are pulled from the Census API and saved as DuckDB here in the [duck\_zipcode\_db](https://github.com/ModelEarth/data-pipeline/tree/main/industries/naics/duck_zipcode_db) subfolder (by David C)
 
-Badri ran this in VS Code terminal. Launch in "naics" folder using `code .`
+
+### Process Industry NAICS by Zip Code
+
+**Each zip code .csv will have these 6 columns:**
+
+- Zip - Only in counties files.
+- Naics - ActivityProducedBy (6-digit naics)  
+- Establishments - Other (Number of Extablishments)  
+- Employees - Employment FlowAmount (Number of Employees)  
+- Payroll - US Dollars (Annual Wages)
+
+Folders are nested 3/0/3/1/8 to avoid GitHub's files-per-folder limit.
+
+The old files reside here:  
+[community-data/us/zipcodes/naics](https://github.com/ModelEarth/community-data/tree/master/us/zipcodes/naics/) - [30318](https://github.com/ModelEarth/community-data/blob/master/us/zipcodes/naics/3/0/3/1/8/zipcode30318-census-naics6-2018.csv)
+
+The new files will reside at:  
+[community-data/industries/naics/US/zip](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/)
+
+
+For each year, there will be 5 zip code files for each state:  
+
+US/zip/NY/US-NY-census-naics2-zip-2023.csv  
+US/zip/NY/US-NY-census-naics3-zip-2023.csv  
+US/zip/NY/US-NY-census-naics4-zip-2023.csv  
+US/zip/NY/US-NY-census-naics5-zip-2023.csv  
+US/zip/NY/US-NY-census-naics6-zip-2023.csv  
+
+Some payroll fields provide from the census will be null to protect privacy.
+Here's our work on [Estimating using Machine Learning](https://model.earth/machine-learning/)
+
+
+Zip code files are pulled from the Census API and saved as DuckDB here in the [duck\_zipcode\_db](https://github.com/ModelEarth/data-pipeline/tree/main/industries/naics/duck_zipcode_db) subfolder (by David C in June 2024)
+
+DuckDB is faster at processing than Pandas. The DuckDB database was too big to deploy to GitHub.
+
+David included additional fields like city in the DuckDB, which could be useful later for filling in gaps with ML.
+
+In July, Badri ran this in VS Code terminal. Launch in "naics" folder using `code .`
 
 	python3 -m venv env
 	source env/bin/activate
@@ -27,10 +64,12 @@ Hit "Change Kernel"
 
 Run the 1st and 4th cells in duckdb\_database.ipynb
 
+TO DO: Make the notebook intuitive by eliminating the need to skip a step.  
+Move retained files to naics/duckdb/prep. Use dashes instead of underscores in files names.
 
-TO DO: Output to a new folder called "zip" in [community-data repo](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/) 
+TO DO: Output nested folders within a new "zip" folder in a fork of [community-data/industries/naics/US/zip](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/) 
 
-See the [format of our prior nested zip folders: 3/0/3/1/8](https://github.com/ModelEarth/community-data/tree/master/us/zipcodes/naics/3/0/3/1/8)
+TO DO: This process needs to be run annually via a Github Action. We could avoid sending to DuckDB when just updating one year at a time.
 
 <!-- Added variable to send older zip data. -->
 
