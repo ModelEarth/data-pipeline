@@ -1,13 +1,13 @@
 [Active Projects](/projects/)
 # Data Pipeline
 
-Our [Community-Data](/community-data/) and [Community-Timelines](https://github.com/modelearth/community-timelines/) repos contain state, county and [zip code data](industries/naics/) generated for [Industry&nbsp;Supply-Chain IO&nbsp;Charts](https://model.earth/localsite/info/) and [Community Forecasting Timelines](timelines).
+[Our Community-Data](/community-data/) and [Community-Timelines](https://github.com/modelearth/community-timelines/) repos contain state, county and [zip code data](industries/naics/) generated for [Industry&nbsp;Supply-Chain IO&nbsp;Charts](https://model.earth/localsite/info/) and [Community Forecasting Timelines](timelines).
 
 [Our Industry Input-Output Charts](../io/charts/) pull from static json files containing [USEEIO API state data](https://github.com/ModelEarth/OpenFootprint/tree/main/impacts/2020).
 
-[International Trade Flow SQL](/useeio.js/footprint/) and [US State USEEIO SQL](/io/about/) will allow us to provide starters for Databricks and Microsoft BI using the [GDC API](https://docs.datacommons.org/api/) in our [Observable Framework UN Goals repo](/data-commons/).
+[Our International Trade Flow SQL](/useeio.js/footprint/) and [US State USEEIO SQL](/io/about/) will allow us to provide starters for Databricks and Microsoft BI using the [Google Data Commons API](https://docs.datacommons.org/api/) with the [UN Goal Timelines](/data-commons/).
 
-[We meet 3 times a week](/io/coders) to work with data from the [USDA](/data-commons/docs/food/), [See Click Fix](/feed/view/#feed=311) and [GDC UN Goals](/data-commons/).  
+[We meet 3 times a week](/io/coders) to combine data from the [USDA](/data-commons/docs/food/) and [See Click Fix](/feed/view/#feed=311) with [100+ LLMs](/projects/src/).  
 We're developing a [Feed Player](/feed/dist/) and [Requests Agent](/requests/) for [Open WebUI](/projects/src) and [Earthscape](/earthscape/app).
 
 
