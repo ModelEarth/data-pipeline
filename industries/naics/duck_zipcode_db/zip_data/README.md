@@ -24,10 +24,12 @@ We use naics-annual.ipynb to generate country, states and county files.
 
 Folders are nested 3/0/3/1/8 to avoid GitHub's files-per-folder limit.
 
-The old files reside here:  
+The results will be used in our [Industry Comparison location filters](https://model.earth/localsite/info/#geoview=state&state=NY), similar to countries, states and counties.
+
+The old zip code files reside here:  
 [community-data/us/zipcodes/naics](https://github.com/ModelEarth/community-data/tree/master/us/zipcodes/naics/) - [30318](https://github.com/ModelEarth/community-data/blob/master/us/zipcodes/naics/3/0/3/1/8/zipcode30318-census-naics6-2018.csv)
 
-The new files will reside at:  
+The new zip code files will reside at:  
 [community-data/industries/naics/US/zip](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/)
 
 
@@ -46,6 +48,10 @@ Here's our work on [Estimating using Machine Learning](https://model.earth/machi
 Zip code files are pulled from the Census API and saved as DuckDB here in the [duck\_zipcode\_db](https://github.com/ModelEarth/data-pipeline/tree/main/industries/naics/duck_zipcode_db) subfolder (by David C in June 2024)
 
 DuckDB is faster at processing than Pandas. The DuckDB database was too big to deploy to GitHub.
+
+TO DO: Create DuckDB files by year so they are small enough to share with GitHub.
+
+TO DO: Process new data once a year using a GitHub Action.
 
 David included additional fields like city in the DuckDB, which could be useful later for filling in gaps with ML.
 
