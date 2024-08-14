@@ -15,3 +15,4 @@ industries/naics/sqlite_zipcode_db_delete/zip_data/us_economic_data.db
 industries/naics/duck_zipcode_db/zip_data/duck_db_manager/database/us_economic_data.duckdb
 industries/naics/duck_zipcode_db/zip_data/duck_db_manager/database/nested_zip/
 industries/naics/duck_zipcode_db/zip_data/duck_db_manager/database/nested_zip.zip
+industries/naics/duck_zipcode_db/temp/

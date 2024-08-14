@@ -19,7 +19,10 @@ class ZipPopulator:
 
     def get_zip_for_year(self, year):
         industries = pd.read_csv('./id_lists/industry_id_list.csv')
-        industries['relevant_naics'] = industries['relevant_naics'].astype(int).astype(str)
+
+        # Convert NAICS code '0' (representing all sectors) to '00' to maintain consistency
+        # with other parts of the code and ensure it is included in the data pull.
+        industries['relevant_naics'] = industries['relevant_naics'].astype(int).astype(str).replace({'0': '00'})
         industries['level'] = industries['relevant_naics'].apply(len)
         industries = industries[industries['level'].isin([2, 4, 6])]
         if not hasattr(industries, 'get') or 'relevant_naics' not in industries:
