@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let graphVariable = 'Count_Person';
     let showAll = 'showTop5';
     let entityId = 'geoId/01';
-    let myChart;
+    let myChart;    // Declare myChart in the broader scope
 
     // Function to update the H2 tag text and chart title
     const updateTexts = () => {
@@ -206,6 +206,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function getCountryChart(chartVariable, facetId) {
+    let myChart;    // Declare myChart in a broader scope
+    
     // Get countries from URL
     try {
         let selectedCountries;
@@ -213,6 +215,8 @@ async function getCountryChart(chartVariable, facetId) {
         const equalParams = currentUrl.split('=');
         const countryParams = equalParams[equalParams.length - 1];
         selectedCountries = countryParams.split(',');
+
+        console.log("Selected Countries:", selectedCountries);
 
         // Fetch country codes for selected countries
         const response = await fetch('https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI', {
@@ -227,6 +231,8 @@ async function getCountryChart(chartVariable, facetId) {
         });
         const data = await response.json();
 
+        console.log("Country Codes Data:", data);
+
         // Make a dictionary of country code -> name
         const countryCodes = {};
         data.entities.forEach(entity => {
@@ -234,6 +240,8 @@ async function getCountryChart(chartVariable, facetId) {
                 countryCodes[entity.candidates[0].dcid] = entity.node;
             }
         });
+
+        console.log("Country Codes:", countryCodes);
 
         // Fetch data for selected countries and selected variable
         const geoIds = Object.keys(countryCodes);
@@ -250,12 +258,16 @@ async function getCountryChart(chartVariable, facetId) {
         });
         const data2 = await response2.json();
 
+        console.log("Observation Data:", data2);
+
         // Get facetId based on a selected source
         for (const facetIdCheck in data2.facets) {
             if (data2.facets[facetIdCheck].provenanceUrl === "https://datacatalog.worldbank.org/dataset/world-development-indicators/") {
                 facetId = facetIdCheck;
             }
         }
+
+        console.log("Selected Facet ID:", facetId);
 
         // Use facetId to build formatted data
         const formattedData = [];
@@ -265,6 +277,8 @@ async function getCountryChart(chartVariable, facetId) {
                 observations: data2.byVariable[chartVariable].byEntity[geoId].orderedFacets.find((element) => element.facetId == facetId)['observations']
             });
         }
+
+        console.log("Formatted Data:", formattedData);
 
         // Get unique years
         let yearsSet = new Set();
@@ -287,6 +301,8 @@ async function getCountryChart(chartVariable, facetId) {
                 backgroundColor: 'rgba(0, 0, 0, 0)',
             };
         });
+        
+        console.log("Datasets:", datasets);
 
         const config = {
             type: 'line',
