@@ -11,6 +11,7 @@ async function fetchCountyGeoIds(graphVariable, entityId) {
             })
         });
         const data = await response.json();
+        console.log("County Data:", data); // Log the data to inspect
 
         // Use the geoId list to fetch respective county + state names
         const geoIds = Object.keys(data.byVariable[graphVariable].byEntity);
