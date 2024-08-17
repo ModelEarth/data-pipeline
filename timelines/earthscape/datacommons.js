@@ -85,21 +85,24 @@ async function getFormattedData(graphVariable, entityId) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const selectElement = document.getElementById('graphVariable');
-    let graphVariable = 'Count_Person';
-    let showAll = 'showTop5';
-    let entityId = 'geoId/01';
-    let myChart;    // Declare myChart in the broader scope
+    // This is problem - not widget friendly
+    let graphVariableDiv = "#graphVariable"; // This is a problem. Use a class that is specific to a widget instance so the widget can be reused multiple times in a page.
+    waitForElm(graphVariableDiv).then((elm) => {
+        const selectElement = document.getElementById('graphVariable');
+        let graphVariable = 'Count_Person';
+        let showAll = 'showTop5';
+        let entityId = 'geoId/01';
+        let myChart;    // Declare myChart in the broader scope
 
-    // Function to update the H2 tag text and chart title
-    const updateTexts = () => {
-        const selectedOptionText = selectElement.options[selectElement.selectedIndex].text;
-        if (myChart) {
-            myChart.options.plugins.title.text = `${selectedOptionText}`;
-            myChart.update();
-        }
-    };
-
+        // Function to update the H2 tag text and chart title
+        const updateTexts = () => {
+            const selectedOptionText = selectElement.options[selectElement.selectedIndex].text;
+            if (myChart) {
+                myChart.options.plugins.title.text = `${selectedOptionText}`;
+                myChart.update();
+            }
+        };
+    });
     async function getGraph(showAll, graphVariable, entityId) {
         try {
             const data = await getFormattedData(graphVariable, entityId);
@@ -184,8 +187,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    updateTexts();
-    getGraph(showAll, graphVariable, entityId);
+    // This is a problem. See above
+    waitForElm(graphVariableDiv).then((elm) => {
+        updateTexts();
+        getGraph(showAll, graphVariable, entityId);
+    });
 
     document.forms['countyShow'].addEventListener('change', function (event) {
         if (event.target.name === 'countyShow') {
@@ -194,10 +200,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    document.getElementById('graphVariable').addEventListener('change', (event) => {
-        graphVariable = event.target.value;
-        updateTexts();
-        getGraph(showAll, graphVariable, entityId);
+    // This is a problem. See above
+    waitForElm(graphVariableDiv).then((elm) => {
+        document.getElementById('graphVariable').addEventListener('change', (event) => {
+            graphVariable = event.target.value;
+            updateTexts();
+            getGraph(showAll, graphVariable, entityId);
+        });
     });
 
     document.getElementById('entityId').addEventListener('change', (event) => {
