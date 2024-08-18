@@ -1,47 +1,43 @@
 async function fetchCountyGeoIds(graphVariable, entityId) {
     // Fetch all geoIds containing geoId in name + are counties
-    try {
-        const response = await fetch(`https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&entity.expression=${entityId}%3C-containedInPlace%2B%7BtypeOf%3ACounty%7D&select=date&select=entity&select=value&select=variable&variable.dcids=${graphVariable}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                "dates": ""
-            })
-        });
-        const data = await response.json();
-        console.log("County Data:", data); // Log the data to inspect
+    const response = await fetch(`https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&entity.expression=${entityId}%3C-containedInPlace%2B%7BtypeOf%3ACounty%7D&select=date&select=entity&select=value&select=variable&variable.dcids=${graphVariable}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            "dates": ""
+        })
+    });
+    const data = await response.json();
+    console.log("County Data:", data); // Log the data to inspect
 
-        // Use the geoId list to fetch respective county + state names
-        const geoIds = Object.keys(data.byVariable[graphVariable].byEntity);
-        const response2 = await fetch('https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                "nodes": geoIds,
-                "property": "->[containedInPlace, name]"
-            })
-        });
-        const data2 = await response2.json();
+    // Use the geoId list to fetch respective county + state names
+    const geoIds = Object.keys(data.byVariable[graphVariable].byEntity);
+    const response2 = await fetch('https://api.datacommons.org/v2/node?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            "nodes": geoIds,
+            "property": "->[containedInPlace, name]"
+        })
+    });
+    const data2 = await response2.json();
 
-        // Put data together
-        const countyData = {};
-        Object.keys(data2.data).forEach(geoId => {
-            const node = data2.data[geoId].arcs;
-            const stateName = node.containedInPlace.nodes[0]['name'];
-            const countyName = node.name.nodes[0]['value'];
-            countyData[geoId] = {
-                name: countyName,
-                state: stateName
-            };
-        });
-        return countyData;
-    } catch (error) {
-        console.error('Error fetching county geo IDs:', error);
-    }
+    // Put data together
+    const countyData = {};
+    Object.keys(data2.data).forEach(geoId => {
+        const node = data2.data[geoId].arcs;
+        const stateName = node.containedInPlace.nodes[0]['name'];
+        const countyName = node.name.nodes[0]['value'];
+        countyData[geoId] = {
+            name: countyName,
+            state: stateName
+        };
+    });
+    return countyData;
 }
 
 async function fetchDataPoints(geoIds, graphVariable) {
