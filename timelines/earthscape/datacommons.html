@@ -22,7 +22,8 @@
         <h2>Country Data</h2>
         <p>
             Developers Note: Chart is only displayed when url has a hashtag at the end: #country=IN,CN,US <br>
-            To change displayed countries, change the URL hashtag. Awesome setup by Mehul.
+            To change displayed countries, change the URL hashtag. Awesome setup by Mehul. 
+            Topics will reside in our <a href="/data-commons/docs/data/">Google Sheet used with Python</a>
         </p>
         <canvas id="countryChart"></canvas>
 
@@ -89,6 +90,17 @@
             <option value="Count_Person" selected>County Populations</option>
             <option value="LandCoverFraction_Forest">Land Covered by Forests</option>
             <option value="Count_Farm">Number of Farms</option>
+            <option value="Annual_Emissions_Methane_NonBiogenic">Methane NonBiogenic</option>
+            <!--
+                Adjust to per capita (and SqMiles) using our nav filter file:
+                https://github.com/ModelEarth/localsite/blob/main/info/data/map-filters/us-states.csv
+
+                Or call the API directly for the additional info (population and sq miles)
+
+                show=Count_Person
+
+                Convert 2-char state to geoId/01 in backend datacommons.js
+            -->
         </select>
         <br>
         <form name="countyShow">
