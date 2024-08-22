@@ -139,33 +139,6 @@ async function getCountyChart(chartVariable, entityId, showAll, chartText) {
     countyChart = new Chart(ctx, config);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    let chartVariable = 'Count_Person';
-    let showAll = 'showTop5';
-    let entityId = 'geoId/01'
-    let chartText = document.getElementById('chartVariable').options[document.getElementById('chartVariable').selectedIndex].text;
-
-    getCountyChart(chartVariable, entityId, showAll, chartText);
-
-    document.forms['countyShow'].addEventListener('change', function(event) {
-        if (event.target.name === 'countyShow') {
-            showAll = document.querySelector('input[name="countyShow"]:checked').value;
-            getCountyChart(chartVariable, entityId, showAll, chartText);
-        }
-    });
-
-    document.getElementById('chartVariable').addEventListener('change', (event) => {
-        chartVariable = event.target.value;
-        chartText = document.getElementById('chartVariable').options[document.getElementById('chartVariable').selectedIndex].text;
-        getCountyChart(chartVariable, entityId, showAll, chartText);
-    });
-
-    document.getElementById('entityId').addEventListener('change', (event) => {
-        entityId = event.target.value;
-        getCountyChart(chartVariable, entityId, showAll, chartText);
-    });
-});
-
 async function getCountryChart(chartVariable, facetId) {
     // Get countries from URL
     const currentUrl = window.location.href;
@@ -184,15 +157,21 @@ async function getCountryChart(chartVariable, facetId) {
             "property": "<-description{typeOf:Country}->dcid"
         })
     });
-    const data = await response.json();
 
     // Make a dictionary of country code -> name
     const countryCodes = {};
-    data.entities.forEach(entity => {
-        if (entity.node && entity.candidates && entity.candidates[0] && entity.candidates[0].dcid) {
-            countryCodes[entity.candidates[0].dcid] = entity.node;
-        }
-    });
+
+    const data = await response.json();
+    if (data?.entities && Array.isArray(data.entities)) { 
+        data.entities.forEach(entity => {
+            if (entity.node && entity.candidates && entity.candidates[0] && entity.candidates[0].dcid) {
+                countryCodes[entity.candidates[0].dcid] = entity.node;
+            }
+        });
+    } else {
+        console.warn('No entities found in the response data. Append to URL: #country=IN,CN,US');
+        alert('Append to URL: #country=IN,CN,US');
+    }
 
     // Fetch data for selected countries and selected variable
     const geoIds = Object.keys(countryCodes);
