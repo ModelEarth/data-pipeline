@@ -1,15 +1,4 @@
-# Process NAICS Industries
-
-### For use in local US EPA impact comparisons
-
-We use naics-annual.ipynb to generate country, states and county files.
-
-[Our Community Datasets](http://model.earth/community-data/) for industries are generated for:
-- [US Country](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/country)
-- [States](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/states)
-- [Counties](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/counties)
-- [Zip](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/) - Coming soon
-
+Delete - Resides in community-zipcode now
 
 
 ### Process Industry NAICS by Zip Code
@@ -167,4 +156,3 @@ The `DataEntry` table stores economic data entries, linking geographic locations
 - The `DataEntry` table references the `DimZipCode` table through the `GeoID` foreign key.
 - The `DataEntry` table references the `DimNaics` table through the `NaicsCode` foreign key.
 - The `DataEntry` table references the `DimYear` table through the `Year` foreign key.
-

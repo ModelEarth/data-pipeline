@@ -1,6 +1,20 @@
 [Data Pipeline](../../)
 
-# County Business Patterns (CBP)
+# NAICS Industry Employment Data
+
+### County and Zip Business Patterns (CBP)
+
+For use in local US EPA [impact comparisons](/localsite/info/)
+
+[Our Community Datasets](http://model.earth/community-data/) for industries use [naics-annual.ipynb](/data-pipeline/industries/naics/) to generate country, states and county files.
+
+- [US Country](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/country)
+- [States](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/states)
+- [Counties](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/counties)
+- [Zip](https://github.com/ModelEarth/community-zipcodes/tree/master/industries/naics/US/zip/)
+
+
+
 
 "The Business Patterns series covers most of the country’s economic activity, but excludes data on self-employed individuals, employees of private households, railroad employees, agricultural production employees, and most government employees."
 
