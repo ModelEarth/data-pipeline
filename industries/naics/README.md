@@ -4,14 +4,14 @@
 
 ### County and Zip Business Patterns (CBP)
 
-For use in local US EPA [impact comparisons](/localsite/info/)
+[For industry impact comparisons by location](/localsite/info/)
 
 [Our Community Datasets](http://model.earth/community-data/) for industries use [naics-annual.ipynb](/data-pipeline/industries/naics/) to generate country, states and county files.
 
 - [US Country](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/country)
 - [States](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/states)
 - [Counties](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/counties)
-- [Zip](https://github.com/ModelEarth/community-zipcodes/tree/master/industries/naics/US/zip/) - [Zipcode data processing](/community-zipcodes/)
+- [Zip](https://github.com/ModelEarth/community-zipcodes/tree/master/industries/naics/US/zip/) - [Zip code data processing](/community-zipcodes/)
 
 
 
