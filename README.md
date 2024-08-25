@@ -1,7 +1,7 @@
 [Active Projects](/projects/)
 # Data Pipeline
 
-[Our Community-Data](/community-data/) and [Community-Timelines](https://github.com/modelearth/community-timelines/) repos contain state, county and [zip code data](industries/naics/) generated for [Industry&nbsp;Supply-Chain IO&nbsp;Charts](https://model.earth/localsite/info/) and [Community Forecasting Timelines](timelines).
+[Our Community-Data](/community-data/) and [Community-Timelines](https://github.com/modelearth/community-timelines/) repos contain [state, county](industries/naics/) and [zip code data](/community-zipcodes/) generated for [Industry&nbsp;Supply-Chain IO&nbsp;Charts](https://model.earth/localsite/info/) and [Community Forecasting Timelines](timelines).
 
 [Our Industry Input-Output Charts](../io/charts/) pull from static json files containing [USEEIO API state data](https://github.com/ModelEarth/OpenFootprint/tree/main/impacts/2020).
 
