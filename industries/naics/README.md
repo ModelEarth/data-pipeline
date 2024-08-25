@@ -75,6 +75,9 @@ Python pulls from the [US Census CBP&nbsp;API](https://www.census.gov/data/devel
 
 The Jupyter Notebook for industry data preparation resides in [naics-annual.ipynb](naics-annual.ipynb).
 
+We use naics-annual.ipynb to generate country, states and county files.
+Zip code file generation resides in [community-zipcodes](/community-zipcodes/).
+
 In your webroot, create a virtual environment and install libraries.
 Using the root will allow you to send output to the community-data repo.
 
