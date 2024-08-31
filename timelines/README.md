@@ -4,7 +4,7 @@
 
 ## Our RealityStream ML Forecasting Models
 
-TO DO: [Timelines from Google Datacommons API](earthscape/datacommons.html) via javascript
+TO DO: [Timelines from Google Datacommons API](/data-commons/docs/data/) via javascript
 
 TO DO: [RealityStream](/RealityStream) - We're sending location data to Machine Learning models
 Logistic Regression, Random Forest, Support Vector Machines, XGBoost
