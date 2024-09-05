@@ -15,7 +15,7 @@
 <link type="text/css" rel="stylesheet" href="https://unpkg.com/tabulator-tables/dist/css/tabulator.min.css" id="/localsite/css/tabulator.min.css">
 <link type="text/css" rel="stylesheet" href="/localsite/css/base-tabulator.css" id="/localsite/css/base-tabulator.css">
 
-<script type="text/javascript" src="/localsite/js/earthscape.js" id="/localsite/js/earthscape.js"></script>
+<script type="text/javascript" src="/data-commons/docs/data/js/earthscape.js" id="/data-commons/docs/data/js/earthscape.js"></script>
 <link type="text/css" rel="stylesheet" href="/localsite/css/base.css" id="/localsite/css/base.css">
 
 <script type="text/javascript" src="/localsite/js/localsite.js?showheader=true&showsearch=true"></script>
@@ -59,6 +59,13 @@ hr {
 
   <div id="readmeDiv"></div>
 
+  <h2>Countries Map Filter</h2>
+
+  Used by <a href="#geoview=countries">top navigation</a>. Related <a href="/localsite/info/data/map-filters/">map filter documentation</a>.<br>
+
+  <div id="countries1" style="overflow-x: auto;"></div>
+  <br>
+
   <h2>Maine Establishments Timeline</h2>
   Data from: <a href="https://github.com/ModelEarth/community-timelines/tree/main/industries/">community-timelines/industries</a><br><br>
   <div id="earthscape1" style="overflow-x: auto;"></div>
@@ -72,17 +79,28 @@ hr {
   Data from: <a href="https://github.com/ModelEarth/community-timelines/tree/main/training">community-timelines/training</a><br>
   Also see our Tabulator example of <a href="../../tabulator">pivoting year files into rows (table 4)</a>.<br><br>
 
-  <div id="earthscape2" style="overflow-x: auto;;"></div><br>
+  <div id="earthscape2" style="overflow-x: auto;;"></div>
 
 </div>
 
 <script>
   let my = {};
-  let timelineDataroot = "https://model.earth/community-timelines/industries/naics4/US/states/";
+  let timelineDataroot = "";
+
+  my = {}; // Drops entanglement
+  timelineDataroot = "https://model.earth/";
+  my.dataset = timelineDataroot + "localsite/info/data/map-filters/countries.csv";
+  my.elementID = "countries1";
+  // my.chartType = "timeline"; // Or chord, sankey, graph
+  loadEarthScape(my);
+
+  my = {}; // Drops entanglement
+  timelineDataroot = "https://model.earth/community-timelines/industries/naics4/US/states/";
   my.dataset = timelineDataroot + "ME/US-ME-census-naics4-establishments.csv";
   my.elementID = "earthscape1";
   // my.chartType = "timeline"; // Or chord, sankey, graph
   loadEarthScape(my);
+
 
   my = {}; // Drops entanglement
   timelineDataroot = "https://raw.githubusercontent.com/ModelEarth/community-timelines/main/training/naics2/US/counties/";
@@ -90,8 +108,6 @@ hr {
   my.elementID = "earthscape2";
   // my.chartType = "timeline"; // Or chord, sankey, graph
   loadEarthScape(my);
-
-
 
 
   my = {}; // Drops entanglement
@@ -115,7 +131,7 @@ hr {
   loadEarthScape(my);
 </script>
 
-<div class="content contentpadding">
+<div class="contentpadding" style="padding-top:0px">
   <h2>Training Data Samples</h2>
   Before merging multiple years<br><br>
 
@@ -134,7 +150,6 @@ hr {
 
   UrbanDensity is the average population for all urban Census Blocks with over 1500/KM2.<br>
 </div>
-
 
 </body>
 </html>
