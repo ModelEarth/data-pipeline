@@ -150,27 +150,30 @@ document.addEventListener("DOMContentLoaded", function() {
 
 </script>
 
+<style>
+#relocatedStateMenu #state_select {
+    background-color: #ddd;
+}
+#relocatedStateMenu #state_select {
+    cursor: pointer;
+    border-radius:24px;
+    min-height:38px;
+    line-height:16px;
+    color: #555;
+    appearance: none;
+    max-width: 220px !important;
+    padding: 15px 20px !important;
+    font-size: 18px;
+}
+#relocatedStateMenu #state_select:hover {
+    background-color: #fff   !important;
+}
+</style>
 </head>
 <body>
 
 <div style="position:relative;">
 	<img src="../img/OR-Naics-7225-Biking-under-a-tree-canopy_xwide.jpg" style="width:100%">
-	<style>
-	#relocatedStateMenu #state_select {
-		cursor: pointer;
-		border-radius:24px;
-		min-height:38px;
-		line-height:16px;
-		color: #555;
-		appearance: none;
-		max-width: 220px !important;
-		padding: 15px 20px !important;
-		font-size: 18px;
-	}
-	#relocatedStateMenu #state_select:hover {
-		background-color: #fff	 !important;
-	}
-	</style>
 	<div id="relocatedStateMenu" style="position:absolute;top:0;left:22px;margin:40px;padding-left:20px"></div>
 </div>
 
