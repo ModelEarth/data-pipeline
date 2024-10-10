@@ -6,7 +6,7 @@
 
 [For industry impact comparisons by location](/localsite/info/)
 
-[Our Community Datasets](http://model.earth/community-data/) for industries use [naics-annual.ipynb](/data-pipeline/industries/naics/) to generate country, states and county files.
+[Our Community Datasets](http://model.earth/community-data/) for industries use [naics-annual.ipynb](https://github.com/ModelEarth/data-pipeline/tree/main/industries/naics) to generate country, states and county files.
 
 - [US Country](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/country)
 - [States](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/states)
