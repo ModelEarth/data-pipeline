@@ -1,3 +1,21 @@
+// We're moving this functionality into 
+// data-commons/docs/earthscape.js getTimelineChart using the scope parameter for state and country
+
+document.addEventListener('DOMContentLoaded', () => {
+    getCountryChart('Count_Person', '3981252704');
+
+    chartVariable = 'Count_Person';
+    statesList = ['Florida', 'New Jersey', 'New York State', 'New Mexico', 'Alaska']; // 'New York' does not work, use 'New York State' - idk why
+    facetId = '2176550201';
+    getStateChart(chartVariable, statesList, facetId);
+})
+
+document.addEventListener('hashChangeEvent', () => {
+    console.log('check');
+    getCountryChart('Count_Person', '3981252704');
+})
+
+
 async function getCountyChart(chartVariable, entityId, showAll, chartText) {
     // Fetch all geoIds for counties
     const response = await fetch(`https://api.datacommons.org/v2/observation?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI&entity.expression=${entityId}%3C-containedInPlace%2B%7BtypeOf%3ACounty%7D&select=date&select=entity&select=value&select=variable&variable.dcids=${chartVariable}`, {
@@ -276,15 +294,6 @@ async function getCountryChart(chartVariable, facetId) {
     // })
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    getCountryChart('Count_Person', '3981252704');
-})
-
-document.addEventListener('hashChangeEvent', () => {
-    console.log('check');
-    getCountryChart('Count_Person', '3981252704');
-})
-
 async function getStateChart(chartVariable, statesList, facetId) {
     // For US States only
     // Fetch geoIds of all given states
@@ -397,9 +406,3 @@ async function getStateChart(chartVariable, statesList, facetId) {
     stateChart = new Chart(ctx, config);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    chartVariable = 'Count_Person';
-    statesList = ['Florida', 'New Jersey', 'New York State', 'New Mexico', 'Alaska']; // 'New York' does not work, use 'New York State' - idk why
-    facetId = '2176550201';
-    getStateChart(chartVariable, statesList, facetId);
-})
