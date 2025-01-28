@@ -12,7 +12,7 @@
 - [Gallery from GitHub (JQuery)](/requests/images/)
 - [Gallery from GitHub (React)](/react-gallery/view/)
 
-The free version of [CapCut](https://capcut.com) was used to combine our video clips with&nbsp;music.
+Storyboard video clips and audio combined with [CapCut](https://capcut.com).
 
 ---
 
