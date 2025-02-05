@@ -5,13 +5,12 @@
 
 [Our Industry Input-Output Charts](../io/charts/) pull from static json files containing [USEEIO API state data](https://github.com/ModelEarth/OpenFootprint/tree/main/impacts/2020).
 
-[Our International Trade Flow SQL](/OpenFootprint/trade/) and [USEEIO Javascript](/useeio.js/footprint/) plus [US State USEEIO SQL](/io/about/) provides a structure for models integrated with the [Google Data Commons API](https://docs.datacommons.org/api/) to create [UN Goal Timelines](/data-commons/).
-
-[We meet 3 times a week](/io/coders) to combine data from the [USDA](/data-commons/docs/food/) and [See Click Fix](/feed/view/#feed=311) with [100+ LLMs](/projects/src/).  
-We're developing a [Feed Player](/feed/dist/) and [Requests Agent](/requests/) for [Open WebUI](/projects/src) and [Earthscape](/earthscape/app).
-
+[Our International Trade Flow SQL](/OpenFootprint/trade/) and [USEEIO Javascript](/useeio.js/footprint/) plus [US State USEEIO SQL](/io/about/) provides a structure for models integrated with the [Google Data Commons API](https://docs.datacommons.org/api/) to create [UN Goal Timelines](/data-commons/).<br><br>
 
 <!--
+[We meet weekly](/io/coders) to combine data from the [USDA](/data-commons/docs/food/) and [See Click Fix](/feed/view/#feed=311) with [100+ LLMs](/projects/src/).  
+We're developing a [Feed Player](/feed/dist/) and [Requests Agent](/requests/) for [Open WebUI](/projects/src) and [Earthscape](/earthscape/app).
+--><!--
     12-digit FIPS Code - state, county, tract, block group
     https://www.policymap.com/2012/08/tips-on-fips-a-quick-guide-to-geographic-place-codes-part-iii/
 -->
