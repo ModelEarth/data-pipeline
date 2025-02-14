@@ -22,7 +22,7 @@ TO DO: [Use Feed View](/feed/view/) to assemble parameters.yaml on-the-fly and p
 ML Team: Sijia, Lily, Irene, Honglin, Ronan, Luwei, Wenxi, Magie (Haohao), Ivy
 -->
 
-TO DO: Load both timeline display and Tabulator with [earthscape.js](/data-commons/docs/data/js/earthscape.js) 
+TO DO: Load both timeline display and Tabulator with [earthscape.js](/localsite/js/earthscape.js) 
 [Basic timelines](earthscape/) - [Data Commons timelines](earthscape/datacommons.html) - [Earthscape tabulator](training/naics/) - [Tabulator directly](tabulator/)
 
 
