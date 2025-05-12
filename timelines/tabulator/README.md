@@ -2,7 +2,9 @@
 
 # Timeline Data Samples
 
-The samples here have their Tabulator script in the index.html page.
+Our timeline chart work resides at [data-commons/docs/data](/data-commons/docs/data)
+
+The samples here use a tabulator script in their index.html page.
 For [our tabulator chart pages](../training/naics/), we reuse a common function in earthscape.js.
 
 Table2 - Appends names of industries after table loads with [NAICS Lookup](https://model.earth/community-data/us/id_lists/industry_id_list.csv) <!-- Dinesh-->
