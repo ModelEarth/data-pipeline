@@ -1,26 +1,20 @@
 [Data Pipeline](../../)
 
-# Process Industries
+# NAICS Industry Employment Data
 
-[Our Community Datasets](http://model.earth/community-data/) for industries reside in:
-- [Country](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/country)
+### County and Zip Business Patterns (CBP)
+
+[For industry impact comparisons by location](/localsite/info/)
+
+[Our Community Datasets](http://model.earth/community-data/) for industries use [naics-annual.ipynb](https://github.com/ModelEarth/data-pipeline/tree/main/industries/naics) to generate country, states and county files.
+
+- [US Country](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/country)
 - [States](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/states)
 - [Counties](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/counties)
-- [Zip](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/zip) - coming soon
-
-In Progress (Aashish): We'll be sending 50 states files to the zip folder above. We'll use the same naics-annual.ipynb python used to generate the country, states and counties files. 
-
-A parameter called "loclevel" will be added to toggle to the zip code output so we can reuse the exiting naics-annual.ipynb file.
-<br>
-
-### NAICS Zip Code data
-
-Starting with 2019, [ZIP Codes Business Patterns (ZBP)](https://www.census.gov/data/developers/data-sets/cbp-zbp/zbp-api.html) are available in the County Business Patterns (CBP) API that use for state and county naics processing.
-
-[Processing for zips codes prior to 2019](/community-data/process/naics/)
+- [Zip](https://github.com/ModelEarth/community-zipcodes/tree/master/industries/naics/US/zip/) - [Zip code data processing](/community-zipcodes/)
 
 
-### County Business Patterns (CBP)
+
 
 "The Business Patterns series covers most of the country’s economic activity, but excludes data on self-employed individuals, employees of private households, railroad employees, agricultural production employees, and most government employees."
 
@@ -67,16 +61,6 @@ US36005-census-naics6-2020.csv for a single county. Not needed currently. -->
 - Sqkm or Sqmiles - To be added
 -->
 
-**For Industry Comparisons**
-
-We'll initially send the annual zip code files to: /community-data/industries/naics/us/zip-update/
-Following local review, we'll manually move to: [/community-data/industries/naics/us/zip/](/community-data/industries/naics/us/zip/)
-
-For each year, there will be 3 zip code files for each state:  
-
-US/zip/NY/US-NY-census-naics2-zip-2023.csv
-US/zip/NY/US-NY-census-naics4-zip-2023.csv
-US/zip/NY/US-NY-census-naics6-zip-2023.csv
 
 <!--
 Here are the 4 year old files we're eliminating:
@@ -104,6 +88,9 @@ and 14 year files for each state with naics6.
 Python pulls from the [US Census CBP&nbsp;API](https://www.census.gov/data/developers/data-sets.html).
 
 The Jupyter Notebook for industry data preparation resides in [naics-annual.ipynb](naics-annual.ipynb).
+
+We use naics-annual.ipynb to generate country, states and county files.
+Zip code file generation resides in [community-zipcodes](/community-zipcodes/).
 
 In your webroot, create a virtual environment and install libraries.
 Using the root will allow you to send output to the community-data repo.

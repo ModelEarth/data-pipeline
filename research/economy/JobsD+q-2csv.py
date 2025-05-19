@@ -71,10 +71,10 @@ os.makedirs(output_dir, exist_ok=True)
 
 # In[4]:
 for state_info in all_states_info:
-    url_Q = f"https://raw.githubusercontent.com/ModelEarth/OpenFootprint/main/impacts/2020/{state_info}/matrix/q.json"
-    url_D = f"https://raw.githubusercontent.com/ModelEarth/OpenFootprint/main/impacts/2020/{state_info}/matrix/D.json"
-    url_indicator = f"https://raw.githubusercontent.com/ModelEarth/OpenFootprint/main/impacts/2020/{state_info}/indicators.json"
-    url_sector = f"https://raw.githubusercontent.com/ModelEarth/OpenFootprint/main/impacts/2020/{state_info}/sectors.json"
+    url_Q = f"https://raw.githubusercontent.com/ModelEarth/profile/main/impacts/2020/{state_info}/matrix/q.json"
+    url_D = f"https://raw.githubusercontent.com/ModelEarth/profile/main/impacts/2020/{state_info}/matrix/D.json"
+    url_indicator = f"https://raw.githubusercontent.com/ModelEarth/profile/main/impacts/2020/{state_info}/indicators.json"
+    url_sector = f"https://raw.githubusercontent.com/ModelEarth/profile/main/impacts/2020/{state_info}/sectors.json"
 
     data_D = np.array(requests.get(url_D).json())
     data_Q = np.array(requests.get(url_Q).json()).reshape(-1)

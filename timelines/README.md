@@ -10,7 +10,7 @@ ML Team: Sijia, Lily, Irene, Honglin, Ronan, Luwei, Wenxi, Magie, Ivy, Aashish, 
 
 [Basic timelines](earthscape/) - [Earthscape tabulator](training/naics/) - [Tabulator directly](tabulator/)
 
-## NAICS Training Data for ML
+## NAICS Data for Community Features
 
 North American Industry Classification System (NAICS)
 The following two datasets are generated from our [community-data naics files](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US).
@@ -61,7 +61,7 @@ Sample from prior zcta process:
 -->
 
 ### 2. Our FIPS Location Rows for Training (one file per year)
-Training files are output to [community-timelines/training](https://github.com/ModelEarth/community-timelines/tree/main/training) by python/ML-bkup.ipynb from [Our CoLab on Google](https://colab.research.google.com/drive/1wmJ3V9eqD8KbmBiP-hLeSstwOUt5iS2V?usp=sharing)  
+Training files are output to [community-timelines/training](https://github.com/ModelEarth/community-timelines/tree/main/training) by [ML-bkup.ipynb](https://github.com/ModelEarth/data-pipeline/tree/main/timelines/training/naics/python) from [Our CoLab on Google](https://colab.research.google.com/drive/1wmJ3V9eqD8KbmBiP-hLeSstwOUt5iS2V?usp=sharing)  
 
 
 Our IDs for States and counties = Federal Information Processing Standard (FIPS)  
@@ -70,82 +70,16 @@ Example: US12345 (US state 12, county 345)
 
 TO DO: [Send industries data to Random Bits Forest](/RealityStream/input/industries/)
 
-IN PROGRESS: [Update NAICS source files to include zip code data (ZTCA)](/data-pipeline/industries/naics/) - Aashish
+IN PROGRESS: [Update NAICS source files to include zip code data (ZTCA)](/data-pipeline/industries/naics/)
 
 
-## Our RealityStream ML Forecasting Models
-
-[RealityStream](/RealityStream) - Logistic Regression, Random Forest and Support Vector Machines
-[Industry Features for RealityStream Testing (Maine Naics2 Counties 2021)](https://github.com/ModelEarth/community-timelines/blob/main/training/naics2/US/counties/2021/US-ME-training-naics2-counties-2021.csv)
-
-TO DO: Add industry titles to RealityStream's [Output for Bee Populations](/RealityStream/output/bees/) - Irene
-TO DO: Document how to use Data Loaders in [Data-Commons](/data-commons/) and charts in [ObservableHQ.com Desktop](https://ObservableHQ.com) - Anna
-TO DO: Apply target to [Industry FIPS](https://github.com/ModelEarth/community-timelines/blob/main/training/naics2/US/counties/2021/US-ME-training-naics2-counties-2021.csv) on-the-fly with Javascript - [Industry data and bees](/RealityStream/models/Location-Forest/)
-TO DO: Pull target data with FIPS from our [UN goal data](/data-commons/dist/) config files. Document in our [Observable Data Commons](/data-commons/).
-TO DO: Merge Tree Canopy Target Data in our [Reality Stream Pandas](/RealityStream/input/industries/) from [GDC Forest Cover](/data-commons/docs/conservation/) using Data Pull - Jing
-
-
-## Bee/Tree/Poverty as Target Column (y=1)
+## Bees/Trees/Jobs/Income as Target Column (y=1)
 
 We're using the state of Maine (ME) for our sample counties.  
 We're using NAICS levels 2 and 4 in our training files.
 
-- [Bee the Predictor](/data-pipeline/research/bees/) - Irene
+- [Bee the Predictor](/RealityStream/input/bees/)
 - [Tree Canopy Data](/data-pipeline/research/canopy/)
-
-## Data Prep and Presentation
-
-TO DO: Random Forest forecasting. - Copy some of our prior .py file into a CoLab. We will update it for both FIPS and ZCTA. - Sijia
-
-TO DO: Web page displaying US counties at risk of increased poverty - Use Google Data Commons API for FIPS county poverty target data and international target data. Pull with an [Observable Data Loader](../../../timelines/observable/)
-
-TO DO: Find equivalent county data for India and China (Country Census or Google Data Commons)
-
-TO DO: Web page displaying Industries that predict improving and declining [bee populations](../../../research/bees/) - Irene
-
-TO DO: Web page displaying Top ten Maine counties likely to have [declining tree canopy](/data-pipeline/research/canopy/) - Find a data source (county or zip)
-
-TO DO: Use [Tensorflow.org](https://www.tensorflow.org/js/demos) for [Neural Network predictions](https://www.tensorflow.org/s/results/?q=neural%20networks) with our training data.
-
-<!--
-### Javascript Display in Tabulator
-
-In javascript, we'll populate "Density" for each county and append it as a column in Tabulator. [Tabulator work in progress](/data-pipeline/timelines/tabulator/).
-
-Density = Population / Km2
-
-Density can also be thought of as PopPerKm2 (divided by 1000)
-100,000 people living in an 80 Km2 county = 1250 people per Km2 = Density of 1.25
-When displaying, we will multiply Density and Population by 1000.
--->
-
-TO DO: County demographic attributes can be fetched from the Google Data Commons API for population, education levels, income/poverty levels.
-
-Append 0 or 1 to the "y" column. Prior y column in community forecasting: y=1 when the current year’s poverty had no decline from the prior year AND the next year’s poverty increased by 2% or more.
-
-<!--
-Applied in
-prep/all/zcta_2016.SQL.txt
-
--- Change from prior year is steady (0%) or increasing, change to next year is increasing by 2% or more.
-
-CASE
-      WHEN (prior1.poverty - p.poverty) >= 0 AND (p.poverty - next.poverty) >= 2 THEN 1
-      ELSE 0
-END
-
-AS y -- the povertyBinary for >= 2% in coming year, and no decline for current year.
--->
-
-## Facebook Prophet
-
-TO DO: Pull [industry timeline data for all states](https://github.com/ModelEarth/community-timelines/) into our [Facebook Prophet Streamlit fork](https://github.com/modelearth/prophet). Test with one state first.
-
-Upload time series dataset to train, evaluate and optimize forecasting models in a few clicks. In addition to the Streamlit repo, look for option in the following Facebook tools.
-
-[Learn more at facebook.github.io/prophet](https://facebook.github.io/prophet/)
-Prophet is robust to outliers, missing data, and dramatic time series changes
-Prophet works best with time series that have strong seasonal effects.
 
 
 <div style="background:#fff; padding:20px; max-width:1000px">
@@ -172,7 +106,7 @@ Targets: Jobs, Bees, Blinks, [Industries](/RealityStream/input/industries/)
 
 ## ADD DATA SOURCES
 
-[International Data from Google Data Commons API](../international/)
+[International Data from Google Data Commons API](../../../data-commons/)
 [Worldbank Development Indicators](https://github.com/phiresky/world-development-indicators-sqlite/) - by phiresky
 
 ## Time Regression Examples

@@ -42,7 +42,12 @@ hr {
 <div class="content contentpadding">
 
 	<a href="../">Timelines</a><br>
+
+	The chart below uses <a href="https://www.chartjs.org">chartjs.org</a><br>
+	We also use <a href="https://echarts.apache.org">Apache eCharts</a> and <a href="https://d3js.org">D3</a>
+
 	<h2>First 20 columns - Maine Establishments</h2>
+	<a href="" id="viewDataLink">View Data</a>
 	<canvas id="naics4Timeline"></canvas>
 	<div id="earthscape1"></div>
 	<br>
@@ -114,6 +119,7 @@ function loadTimeScape(my) {
 let my = {};
 let timelineDataroot = "https://model.earth/community-timelines/industries/naics4/US/states/";
 my.dataset = timelineDataroot + "ME/US-ME-census-naics4-establishments.csv";
+document.querySelector("#viewDataLink").setAttribute("href", my.dataset);
 my.elementID = "earthscape1";
 my.timeElementID = "naics4Timeline";
 // my.chartType = "timeline"; // Or chord, sankey, graph

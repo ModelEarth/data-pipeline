@@ -1,0 +1,23 @@
+<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script>
+    async function fetchCountyGeoIds() {
+    const response = await fetch('https://api.datacommons.org/v2/resolve?key=AIzaSyCTI4Xz-UW_G2Q2RfknhcfdAnTHq5X5XuI', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            "entityId": ["geoId/06"],
+            "nodeType": "County",
+            "property": ["containedInPlace"]
+        })
+    });
+    const data = await response.json();
+    alert(data.nodes);
+    return data.nodes;
+}
+fetchCountyGeoIds() 
+</script>
