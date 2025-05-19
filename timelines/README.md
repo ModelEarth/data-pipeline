@@ -6,7 +6,7 @@ TO DO projects are listed throughout this page for our ML team.
 
 Our Machine Learning forecasting models reside in [RealityStream](/RealityStream).
 
-ML Team: Sijia, Lily, Irene, Honglin, Ronan, Luwei, Wenxi, Magie, Ivy, Aashish
+ML Team: Sijia, Lily, Irene, Honglin, Ronan, Luwei, Wenxi, Magie, Ivy, Aashish, Dinesh
 
 [Basic timelines](earthscape/) - [Earthscape tabulator](training/naics/) - [Tabulator directly](tabulator/)
 
