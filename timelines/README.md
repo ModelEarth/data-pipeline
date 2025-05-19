@@ -1,28 +1,14 @@
 [Active Projects](../../projects/)
 
-# Community Forecasting Timelines
+# Timelines for Forecasting
 
-TO DO: [Timelines from Google Datacommons API](/data-commons/docs/data/) via javascript
+TO DO projects are listed throughout this page for our ML team.
 
-TO DO: [RealityStream](/RealityStream) - We're sending location data to Machine Learning models
-Logistic Regression, Random Forest, Support Vector Machines, XGBoost
-<!--
-[Industry Features for RealityStream Testing (Maine Naics2 Counties 2021)](https://github.com/ModelEarth/community-timelines/blob/main/training/naics2/US/counties/2021/US-ME-training-naics2-counties-2021.csv)
--->
+Our Machine Learning forecasting models reside in [RealityStream](/RealityStream).
 
-TO DO: [UN Goal Timelines](/data-commons) - Javascript loading timeline progress for each goal
+ML Team: Sijia, Lily, Irene, Honglin, Ronan, Luwei, Wenxi, Magie, Ivy, Aashish, Dinesh
 
-TO DO: Create parameter-canopy.yaml with paths to [forest coverage data](/data-commons/docs/conservation/) to pass into [Run Models](/RealityStream/input/industries/)
-
-TO DO: [Use Feed View](/feed/view/) to assemble parameters.yaml on-the-fly and pass as #parameters to our [Run Modles CoLab](/RealityStream/input/industries/).
-
-<!--
-ML Team: Sijia, Lily, Irene, Honglin, Ronan, Luwei, Wenxi, Magie (Haohao), Ivy
--->
-
-TO DO: Load both timeline display and Tabulator with [earthscape.js](/localsite/js/earthscape.js) 
-[Basic timelines](earthscape/) - [Data Commons timelines](earthscape/datacommons.html) - [Earthscape tabulator](training/naics/) - [Tabulator directly](tabulator/)
-
+[Basic timelines](earthscape/) - [Earthscape tabulator](training/naics/) - [Tabulator directly](tabulator/)
 
 ## NAICS Data for Community Features
 
