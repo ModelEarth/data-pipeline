@@ -6,36 +6,137 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
 
-<title>Industry Data Pipeline</title>
+<title>Data Pipeline</title>
 
 <link type="text/css" rel="stylesheet" href="/localsite/css/base.css" id="/localsite/css/base.css" />
 <script type="text/javascript" src="/localsite/js/localsite.js?showheader=true&showsearch=true"></script>
 
 <style>
+h2 {
+    font-size: 16px !important;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    border-top: 1px solid #ccc;
+    border-bottom: 0px;
+}
 h4 {
     margin-top: 30px;
 }
-@media (min-width: 800px) {
-  .showDesktop {display:inline-block !important;}
+ul li {
+    margin-left: -20px
 }
+#topcolumns {
+    padding-top:0px;
+    padding-bottom:0px;
+    padding-right: 0px;
+    background-color:#eee;
+    border-top: 1px solid #ccc;
+}
+.dark #topcolumns {
+    background-color:#333;
+}
+@media (min-width: 800px) {
+  #flowHolder {
+    max-height: 400px;
+    padding: 10px 15px 10px 20px;
+    overflow: auto;
+  }
+  .showDesktop {
+    display:inline-block !important;
+  }
+  #sourcesDivColumn {
+    font-size: .9em !important;
+    border-right: 1px solid #ccc;
+    overflow-y: scroll;
+    margin-left: -10px;
+    padding-left: 60px;
+    padding-right: 20px;
+  }
+  #readmeDivColumn {
+    font-size: .9em !important;
+    background-color: #fff;
+  }
+}
+
+.dark #sourcesDivColumn {
+    background-color:#222; 
+}
+.dark #readmeDivColumn {
+    background-color:#333; 
+}
+
+#topcolumns {
+    display: flex;
+    align-items: stretch; /* Stretch columns to height of the tallest item */
+}
+
+#sourcesDivColumn {
+    flex: 1; /* Takes up available space */
+    display: flex;
+    flex-direction: column;
+}
+
+#readmeDivColumn {
+    flex: 1; /* Takes up available space */
+    display: flex;
+    flex-direction: column;
+}
+
+#sourcesDiv {
+    flex: 1; /* Allows the content to expand and fill the column height */
+}
+
+#readmeDiv {
+    flex: 1; /* Allows the content to expand and fill the column height */
+}
+
+/* Optional: If you want specific column widths instead of equal flex */
+
+#sourcesDivColumn {
+    flex: 0 0 30%; /* 40% width, no grow/shrink */
+}
+
+#readmeDivColumn {
+    flex: 0 0 70%; /* 60% width, no grow/shrink */
+}
+
 </style>
+
+<script>
+    loadMarkdown("sources.md", "sourcesDiv", "_parent");
+    loadMarkdown("README.md", "readmeDiv", "_parent");
+</script>
 
 </head>
 
 <body>
-<div class="content contentpadding" style="padding-bottom:0px">
+<div id="topcolumns">
 
-	<div class="showDesktop floatRight fullMobile" style="display:none;padding:10px">
-        <img src="img/elements/bulb.png" style="width:160px;">
-        <!--
-        <a href="https://model.earth/community/challenge/"><img src="https://model.earth/community/img/overview/banner-1.png" style="width:270px;"></a>
-        -->
+    <div id="sourcesDivColumn">
+        <div id="sourcesDiv"></div>
     </div>
-    
+    <div id="readmeDivColumn">
 
-	<div id="readmeDiv"></div>
+        <div id="flowHolder">
+            <img src="https://model.earth/community/tools/img/tiem.png" style="width:100%">
+        </div>
+
+        <!--
+        <div class="showDesktop fullMobile" style="float:right !important;padding:10px;padding-top:30px; max-width:60px">
+            <img src="img/elements/bulb.png" style="width:60px;">
+        </div>
+        -->
+
+        <br>
+        <div style="padding-left: 30px;padding-right: 20px;">
+    	   <div id="readmeDiv"></div>
+        </div>
+    </div>
+
 </div>
-<hr>
+
+
+<hr style="clear:both; padding:0px; margin:0px">
 
 <!--
 // Tabulator: Latest version
@@ -49,7 +150,7 @@ https://unpkg.com/tabulator-tables@4.9.3/dist/js/tabulator.min.js
 <script type="text/javascript" src="https://unpkg.com/tabulator-tables/dist/js/tabulator.min.js"></script>
 -->
 
-<div class="content contentpadding">
+<div class="contentX contentpadding">
 
 	<h3 style="padding-top:0px; margin-top:0px;">Tabulator Sample</h3>
 
@@ -60,6 +161,7 @@ https://unpkg.com/tabulator-tables@4.9.3/dist/js/tabulator.min.js
     </div>
 
 </div>
+
 <script>
 loadTabulator();
 waitForLibrary("Tabulator", function() {
@@ -153,10 +255,6 @@ function waitForLibrary(libraryName, callback, timeoutInSeconds) {
         row.toggleSelect(); //toggle row selected state on row click
     },    
 -->
-
-<script>
-	loadMarkdown("README.md", "readmeDiv", "_parent");
-</script>
 
 </body>
 </html>
