@@ -16,7 +16,11 @@
       "Bash(for:*)",
       "Bash(do echo \"=== $dir ===\")",
       "Bash(du:*)",
-      "Bash(done)"
+      "Bash(done)",
+      "Bash(mkdir:*)",
+      "Bash(rm:*)",
+      "Bash(npm run build:*)",
+      "Bash(cp:*)"
     ],
     "deny": []
   }
