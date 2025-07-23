@@ -55,7 +55,6 @@ ul li {
     background-color: #fff;
   }
 }
-
 .dark #sourcesDivColumn {
     background-color:#222; 
 }
@@ -64,6 +63,7 @@ ul li {
 }
 
 #topcolumns {
+    max-width: 100%;
     display: flex;
     align-items: stretch; /* Stretch columns to height of the tallest item */
 }
@@ -91,11 +91,26 @@ ul li {
 /* Optional: If you want specific column widths instead of equal flex */
 
 #sourcesDivColumn {
-    flex: 0 0 30%; /* 40% width, no grow/shrink */
+    flex: 0 0 30%; /* 30% width, no grow/shrink */
+    min-width: 0; /* Allow flex item to shrink below content size */
 }
 
 #readmeDivColumn {
-    flex: 0 0 70%; /* 60% width, no grow/shrink */
+    flex: 0 0 70%; /* 70% width, no grow/shrink */
+    min-width: 0; /* Allow flex item to shrink below content size */
+}
+
+@media (max-width: 799px) {
+    #lightbulb {
+        display: none;
+    }
+    #topcolumns {
+        display: block;
+    }
+    #sourcesDivColumn {
+        padding-left: 30px;
+        padding-right: 20px;
+    }
 }
 
 </style>
@@ -108,6 +123,10 @@ ul li {
 </head>
 
 <body>
+<div style="height:400px; max-height:400px; overflow-x:auto;">
+    <a href="img/n8n/nodes.png"><img src="img/n8n/nodes.png" style="height:100%;width:auto"></a>
+</div>
+
 <div id="topcolumns">
 
     <div id="sourcesDivColumn">
@@ -115,18 +134,17 @@ ul li {
     </div>
     <div id="readmeDivColumn">
 
-        <div>
-            <a href="img/n8n/nodes.png"><img src="img/n8n/nodes.png" style="width:100%"></a>
-        </div>
-
         <!--
-        <div class="showDesktop fullMobile" style="float:right !important;padding:10px;padding-top:30px; max-width:60px">
-            <img src="img/elements/bulb.png" style="width:60px;">
+        <div style="max-height:500px; overflow-x:auto;">
+            <a href="img/n8n/nodes.png"><img src="img/n8n/nodes.png" style="height:auto; display:block;"></a>
         </div>
         -->
 
         <br>
-        <div style="padding-left: 30px;padding-right: 20px;">
+        <div style="padding-left:30px;padding-right: 20px;">
+            <div id="lightbulb" class="showDesktop fullMobile" style="float:right !important; padding:30px 10px 10px 30px;max-width:150px">
+                <img src="img/elements/bulb.png" style="width:100%;">
+            </div>
     	   <div id="readmeDiv"></div>
         </div>
     </div>

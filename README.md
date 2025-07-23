@@ -1,5 +1,7 @@
 # Data Pipeline
 
+[View Data Pipeline Nodes](../team/projects/#list=data-pipleline)
+
 [Our Community-Data](/community-data/) and [Community-Timelines](https://github.com/modelearth/community-timelines/) repos contain [state, county](industries/naics/) and [zip code data](/community-zipcodes/) generated for [Industry&nbsp;Supply-Chain IO&nbsp;Charts](https://model.earth/localsite/info/) and [Community Forecasting Timelines](timelines).
 
 [Our Industry Input-Output Charts](../io/charts/) pull from static json files containing [USEEIO API state data](https://github.com/ModelEarth/profile/tree/main/impacts/2020).
