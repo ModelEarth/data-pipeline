@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import FlowChart from './FlowChart';
 import EdgeResizeHandle from './EdgeResizeHandle';
+import CornerResizeHandle from './CornerResizeHandle';
 
 export default function DraggableFlowChart({ onNodeSelect, onClose, onFocus, isFullWidth = false, hideTitle = false, onHighlightInList }) {
   const [position, setPosition] = useState({ x: 100, y: 100 });
@@ -112,13 +113,17 @@ export default function DraggableFlowChart({ onNodeSelect, onClose, onFocus, isF
         />
       </div>
       
-      {/* Edge Resize Handles - only show when not in full width mode */}
+      {/* Edge and Corner Resize Handles - only show when not in full width mode */}
       {!isFullWidth && (
         <>
           <EdgeResizeHandle edge="top" onResize={setSize} />
           <EdgeResizeHandle edge="bottom" onResize={setSize} />
           <EdgeResizeHandle edge="left" onResize={setSize} />
           <EdgeResizeHandle edge="right" onResize={setSize} />
+          <CornerResizeHandle corner="top-left" onResize={setSize} />
+          <CornerResizeHandle corner="top-right" onResize={setSize} />
+          <CornerResizeHandle corner="bottom-left" onResize={setSize} />
+          <CornerResizeHandle corner="bottom-right" onResize={setSize} />
         </>
       )}
     </div>

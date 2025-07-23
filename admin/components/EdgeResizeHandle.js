@@ -2,15 +2,13 @@ import { useState, useRef, useEffect } from 'react';
 
 export default function EdgeResizeHandle({ onResize, edge, className = '', onDoubleClick }) {
   const [isResizing, setIsResizing] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
   const [startPos, setStartPos] = useState({ x: 0, y: 0 });
   const [startSize, setStartSize] = useState({ width: 0, height: 0 });
 
   const getHandleStyles = () => {
     const baseStyles = {
       position: 'absolute',
-      backgroundColor: 'rgba(156, 163, 175, 0.1)',
-      transition: 'background-color 0.2s',
+      backgroundColor: 'transparent',
     };
 
     switch (edge) {
@@ -20,7 +18,7 @@ export default function EdgeResizeHandle({ onResize, edge, className = '', onDou
           top: '0',
           left: '8px',
           right: '8px',
-          height: '1px',
+          height: '4px',
           cursor: 'n-resize',
         };
       case 'bottom':
@@ -29,7 +27,7 @@ export default function EdgeResizeHandle({ onResize, edge, className = '', onDou
           bottom: '0',
           left: '8px',
           right: '8px',
-          height: '1px',
+          height: '4px',
           cursor: 's-resize',
         };
       case 'left':
@@ -38,7 +36,7 @@ export default function EdgeResizeHandle({ onResize, edge, className = '', onDou
           left: '0',
           top: '8px',
           bottom: '8px',
-          width: '1px',
+          width: '4px',
           cursor: 'w-resize',
         };
       case 'right':
@@ -47,7 +45,7 @@ export default function EdgeResizeHandle({ onResize, edge, className = '', onDou
           right: '0',
           top: '8px',
           bottom: '8px',
-          width: '1px',
+          width: '4px',
           cursor: 'e-resize',
         };
       default:
@@ -55,51 +53,6 @@ export default function EdgeResizeHandle({ onResize, edge, className = '', onDou
     }
   };
 
-  const getArrowIcon = () => {
-    switch (edge) {
-      case 'top': return '↑';
-      case 'bottom': return '↓';
-      case 'left': return '←';
-      case 'right': return '→';
-      default: return '';
-    }
-  };
-
-  const getArrowPosition = () => {
-    const baseStyles = {
-      position: 'absolute',
-      fontSize: '12px',
-      color: 'rgba(156, 163, 175, 0.8)',
-      pointerEvents: 'none',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    };
-
-    switch (edge) {
-      case 'top':
-      case 'bottom':
-        return {
-          ...baseStyles,
-          left: '50%',
-          transform: 'translateX(-50%)',
-          width: '20px',
-          height: '4px',
-        };
-      case 'left':
-      case 'right':
-        return {
-          ...baseStyles,
-          top: '50%',
-          transform: 'translateY(-50%)',
-          width: '4px',
-          height: '20px',
-          writingMode: 'vertical-rl',
-        };
-      default:
-        return baseStyles;
-    }
-  };
 
   const handleMouseDown = (e) => {
     e.preventDefault();
@@ -163,13 +116,9 @@ export default function EdgeResizeHandle({ onResize, edge, className = '', onDou
 
   return (
     <div
-      className={`hover:bg-gray-400 hover:bg-opacity-50 ${className}`}
+      className={className}
       style={getHandleStyles()}
       onMouseDown={handleMouseDown}
-    >
-      <div style={getArrowPosition()}>
-        {getArrowIcon()}
-      </div>
-    </div>
+    />
   );
 }

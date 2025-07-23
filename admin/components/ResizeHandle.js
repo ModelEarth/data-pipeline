@@ -53,7 +53,7 @@ export default function ResizeHandle({ onResize, className = '' }) {
       onMouseDown={handleMouseDown}
       style={{
         background: 'linear-gradient(-45deg, transparent 40%, rgba(156, 163, 175, 0.5) 40%, rgba(156, 163, 175, 0.5) 60%, transparent 60%)',
-        borderBottomRightRadius: 'inherit'
+        borderBottomRightRadius: '4px'
       }}
     />
   );

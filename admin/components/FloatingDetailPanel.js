@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import NodeDetailPanel from './NodeDetailPanel';
 import EdgeResizeHandle from './EdgeResizeHandle';
+import CornerResizeHandle from './CornerResizeHandle';
 
 export default function FloatingDetailPanel({ node, onClose, onUpdateNode, onRunNode, onFocus }) {
   const [position, setPosition] = useState({ x: 200, y: 150 });
@@ -109,11 +110,15 @@ export default function FloatingDetailPanel({ node, onClose, onUpdateNode, onRun
         />
       </div>
       
-      {/* Edge Resize Handles */}
+      {/* Edge and Corner Resize Handles */}
       <EdgeResizeHandle edge="top" onResize={setSize} />
       <EdgeResizeHandle edge="bottom" onResize={setSize} />
       <EdgeResizeHandle edge="left" onResize={setSize} />
       <EdgeResizeHandle edge="right" onResize={setSize} />
+      <CornerResizeHandle corner="top-left" onResize={setSize} />
+      <CornerResizeHandle corner="top-right" onResize={setSize} />
+      <CornerResizeHandle corner="bottom-left" onResize={setSize} />
+      <CornerResizeHandle corner="bottom-right" onResize={setSize} />
     </div>
   );
 }

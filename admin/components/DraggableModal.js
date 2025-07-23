@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import NodesList from './NodesList';
 import EdgeResizeHandle from './EdgeResizeHandle';
+import CornerResizeHandle from './CornerResizeHandle';
 
 export default function DraggableModal({ onClose, onNodeSelect, onFocus, onNodeClick, hideTitle = false, highlightedNode, onHighlightReceived }) {
   const [position, setPosition] = useState({ x: 100, y: 100 });
@@ -109,11 +110,15 @@ export default function DraggableModal({ onClose, onNodeSelect, onFocus, onNodeC
         />
       </div>
       
-      {/* Edge Resize Handles */}
+      {/* Edge and Corner Resize Handles */}
       <EdgeResizeHandle edge="top" onResize={setSize} />
       <EdgeResizeHandle edge="bottom" onResize={setSize} />
       <EdgeResizeHandle edge="left" onResize={setSize} />
       <EdgeResizeHandle edge="right" onResize={setSize} />
+      <CornerResizeHandle corner="top-left" onResize={setSize} />
+      <CornerResizeHandle corner="top-right" onResize={setSize} />
+      <CornerResizeHandle corner="bottom-left" onResize={setSize} />
+      <CornerResizeHandle corner="bottom-right" onResize={setSize} />
     </div>
   );
 }
