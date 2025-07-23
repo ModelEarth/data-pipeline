@@ -72,15 +72,42 @@ npm run dev
 ```bash
 cd admin
 npm run build
-# Static files generated in admin/out/
+# Static files generated and deployed automatically
+# Old unused files are purged by default
+```
+
+### Build Without Purging Old Files:
+```bash
+cd admin
+npm run build:no-purge
+# Keeps all previous build files (useful for debugging)
+```
+
+### Remove-Unused Command:
+Control whether old build files are automatically cleaned:
+
+```bash
+# Turn OFF automatic cleanup (keeps old files)
+export PURGE_OLD_FILES=false
+
+# Turn ON automatic cleanup (default, removes old files)  
+export PURGE_OLD_FILES=true
+
+# Check current setting
+echo $PURGE_OLD_FILES
+```
+
+**💡 Terminal Startup Tip**: Add this to your shell profile (`~/.bashrc`, `~/.zshrc`) to persist the setting:
+```bash
+# Set to false to keep old build files for debugging
+export PURGE_OLD_FILES=true  # Default: clean old files on each build
 ```
 
 ### Update Deployment:
 ```bash
-# After making changes, rebuild and update:
+# After making changes, rebuild and deploy:
 cd admin
 npm run build
-cp -r out/* ../
 git add . && git commit -m "Update admin interface" && git push
 ```
 

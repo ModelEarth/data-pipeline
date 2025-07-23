@@ -4,7 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run build:clean && next build && npm run build:deploy",
+    "build:clean": "if [ \"${PURGE_OLD_FILES:-true}\" = \"true\" ]; then echo 'Cleaning old build files...' && rm -rf _next/static/* 2>/dev/null || true; else echo 'Skipping cleanup (PURGE_OLD_FILES=false)'; fi",
+    "build:deploy": "cp -r out/* .",
+    "build:no-purge": "PURGE_OLD_FILES=false npm run build",
     "start": "next start",
     "lint": "next lint"
   },
