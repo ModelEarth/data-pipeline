@@ -1,12 +1,15 @@
 # Data Pipeline
 
-[View Data Pipeline Nodes](../team/projects/#list=data-pipleline)
+[Open CEDA](https://watershed.com/solutions/ceda) - 60,000 emission factors, 400 industries, 148 countries
+[Exiobase.eu](https://exiobase.io) - International impact factors extending Comtrade UN trade data
 
-[Our Community-Data](/community-data/) and [Community-Timelines](https://github.com/modelearth/community-timelines/) repos contain [state, county](industries/naics/) and [zip code data](/community-zipcodes/) generated for [Industry&nbsp;Supply-Chain IO&nbsp;Charts](https://model.earth/localsite/info/) and [Community Forecasting Timelines](timelines).
+The Model.earth data pipeline saves static [Community-Data](/community-data/) and [Community-Timelines](https://github.com/modelearth/community-timelines/) for [state, county](industries/naics/) and [zip code data](/community-zipcodes/) generated for [Industry&nbsp;Supply-Chain IO&nbsp;Charts](https://model.earth/localsite/info/) and [Community Forecasting Timelines](timelines).
 
-[Our Industry Input-Output Charts](../io/charts/) pull from static json files containing [USEEIO API state data](https://github.com/ModelEarth/profile/tree/main/impacts/2020).
+[Our Industry Input-Output Charts](../io/charts/) pull from static json files containing [USEEIO state data](https://github.com/ModelEarth/profile/tree/main/impacts/2020).
 
 [Our International Trade Flow SQL](/profile/trade/) and [USEEIO Javascript](/useeio.js/footprint/) plus [US State USEEIO SQL](/io/about/) provides a structure for models integrated with the [Google Data Commons API](https://docs.datacommons.org/api/) to create [UN Goal Timelines](/data-commons/).
+
+[View Data Pipeline Nodes from node.csv](../team/projects/#list=data-pipleline)
 
 <!--
     12-digit FIPS Code - state, county, tract, block group

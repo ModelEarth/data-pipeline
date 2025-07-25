@@ -45,7 +45,6 @@ GDP Gross Output, Make Before Redefinitions, Use Before Redefinitions
 * [US Bureau of Land Management Public Land Statistics](https://www.blm.gov/about/data/public-land-statistics)
 
 * [Bureau of Labor Statistics Quarterly Census of Employment and Wages](https://www.bls.gov/cew/)  
-View our [Flowsa Python scripts](flowsa)
 
 * [Water Withdrawals for the United States](https://pubs.acs.org/doi/abs/10.1021/es903147k?journalCode=esthag)
 
