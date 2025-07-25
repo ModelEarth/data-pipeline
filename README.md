@@ -5,9 +5,9 @@
 
 The Model.earth data pipeline saves static [Community-Data](/community-data/) and [Community-Timelines](https://github.com/modelearth/community-timelines/) for [state, county](industries/naics/) and [zip code data](/community-zipcodes/) generated for [Industry&nbsp;Supply-Chain IO&nbsp;Charts](https://model.earth/localsite/info/) and [Community Forecasting Timelines](timelines).
 
-[Our Industry Input-Output Charts](../io/charts/) pull from static json files containing [USEEIO state data](https://github.com/ModelEarth/profile/tree/main/impacts/2020).
+[Our Embeddable IO Charts](../io/charts/) and [State Impact Reports](../useeio.js/footprint/) pull from static json files containing [USEEIO state data](https://github.com/ModelEarth/profile/tree/main/impacts/2020).
 
-[Our International Trade Flow SQL](/profile/trade/) and [USEEIO Javascript](/useeio.js/footprint/) plus [US State USEEIO SQL](/io/about/) provides a structure for models integrated with the [Google Data Commons API](https://docs.datacommons.org/api/) to create [UN Goal Timelines](/data-commons/).
+Our work with [International Trade Flow SQL](/profile/trade/) and [US State Models data](/io/about/) provides a structure for future models integrated with the [Google Data Commons API](https://docs.datacommons.org/api/) to use [UN Goal Timelines](/data-commons/) in [RealityStream forecasting](/realitystream/).
 
 [View Data Pipeline Nodes from node.csv](../team/projects/#list=data-pipleline)
 
