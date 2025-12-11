@@ -25,6 +25,21 @@ While USEEIO has been discontinued by the US EPA, their [Embeddable IO Charts](.
 
 [Impact Profiles](../io/template/) - Using Environmental Product Declarations (EPDs)
 
+#### Product Environmental Data Pipeline
+
+[Products Python Pipeline](https://github.com/ModelEarth/products/tree/main/pull) - Fetches and processes Environmental Product Declarations (EPDs) from BuildingTransparency.org
+
+The products pipeline includes:
+- **EPD Data Fetcher** (`product-footprints.py`) - Fetches EPD data for all US states and multiple countries (184,614+ products)
+- **Emissions Analyzer** (`analyze_emissions_data.py`) - Analyzes GWP coverage and impact categories across all downloaded EPDs
+- **Transportation Impact Calculator** (`calculate_transportation_impact.py`) - Utility functions for calculating A4 stage transportation impacts and adjusting GWP values
+
+**Data Output:** YAML files organized by country and category in [products-data repo](https://github.com/ModelEarth/products-data/)
+
+**Documentation:** [model.earth/products/](https://model.earth/products/) - Full documentation on EPD structure, GWP fields, transportation impacts, and API usage
+
+**Pipeline Nodes:** See `nodes.csv` for `prod_001` (EPD Data Fetcher) and `prod_002` (EPD Emissions Analyzer)
+
 
 #### Data Sources and Prep
 
@@ -34,6 +49,35 @@ While USEEIO has been discontinued by the US EPA, their [Embeddable IO Charts](.
 
 [Impact Heatmap from JSON](/io/build/sector_list.html?view=mosaic&count=50) - [Earlier Goods and Service Heatmap Mockup](../community/start/dataset/)
 
+
+#### Pipeline Management
+
+**Unified Pipeline Manager** (`manage_pipelines.py`) - Centralized tool for managing all data update processes
+
+```bash
+# List all available pipelines
+python manage_pipelines.py list
+
+# Show details for a specific node
+python manage_pipelines.py info prod_001
+
+# Run a pipeline node
+python manage_pipelines.py run prod_001
+
+# Show dependency chain
+python manage_pipelines.py dependencies prod_001
+
+# Show status overview
+python manage_pipelines.py status
+```
+
+The management script provides:
+- **Centralized listing** of all pipeline nodes with metadata
+- **Dependency tracking** to understand execution order
+- **Unified execution** interface for running any pipeline node
+- **Status overview** with statistics on processing times and capabilities
+
+All pipeline nodes are documented in `nodes.csv` and `nodes.json` for integration with workflow automation tools like n8n.
 
 #### Opportunties for further integration
 

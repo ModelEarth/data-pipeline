@@ -340,6 +340,36 @@
       },
       "typeVersion": 1,
       "notes": "UN Comtrade data fetching and CSV generation without API key. Output: ./. Size: 15M. Processing time: fast. Parallel safe: yes"
+    },
+    {
+      "id": "prod_001",
+      "name": "EPD Data Fetcher",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        1700,
+        100
+      ],
+      "parameters": {
+        "command": "python product-footprints.py",
+        "workingDirectory": "../products/pull"
+      },
+      "typeVersion": 1,
+      "notes": "Fetches Environmental Product Declarations (EPDs) from BuildingTransparency.org API for all US states and countries. Output: ../../../products-data/{COUNTRY}/{CATEGORY}/. Size: ~500M. Processing time: very_slow (~5+ hours). API keys required: buildingtransparency. Rate limited: yes. Parallel safe: no"
+    },
+    {
+      "id": "prod_002",
+      "name": "EPD Emissions Analyzer",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        1900,
+        150
+      ],
+      "parameters": {
+        "command": "python analyze_emissions_data.py",
+        "workingDirectory": "../products/pull"
+      },
+      "typeVersion": 1,
+      "notes": "Analyzes all downloaded EPD YAML files to document emissions-related fields and impact data availability. Output: console report. Size: N/A. Processing time: medium (~29 min for 184k products). Parallel safe: yes"
     }
   ],
   "connections": {
