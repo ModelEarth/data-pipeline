@@ -2,7 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  output: 'export',
+  // Only use static export for production builds, allow API routes in dev
+  ...(process.env.NODE_ENV === 'production' ? { output: 'export' } : {}),
   trailingSlash: true,
   basePath: process.env.NODE_ENV === 'production' ? '/data-pipeline/admin' : '',
   assetPrefix: process.env.NODE_ENV === 'production' ? '/data-pipeline/admin' : '',
