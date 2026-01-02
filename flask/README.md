@@ -13,7 +13,9 @@ Follow these steps to test the Flask server integration with the Data Pipeline A
 Open a terminal and run:
 
 ```bash
-cd /Users/noor/Documents/model.earth/data-pipeline
+cd data-pipeline
+python3 -m venv env
+source env/bin/activate
 pip3 install flask flask-cors
 ```
 
@@ -49,14 +51,12 @@ python3 flask_server.py
 ```
 Starting Flask server for Data Pipeline Admin...
 Server will run on http://localhost:5000
-Health check: http://localhost:5000/health
- * Running on http://127.0.0.1:5000
+Health check: http://localhost:5001/health
+ * Running on http://127.0.0.1:5001
  * Debug mode: on
 ```
 
 **Important:** Keep this terminal window open - the Flask server needs to keep running.
-
-**Screenshot needed:** Terminal showing Flask server running
 
 ---
 
@@ -65,7 +65,7 @@ Health check: http://localhost:5000/health
 Open a **NEW terminal window** (keep Flask server running in the first one) and test the health endpoint:
 
 ```bash
-curl http://localhost:5000/health
+curl http://localhost:5001/health
 ```
 
 **Expected output:** JSON response like:
@@ -73,7 +73,7 @@ curl http://localhost:5000/health
 {
   "status": "ok",
   "service": "data-pipeline-flask-server",
-  "port": 5000,
+  "port": 5001,
   "timestamp": "2025-12-18T..."
 }
 ```
@@ -87,7 +87,7 @@ curl http://localhost:5000/health
 Open your web browser and navigate to:
 
 ```
-http://localhost:5000/health
+http://localhost:5001/health
 ```
 
 **Expected output:** Should see the same JSON response in the browser
@@ -106,7 +106,7 @@ http://localhost:8887/data-pipeline/admin/
 
 **Expected behavior:**
 - If Flask is detected: No orange banner should appear
-- If Flask is NOT detected: Orange banner saying "Flask Server is not running on port 5000" with "Activate Flask Server" link
+- If Flask is NOT detected: Orange banner saying "Flask Server is not running on port 5001" with "Activate Flask Server" link
 
 **Screenshot needed:** Admin page showing Flask detection status
 
@@ -140,7 +140,7 @@ In the admin page:
 In the node detail panel:
 1. Scroll to the "Python Command" section
 2. Look for the "▶️ Run Process" button
-3. Check if there's a message saying "✓ Using Flask server (port 5000)" (if Flask is available)
+3. Check if there's a message saying "✓ Using Flask server (port 5001)" (if Flask is available)
 
 **Expected:** Button should be enabled and show Flask status
 
@@ -173,7 +173,7 @@ In the node detail panel:
 In a new terminal, test the Flask API directly:
 
 ```bash
-curl -X POST http://localhost:5000/api/nodes/run \
+curl -X POST http://localhost:5001/api/nodes/run \
   -H "Content-Type: application/json" \
   -d '{
     "node_id": "prod_002",
@@ -193,7 +193,7 @@ curl -X POST http://localhost:5000/api/nodes/run \
 If you run a long-running task, you can check its status:
 
 ```bash
-curl http://localhost:5000/api/nodes/prod_001/status
+curl http://localhost:5001/api/nodes/prod_001/status
 ```
 
 **Expected:** Status information about the running process
@@ -264,12 +264,12 @@ With Flask server stopped:
 ## Troubleshooting
 
 If Flask server won't start:
-- Check if port 5000 is already in use: `lsof -i :5000`
+- Check if port 5001 is already in use: `lsof -i :5001`
 - Try a different port (modify flask_server.py)
 
 If admin page can't connect:
 - Check browser console for CORS errors
-- Verify Flask is running on 127.0.0.1:5000 (not 0.0.0.0)
+- Verify Flask is running on 127.0.0.1:5001 (not 0.0.0.0)
 - Check firewall settings
 
 If "Run Process" doesn't work:

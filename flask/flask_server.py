@@ -8,9 +8,9 @@ from the web-based admin interface.
 Usage:
     python flask_server.py
     # or
-    flask run --port 5000
+    flask run --port 5001
 
-The server runs on http://localhost:5000
+The server runs on http://localhost:5001 since 5000 is used by macOS AirPlay
 """
 
 from flask import Flask, request, jsonify
