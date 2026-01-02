@@ -79,6 +79,92 @@ The management script provides:
 
 All pipeline nodes are documented in `nodes.csv` and `nodes.json` for integration with workflow automation tools like n8n.
 
+#### Flask Server for Web Admin Interface
+
+**Flask Server** (`flask_server.py`) - Web API server for running pipeline nodes from the admin interface
+
+The Flask server provides a REST API that allows the [Data Pipeline Admin page](admin/) to execute pipeline nodes via HTTP requests. This enables a web-based interface for managing and running data update processes.
+
+**Setup:**
+
+1. Install Flask and Flask-CORS:
+   ```bash
+   pip install flask flask-cors
+   ```
+
+2. Start the Flask server:
+   ```bash
+   python flask_server.py
+   ```
+   
+   The server runs on `http://localhost:5001` by default (port 5001 is used to avoid conflicts with macOS AirPlay on port 5000).
+
+3. Verify the server is running:
+   ```bash
+   curl http://localhost:5001/health
+   ```
+
+**API Endpoints:**
+
+- `GET /health` - Health check endpoint for availability detection
+- `GET /api/nodes` - List all pipeline nodes
+- `GET /api/nodes/<node_id>` - Get information about a specific node
+- `POST /api/nodes/run` - Execute a pipeline node command
+- `GET /api/nodes/<node_id>/status` - Get status of a running node
+
+**Note:** The Flask server uses port 5001 instead of 5000 to avoid conflicts with macOS AirPlay service.
+
+**Features:**
+
+- **Automatic background processing** for long-running tasks (very_slow processes)
+- **Auto-commit workflow** - Automatically commits data updates to fork repositories and creates PRs
+- **CORS enabled** for localhost requests from the admin page
+- **Process status tracking** for monitoring long-running executions
+
+For detailed setup instructions and troubleshooting, see the [Flask Setup Guide](/cloud/run/).
+
+#### Nodes CSV Schema
+
+The `nodes.csv` file defines all pipeline nodes with the following columns:
+
+**Core Columns:**
+- `node_id` - Unique identifier (e.g., `prod_001`)
+- `name` - Human-readable name
+- `description` - Detailed description of what the node does
+- `type` - Node type (e.g., `api_fetcher`, `data_processor`, `ml_processor`)
+- `order` - Execution order number
+- `link` - Working directory path relative to data-pipeline root
+- `python_cmds` - Python command to execute
+- `output_path` - Path where output files are written
+- `output_info` - Description of output files
+- `folder_size` - Estimated output size
+- `dependencies` - Required Python packages (comma-separated)
+- `api_keys_required` - API keys needed (comma-separated, or `none`)
+- `processing_time_est` - Estimated processing time (`fast`, `medium`, `slow`, `very_slow`)
+- `data_sources` - Data source description
+- `n8n_parallel_safe` - Whether node can run in parallel (`yes`/`no`)
+- `rate_limited` - Whether data source is rate-limited (`yes`/`no`)
+- `actual_size_mb` - Actual output size in MB (if known)
+- `csv_file_count` - Number of CSV files generated (if applicable)
+- `last_transport_date` - Date of last data transport/update (YYYY-MM-DD format)
+
+**New Flask Integration Columns:**
+- `run_process_available` - Whether this node can be run via Flask API (`yes`/`no`)
+- `flask_endpoint` - Custom Flask endpoint if different from default (optional)
+- `requires_interactive` - Whether process requires user interaction (`yes`/`no`)
+- `auto_commit` - Whether to automatically commit results to fork repository (`yes`/`no`)
+- `target_repo` - Target repository for data updates (`community-data`, `community-timelines`, `products-data`, etc.)
+
+**Example:**
+```csv
+prod_001,EPD Data Fetcher,Fetches EPDs from BuildingTransparency.org,api_fetcher,26,../products/pull,python product-footprints.py,../../../products-data/{COUNTRY}/{CATEGORY}/,YAML files,~500M,"requests,yaml,json,csv",buildingtransparency,very_slow,BuildingTransparency.org EC3 API,no,yes,,,2025-12-05,yes,,no,yes,products-data
+```
+
+Nodes with `auto_commit=yes` will automatically:
+1. Commit changes to the specified `target_repo` fork
+2. Push changes to the fork
+3. Create a GitHub Pull Request (via GitHub CLI if available, or provide manual URL)
+
 #### Opportunties for further integration
 
 [Google Data Commons Setup](../localsite/info/data/datacommons)  

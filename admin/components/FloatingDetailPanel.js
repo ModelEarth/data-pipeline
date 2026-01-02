@@ -3,7 +3,7 @@ import NodeDetailPanel from './NodeDetailPanel';
 import EdgeResizeHandle from './EdgeResizeHandle';
 import CornerResizeHandle from './CornerResizeHandle';
 
-export default function FloatingDetailPanel({ node, onClose, onUpdateNode, onRunNode, onFocus }) {
+export default function FloatingDetailPanel({ node, onClose, onUpdateNode, onRunNode, onFocus, flaskAvailable }) {
   const [position, setPosition] = useState({ x: 200, y: 150 });
   const [size, setSize] = useState({ width: 576, height: 600 });
   const [isDragging, setIsDragging] = useState(false);
@@ -107,6 +107,7 @@ export default function FloatingDetailPanel({ node, onClose, onUpdateNode, onRun
           node={node}
           onUpdateNode={onUpdateNode}
           onRunNode={onRunNode}
+          flaskAvailable={flaskAvailable}
         />
       </div>
       

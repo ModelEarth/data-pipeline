@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import DarkModeToggle from '../components/DarkModeToggle';
 import NodesList from '../components/NodesList';
@@ -7,6 +7,7 @@ import NodeDetailPanel from '../components/NodeDetailPanel';
 import DraggableModal from '../components/DraggableModal';
 import FloatingDetailPanel from '../components/FloatingDetailPanel';
 import DraggableFlowChart from '../components/DraggableFlowChart';
+import { checkFlaskAvailability, resetFlaskAvailability } from '../utils/flaskCheck';
 
 export default function Home() {
   const [selectedNode, setSelectedNode] = useState(null);
@@ -16,6 +17,7 @@ export default function Home() {
   const [showFloatingChart, setShowFloatingChart] = useState(false);
   const [panelZIndex, setPanelZIndex] = useState({ list: 40, chart: 41, detail: 42 });
   const [highlightedNode, setHighlightedNode] = useState(null);
+  const [flaskAvailable, setFlaskAvailable] = useState(null); // null = checking, true = available, false = unavailable
 
   const handleNodeSelect = (node) => {
     setSelectedNode(node);
@@ -54,6 +56,25 @@ export default function Home() {
     setTimeout(() => setHighlightedNode(null), 3000);
   };
 
+  // Check Flask availability on mount
+  useEffect(() => {
+    const checkFlask = async () => {
+      const available = await checkFlaskAvailability();
+      setFlaskAvailable(available);
+    };
+    checkFlask();
+    
+    // Re-check every 30 seconds
+    const interval = setInterval(checkFlask, 30000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleRetryFlaskCheck = async () => {
+    resetFlaskAvailability();
+    const available = await checkFlaskAvailability();
+    setFlaskAvailable(available);
+  };
+
 
   return (
     <>
@@ -65,6 +86,33 @@ export default function Home() {
       </Head>
 
       <div className={`min-h-screen bg-gray-900 light:bg-yellow-50 ${listPosition === 'floating' ? 'overflow-auto' : ''}`} style={listPosition === 'floating' ? { height: '100vh' } : {}}>
+        {/* Flask Availability Banner */}
+        {flaskAvailable === false && (
+          <div className="bg-orange-500/20 border-b border-orange-500/50 px-6 py-3 flex items-center justify-between relative z-50">
+            <div className="flex items-center gap-3">
+              <span className="text-orange-400">⚠️</span>
+              <span className="text-orange-300 light:text-orange-700">
+                Flask Server is not running on port 5001
+              </span>
+            </div>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={handleRetryFlaskCheck}
+                className="text-sm px-3 py-1 bg-orange-500/30 hover:bg-orange-500/50 rounded border border-orange-500/50 text-orange-200 light:text-orange-800"
+              >
+                Retry Check
+              </button>
+              <a
+                href="/cloud/run/"
+                target="_blank"
+                className="text-sm px-3 py-1 bg-blue-500/30 hover:bg-blue-500/50 rounded border border-blue-500/50 text-blue-200 light:text-blue-800"
+              >
+                Activate Flask Server
+              </a>
+            </div>
+          </div>
+        )}
+        
         {/* Top Bar */}
         <div className="flex items-center justify-between p-6 border-b border-gray-700 light:border-gray-400 relative z-50">
           <div className="flex gap-2">
@@ -209,6 +257,7 @@ export default function Home() {
                 onUpdateNode={handleUpdateNode}
                 onRunNode={handleRunNode}
                 onFocus={() => bringToFront('detail')}
+                flaskAvailable={flaskAvailable}
               />
             </div>
           </div>

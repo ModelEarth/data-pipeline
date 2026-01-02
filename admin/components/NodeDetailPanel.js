@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import { checkFlaskAvailability, getFlaskRunEndpoint } from '../utils/flaskCheck';
 
-export default function NodeDetailPanel({ node, onUpdateNode, onRunNode }) {
+export default function NodeDetailPanel({ node, onUpdateNode, onRunNode, flaskAvailable }) {
   const [todos, setTodos] = useState(node?.todos || '');
   const [newTodo, setNewTodo] = useState('');
   const [isRunning, setIsRunning] = useState(false);
@@ -50,12 +51,17 @@ export default function NodeDetailPanel({ node, onUpdateNode, onRunNode }) {
       return;
     }
 
+    // Check if Flask is available, otherwise fallback to Next.js API
+    const useFlask = flaskAvailable === true;
+    const apiUrl = useFlask 
+      ? getFlaskRunEndpoint()
+      : (process.env.NODE_ENV === 'production' ? '/data-pipeline/admin' : '') + '/api/nodes/run';
+
     setIsRunning(true);
     setRunResult(null);
 
     try {
-      const basePath = process.env.NODE_ENV === 'production' ? '/data-pipeline/admin' : '';
-      const response = await fetch(`${basePath}/api/nodes/run`, {
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -189,11 +195,26 @@ export default function NodeDetailPanel({ node, onUpdateNode, onRunNode }) {
             <code className="text-sm font-mono text-cyan-400">{node.python_cmds}</code>
           </div>
           
+          {flaskAvailable === false && (
+            <div className="mb-3 p-3 bg-orange-500/10 border border-orange-500/30 rounded-lg">
+              <p className="text-sm text-orange-300 light:text-orange-700">
+                ⚠️ Flask server not available. Using Next.js API fallback.
+              </p>
+              <a 
+                href="/cloud/run/" 
+                target="_blank"
+                className="text-sm text-blue-400 hover:text-blue-300 underline mt-1 inline-block"
+              >
+                View setup instructions →
+              </a>
+            </div>
+          )}
+          
           <div className="flex items-center gap-3">
             <button
               onClick={handleRunNode}
-              disabled={isRunning}
-              className={`btn-primary ${isRunning ? 'opacity-50 cursor-not-allowed' : ''}`}
+              disabled={isRunning || (node.run_process_available && node.run_process_available.toLowerCase() === 'no')}
+              className={`btn-primary ${isRunning ? 'opacity-50 cursor-not-allowed' : ''} ${node.run_process_available && node.run_process_available.toLowerCase() === 'no' ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
               {isRunning ? '🔄 Running...' : '▶️ Run Process'}
             </button>
@@ -204,6 +225,12 @@ export default function NodeDetailPanel({ node, onUpdateNode, onRunNode }) {
               {runResult?.success === false && '❌ Failed'}
             </span>
           </div>
+          
+          {flaskAvailable === true && (
+            <div className="mt-2 text-xs text-green-400">
+              ✓ Using Flask server (port 5001)
+            </div>
+          )}
         </div>
       )}
 
