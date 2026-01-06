@@ -20,7 +20,9 @@
       "Bash(mkdir:*)",
       "Bash(rm:*)",
       "Bash(npm run build:*)",
-      "Bash(cp:*)"
+      "Bash(cp:*)",
+      "WebSearch",
+      "WebFetch(domain:sharethis.com)"
     ],
     "deny": []
   }
