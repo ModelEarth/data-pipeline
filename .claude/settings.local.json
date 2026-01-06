@@ -22,7 +22,8 @@
       "Bash(npm run build:*)",
       "Bash(cp:*)",
       "WebSearch",
-      "WebFetch(domain:sharethis.com)"
+      "WebFetch(domain:sharethis.com)",
+      "Bash(kill:*)"
     ],
     "deny": []
   }
