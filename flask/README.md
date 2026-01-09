@@ -13,11 +13,15 @@ Follow these steps to test the Flask server integration with the Data Pipeline A
 Open a terminal and run:
 
 ```bash
-cd data-pipeline
+cd data-pipeline/flask
 python3 -m venv env
 source env/bin/activate
 pip3 install flask flask-cors
 ```
+
+For PC
+
+    python -m venv env && env\Scripts\activate.bat && pip3 install flask flask-cors
 
 **Expected output:** Should show successful installation messages.
 
