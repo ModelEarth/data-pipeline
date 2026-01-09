@@ -24,8 +24,8 @@ from typing import Dict, List, Optional
 
 # Get the script directory
 SCRIPT_DIR = Path(__file__).parent
-NODES_CSV = SCRIPT_DIR / "nodes.csv"
-NODES_JSON = SCRIPT_DIR / "nodes.json"
+NODES_CSV = SCRIPT_DIR.parent / "nodes.csv"
+NODES_JSON = SCRIPT_DIR.parent / "nodes.json"
 
 
 def load_nodes_csv() -> List[Dict]:

@@ -37,7 +37,74 @@ CORS(app)  # Enable CORS for localhost requests
 running_processes = {}
 process_lock = threading.Lock()
 
-NODES_CSV = SCRIPT_DIR / "nodes.csv"
+NODES_CSV = SCRIPT_DIR.parent / "nodes.csv"
+
+# Standard library modules that don't need pip install
+STDLIB_MODULES = {
+    'os', 'sys', 'json', 'csv', 'pathlib', 'datetime', 'subprocess',
+    'threading', 'sqlite3', 'collections', 'itertools', 'functools',
+    're', 'math', 'random', 'time', 'logging', 'argparse', 'typing'
+}
+
+# Map of import names to pip package names (when they differ)
+PACKAGE_NAME_MAP = {
+    'yaml': 'pyyaml',
+    'sklearn': 'scikit-learn',
+    'cv2': 'opencv-python',
+    'PIL': 'pillow',
+}
+
+
+def ensure_dependencies(dependencies_str: str) -> Dict:
+    """
+    Check and install missing dependencies before running a node.
+    Returns dict with 'success', 'installed', and 'errors' keys.
+    """
+    if not dependencies_str:
+        return {'success': True, 'installed': [], 'errors': []}
+
+    deps = [d.strip() for d in dependencies_str.split(',') if d.strip()]
+    installed = []
+    errors = []
+
+    for dep in deps:
+        # Skip standard library modules
+        if dep in STDLIB_MODULES:
+            continue
+
+        # Check if already installed
+        try:
+            __import__(dep)
+            continue  # Already installed
+        except ImportError:
+            pass
+
+        # Get the pip package name (may differ from import name)
+        pip_name = PACKAGE_NAME_MAP.get(dep, dep)
+
+        try:
+            # Install the package
+            result = subprocess.run(
+                [sys.executable, '-m', 'pip', 'install', pip_name],
+                capture_output=True,
+                text=True,
+                timeout=120  # 2 minute timeout for install
+            )
+
+            if result.returncode == 0:
+                installed.append(pip_name)
+            else:
+                errors.append(f"{pip_name}: {result.stderr}")
+        except subprocess.TimeoutExpired:
+            errors.append(f"{pip_name}: installation timed out")
+        except Exception as e:
+            errors.append(f"{pip_name}: {str(e)}")
+
+    return {
+        'success': len(errors) == 0,
+        'installed': installed,
+        'errors': errors
+    }
 
 
 def get_node_by_id(node_id: str) -> Optional[Dict]:
@@ -126,7 +193,17 @@ def run_node():
                 'success': False,
                 'error': f'Node {node_id} does not have run_process_available enabled'
             }), 400
-        
+
+        # Auto-install dependencies from nodes.csv
+        dependencies = node.get('dependencies', '')
+        dep_result = ensure_dependencies(dependencies)
+        if not dep_result['success']:
+            return jsonify({
+                'success': False,
+                'error': f'Failed to install dependencies: {", ".join(dep_result["errors"])}',
+                'dependencies_attempted': dependencies
+            }), 500
+
         # Use command from node if not provided
         if not command:
             command = node.get('python_cmds', '')
@@ -141,11 +218,9 @@ def run_node():
         if not working_directory:
             working_directory = node.get('link', '')
         
-        # Resolve working directory path
-        if working_directory.startswith('../'):
-            work_path = SCRIPT_DIR / working_directory
-        else:
-            work_path = SCRIPT_DIR / working_directory
+        # Resolve working directory path (relative to data-pipeline/, not flask/)
+        base_path = SCRIPT_DIR.parent  # data-pipeline directory
+        work_path = (base_path / working_directory).resolve()
         
         if not work_path.exists():
             return jsonify({
@@ -173,17 +248,20 @@ def run_node():
             )
             thread.daemon = True
             thread.start()
-            
-            return jsonify({
+
+            response = {
                 'success': True,
                 'message': f'Node {node_id} started in background',
                 'node_id': node_id,
                 'status': 'running',
                 'processing_time': processing_time
-            }), 202
+            }
+            if dep_result['installed']:
+                response['dependencies_installed'] = dep_result['installed']
+            return jsonify(response), 202
         else:
             # Run synchronously
-            return run_node_sync(node_id, command, str(work_path), node)
+            return run_node_sync(node_id, command, str(work_path), node, dep_result)
     
     except Exception as e:
         return jsonify({
@@ -192,7 +270,7 @@ def run_node():
         }), 500
 
 
-def run_node_sync(node_id: str, command: str, work_path: str, node: Dict):
+def run_node_sync(node_id: str, command: str, work_path: str, node: Dict, dep_result: Dict = None):
     """Run a node synchronously and return result."""
     try:
         with process_lock:
@@ -230,7 +308,10 @@ def run_node_sync(node_id: str, command: str, work_path: str, node: Dict):
             'command': command,
             'working_directory': work_path
         }
-        
+
+        if dep_result and dep_result.get('installed'):
+            response_data['dependencies_installed'] = dep_result['installed']
+
         if auto_commit_result:
             response_data['auto_commit'] = auto_commit_result
         

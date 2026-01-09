@@ -243,7 +243,7 @@ export default function NodeDetailPanel({ node, onUpdateNode, onRunNode, flaskAv
         }`}>
           <h4 className="font-medium mb-2">Execution Result:</h4>
           <pre className="text-sm font-mono overflow-auto max-h-32">
-            {runResult.output || runResult.error}
+            {runResult.output || runResult.stderr || runResult.error}
           </pre>
         </div>
       )}

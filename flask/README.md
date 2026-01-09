@@ -8,7 +8,7 @@ Follow these steps to test the Flask server integration with the Data Pipeline A
 - Access to the `data-pipeline` directory
 - Web browser (Chrome, Firefox, Safari, etc.)
 
-## Step 1: Install Flask Dependencies
+## Step 1: Set Up Virtual Environment and Install Flask
 
 Open a terminal and run:
 
@@ -19,11 +19,30 @@ source env/bin/activate
 pip3 install flask flask-cors
 ```
 
-For PC
+For PC:
 
-    python -m venv env && env\Scripts\activate.bat && pip3 install flask flask-cors
+```cmd
+python -m venv env && env\Scripts\activate.bat && pip3 install flask flask-cors
+```
 
 **Expected output:** Should show successful installation messages.
+
+### Auto-Dependency Installation
+
+The Flask server automatically installs Python dependencies when running a node. Dependencies are read from the `dependencies` column in `nodes.csv`. For example:
+
+- `eco_001` requires: `numpy,pandas,requests`
+- `prod_002` requires: `yaml,os,pathlib`
+
+When you click "Run Process", the server:
+1. Reads the node's dependencies from `nodes.csv`
+2. Checks if each package is installed
+3. Auto-installs missing packages via `pip install`
+4. Then runs the process
+
+Standard library modules (`os`, `json`, `pathlib`, etc.) are skipped. Package name mappings are handled automatically (e.g., `yaml` → `pyyaml`, `sklearn` → `scikit-learn`).
+
+**Note:** The first run of a node may take longer as dependencies are installed. Subsequent runs will be faster.
 
 **Screenshot needed:** Terminal showing successful installation
 
@@ -54,7 +73,7 @@ python3 flask_server.py
 **Expected output:** You should see:
 ```
 Starting Flask server for Data Pipeline Admin...
-Server will run on http://localhost:5000
+Server will run on http://localhost:5001
 Health check: http://localhost:5001/health
  * Running on http://127.0.0.1:5001
  * Debug mode: on
@@ -281,6 +300,27 @@ If "Run Process" doesn't work:
 - Verify node has `run_process_available=yes` in nodes.csv
 - Check Flask server terminal for error messages
 
+If dependencies fail to install:
+- Ensure the Flask server is running inside the virtual environment (`source env/bin/activate`)
+- Check that the `dependencies` column in `nodes.csv` lists valid pip package names
+- Some packages may need system dependencies (e.g., `geopandas` needs GDAL)
+
+---
+
+## Adding Dependencies for New Nodes
+
+When adding a new node to `nodes.csv`, list its pip dependencies in the `dependencies` column:
+
+```csv
+my_node,My Node,Description,data_processor,1,path/to/script,python script.py,output/,info,1M,"pandas,numpy,requests",none,fast,...
+```
+
+**Tips:**
+- Use comma-separated package names: `pandas,numpy,requests`
+- Standard library modules are auto-skipped: `os,json,pathlib,csv,sys`
+- Package mappings are automatic: `yaml`→`pyyaml`, `sklearn`→`scikit-learn`
+- First run installs packages; subsequent runs are faster
+
 ---
 
 ## Notes
@@ -288,4 +328,6 @@ If "Run Process" doesn't work:
 - Keep Flask server terminal open while testing
 - For very_slow processes (like prod_001), they run in background - check status endpoint
 - Auto-commit workflow will only trigger if `auto_commit=yes` in nodes.csv and target_repo is set
+- Dependencies are auto-installed from the `dependencies` column in nodes.csv
+- The server uses the same Python environment it's running in for package installation
 
