@@ -10,6 +10,7 @@ import DraggableFlowChart from '../components/DraggableFlowChart';
 import { checkFlaskAvailability, resetFlaskAvailability } from '../utils/flaskCheck';
 
 export default function Home() {
+  const [mounted, setMounted] = useState(false);
   const [selectedNode, setSelectedNode] = useState(null);
   const [listPosition, setListPosition] = useState('column'); // 'column', 'full-width', 'floating'
   const [showFloatingList, setShowFloatingList] = useState(false);
@@ -18,6 +19,11 @@ export default function Home() {
   const [panelZIndex, setPanelZIndex] = useState({ list: 40, chart: 41, detail: 42 });
   const [highlightedNode, setHighlightedNode] = useState(null);
   const [flaskAvailable, setFlaskAvailable] = useState(null); // null = checking, true = available, false = unavailable
+
+  // Ensure hydration completes before rendering client-specific content
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleNodeSelect = (node) => {
     setSelectedNode(node);
@@ -86,8 +92,8 @@ export default function Home() {
       </Head>
 
       <div className={`min-h-screen bg-gray-900 light:bg-yellow-50 ${listPosition === 'floating' ? 'overflow-auto' : ''}`} style={listPosition === 'floating' ? { height: '100vh' } : {}}>
-        {/* Flask Availability Banner */}
-        {flaskAvailable === false && (
+        {/* Flask Availability Banner - only render after mount to avoid hydration mismatch */}
+        {mounted && flaskAvailable === false && (
           <div className="bg-orange-500/20 border-b border-orange-500/50 px-6 py-3 flex items-center justify-between relative z-50">
             <div className="flex items-center gap-3">
               <span className="text-orange-400">⚠️</span>
@@ -103,7 +109,7 @@ export default function Home() {
                 Retry Check
               </button>
               <a
-                href="/cloud/run/"
+                href="../flask"
                 target="_blank"
                 className="text-sm px-3 py-1 bg-blue-500/30 hover:bg-blue-500/50 rounded border border-blue-500/50 text-blue-200 light:text-blue-800"
               >
