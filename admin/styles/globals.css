@@ -114,3 +114,253 @@
   @apply stroke-cyan-400;
   stroke-width: 2;
 }
+
+/* Admin Container */
+.admin-container {
+  @apply min-h-screen bg-gray-900;
+}
+
+.light .admin-container {
+  @apply bg-yellow-50;
+}
+
+/* Flask Banner */
+.flask-banner {
+  @apply bg-orange-500/20 border-b border-orange-500/50 px-6 py-3 flex items-center justify-between relative z-50;
+}
+
+.flask-banner-content {
+  @apply flex items-center gap-3;
+}
+
+.flask-banner-icon {
+  @apply text-orange-400;
+}
+
+.flask-banner-text {
+  @apply text-orange-300;
+}
+
+.light .flask-banner-text {
+  @apply text-orange-700;
+}
+
+.flask-banner-actions {
+  @apply flex items-center gap-3;
+}
+
+.flask-banner-btn {
+  @apply text-sm px-3 py-1 rounded border;
+}
+
+.flask-banner-btn.retry {
+  @apply bg-orange-500/30 hover:bg-orange-500/50 border-orange-500/50 text-orange-200;
+}
+
+.light .flask-banner-btn.retry {
+  @apply text-orange-800;
+}
+
+.flask-banner-btn.activate {
+  @apply bg-blue-500/30 hover:bg-blue-500/50 border-blue-500/50 text-blue-200;
+}
+
+.light .flask-banner-btn.activate {
+  @apply text-blue-800;
+}
+
+/* Top Bar */
+.top-bar {
+  @apply flex items-center justify-between p-6 border-b border-gray-700 relative z-50;
+}
+
+.light .top-bar {
+  @apply border-gray-400;
+}
+
+.layout-buttons {
+  @apply flex gap-2;
+}
+
+.btn-layout {
+  @apply px-2 py-2;
+}
+
+.layout-icon-svg {
+  @apply w-5 h-5;
+}
+
+.layout-icon {
+  @apply text-xl leading-none;
+}
+
+/* Column Layout */
+.layout-column {
+  @apply flex h-[calc(100vh-81px)];
+}
+
+.column-sidebar {
+  @apply w-[30%] border-r border-gray-700 p-6 overflow-y-auto;
+}
+
+.light .column-sidebar {
+  @apply border-gray-400;
+}
+
+.column-main {
+  @apply flex-1 w-[70%] p-6 overflow-y-auto flex flex-col gap-4;
+}
+
+.column-detail-section {
+  @apply flex-shrink-0;
+  max-height: 50%;
+}
+
+.column-detail-panel {
+  @apply panel p-0 overflow-hidden flex flex-col;
+  max-height: 100%;
+}
+
+.column-detail-content {
+  @apply overflow-y-auto flex-1;
+}
+
+.column-flow-section {
+  @apply flex-1 min-h-[300px];
+}
+
+.column-detail-header {
+  @apply flex items-center justify-between p-4 border-b border-gray-700;
+}
+
+.light .column-detail-header {
+  @apply border-gray-400;
+}
+
+.column-detail-header h2 {
+  @apply text-lg font-semibold text-gray-100;
+}
+
+.light .column-detail-header h2 {
+  @apply text-gray-900;
+}
+
+.close-btn {
+  @apply w-8 h-8 rounded-full bg-gray-600 hover:bg-red-600 flex items-center justify-center transition-colors duration-200 text-gray-100 text-xl font-bold;
+}
+
+.light .close-btn {
+  @apply bg-gray-400 hover:bg-red-500 text-gray-900;
+}
+
+/* Full Width Layout */
+.layout-fullwidth {
+  @apply flex flex-col h-[calc(100vh-81px)];
+}
+
+.fullwidth-top {
+  @apply flex gap-6 p-6 border-b border-gray-700;
+  min-height: 300px;
+  max-height: 50%;
+}
+
+.light .fullwidth-top {
+  @apply border-gray-400;
+}
+
+.fullwidth-list {
+  @apply panel p-4 overflow-y-auto;
+  width: 350px;
+  flex-shrink: 0;
+}
+
+.fullwidth-detail {
+  @apply panel flex-1 overflow-hidden flex flex-col;
+}
+
+.fullwidth-detail-header {
+  @apply flex items-center justify-between p-4 border-b border-gray-700;
+}
+
+.light .fullwidth-detail-header {
+  @apply border-gray-400;
+}
+
+.fullwidth-detail-header h2 {
+  @apply text-lg font-semibold text-gray-100;
+}
+
+.light .fullwidth-detail-header h2 {
+  @apply text-gray-900;
+}
+
+.fullwidth-detail-content {
+  @apply flex-1 overflow-y-auto;
+}
+
+.fullwidth-bottom {
+  @apply flex-1 p-6 overflow-hidden;
+}
+
+/* Floating Layout */
+.layout-floating {
+  @apply h-[calc(100vh-81px)] flex items-center justify-center;
+}
+
+.floating-empty {
+  @apply text-center;
+}
+
+.floating-open-btn {
+  @apply w-16 h-16 mx-auto mb-4 rounded-full bg-gray-700 flex items-center justify-center hover:bg-gray-600 transition-colors duration-200 cursor-pointer text-2xl;
+}
+
+.light .floating-open-btn {
+  @apply bg-gray-300 hover:bg-gray-400;
+}
+
+.floating-empty h3 {
+  @apply text-lg font-medium text-gray-100 mb-2;
+}
+
+.light .floating-empty h3 {
+  @apply text-gray-900;
+}
+
+.floating-wrapper {
+  @apply fixed inset-0 pointer-events-none;
+}
+
+.floating-wrapper > * {
+  @apply pointer-events-auto;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-800;
+}
+
+.light ::-webkit-scrollbar-track {
+  @apply bg-gray-200;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-600 rounded;
+}
+
+.light ::-webkit-scrollbar-thumb {
+  @apply bg-gray-400;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-500;
+}
+
+.light ::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-500;
+}

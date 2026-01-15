@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Head from 'next/head';
 import DarkModeToggle from '../components/DarkModeToggle';
 import NodesList from '../components/NodesList';
@@ -8,27 +8,154 @@ import DraggableModal from '../components/DraggableModal';
 import FloatingDetailPanel from '../components/FloatingDetailPanel';
 import DraggableFlowChart from '../components/DraggableFlowChart';
 import { checkFlaskAvailability, resetFlaskAvailability } from '../utils/flaskCheck';
+import { getHash, goHash, saveState, loadState, initializeState, onHashChange } from '../utils/stateManager';
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
+  const [nodes, setNodes] = useState([]);
   const [selectedNode, setSelectedNode] = useState(null);
-  const [listPosition, setListPosition] = useState('column'); // 'column', 'full-width', 'floating'
+  const [listPosition, setListPosition] = useState('column');
   const [showFloatingList, setShowFloatingList] = useState(false);
   const [showFloatingDetail, setShowFloatingDetail] = useState(false);
   const [showFloatingChart, setShowFloatingChart] = useState(false);
   const [panelZIndex, setPanelZIndex] = useState({ list: 40, chart: 41, detail: 42 });
   const [highlightedNode, setHighlightedNode] = useState(null);
-  const [flaskAvailable, setFlaskAvailable] = useState(null); // null = checking, true = available, false = unavailable
+  const [flaskAvailable, setFlaskAvailable] = useState(null);
 
-  // Ensure hydration completes before rendering client-specific content
+  // Initialize from hash/localStorage after mount
   useEffect(() => {
     setMounted(true);
+    const initial = initializeState();
+    setListPosition(initial.view);
+
+    // Set up floating states based on view
+    if (initial.view === 'floating') {
+      setShowFloatingList(true);
+      setShowFloatingChart(true);
+    } else if (initial.view === 'full') {
+      setShowFloatingList(false);
+      setShowFloatingChart(false);
+    }
   }, []);
 
-  const handleNodeSelect = (node) => {
-    setSelectedNode(node);
-    setShowFloatingDetail(true);
+  // Load nodes and set initial selection
+  useEffect(() => {
+    if (!mounted) return;
+
+    const loadNodes = async () => {
+      try {
+        // Always use /data-pipeline/nodes.csv path
+        const response = await fetch('/data-pipeline/nodes.csv');
+        if (response.ok) {
+          const csvText = await response.text();
+          const lines = csvText.split('\n').filter(line => line.trim());
+          const headers = lines[0].split(',').map(h => h.trim());
+          const csvNodes = [];
+
+          for (let i = 1; i < lines.length; i++) {
+            const values = parseCSVLine(lines[i]);
+            if (values.length >= headers.length - 1) {
+              const node = {};
+              headers.forEach((header, index) => {
+                node[header.trim()] = values[index] ? values[index].trim() : '';
+              });
+              csvNodes.push(node);
+            }
+          }
+          setNodes(csvNodes);
+
+          // Set initial node selection from hash or first node for full-width
+          const hash = getHash();
+          if (hash.node) {
+            const node = csvNodes.find(n => n.node_id === hash.node);
+            if (node) setSelectedNode(node);
+          } else if (listPosition === 'full' && csvNodes.length > 0) {
+            setSelectedNode(csvNodes[0]);
+            goHash({ node: csvNodes[0].node_id });
+          }
+        }
+      } catch (error) {
+        console.error('Failed to load nodes:', error);
+      }
+    };
+
+    loadNodes();
+  }, [mounted]);
+
+  // Parse CSV line handling quoted values
+  const parseCSVLine = (line) => {
+    const result = [];
+    let current = '';
+    let inQuotes = false;
+
+    for (let i = 0; i < line.length; i++) {
+      const char = line[i];
+      if (char === '"' && (i === 0 || line[i-1] === ',')) {
+        inQuotes = true;
+      } else if (char === '"' && inQuotes && (i === line.length - 1 || line[i+1] === ',')) {
+        inQuotes = false;
+      } else if (char === ',' && !inQuotes) {
+        result.push(current.trim());
+        current = '';
+      } else {
+        current += char;
+      }
+    }
+    result.push(current.trim());
+    return result;
   };
+
+  // Listen for hash changes (browser back/forward, manual URL edit)
+  useEffect(() => {
+    if (!mounted) return;
+
+    const cleanup = onHashChange((hash) => {
+      if (hash.view && hash.view !== listPosition) {
+        handleViewChange(hash.view, false);
+      }
+      if (hash.node && (!selectedNode || hash.node !== selectedNode.node_id)) {
+        const node = nodes.find(n => n.node_id === hash.node);
+        if (node) setSelectedNode(node);
+      }
+    });
+
+    return cleanup;
+  }, [mounted, listPosition, selectedNode, nodes]);
+
+  // Handle view change
+  const handleViewChange = useCallback((view, updateUrl = true) => {
+    setListPosition(view);
+    saveState({ view });
+
+    if (updateUrl) {
+      goHash({ view });
+    }
+
+    // Configure floating states based on view
+    if (view === 'floating') {
+      setShowFloatingList(true);
+      setShowFloatingChart(true);
+      setShowFloatingDetail(!!selectedNode);
+      setTimeout(() => {
+        window.dispatchEvent(new CustomEvent('resetFloatingPositions'));
+      }, 100);
+    } else {
+      setShowFloatingList(false);
+      setShowFloatingChart(false);
+      setShowFloatingDetail(false);
+    }
+  }, [selectedNode]);
+
+  // Handle node selection
+  const handleNodeSelect = useCallback((node) => {
+    setSelectedNode(node);
+    saveState({ selectedNodeId: node?.node_id });
+    goHash({ node: node?.node_id });
+
+    if (listPosition === 'floating') {
+      setShowFloatingDetail(true);
+    }
+  }, [listPosition]);
 
   const handleUpdateNode = (updatedNode) => {
     setSelectedNode(updatedNode);
@@ -49,7 +176,6 @@ export default function Home() {
   const openAllFloatingPanels = () => {
     setShowFloatingList(true);
     setShowFloatingChart(true);
-    // Reset positions for floating layout
     setTimeout(() => {
       window.dispatchEvent(new CustomEvent('resetFloatingPositions'));
     }, 100);
@@ -58,19 +184,16 @@ export default function Home() {
   const handleHighlightInList = (node) => {
     setHighlightedNode(node);
     bringToFront('detail');
-    // Clear highlight after 3 seconds
     setTimeout(() => setHighlightedNode(null), 3000);
   };
 
-  // Check Flask availability on mount
+  // Check Flask availability
   useEffect(() => {
     const checkFlask = async () => {
       const available = await checkFlaskAvailability();
       setFlaskAvailable(available);
     };
     checkFlask();
-    
-    // Re-check every 30 seconds
     const interval = setInterval(checkFlask, 30000);
     return () => clearInterval(interval);
   }, []);
@@ -81,7 +204,6 @@ export default function Home() {
     setFlaskAvailable(available);
   };
 
-
   return (
     <>
       <Head>
@@ -91,181 +213,209 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className={`min-h-screen bg-gray-900 light:bg-yellow-50 ${listPosition === 'floating' ? 'overflow-auto' : ''}`} style={listPosition === 'floating' ? { height: '100vh' } : {}}>
-        {/* Flask Availability Banner - only render after mount to avoid hydration mismatch */}
+      <div className="admin-container">
+        {/* Flask Availability Banner */}
         {mounted && flaskAvailable === false && (
-          <div className="bg-orange-500/20 border-b border-orange-500/50 px-6 py-3 flex items-center justify-between relative z-50">
-            <div className="flex items-center gap-3">
-              <span className="text-orange-400">⚠️</span>
-              <span className="text-orange-300 light:text-orange-700">
+          <div className="flask-banner">
+            <div className="flask-banner-content">
+              <span className="flask-banner-icon">⚠️</span>
+              <span className="flask-banner-text">
                 Flask Server is not running on port 5001
               </span>
             </div>
-            <div className="flex items-center gap-3">
-              <button
-                onClick={handleRetryFlaskCheck}
-                className="text-sm px-3 py-1 bg-orange-500/30 hover:bg-orange-500/50 rounded border border-orange-500/50 text-orange-200 light:text-orange-800"
-              >
+            <div className="flask-banner-actions">
+              <button onClick={handleRetryFlaskCheck} className="flask-banner-btn retry">
                 Retry Check
               </button>
-              <a
-                href="../flask"
-                target="_blank"
-                className="text-sm px-3 py-1 bg-blue-500/30 hover:bg-blue-500/50 rounded border border-blue-500/50 text-blue-200 light:text-blue-800"
-              >
+              <a href="../flask" target="_blank" className="flask-banner-btn activate">
                 Activate Flask Server
               </a>
             </div>
           </div>
         )}
-        
+
         {/* Top Bar */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-700 light:border-gray-400 relative z-50">
-          <div className="flex gap-2">
+        <div className="top-bar">
+          <div className="layout-buttons">
             <button
-              onClick={() => setListPosition('column')}
-              className={`btn text-sm px-3 py-2 ${listPosition === 'column' ? 'btn-primary' : ''}`}
+              onClick={() => handleViewChange('column')}
+              className={`btn btn-layout ${listPosition === 'column' ? 'btn-primary' : ''}`}
               title="Column Layout"
             >
-              ▦
+              <span className="layout-icon">▥</span>
             </button>
             <button
-              onClick={() => {
-                setListPosition('full-width');
-                setShowFloatingList(true);
-              }}
-              className={`btn text-sm px-3 py-2 ${listPosition === 'full-width' ? 'btn-primary' : ''}`}
+              onClick={() => handleViewChange('full')}
+              className={`btn btn-layout ${listPosition === 'full' ? 'btn-primary' : ''}`}
               title="Full Width Layout"
             >
-              ▬
+              <span className="layout-icon">▤</span>
             </button>
             <button
-              onClick={() => {
-                setListPosition('floating');
-                setShowFloatingList(true);
-                setShowFloatingChart(true);
-                // Reset positions for floating layout
-                window.dispatchEvent(new CustomEvent('resetFloatingPositions'));
-              }}
-              className={`btn text-sm px-3 py-2 ${listPosition === 'floating' ? 'btn-primary' : ''}`}
+              onClick={() => handleViewChange('floating')}
+              className={`btn btn-layout ${listPosition === 'floating' ? 'btn-primary' : ''}`}
               title="Floating Layout"
             >
-              ⧉
+              <span className="layout-icon">⧉</span>
             </button>
           </div>
-          
+
           <DarkModeToggle />
         </div>
 
-        {/* Main Layout */}
-        <div className={`flex ${listPosition === 'floating' ? 'h-auto min-h-[calc(100vh-81px)]' : 'h-[calc(100vh-81px)]'}`}>
-          {/* Column Layout */}
-          {listPosition === 'column' && (
-            <div className="w-[30%] border-r border-gray-700 light:border-gray-400 p-6 overflow-y-auto">
-              <NodesList 
+        {/* Column Layout */}
+        {listPosition === 'column' && (
+          <div className="layout-column">
+            <div className="column-sidebar">
+              <NodesList
                 onNodeSelect={handleNodeSelect}
                 onNodeClick={() => bringToFront('detail')}
                 highlightedNode={highlightedNode}
                 onHighlightReceived={setSelectedNode}
-                className="h-auto"
+                selectedNode={selectedNode}
               />
             </div>
-          )}
-
-          {/* Main Content Area */}
-          <div className={`flex-1 ${listPosition === 'column' ? 'w-[70%]' : 'w-full'}`}>
-            <div className="h-full">
-              {/* Flow Chart - only show when not in floating mode */}
-              {listPosition !== 'floating' && (
-                <div className="h-full p-6">
-                  <FlowChart 
-                    className="h-full" 
-                    onNodeSelect={handleNodeSelect}
-                    isFloating={false}
-                    onHighlightInList={handleHighlightInList}
-                  />
-                  
-                  {/* Full Width List - now floating */}
-                </div>
-              )}
-              
-              {/* Empty state for floating mode */}
-              {listPosition === 'floating' && (
-                <div className="h-full flex items-center justify-center p-6">
-                  <div className="text-center">
-                    <button 
-                      onClick={openAllFloatingPanels}
-                      className="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-700 flex items-center justify-center light:bg-gray-300 hover:bg-gray-600 light:hover:bg-gray-400 transition-colors duration-200 cursor-pointer"
-                    >
-                      <span className="text-2xl">⧉</span>
-                    </button>
-                    <h3 className="text-lg font-medium text-gray-100 mb-2 light:text-gray-900">Floating Mode Active</h3>
-                    <p className="text-muted">Click the icon above to open floating panels</p>
+            <div className="column-main">
+              {selectedNode && (
+                <div className="column-detail-section">
+                  <div className="column-detail-panel">
+                    <div className="column-detail-header">
+                      <h2>Node Details</h2>
+                      <button
+                        onClick={() => {
+                          setSelectedNode(null);
+                          goHash({ node: null });
+                        }}
+                        className="close-btn"
+                      >
+                        ×
+                      </button>
+                    </div>
+                    <div className="column-detail-content">
+                      <NodeDetailPanel
+                        node={selectedNode}
+                        onUpdateNode={handleUpdateNode}
+                        onRunNode={handleRunNode}
+                        flaskAvailable={flaskAvailable}
+                      />
+                    </div>
                   </div>
                 </div>
               )}
-            </div>
-          </div>
-        </div>
-
-        {/* Floating List Popup */}
-        {(listPosition === 'floating' || listPosition === 'full-width') && showFloatingList && (
-          <div 
-            className="fixed inset-0 pointer-events-none"
-            id="listPopup"
-            style={{ zIndex: panelZIndex.list }}
-          >
-            <div className="pointer-events-auto">
-              <DraggableModal 
-                onClose={() => setShowFloatingList(false)}
-                onNodeSelect={(node) => {
-                  handleNodeSelect(node);
-                }}
-                onFocus={() => bringToFront('list')}
-                onNodeClick={() => bringToFront('detail')}
-                highlightedNode={highlightedNode}
-                onHighlightReceived={setSelectedNode}
-                hideTitle={listPosition === 'floating'}
-              />
+              <div className="column-flow-section">
+                <FlowChart
+                  onNodeSelect={handleNodeSelect}
+                  isFloating={false}
+                  onHighlightInList={handleHighlightInList}
+                  focusedNode={selectedNode}
+                />
+              </div>
             </div>
           </div>
         )}
 
-        {/* Floating Chart Popup */}
-        {(listPosition === 'floating' || listPosition === 'full-width') && showFloatingChart && (
-          <div 
-            className="fixed inset-0 pointer-events-none"
-            style={{ zIndex: panelZIndex.chart }}
-          >
-            <div className="pointer-events-auto">
-              <DraggableFlowChart
+        {/* Full Width Layout */}
+        {listPosition === 'full' && (
+          <div className="layout-fullwidth">
+            <div className="fullwidth-top">
+              <div className="fullwidth-list">
+                <NodesList
+                  onNodeSelect={handleNodeSelect}
+                  onNodeClick={() => {}}
+                  highlightedNode={highlightedNode}
+                  onHighlightReceived={setSelectedNode}
+                  selectedNode={selectedNode}
+                  compact={true}
+                />
+              </div>
+              {selectedNode && (
+                <div className="fullwidth-detail">
+                  <div className="fullwidth-detail-header">
+                    <h2>Node Details</h2>
+                    <button
+                      onClick={() => {
+                        setSelectedNode(null);
+                        goHash({ node: null });
+                      }}
+                      className="close-btn"
+                    >
+                      ×
+                    </button>
+                  </div>
+                  <div className="fullwidth-detail-content">
+                    <NodeDetailPanel
+                      node={selectedNode}
+                      onUpdateNode={handleUpdateNode}
+                      onRunNode={handleRunNode}
+                      flaskAvailable={flaskAvailable}
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+            <div className="fullwidth-bottom">
+              <FlowChart
                 onNodeSelect={handleNodeSelect}
-                onClose={() => setShowFloatingChart(false)}
-                onFocus={() => bringToFront('chart')}
-                isFullWidth={listPosition === 'full-width'}
-                hideTitle={listPosition === 'floating'}
+                isFloating={false}
                 onHighlightInList={handleHighlightInList}
               />
             </div>
           </div>
         )}
 
-        {/* Floating Detail Panel */}
-        {showFloatingDetail && selectedNode && (
-          <div 
-            className="fixed inset-0 pointer-events-none"
-            style={{ zIndex: panelZIndex.detail }}
-          >
-            <div className="pointer-events-auto">
-              <FloatingDetailPanel
-                node={selectedNode}
-                onClose={() => setShowFloatingDetail(false)}
-                onUpdateNode={handleUpdateNode}
-                onRunNode={handleRunNode}
-                onFocus={() => bringToFront('detail')}
-                flaskAvailable={flaskAvailable}
-              />
-            </div>
+        {/* Floating Layout */}
+        {listPosition === 'floating' && (
+          <div className="layout-floating">
+            {!showFloatingList && !showFloatingChart && (
+              <div className="floating-empty">
+                <button onClick={openAllFloatingPanels} className="floating-open-btn">
+                  <span>⧉</span>
+                </button>
+                <h3>Floating Mode Active</h3>
+                <p className="text-muted">Click the icon above to open floating panels</p>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Floating Panels (only in floating mode) */}
+        {listPosition === 'floating' && showFloatingList && (
+          <div className="floating-wrapper" style={{ zIndex: panelZIndex.list }}>
+            <DraggableModal
+              onClose={() => setShowFloatingList(false)}
+              onNodeSelect={handleNodeSelect}
+              onFocus={() => bringToFront('list')}
+              onNodeClick={() => bringToFront('detail')}
+              highlightedNode={highlightedNode}
+              onHighlightReceived={setSelectedNode}
+              hideTitle={true}
+            />
+          </div>
+        )}
+
+        {listPosition === 'floating' && showFloatingChart && (
+          <div className="floating-wrapper" style={{ zIndex: panelZIndex.chart }}>
+            <DraggableFlowChart
+              onNodeSelect={handleNodeSelect}
+              onClose={() => setShowFloatingChart(false)}
+              onFocus={() => bringToFront('chart')}
+              isFullWidth={false}
+              hideTitle={true}
+              onHighlightInList={handleHighlightInList}
+            />
+          </div>
+        )}
+
+        {listPosition === 'floating' && showFloatingDetail && selectedNode && (
+          <div className="floating-wrapper" style={{ zIndex: panelZIndex.detail }}>
+            <FloatingDetailPanel
+              node={selectedNode}
+              onClose={() => setShowFloatingDetail(false)}
+              onUpdateNode={handleUpdateNode}
+              onRunNode={handleRunNode}
+              onFocus={() => bringToFront('detail')}
+              flaskAvailable={flaskAvailable}
+            />
           </div>
         )}
       </div>

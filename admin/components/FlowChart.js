@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 
-export default function FlowChart({ className = '', onNodeSelect, isFloating = false, hideTitle = false, onHighlightInList }) {
+export default function FlowChart({ className = '', onNodeSelect, isFloating = false, hideTitle = false, onHighlightInList, focusedNode = null }) {
   const [nodes, setNodes] = useState([]);
   const [connections, setConnections] = useState([]);
   const [csvNodes, setCsvNodes] = useState([]);
@@ -14,16 +14,61 @@ export default function FlowChart({ className = '', onNodeSelect, isFloating = f
   const [showMenu, setShowMenu] = useState(null);
   const [expandedNode, setExpandedNode] = useState(null);
   const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
+  const [originalNodes, setOriginalNodes] = useState([]);
   const svgRef = useRef(null);
 
   useEffect(() => {
     loadFlowData();
   }, []);
 
+  // Reposition nodes when focusedNode changes
+  useEffect(() => {
+    if (!focusedNode || nodes.length === 0) return;
+
+    const focusedNodeId = focusedNode.node_id;
+    const focusedFlowNode = nodes.find(n => n.id === focusedNodeId);
+
+    if (focusedFlowNode) {
+      // Save original positions if not already saved
+      if (originalNodes.length === 0) {
+        setOriginalNodes(nodes.map(n => ({ ...n, position: [...n.position] })));
+      }
+
+      // Position focused node on the left
+      const newNodes = nodes.map(node => {
+        if (node.id === focusedNodeId) {
+          return { ...node, position: [50, 200] };
+        }
+        // Position other nodes to the right
+        const otherIndex = nodes.filter(n => n.id !== focusedNodeId).indexOf(node);
+        if (otherIndex >= 0) {
+          const row = Math.floor(otherIndex / 2);
+          const col = otherIndex % 2;
+          return {
+            ...node,
+            position: [300 + col * 250, 100 + row * 120]
+          };
+        }
+        return node;
+      });
+
+      setNodes(newNodes);
+    }
+  }, [focusedNode?.node_id]);
+
+  // Reset positions when focusedNode is cleared
+  useEffect(() => {
+    if (!focusedNode && originalNodes.length > 0) {
+      setNodes(originalNodes);
+      setOriginalNodes([]);
+    }
+  }, [focusedNode]);
+
   const loadFlowData = async () => {
     try {
-      const basePath = process.env.NODE_ENV === 'production' ? '/data-pipeline' : '';
-      
+      // Always use /data-pipeline path
+      const basePath = '/data-pipeline';
+
       // Load CSV data for node details
       const csvResponse = await fetch(`${basePath}/nodes.csv`);
       if (csvResponse.ok) {

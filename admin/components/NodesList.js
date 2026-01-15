@@ -1,10 +1,21 @@
 import { useState, useEffect, useRef } from 'react';
 
-export default function NodesList({ onNodeSelect, className = '', onNodeClick, highlightedNode, onHighlightReceived }) {
+export default function NodesList({
+  onNodeSelect,
+  className = '',
+  onNodeClick,
+  highlightedNode,
+  onHighlightReceived,
+  selectedNode: externalSelectedNode,
+  compact = false
+}) {
   const [nodes, setNodes] = useState([]);
-  const [selectedNode, setSelectedNode] = useState(null);
+  const [internalSelectedNode, setInternalSelectedNode] = useState(null);
   const [loading, setLoading] = useState(true);
   const listRef = useRef(null);
+
+  // Use external selectedNode if provided, otherwise use internal state
+  const selectedNode = externalSelectedNode !== undefined ? externalSelectedNode : internalSelectedNode;
 
   useEffect(() => {
     loadNodes();
@@ -47,9 +58,8 @@ export default function NodesList({ onNodeSelect, className = '', onNodeClick, h
 
   const loadNodes = async () => {
     try {
-      // For production/static mode, load from CSV directly
-      const basePath = process.env.NODE_ENV === 'production' ? '/data-pipeline' : '';
-      const csvResponse = await fetch(`${basePath}/nodes.csv`);
+      // Always use /data-pipeline/nodes.csv path
+      const csvResponse = await fetch('/data-pipeline/nodes.csv');
       
       if (csvResponse.ok) {
         const csvText = await csvResponse.text();
@@ -142,8 +152,10 @@ export default function NodesList({ onNodeSelect, className = '', onNodeClick, h
     if (selection && selection.toString().length > 0) {
       return;
     }
-    
-    setSelectedNode(node);
+
+    if (externalSelectedNode === undefined) {
+      setInternalSelectedNode(node);
+    }
     onNodeSelect?.(node);
     onNodeClick?.(); // Bring Node Details to front
   };
@@ -185,15 +197,15 @@ export default function NodesList({ onNodeSelect, className = '', onNodeClick, h
   }
 
   return (
-    <div className={`panel p-4 ${className}`}>
-      <h2 className="text-xl mb-3 text-gray-100 light:text-gray-900">Nodes</h2>
-      
-      <div className="space-y-2" ref={listRef}>
+    <div className={`${compact ? '' : 'panel'} p-4 ${className}`}>
+      <h2 className={`${compact ? 'text-lg mb-2' : 'text-xl mb-3'} text-gray-100 light:text-gray-900`}>Nodes</h2>
+
+      <div className={`${compact ? 'space-y-1' : 'space-y-2'}`} ref={listRef}>
         {nodes.map((node) => (
           <div
             key={node.node_id}
             data-node-id={node.node_id}
-            className={`p-3 rounded-lg cursor-pointer transition-all duration-200 border select-text ${
+            className={`${compact ? 'p-2' : 'p-3'} rounded-lg cursor-pointer transition-all duration-200 border select-text ${
               highlightedNode?.node_id === node.node_id
                 ? 'bg-yellow-500/20 border-yellow-500/50 animate-pulse'
                 : selectedNode?.node_id === node.node_id
@@ -202,32 +214,38 @@ export default function NodesList({ onNodeSelect, className = '', onNodeClick, h
             }`}
             onClick={(e) => handleNodeClick(e, node)}
           >
-            <div className="flex items-start justify-between mb-2">
+            <div className={`flex items-start justify-between ${compact ? 'mb-1' : 'mb-2'}`}>
               <div className="flex items-center gap-2">
                 <span className="text-sm font-mono text-gray-400">
                   {node.node_id}
                 </span>
               </div>
-              <span className="text-xs text-gray-400">
-                {node.folder_size}
-              </span>
+              {!compact && (
+                <span className="text-xs text-gray-400">
+                  {node.folder_size}
+                </span>
+              )}
             </div>
-            
-            <h3 className="font-semibold text-sm mb-1 text-gray-100 light:text-gray-900">
+
+            <h3 className={`font-semibold ${compact ? 'text-xs' : 'text-sm'} mb-1 text-gray-100 light:text-gray-900`}>
               {node.name}
             </h3>
-            
-            <p className="text-xs text-muted mb-2 line-clamp-2">
-              {node.description}
-            </p>
-            
+
+            {!compact && (
+              <p className="text-xs text-muted mb-2 line-clamp-2">
+                {node.description}
+              </p>
+            )}
+
             <div className="flex items-center justify-between">
               <span className={`text-xs font-medium ${getTypeColor(node.type)}`}>
                 {node.type.replace('_', ' ')}
               </span>
-              <span className="text-xs text-gray-400">
-                #{node.order}
-              </span>
+              {!compact && (
+                <span className="text-xs text-gray-400">
+                  #{node.order}
+                </span>
+              )}
             </div>
           </div>
         ))}
