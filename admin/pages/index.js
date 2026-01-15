@@ -242,14 +242,20 @@ export default function Home() {
               className={`btn btn-layout ${listPosition === 'column' ? 'btn-primary' : ''}`}
               title="Column Layout"
             >
-              <span className="layout-icon">▥</span>
+              <svg className="layout-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <rect x="2" y="3" width="6" height="18" rx="1" />
+                <rect x="10" y="3" width="12" height="18" rx="1" />
+              </svg>
             </button>
             <button
               onClick={() => handleViewChange('full')}
               className={`btn btn-layout ${listPosition === 'full' ? 'btn-primary' : ''}`}
               title="Full Width Layout"
             >
-              <span className="layout-icon">▤</span>
+              <svg className="layout-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <rect x="2" y="3" width="20" height="8" rx="1" />
+                <rect x="2" y="13" width="20" height="8" rx="1" />
+              </svg>
             </button>
             <button
               onClick={() => handleViewChange('floating')}

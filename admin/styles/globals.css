@@ -12,7 +12,7 @@
   }
 
   .light body {
-    @apply bg-yellow-50 text-gray-900;
+    @apply bg-gray-100 text-gray-900;
   }
 }
 
@@ -121,7 +121,7 @@
 }
 
 .light .admin-container {
-  @apply bg-yellow-50;
+  @apply bg-gray-100;
 }
 
 /* Flask Banner */
@@ -183,11 +183,11 @@
 }
 
 .btn-layout {
-  @apply px-2 py-2;
+  @apply px-3 py-2;
 }
 
 .layout-icon-svg {
-  @apply w-5 h-5;
+  @apply w-4 h-4;
 }
 
 .layout-icon {
