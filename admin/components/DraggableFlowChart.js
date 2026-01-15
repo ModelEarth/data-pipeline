@@ -4,26 +4,33 @@ import EdgeResizeHandle from './EdgeResizeHandle';
 import CornerResizeHandle from './CornerResizeHandle';
 
 export default function DraggableFlowChart({ onNodeSelect, onClose, onFocus, isFullWidth = false, hideTitle = false, onHighlightInList }) {
-  const [position, setPosition] = useState({ x: 100, y: 100 });
-  const [size, setSize] = useState({ width: 800, height: 700 });
+  // Calculate floating layout position: match view=full layout (100% width, bottom half)
+  const getFloatingPosition = () => {
+    if (typeof window === 'undefined') return { x: 24, y: 400, width: 800, height: 300 };
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight - 81; // Subtract top bar height
+    const topHalfHeight = Math.max(250, Math.floor(viewportHeight / 2));
+
+    return {
+      x: 24, // Match p-6 padding
+      y: 81 + topHalfHeight + 24, // Below top bar + top section + padding
+      width: viewportWidth - 48, // Full width minus padding
+      height: viewportHeight - topHalfHeight - 48 // Remaining height minus padding
+    };
+  };
+
+  const [position, setPosition] = useState({ x: 24, y: 400 });
+  const [size, setSize] = useState({ width: 800, height: 300 });
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const chartRef = useRef(null);
 
-  // Calculate floating layout position: below nodes list
-  const getFloatingPosition = () => {
-    const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight - 81; // Subtract top bar height
-    const nodesListWidth = Math.floor(viewportWidth / 3) - 40;
-    const nodesListHeight = Math.floor(viewportHeight / 2) - 20;
-    
-    return {
-      x: 20,
-      y: 100 + nodesListHeight + 40, // Below nodes list
-      width: nodesListWidth,
-      height: Math.floor(viewportHeight / 2) - 60
-    };
-  };
+  // Set correct position on mount
+  useEffect(() => {
+    const floatingPos = getFloatingPosition();
+    setPosition({ x: floatingPos.x, y: floatingPos.y });
+    setSize({ width: floatingPos.width, height: floatingPos.height });
+  }, []);
 
   const handleMouseDown = (e) => {
     // Bring to front when clicked

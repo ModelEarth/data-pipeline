@@ -196,7 +196,7 @@
 
 /* Column Layout */
 .layout-column {
-  @apply flex h-[calc(100vh-81px)];
+  @apply flex min-h-[calc(100vh-81px)];
 }
 
 .column-sidebar {
@@ -208,21 +208,19 @@
 }
 
 .column-main {
-  @apply flex-1 w-[70%] p-6 overflow-y-auto flex flex-col gap-4;
+  @apply flex-1 w-[70%] p-6 flex flex-col gap-4;
 }
 
 .column-detail-section {
   @apply flex-shrink-0;
-  max-height: 50%;
 }
 
 .column-detail-panel {
-  @apply panel p-0 overflow-hidden flex flex-col;
-  max-height: 100%;
+  @apply panel p-0 flex flex-col;
 }
 
 .column-detail-content {
-  @apply overflow-y-auto flex-1;
+  @apply flex-1;
 }
 
 .column-flow-section {
@@ -255,13 +253,13 @@
 
 /* Full Width Layout */
 .layout-fullwidth {
-  @apply flex flex-col h-[calc(100vh-81px)];
+  @apply flex flex-col;
 }
 
 .fullwidth-top {
   @apply flex gap-6 p-6 border-b border-gray-700;
-  min-height: 300px;
-  max-height: 50%;
+  height: calc((100vh - 81px) / 2);
+  min-height: 250px;
 }
 
 .light .fullwidth-top {
@@ -299,7 +297,9 @@
 }
 
 .fullwidth-bottom {
-  @apply flex-1 p-6 overflow-hidden;
+  @apply p-6;
+  height: calc((100vh - 81px) / 2);
+  min-height: 300px;
 }
 
 /* Floating Layout */

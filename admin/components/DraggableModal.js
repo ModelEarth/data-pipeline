@@ -4,23 +4,31 @@ import EdgeResizeHandle from './EdgeResizeHandle';
 import CornerResizeHandle from './CornerResizeHandle';
 
 export default function DraggableModal({ onClose, onNodeSelect, onFocus, onNodeClick, hideTitle = false, highlightedNode, onHighlightReceived }) {
-  const [position, setPosition] = useState({ x: 100, y: 100 });
-  const [size, setSize] = useState({ width: 320, height: 384 });
+  // Calculate floating layout position: match view=full layout (350px wide, 50% height, upper left)
+  const getFloatingPosition = () => {
+    if (typeof window === 'undefined') return { x: 24, y: 105, width: 350, height: 300 };
+    const viewportHeight = window.innerHeight - 81; // Subtract top bar height
+    const topHalfHeight = Math.max(250, Math.floor(viewportHeight / 2));
+    return {
+      x: 24, // Match p-6 padding
+      y: 105, // Below top bar (81px) + padding
+      width: 350,
+      height: topHalfHeight - 48 // Account for padding
+    };
+  };
+
+  const [position, setPosition] = useState({ x: 24, y: 105 });
+  const [size, setSize] = useState({ width: 350, height: 300 });
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const modalRef = useRef(null);
 
-  // Calculate floating layout position: 1/3 width, 1/2 height, upper left
-  const getFloatingPosition = () => {
-    const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight - 81; // Subtract top bar height
-    return {
-      x: 20,
-      y: 100,
-      width: Math.floor(viewportWidth / 3) - 40,
-      height: Math.floor(viewportHeight / 2) - 20
-    };
-  };
+  // Set correct position on mount
+  useEffect(() => {
+    const floatingPos = getFloatingPosition();
+    setPosition({ x: floatingPos.x, y: floatingPos.y });
+    setSize({ width: floatingPos.width, height: floatingPos.height });
+  }, []);
 
   const handleMouseDown = (e) => {
     // Bring to front when clicked
