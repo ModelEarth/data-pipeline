@@ -128,7 +128,7 @@ export default function NodeDetailPanel({ node, onUpdateNode, onRunNode, flaskAv
       </div>
 
       {/* Details Grid */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid gap-4" style={{ gridTemplateColumns: 'minmax(110px, 1fr) 2fr' }}>
         <div className="space-y-3">
           <div>
             <label className="block text-sm font-medium text-gray-100 mb-1">Processing Time</label>
@@ -163,9 +163,16 @@ export default function NodeDetailPanel({ node, onUpdateNode, onRunNode, flaskAv
 
         <div className="space-y-3">
           <div>
+            <label className="block text-sm font-medium text-gray-100 mb-1">Python Path</label>
+            <span className="text-sm bg-gray-700 px-3 py-1 rounded-lg font-mono">
+              {node.link}
+            </span>
+          </div>
+
+          <div>
             <label className="block text-sm font-medium text-gray-100 mb-1">Output Path</label>
             <span className="text-sm bg-gray-700 px-3 py-1 rounded-lg font-mono">
-              {node.output_path}
+              {node.output_path?.replace(/^(\.\.\/)+/, '')}
             </span>
           </div>
 

@@ -218,8 +218,8 @@ def run_node():
         if not working_directory:
             working_directory = node.get('link', '')
         
-        # Resolve working directory path (relative to data-pipeline/, not flask/)
-        base_path = SCRIPT_DIR.parent  # data-pipeline directory
+        # Resolve working directory path (relative to webroot since link paths include "data-pipeline/")
+        base_path = SCRIPT_DIR.parent.parent  # webroot directory
         work_path = (base_path / working_directory).resolve()
         
         if not work_path.exists():
