@@ -313,7 +313,7 @@ export default function FlowChart({ className = '', onNodeSelect, isFloating = f
 
   const renderConnections = () => {
     const lines = [];
-    
+
     Object.entries(connections).forEach(([fromNodeName, connectionData]) => {
       const fromNode = nodes.find(n => n.name === fromNodeName);
       if (!fromNode) return;
@@ -322,14 +322,30 @@ export default function FlowChart({ className = '', onNodeSelect, isFloating = f
         const toNode = nodes.find(n => n.name === connection.node);
         if (!toNode) return;
 
-        const fromX = fromNode.position[0] + 120; // node width offset
-        const fromY = fromNode.position[1] + 25;  // node height center
-        const toX = toNode.position[0];
-        const toY = toNode.position[1] + 25;
+        const fromX = fromNode.position[0] + 200; // right edge of 200px wide node
+        const fromY = fromNode.position[1] + 25;  // vertical center of 50px height
+        const toX = toNode.position[0];           // left edge
+        const toY = toNode.position[1] + 25;      // vertical center
 
-        // Create curved connection
-        const midX = (fromX + toX) / 2;
-        const pathData = `M ${fromX} ${fromY} Q ${midX} ${fromY} ${toX} ${toY}`;
+        let pathData;
+
+        if (toX > fromX) {
+          // Target is to the right - simple curve
+          const midX = (fromX + toX) / 2;
+          pathData = `M ${fromX} ${fromY} C ${midX} ${fromY}, ${midX} ${toY}, ${toX} ${toY}`;
+        } else {
+          // Target is to the left - need S-curve that goes right first, then loops back
+          const loopDistance = 60; // How far right to go before curving back
+          const controlOffset = Math.abs(fromX - toX) / 2 + 50;
+
+          pathData = `M ${fromX} ${fromY}
+                      C ${fromX + loopDistance} ${fromY},
+                        ${fromX + loopDistance} ${(fromY + toY) / 2},
+                        ${(fromX + toX) / 2} ${(fromY + toY) / 2}
+                      C ${toX - loopDistance} ${(fromY + toY) / 2},
+                        ${toX - loopDistance} ${toY},
+                        ${toX} ${toY}`;
+        }
 
         lines.push(
           <g key={`${fromNodeName}-${connection.node}-${index}`}>
@@ -432,30 +448,34 @@ export default function FlowChart({ className = '', onNodeSelect, isFloating = f
               {expandedNode === node.id && (
                 <g>
                   <text
-                    x={node.position[0] + 10}
-                    y={node.position[1] + 40}
+                    x={node.position[0] + 100}
+                    y={node.position[1] + 45}
+                    textAnchor="middle"
                     className="text-xs fill-current text-gray-200 pointer-events-none select-none"
                   >
                     ID: {node.id}
                   </text>
                   <text
-                    x={node.position[0] + 10}
-                    y={node.position[1] + 55}
+                    x={node.position[0] + 100}
+                    y={node.position[1] + 62}
+                    textAnchor="middle"
                     className="text-xs fill-current text-gray-200 pointer-events-none select-none"
                   >
                     Type: {node.type?.replace('_', ' ')}
                   </text>
                   <text
-                    x={node.position[0] + 10}
-                    y={node.position[1] + 70}
+                    x={node.position[0] + 100}
+                    y={node.position[1] + 79}
+                    textAnchor="middle"
                     className="text-xs fill-current text-gray-200 pointer-events-none select-none"
                   >
                     Status: Active
                   </text>
                   {csvNodes.find(n => n.node_id === node.id)?.description && (
                     <text
-                      x={node.position[0] + 10}
-                      y={node.position[1] + 85}
+                      x={node.position[0] + 100}
+                      y={node.position[1] + 96}
+                      textAnchor="middle"
                       className="text-xs fill-current text-gray-200 pointer-events-none select-none"
                     >
                       {csvNodes.find(n => n.node_id === node.id)?.description.substring(0, 30)}...
