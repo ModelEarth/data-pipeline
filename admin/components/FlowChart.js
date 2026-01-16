@@ -313,6 +313,9 @@ export default function FlowChart({ className = '', onNodeSelect, isFloating = f
 
   const renderConnections = () => {
     const lines = [];
+    const nodeWidth = 200;
+    const nodeHeight = 50;
+    const arrowLength = 20;
 
     Object.entries(connections).forEach(([fromNodeName, connectionData]) => {
       const fromNode = nodes.find(n => n.name === fromNodeName);
@@ -322,29 +325,96 @@ export default function FlowChart({ className = '', onNodeSelect, isFloating = f
         const toNode = nodes.find(n => n.name === connection.node);
         if (!toNode) return;
 
-        const fromX = fromNode.position[0] + 200; // right edge of 200px wide node
-        const fromY = fromNode.position[1] + 25;  // vertical center of 50px height
-        const toX = toNode.position[0];           // left edge
-        const toY = toNode.position[1] + 25;      // vertical center
+        // Calculate horizontal and vertical relationships
+        const sourceRight = fromNode.position[0] + nodeWidth;
+        const sourceBottom = fromNode.position[1] + nodeHeight;
+        const sourceTop = fromNode.position[1];
+        const sourceCenterY = fromNode.position[1] + nodeHeight / 2;
 
+        const targetLeft = toNode.position[0];
+        const targetTop = toNode.position[1];
+        const targetBottom = toNode.position[1] + nodeHeight;
+        const targetCenterX = toNode.position[0] + nodeWidth / 2;
+        const targetCenterY = toNode.position[1] + nodeHeight / 2;
+
+        // Check if there's horizontal overlap (target left edge is before source right edge)
+        const hasHorizontalOverlap = targetLeft < sourceRight + 50; // 50px buffer
+
+        // Check vertical position
+        const targetIsBelow = targetTop > sourceCenterY;
+        const targetIsAbove = targetBottom < sourceCenterY;
+        const targetIsMostlyBelow = targetTop > sourceBottom - nodeHeight * 0.5;
+        const targetIsMostlyAbove = targetBottom < sourceTop + nodeHeight * 0.5;
+
+        let fromX, fromY, toX, toY;
         let pathData;
+        const curveAmount = 50;
 
-        if (toX > fromX) {
-          // Target is to the right - simple curve
-          const midX = (fromX + toX) / 2;
-          pathData = `M ${fromX} ${fromY} C ${midX} ${fromY}, ${midX} ${toY}, ${toX} ${toY}`;
+        if (!hasHorizontalOverlap && !targetIsAbove && !targetIsBelow) {
+          // Target is clearly to the right with similar vertical position - use left side
+          fromX = sourceRight;
+          fromY = sourceCenterY;
+          toX = targetLeft - arrowLength;
+          toY = targetCenterY;
+
+          const curve = Math.max(40, Math.abs(toY - fromY) * 0.25);
+          pathData = `M ${fromX} ${fromY} C ${fromX + curve} ${fromY}, ${toX - curve} ${toY}, ${toX} ${toY}`;
+
+        } else if (targetIsMostlyBelow && hasHorizontalOverlap) {
+          // Target at corner below or mostly below with overlap - source right to target top
+          fromX = sourceRight;
+          fromY = sourceCenterY;
+          toX = targetCenterX;
+          toY = targetTop - arrowLength;
+
+          pathData = `M ${fromX} ${fromY} C ${fromX + curveAmount} ${fromY}, ${toX} ${toY - curveAmount}, ${toX} ${toY}`;
+
+        } else if (targetIsMostlyAbove && hasHorizontalOverlap) {
+          // Target at corner above or mostly above with overlap - source right to target bottom
+          fromX = sourceRight;
+          fromY = sourceCenterY;
+          toX = targetCenterX;
+          toY = targetBottom + arrowLength;
+
+          pathData = `M ${fromX} ${fromY} C ${fromX + curveAmount} ${fromY}, ${toX} ${toY + curveAmount}, ${toX} ${toY}`;
+
+        } else if (targetIsMostlyBelow && !hasHorizontalOverlap) {
+          // Target is mostly below with no overlap - source bottom to target top
+          fromX = fromNode.position[0] + nodeWidth / 2;
+          fromY = sourceBottom;
+          toX = targetCenterX;
+          toY = targetTop - arrowLength;
+
+          pathData = `M ${fromX} ${fromY} C ${fromX} ${fromY + curveAmount}, ${toX} ${toY - curveAmount}, ${toX} ${toY}`;
+
+        } else if (targetIsMostlyAbove && !hasHorizontalOverlap) {
+          // Target is mostly above with no overlap - source top to target bottom
+          fromX = fromNode.position[0] + nodeWidth / 2;
+          fromY = sourceTop;
+          toX = targetCenterX;
+          toY = targetBottom + arrowLength;
+
+          pathData = `M ${fromX} ${fromY} C ${fromX} ${fromY - curveAmount}, ${toX} ${toY + curveAmount}, ${toX} ${toY}`;
+
         } else {
-          // Target is to the left - need S-curve that goes right first, then loops back
-          const loopDistance = 60; // How far right to go before curving back
-          const controlOffset = Math.abs(fromX - toX) / 2 + 50;
+          // Default: source right to target left with S-curve if needed
+          fromX = sourceRight;
+          fromY = sourceCenterY;
+          toX = targetLeft - arrowLength;
+          toY = targetCenterY;
 
-          pathData = `M ${fromX} ${fromY}
-                      C ${fromX + loopDistance} ${fromY},
-                        ${fromX + loopDistance} ${(fromY + toY) / 2},
-                        ${(fromX + toX) / 2} ${(fromY + toY) / 2}
-                      C ${toX - loopDistance} ${(fromY + toY) / 2},
-                        ${toX - loopDistance} ${toY},
-                        ${toX} ${toY}`;
+          if (toX > fromX) {
+            const curve = Math.max(40, Math.abs(toY - fromY) * 0.25);
+            pathData = `M ${fromX} ${fromY} C ${fromX + curve} ${fromY}, ${toX - curve} ${toY}, ${toX} ${toY}`;
+          } else {
+            pathData = `M ${fromX} ${fromY}
+                        C ${fromX + curveAmount} ${fromY},
+                          ${fromX + curveAmount} ${(fromY + toY) / 2},
+                          ${(fromX + toX) / 2} ${(fromY + toY) / 2}
+                        C ${toX - curveAmount} ${(fromY + toY) / 2},
+                          ${toX - curveAmount} ${toY},
+                          ${toX} ${toY}`;
+          }
         }
 
         lines.push(
@@ -396,7 +466,7 @@ export default function FlowChart({ className = '', onNodeSelect, isFloating = f
               id="arrowhead"
               markerWidth="10"
               markerHeight="7"
-              refX="9"
+              refX="0"
               refY="3.5"
               orient="auto"
             >
