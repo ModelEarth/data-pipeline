@@ -1,6 +1,6 @@
 # Flask Server Integration Testing Instructions
 
-Follow these steps to test the Flask server integration with the Data Pipeline Admin interface.
+Follow these steps to test the Flask server integration with the [Data Pipeline Admin interface](../admin/).
 
 ## Prerequisites
 
