@@ -79,7 +79,11 @@ The management script provides:
 
 All pipeline nodes are documented in `nodes.csv` and `nodes.json` for integration with workflow automation tools like n8n.
 
-#### Flask Server for Web Admin Interface
+#### Pipeline Admin Interface
+
+[View Pipeline Admin](admin) and python [webroot setup](../team/admin/server/)
+
+Note: It's probably not necessary to run Flask if the python webroot is running.
 
 **Flask Server** (`flask_server.py`) - Web API server for running pipeline nodes from the admin interface
 
