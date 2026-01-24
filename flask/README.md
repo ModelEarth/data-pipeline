@@ -2,6 +2,63 @@
 
 Follow these steps to test the Flask server integration with the [Data Pipeline Admin interface](../admin/).
 
+## What Flask Provides
+
+The Flask server (port 5001) provides specialized functionality for running data pipeline nodes that the regular Python HTTP server (port 8887) does not:
+
+**Flask Server (port 5001):**
+- ✅ Dedicated API endpoints for executing data pipeline Python scripts
+- ✅ Automatic Python pip dependency installation before running each node
+- ✅ Background process management for long-running tasks
+- ✅ Process status tracking (`/api/nodes/<node_id>/status`)
+- ✅ CORS-enabled API for the admin interface
+
+**Python HTTP Server (port 8887):**
+- ✅ Serves static HTML/CSS/JS files
+- ✅ Manages desktop application packages (brew, apt, etc.)
+- ❌ Cannot execute data pipeline nodes with dependency management
+- ❌ No background process tracking
+
+**In short:** You need both servers running - port 8887 for the web interface, and port 5001 for executing pipeline nodes.
+
+## Quick Start with Claude Code CLI
+
+If you're using Claude Code CLI or another AI CLI tool, type:
+
+```
+start pipeline
+```
+
+This command (defined in [data-pipeline/AGENTS.md](../AGENTS.md#start-data-pipeline-flask-server)) will:
+- Check if the Flask server is already running on port 5001
+- Create a virtual environment in `data-pipeline/flask/env/` if needed
+- Install Flask and flask-cors dependencies
+- Start the Flask server in background mode
+- Log output to `flask.log`
+
+<!--
+**To verify it's running:**
+```bash
+curl http://localhost:5001/health
+```
+
+**To stop the server:**
+```bash
+lsof -ti:5001 | xargs kill
+```
+
+**To view logs:**
+```bash
+tail -f data-pipeline/flask/flask.log
+```
+-->
+
+---
+
+## Manual Setup Instructions
+
+If you prefer to set up and run the Flask server manually without using the "start pipeline" command, follow these steps:
+
 ## Prerequisites
 
 - Python 3 installed

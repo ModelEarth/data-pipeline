@@ -9,6 +9,7 @@ dist/
 env/
 .venv
 .flaskenv
+flask.log
 *.pyc
 *.pyo
 industries/naics/sqlite_zipcode_db_delete/zip_data/us_economic_data.db

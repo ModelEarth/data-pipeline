@@ -220,7 +220,7 @@ export default function Home() {
             <div className="flask-banner-content">
               <span className="flask-banner-icon">⚠️</span>
               <span className="flask-banner-text">
-                Flask Server is not running on port 5001
+                Flask Server is not running on port 5001 - <a href="../flask" style={{ color: 'inherit', textDecoration: 'underline' }}>Details</a>
               </span>
             </div>
             <div className="flask-banner-actions">
