@@ -36,7 +36,7 @@ parser = argparse.ArgumentParser(description='Fetch Census ZBP data for zipcodes
 parser.add_argument('--zipcode', type=str, help='Single zipcode to process (e.g., 98006)')
 parser.add_argument('--batch-start', type=int, help='Batch start index (0-99449)')
 parser.add_argument('--batch-end', type=int, help='Batch end index (0-99449)')
-parser.add_argument('--ind-level', type=str, default="2", help='Industry level (2-6, default: 2)')
+parser.add_argument('--naics-level', type=str, default="2", help='Industry level (2-6, default: 2)')
 parser.add_argument('--year', type=str, default="2018", help='Census data year (default: 2018)')
 parser.add_argument('--output-path', type=str, default="../../../community-data/US/zip", help='Output directory path (default: ../../../community-data/US/zip)')
 args = parser.parse_args()
@@ -167,12 +167,12 @@ def zipcode(): # populates zip code folders with data for each zip
     # Determine mode description
     if args.zipcode:
         mode_desc = f"Single zipcode mode: {args.zipcode}"
-        command_example = f"python zipcodes-naics.py --zipcode {args.zipcode} --ind-level {args.ind_level} --year {args.year}"
+        command_example = f"python zipcodes-naics.py --zipcode {args.zipcode} --naics-level {args.ind_level} --year {args.year}"
     else:
         start = args.batch_start if args.batch_start is not None else 3000
         end = args.batch_end if args.batch_end is not None else 3500
         mode_desc = f"Batch mode: indices {start}-{end}"
-        command_example = f"python zipcodes-naics.py --batch-start {start} --batch-end {end} --ind-level {args.ind_level} --year {args.year}"
+        command_example = f"python zipcodes-naics.py --batch-start {start} --batch-end {end} --naics-level {args.ind_level} --year {args.year}"
 
     results_content = f"""# Results - Zipcodes NAICS Detailed Data
 
