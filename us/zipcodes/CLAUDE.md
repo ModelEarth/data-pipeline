@@ -17,13 +17,13 @@ python zipcodes.py
 python zipcodes.py 2023
 
 # Specify year and industry level
-python zipcodes.py 2023 --ind-level 2
+python zipcodes.py 2023 --naics-level 2
 ```
 Generates `zipcodes-naics<ind_level>-<year>.csv` with aggregated metrics for all zipcodes at the specified industry level.
 
 **Command-line parameters:**
 - `year`: Census data year (positional argument, default: 2018)
-- `--ind-level <level>`: Industry level 2-6 (default: 6)
+- `--naics-level <level>`: Industry level 2-6 (default: 6)
 - `--output-path <path>`: Output directory (default: us/zipcodes) - created automatically if doesn't exist
 
 The script displays the absolute output path when run.
@@ -31,10 +31,10 @@ The script displays the absolute output path when run.
 ### Run zipcode processing (single or batch)
 ```bash
 # Single zipcode mode
-python zipcodes-naics.py --zipcode 98006 --ind-level 2
+python zipcodes-naics.py --zipcode 98006 --naics-level 2
 
 # Batch mode with custom range
-python zipcodes-naics.py --batch-start 0 --batch-end 1000 --ind-level 2
+python zipcodes-naics.py --batch-start 0 --batch-end 1000 --naics-level 2
 
 # Custom year and output path
 python zipcodes-naics.py --zipcode 98006 --year 2019 --output-path ../../../community-data/US/zip
@@ -48,7 +48,7 @@ Fetches data and creates nested directory structure: `<output-path>/X/X/X/X/X/zi
 - `--zipcode <code>`: Single zipcode to process
 - `--batch-start <n>`: Starting index for batch mode
 - `--batch-end <n>`: Ending index for batch mode
-- `--ind-level <level>`: Industry level 2-6 (default: 2)
+- `--naics-level <level>`: Industry level 2-6 (default: 2)
 - `--year <year>`: Census data year (default: 2018)
 - `--output-path <path>`: Output directory (default: ../../../community-data/US/zip) - created automatically if doesn't exist
 
@@ -142,7 +142,7 @@ Both scripts automatically generate markdown result files documenting successful
 - Use command-line arguments for flexible data processing:
   - `--zipcode <code>`: Single zipcode processing
   - `--batch-start <n> --batch-end <m>`: Batch processing
-  - `--ind-level <level>`: Specify industry level (2-6, default: 2)
+  - `--naics-level <level>`: Specify industry level (2-6, default: 2)
   - `--year <year>`: Specify Census data year (default: 2018)
   - `--output-path <path>`: Specify output directory (default: ../../../community-data/US/zip)
 - Shared directory creation logic eliminates code duplication
