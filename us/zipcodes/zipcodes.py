@@ -41,15 +41,58 @@ def format_size(bytes_size):
         bytes_size /= 1024.0
     return f"{bytes_size:.2f} TB"
 
+def process_level(ind_level, year, output_path):
+    """Process a single NAICS level"""
+    url = f"https://api.census.gov/data/{year}/zbp?get=ZIPCODE,NAICS2017,ESTAB,EMPSZES,PAYANN&for=zipcode:*&INDLEVEL={ind_level}"
+
+    print(f"\nProcessing NAICS level {ind_level}...")
+
+    # Simple way to get all Data
+    orig = pd.read_json(url)
+    new_header = orig.iloc[0]
+    orig = orig[1:]
+    orig.columns = new_header
+
+    # Converting to Integer Values
+    int_df1 = orig.astype({'NAICS2017':'str', 'ESTAB' : 'int', 'EMPSZES' : 'int', 'PAYANN' : 'int', 'ZIPCODE' : 'str'})
+    int_df = int_df1.rename({'ZIPCODE' : 'Zip', 'NAICS2017': 'Industries', 'ESTAB': 'Establishments', 'EMPSZES' : 'Employees', 'PAYANN' : 'Payroll'}, axis=1)
+
+    # Grouping (Count Unique & Sum)
+    gr1 = int_df[['Zip','Industries']].groupby(['Zip']).nunique()
+    gr2 = int_df[['Zip','Establishments', 'Employees', 'Payroll']].groupby(['Zip']).sum()
+
+    # Merging Grouped Dataframes
+    combined = gr1.merge(gr2, left_on='Zip', right_on='Zip')
+    final_df = combined
+
+    # Exporting to CSV
+    output_filename = f'{output_path}/zipcodes-naics{ind_level}-{year}.csv'
+    final_df.to_csv(output_filename)
+    print(f"  Exported: {os.path.basename(output_filename)} ({len(final_df):,} rows)")
+
+    return {
+        'level': ind_level,
+        'filename': os.path.basename(output_filename),
+        'rows': len(final_df),
+        'file_size': os.path.getsize(output_filename)
+    }
+
 # Command-line argument parsing
 parser = argparse.ArgumentParser(description='Generate aggregated zipcode metrics from Census ZBP data')
 parser.add_argument('year', nargs='?', default='2018', help='Census data year (default: 2018)')
-parser.add_argument('--naics-level', type=str, default='6', help='Industry level (2-6, default: 6)')
-parser.add_argument('--output-path', type=str, default='us/zipcodes', help='Output directory (default: us/zipcodes)')
+parser.add_argument('--naics-level', type=str, default='all', help='Industry level (2-6, or "all" for 2-6, default: all)')
+parser.add_argument('--output-path', type=str, default='../../../community-data/US/zip', help='Output directory (default: ../../../community-data/US/zip)')
 args = parser.parse_args()
 
-ind_level = args.ind_level
 year = args.year
+
+# Determine which levels to process
+if args.naics_level.lower() == 'all':
+    levels_to_process = ['2', '3', '4', '5', '6']
+    print(f"Processing all NAICS levels (2-6)")
+else:
+    levels_to_process = [args.naics_level]
+    print(f"Processing NAICS level {args.naics_level}")
 
 # Track start time
 start_time = datetime.now()
@@ -63,39 +106,13 @@ if not os.path.exists(args.output_path):
 print(f"Sending to: {os.path.abspath(args.output_path)}")
 print(f"Started: {start_time_str}")
 
-url = f"https://api.census.gov/data/{year}/zbp?get=ZIPCODE,NAICS2017,ESTAB,EMPSZES,PAYANN&for=zipcode:*&INDLEVEL={ind_level}"
+# Process each level and collect results
+all_results = []
+for level in levels_to_process:
+    result = process_level(level, year, args.output_path)
+    all_results.append(result)
 
-# Simple way to get all Data
-orig = pd.read_json(url)
-new_header = orig.iloc[0]
-orig = orig[1:]
-orig.columns = new_header
-
-# Converting to Integer Values
-# cannot convert to int '44-45' -> need to determine best course of action
-# duplicate row with 44 and 45 line?
-int_df1 = orig.astype({'NAICS2017':'str', 'ESTAB' : 'int', 'EMPSZES' : 'int', 'PAYANN' : 'int', 'ZIPCODE' : 'str'})
-int_df = int_df1.rename({'ZIPCODE' : 'Zip', 'NAICS2017': 'Industries', 'ESTAB': 'Establishments', 'EMPSZES' : 'Employees', 'PAYANN' : 'Payroll'}, axis=1)
-print(int_df.columns)
-
-# Grouping (Count Unique & Sum)
-gr1 = int_df[['Zip','Industries']].groupby(['Zip']).nunique()
-gr2 = int_df[['Zip','Establishments', 'Employees', 'Payroll']].groupby(['Zip']).sum()
-
-# Merging Grouped Dataframes
-combined = gr1.merge(gr2, left_on='Zip', right_on='Zip')
-#final_df = combined.rename({'NAICS2017': 'Industries', 'ESTAB': 'Establishments', 'EMPSZES' : 'Employees', 'PAYANN' : 'Payroll'}, axis=1)
-final_df = combined
-
-
-# Exporting to CSV
-output_filename = f'{args.output_path}/zipcodes-naics{ind_level}-{year}.csv'
-final_df.to_csv(output_filename)
-print(f"Data exported to: {output_filename}")
-print(final_df)
-
-# Generate results.md
-num_rows = len(final_df)
+# Generate results.md after all levels complete
 end_time = datetime.now()
 end_time_str = end_time.strftime('%Y-%m-%d %H:%M:%S')
 duration = end_time - start_time
@@ -106,7 +123,22 @@ total_size_bytes = get_directory_size(args.output_path, exclude_dirs=['naics'])
 total_size_formatted = format_size(total_size_bytes)
 
 script_location = os.path.abspath(__file__)
+# Trim path to start from /data-pipeline
+if '/data-pipeline' in script_location:
+    script_location = '/data-pipeline' + script_location.split('/data-pipeline')[1]
 results_file = f'{args.output_path}/results.md'
+
+# Build file details section
+files_section = ""
+for result in all_results:
+    file_size_formatted = format_size(result['file_size'])
+    files_section += f"- **Level {result['level']}**: `{result['filename']}` - {result['rows']:,} rows, {file_size_formatted}\n"
+
+# Determine command used
+if args.naics_level.lower() == 'all':
+    command_used = f"python zipcodes.py {year} --output-path {args.output_path}"
+else:
+    command_used = f"python zipcodes.py {year} --naics-level {args.naics_level} --output-path {args.output_path}"
 
 results_content = f"""# Results - Zipcodes Aggregated Metrics
 
@@ -120,43 +152,42 @@ results_content = f"""# Results - Zipcodes Aggregated Metrics
 
 ## Output Details
 
-- **Output file:** `{os.path.basename(output_filename)}`
-- **Number of rows:** {num_rows:,}
-- **Industry level:** {ind_level}
+- **Number of files generated:** {len(all_results)}
+- **NAICS levels processed:** {', '.join([r['level'] for r in all_results])}
 - **Census year:** {year}
 - **Total output size:** {total_size_formatted} (Excluding naics subfolder)
+
+### Generated Files
+
+{files_section}
 
 ## Generation Details
 
 - **Generated by:** `{os.path.basename(script_location)}`
 - **Script location:** `{script_location}`
-- **Command:** `python zipcodes.py {year} --naics-level {ind_level} --output-path {args.output_path}`
+- **Command:** `{command_used}`
 
 ## Data Summary
 
-The output contains aggregated metrics for {num_rows:,} zipcodes with the following columns:
+Each output file contains aggregated metrics for zipcodes with the following columns:
 - Zip (zipcode)
-- Industries (unique count)
+- Industries (unique count at specified NAICS level)
 - Establishments (total)
 - Employees (total)
 - Payroll (total)
+
+**NAICS Levels:**
+- Level 2: 2-digit codes (broad industry categories - 20 sectors)
+- Level 3: 3-digit codes (subsectors)
+- Level 4: 4-digit codes (industry groups)
+- Level 5: 5-digit codes (NAICS industries)
+- Level 6: 6-digit codes (national industries - most detailed)
 """
 
 with open(results_file, 'w') as f:
     f.write(results_content)
 
-print(f"Results saved to: {results_file}")
+print(f"\nResults saved to: {results_file}")
 print(f"Completed: {end_time_str}")
 print(f"Total run time: {duration_str}")
-
-
-# Testing with Small Subset
-# df = pd.read_csv("test_data.csv")
-# df2 = df.drop('0', inplace=False, axis=1)
-
-# grouped1 = df2[['ZIPCODE','NAICS2017']].groupby(['ZIPCODE']).nunique()
-# grouped2 = df2[['ZIPCODE','ESTAB', 'EMPSZES', 'PAYANN']].groupby(['ZIPCODE']).sum()
-
-# final = grouped1.merge(grouped2, left_on='ZIPCODE', right_on='ZIPCODE')
-# final2 = final.rename({'NAICS2017': 'Num Industries', 'ESTAB': 'Total Establishments', 'EMPSZES' : 'Total Employees', 'PAYANN' : 'Total Payroll'}, axis=1)
-
+print(f"Total files generated: {len(all_results)}")

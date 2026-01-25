@@ -10,23 +10,30 @@ This directory contains Python scripts for fetching and processing U.S. Census B
 
 ### Run the main zipcodes aggregation script
 ```bash
-# Default: year 2018, industry level 6
+# Default: Process all NAICS levels (2-6) for year 2018
 python zipcodes.py
 
-# Specify year
-python zipcodes.py 2023
+# Specify year, process all levels
+python zipcodes.py 2018
 
-# Specify year and industry level
-python zipcodes.py 2023 --naics-level 2
+# Specify year and single industry level
+python zipcodes.py 2018 --naics-level 2
+
+# Process all levels for a specific year
+python zipcodes.py 2018 --naics-level all
 ```
-Generates `zipcodes-naics<ind_level>-<year>.csv` with aggregated metrics for all zipcodes at the specified industry level.
+Generates `zipcodes-naics<ind_level>-<year>.csv` files with aggregated metrics for all zipcodes. When no level is specified, processes levels 2-6 (5 files total).
 
 **Command-line parameters:**
 - `year`: Census data year (positional argument, default: 2018)
-- `--naics-level <level>`: Industry level 2-6 (default: 6)
-- `--output-path <path>`: Output directory (default: us/zipcodes) - created automatically if doesn't exist
+- `--naics-level <level>`: Industry level (2-6, or "all" for levels 2-6, default: all)
+- `--output-path <path>`: Output directory (default: ../../../community-data/US/zip) - created automatically if doesn't exist
 
-The script displays the absolute output path when run.
+**Behavior:**
+- Default (no --naics-level): Processes levels 2, 3, 4, 5, and 6 sequentially
+- With --naics-level <n>: Processes only the specified level
+- Results.md is generated only after all levels complete (prevents overwriting)
+- The script displays the absolute output path when run
 
 ### Run zipcode processing (single or batch)
 ```bash

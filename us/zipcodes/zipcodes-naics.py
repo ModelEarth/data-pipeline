@@ -41,7 +41,7 @@ parser.add_argument('--year', type=str, default="2018", help='Census data year (
 parser.add_argument('--output-path', type=str, default="../../../community-data/US/zip", help='Output directory path (default: ../../../community-data/US/zip)')
 args = parser.parse_args()
 
-inds = [args.ind_level]
+inds = [args.naics_level]
 
 # Track start time
 start_time = datetime.now()
@@ -162,17 +162,20 @@ def zipcode(): # populates zip code folders with data for each zip
     total_size_formatted = format_size(total_size_bytes)
 
     script_location = os.path.abspath(__file__)
+    # Trim path to start from /data-pipeline
+    if '/data-pipeline' in script_location:
+        script_location = '/data-pipeline' + script_location.split('/data-pipeline')[1]
     results_file = f'{args.output_path}/results-naics.md'
 
     # Determine mode description
     if args.zipcode:
         mode_desc = f"Single zipcode mode: {args.zipcode}"
-        command_example = f"python zipcodes-naics.py --zipcode {args.zipcode} --naics-level {args.ind_level} --year {args.year}"
+        command_example = f"python zipcodes-naics.py --zipcode {args.zipcode} --naics-level {args.naics_level} --year {args.year}"
     else:
         start = args.batch_start if args.batch_start is not None else 3000
         end = args.batch_end if args.batch_end is not None else 3500
         mode_desc = f"Batch mode: indices {start}-{end}"
-        command_example = f"python zipcodes-naics.py --batch-start {start} --batch-end {end} --naics-level {args.ind_level} --year {args.year}"
+        command_example = f"python zipcodes-naics.py --batch-start {start} --batch-end {end} --naics-level {args.naics_level} --year {args.year}"
 
     results_content = f"""# Results - Zipcodes NAICS Detailed Data
 
@@ -189,7 +192,7 @@ def zipcode(): # populates zip code folders with data for each zip
 - **Processing mode:** {mode_desc}
 - **Number of zipcodes processed:** {total_zipcodes:,}
 - **Total rows written:** {total_rows:,}
-- **Industry level:** {args.ind_level}
+- **Industry level:** {args.naics_level}
 - **Census year:** {args.year}
 - **Output location:** `{args.output_path}/X/X/X/X/X/`
 - **Total output size:** {total_size_formatted}
@@ -204,7 +207,7 @@ def zipcode(): # populates zip code folders with data for each zip
 
 Each zipcode creates a file at:
 ```
-{args.output_path}/X/X/X/X/X/zipcode-<XXXXX>-census-naics{args.ind_level}-{args.year}.csv
+{args.output_path}/X/X/X/X/X/zipcode-<XXXXX>-census-naics{args.naics_level}-{args.year}.csv
 ```
 
 ## Data Summary

@@ -1,5 +1,13 @@
 [Pipeline Admin](../../admin/)
 
+Important Note: The Census Bureau's ZBP (Zip Code Business Patterns) dataset was discontinued after 2018. This is why only 2018 data is available. For newer data, you would need to use alternative Census datasets like CBP (County Business Patterns) or the Business Dynamics Statistics. 
+
+TO DO: Update the script to also work with CBP (County Business Patterns) or the Business Dynamics Statistics. Include a parameter for setting the source. Move all the parameters into a config file and mention it at the start of the README. 
+Inspect data-pipeline/industries for integration.
+
+
+The Census Bureau ZBP API data is typically 2-3 years behind. You can verify available years at [api.census.gov/data.html](https://api.census.gov/data.html)
+
 # Zipcodes Data Pipeline
 
   - zipcodes.py: Generates aggregated summary CSV (one row per zipcode with
@@ -29,24 +37,26 @@ pip install pandas requests
 
 ### Generate Aggregated Zipcode Metrics
 ```bash
-# Default: year 2018, industry level 6
+# Default: Processes all NAICS levels (2-6) for year 2018
 python zipcodes.py
 
-# Specify year
-python zipcodes.py 2024
+# Specify year, process all levels
+python zipcodes.py 2018
 
-# Specify year and industry level
-python zipcodes.py 2024 --naics-level 2
+# Specify year and single industry level
+python zipcodes.py 2018 --naics-level 2
 
-# Custom output path
-python zipcodes.py 2024 --naics-level 2 --output-path us/zipcodes
+# Process all levels with custom output path
+python zipcodes.py 2018 --output-path ../../../community-data/US/zip
 ```
-- Outputs: `zipcodes-naics<level>-<year>.csv` with aggregated metrics for all zipcodes
+- Outputs: `zipcodes-naics<level>-<year>.csv` files (5 files when processing all levels)
 - Parameters:
   - `year`: Census data year (positional, default: 2018)
-  - `--naics-level`: Industry level (2-6, default: 6)
-  - `--output-path`: Output directory (default: us/zipcodes) - created if doesn't exist
+  - `--naics-level`: Industry level (2-6, or "all" for levels 2-6, default: all)
+  - `--output-path`: Output directory (default: ../../../community-data/US/zip) - created if doesn't exist
 - Metrics: Industry count, total establishments, employees, payroll
+- When no level is specified, generates 5 files (levels 2-6)
+- Results.md is saved only after all levels complete
 - Displays output path on run
 
 ### Process Zipcodes (Single or Batch)
