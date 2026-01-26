@@ -1,5 +1,9 @@
 [Pipeline Admin](../../admin/)
 
+
+Remove the old zipcode files at:
+community-data/us/zipcodes
+
 Important Note: The Census Bureau's ZBP (Zip Code Business Patterns) dataset was discontinued after 2018. This is why only 2018 data is available. For newer data, you would need to use alternative Census datasets like CBP (County Business Patterns) or the Business Dynamics Statistics. 
 
 TO DO: Update the script to also work with CBP (County Business Patterns) or the Business Dynamics Statistics. Include a parameter for setting the source. Move all the parameters into a config file and mention it at the start of the README. 

@@ -1,12 +1,14 @@
 [Data Pipeline](../../)
 
-# NAICS Industry Employment Data
+# Annual NAICS Pull
+
+#### Industry Employment Data
 
 ### County and Zip Business Patterns (CBP)
 
 [For industry impact comparisons by location](/localsite/info/)
 
-[Our Community Datasets](http://model.earth/community-data/) for industries use [naics-annual.ipynb](https://github.com/ModelEarth/data-pipeline/tree/main/industries/naics) to generate country, states and county files.
+[Our Community Datasets](http://model.earth/community-data/) for industries replace [annual-old.ipynb](https://github.com/ModelEarth/data-pipeline/tree/main/industries/naics) to generate country, states and county files.
 
 - [US Country](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/country)
 - [States](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/states)
@@ -14,6 +16,56 @@
 - [Zip](https://github.com/ModelEarth/community-zipcodes/tree/master/industries/naics/US/zip/) - [Zip code data processing](/community-zipcodes/)
 
 
+## Setup
+
+For each run, change the scope.selected in config.yaml
+
+```bash
+# Create and activate virtual environment
+python3 -m venv env
+source env/bin/activate
+
+python -m pip install --upgrade pip
+pip install "numpy<2" pandas pyarrow requests pyyaml
+
+python annual.py
+```
+
+### Scopes
+
+`annual.py` supports multiple scopes. Use `--scope` to override config:
+
+```bash
+python annual.py --scope county
+python annual.py --scope state,country
+python annual.py --scope all
+```
+
+### Config
+
+`annual.py` reads defaults from `config.yaml` when CLI params are not provided. CLI args always override config values.
+
+Config keys:
+- `YEAR`: Census data year (default 2021 if not set)
+- `NAICS_LEVEL`: `all` or a single level (`2`, `4`, `6`)
+- `STATE`: Optional two-letter state code (e.g., `GA`)
+- `OUTPUT_PATH`: Output directory
+- `API_KEY`: Optional Census API key (only needed for higher rate limits)
+- `SCOPE.selected`: One or more scopes (`zip`, `county`, `state`, `country`, or `all`). Comma-separated for multiple (e.g., `county,state`).
+
+Local state FIPS file: `state-fips.csv`
+
+CBP year availability: 2023 is the latest published year; 2024 is expected in summer 2026.
+
+Example (config-only):
+```bash
+python annual.py 2023 --naics-level all --scope all
+```
+
+Example (override a single value):
+```bash
+python annual.py 2022 --naics-level 6 --scope state --state GA
+```
 
 
 "The Business Patterns series covers most of the country’s economic activity, but excludes data on self-employed individuals, employees of private households, railroad employees, agricultural production employees, and most government employees."
@@ -95,38 +147,38 @@ Zip code file generation resides in [community-zipcodes](/community-zipcodes/).
 In your webroot, create a virtual environment and install libraries.
 Using the root will allow you to send output to the community-data repo.
 
-	python3 -m venv env
-	source env/bin/activate
-	pip install pandas  &&
-	pip install tqdm
+  python3 -m venv env
+  source env/bin/activate
+  pip install pandas  &&
+  pip install tqdm
 
 Avoid pip3 in virtual environments.
 
 To run new cmds in the same virtual environment, in a new terminal run:
 
-	source env/bin/activate
+  source env/bin/activate
 
 In Windows run:
 
-	\env\Scripts\activate.bat
+  \env\Scripts\activate.bat
 
 Run if you've previously encountered [500: Internal Server Error](https://stackoverflow.com/questions/36851746/jupyter-notebook-500-internal-server-error)
 
 If your verion of Conda is old, this will give you a newer Jupyter interface:
 
-	pip install notebook &&
-	pip install --upgrade nbconvert
+  pip install notebook &&
+  pip install --upgrade nbconvert
 
 Open Jupyter Notebook with this command then click naics-annual.ipynb and run each step:
 <!-- if this cmd has 500 error again, remove the cd line and launch jupyter in the root. -->
 
-	cd data-pipeline/industries/naics &&
-	jupyter-notebook
+  cd data-pipeline/industries/naics &&
+  jupyter-notebook
 
 Or you can run [naics-annual.ipynb](naics-annual.ipynb) from the command line:  
 
-	cd data-pipeline/industries/naics &&
-	jupyter nbconvert --to notebook --inplace --execute naics-annual.ipynb
+  cd data-pipeline/industries/naics &&
+  jupyter nbconvert --to notebook --inplace --execute naics-annual.ipynb
 
 
 <!--
@@ -165,15 +217,15 @@ After aggregating the data, you can delete the folders inside bea/data_raw/BEA\_
 
 As included in the [naics-annual.ipynb](naics-annual.ipynb) notebook, the base url for API calls is:
 
-	https://api.census.gov/data
+  https://api.census.gov/data
 
 A full URL follows the following format:
 
-	{base_url}/{year}/cbp?get={columns_to_select}&for=county:*&in=state:{fips:02d}
+  {base_url}/{year}/cbp?get={columns_to_select}&for=county:*&in=state:{fips:02d}
 
 For example, to get the 2016 data for all counties in the state of Georgia, you can use the following URL:
 
-	https://api.census.gov/data/2016/cbp?get=GEO_ID,GEO_TTL,COUNTY,YEAR,NAICS2012,NAICS2012_TTL,ESTAB,EMP,PAYANN&for=county:*&in=state:13
+  https://api.census.gov/data/2016/cbp?get=GEO_ID,GEO_TTL,COUNTY,YEAR,NAICS2012,NAICS2012_TTL,ESTAB,EMP,PAYANN&for=county:*&in=state:13
 
 You can find a list of columns to select on [this link](https://api.census.gov/data/2016/cbp/variables.html).
 
@@ -183,4 +235,10 @@ If rounding off 8 decimals, ozone depletion, pesticides and a few others would n
 US from 151kb to under 72.7kb
 GA from 120kb, to under 59.2kb
 
+## Zip Scope (ZBP/CBP)
 
+The ZIP scope is also handled by `annual.py` and uses the Census ZBP API up to 2018, and the CBP API for 2019+.
+
+Outputs:
+- `zipcodes-naics<level>-<year>.csv`
+- `results-zips.md`

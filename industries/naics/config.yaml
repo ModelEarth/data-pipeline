@@ -1,0 +1,9 @@
+# annual.py config
+YEAR: 2023
+NAICS_LEVEL: all
+STATE:
+OUTPUT_PATH: ../../../community-data/industries/naics/US/[scope]-update
+API_KEY:
+SCOPE:
+  options: zip,county,state,country,all
+  selected: country
