@@ -465,9 +465,9 @@ def load_zip_state_map():
     return _ZIP_STATE_MAP
 
 def load_industry_codes(level_len):
-    # Note: industry_id_list.csv is a legacy list; there may be better, newer sources.
+    # Note: naics.csv is a legacy list; there may be better, newer sources.
     # DuckDB can be more efficient than pandas for large multi-year ZIP workloads due to lower memory usage and faster aggregations.
-    industry_path = os.path.join(os.path.dirname(__file__), 'industry_id_list.csv')
+    industry_path = os.path.join(os.path.dirname(__file__), 'naics.csv')
     if not os.path.exists(industry_path):
         print(f"Error: Missing industry list at {industry_path}")
         return []
@@ -478,6 +478,19 @@ def load_industry_codes(level_len):
     codes = codes[codes != '00']
     codes = codes.unique().tolist()
     return codes
+
+def normalize_pre2017_zip_naics2_codes(codes):
+    code_set = set(str(code) for code in codes)
+    range_groups = [
+        ("31-33", {"31", "32", "33"}),
+        ("44-45", {"44", "45"}),
+        ("48-49", {"48", "49"})
+    ]
+    for range_code, members in range_groups:
+        if code_set & members:
+            code_set -= members
+            code_set.add(range_code)
+    return sorted(code_set)
 
 def get_duckdb_conn(db_path):
     try:
@@ -787,6 +800,8 @@ def run_scope(year, scope_selected, effective_years):
                     duckdb_files_to_delete.append(db_path)
                     continue
                 codes = load_industry_codes(int(level))
+                if level == "2":
+                    codes = normalize_pre2017_zip_naics2_codes(codes)
                 if not codes:
                     print(f"  No NAICS codes found for level {level}. Skipping.")
                     continue

@@ -261,7 +261,7 @@ Notes:
 - For ZIP outputs, `Payroll` is 0 for all levels except NAICS 2.
 - `Industries` appears only in the `ziptotal` scope and is the count of unique NAICS codes per ZIP at the selected level (not a single NAICS value).
 - Pre‑2017 ZIP pulls use `industry_id_list.csv` to query by NAICS code. There may be better, newer sources than this legacy list.
-- DuckDB is recommended for pre‑2017 ZIP batching because it can aggregate large ZIP datasets with lower memory use than pandas.
+- DuckDB is used for pre‑2017 ZIP batching to aggregate large ZIP datasets with lower memory use than pandas.
 - Use `--zip-export-only` to rebuild state folders from existing DuckDB files without refetching.
 - Use `--delete-duckdb` to delete pre‑2017 ZIP DuckDB files after a successful export (skips prompt).
 - If `scope=all` and any years are 2017+, ZIP scope skips pre‑2017 years. If all years are pre‑2017, ZIP runs them.
