@@ -2,11 +2,11 @@
 
 # Timelines for Forecasting
 
-TO DO projects are listed throughout this page for our ML team.
+Our interface sends industry data as features to six popular ML models, including [Random Bits Forest](/RealityStream/input/industries/).
 
-Our Machine Learning forecasting models reside in [RealityStream](/RealityStream).
-
-ML Team: Sijia, Lily, Irene, Honglin, Ronan, Luwei, Wenxi, Magie, Ivy, Aashish, Dinesh
+<!--
+2024/2025 ML Team: Sijia, Lily, Irene, Honglin, Ronan, Luwei, Wenxi, Magie, Ivy, Aashish, Dinesh
+-->
 
 [Basic timelines](earthscape/) - [Earthscape tabulator](training/naics/) - [Tabulator directly](tabulator/)
 
@@ -67,8 +67,6 @@ Training files are output to [community-timelines/training](https://github.com/M
 Our IDs for States and counties = Federal Information Processing Standard (FIPS)  
 Our "geo" hash value appends the country to the front of FIPS.  
 Example: US12345 (US state 12, county 345)
-
-TO DO: [Send industries data to Random Bits Forest](/RealityStream/input/industries/)
 
 IN PROGRESS: [Update NAICS source files to include zip code data (ZTCA)](/data-pipeline/industries/naics/)
 

@@ -2,10 +2,7 @@
 
 ## County Business Patterns (CBP)
 
-[Annual US Census naics industry levels](timelines/)
-CSV files are saved for counties and states.  
-Zip and country-wide files coming soon.  
-Results are used to [compare local industries](../localsite/info)
+[Annual US Census industry levels](industries/) and [timelines](timelines/) used to [compare local industries](../localsite/info)
 
 ## US Bureau of Labor Statistics (BLS)
 

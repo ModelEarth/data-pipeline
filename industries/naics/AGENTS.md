@@ -8,6 +8,7 @@ Use `annual.py` for all NAICS pulls. It supports:
 - Scopes: `zip`, `county`, `state`, `country`, or `all`
 - Multiple scopes: comma-separated in `config.yaml` or `--scope`
 - NAICS level filtering: `--naics-level <level>` or `all`
+- Default to a use a 30-minute runtime per leg.
 
 ZIP scope uses ZBP for years ≤ 2018 and CBP for 2019+.
 
@@ -19,6 +20,11 @@ python annual.py 2023 --scope county
 python annual.py 2023 --scope state,country
 python annual.py 2018 --scope zip --naics-level all
 ```
+
+## For Openai Codex, users will need to grant permission in their .codex/config.toml file for the CLI to access external APIs. Check that this is already set when initially reading these guidelines if you are Openai Codex.
+
+[sandbox_workspace_write]
+network_access = true
 
 ## Config
 

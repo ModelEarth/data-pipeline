@@ -1,5 +1,6 @@
 # Data Pipeline
 
+[Annual NAICS Pull](industries) - Our site adds local industry and trade levels for data analysis
 [Open CEDA](https://watershed.com/solutions/ceda) - 60,000 emission factors, 400 industries, 148 countries
 [Exiobase.eu](https://exiobase.io) - International impact factors extending Comtrade UN trade data
 

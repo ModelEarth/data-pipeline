@@ -2,7 +2,10 @@
 
 # Annual NAICS Pull
 
-### County and Zip Business Patterns (CBP)
+### County and Zip Business Patterns (CBP)<br>Zip Business Patterns (ZBP) - Pre-2019
+
+  - Pre‑2017 requires NAICS-specific pulls (using DuckDB batching) because INDLEVEL (naics 2 to 6) was not available yet.
+  - Pre-2019 Requires ZBP for ZIP scope.
 
 Generates annual .csv files for [Community Datasets](http://model.earth/community-data/) of zip code, county, state, US  aggregates (country) for [industries by location](../../../localsite/info/).
 
@@ -233,7 +236,7 @@ GA from 120kb, to under 59.2kb
 
 ## Zip Scope (ZBP/CBP)
 
-The ZIP scope is also handled by `annual.py` and uses the Census ZBP API up to 2018, and the CBP API for 2019+.
+The ZIP scope is also handled by `annual.py` and uses the Census ZBP API through 2016, and the CBP API for 2017+ (previously switched at 2019).
 
 pre‑2017, to get industry data for zip codes requires pulling each NAICS individually. industry_id_list.csv provides a list of available naics IDs. (Maybe lists for each naics level will be used later. The list does not need and index or decimal on the naics value.)
 

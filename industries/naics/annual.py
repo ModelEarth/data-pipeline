@@ -3,13 +3,28 @@
 # Generates CSV files for each state with county-level industry statistics
 
 import os
+import sys
 import json
+
+def ensure_local_venv():
+    """Re-exec in the local venv if it exists to avoid NumPy ABI mismatches."""
+    venv_python = os.path.join(os.path.dirname(__file__), "env", "bin", "python")
+    if os.path.exists(venv_python):
+        if os.path.realpath(sys.executable) != os.path.realpath(venv_python):
+            os.execv(venv_python, [venv_python] + sys.argv)
+        return
+    print("Local venv not found. Create it with:")
+    print("  python3 -m venv env")
+    print("  ./env/bin/python -m pip install \"numpy<2\" pandas pyarrow requests pyyaml")
+    sys.exit(1)
+
+ensure_local_venv()
+
 import requests
 import pandas as pd
 import argparse
 from datetime import datetime
 import yaml
-import sys
 
 def get_directory_size(path, exclude_dirs=None):
     """Calculate total size of all files in a directory, optionally excluding subdirectories"""
@@ -174,6 +189,7 @@ parser.add_argument('--delete-duckdb', action='store_true', help='Delete pre-201
 parser.add_argument('--state', type=str, help='Two-letter state code to process single state (e.g., GA)')
 parser.add_argument('--output-path', type=str, default=None, help='Output directory (default: ../../../community-data/industries/naics/US/counties-update)')
 parser.add_argument('--api-key', type=str, help='Census API key (optional)')
+parser.add_argument('--skip-api-check', action='store_true', help='Skip Census API availability check (use if DNS is failing)')
 args = parser.parse_args()
 
 def load_config():
@@ -576,6 +592,7 @@ def run_scope(year, scope_selected, effective_years):
     scope_folder = "country" if scope_selected == "country" else scope_plural
     scope_suffix = "" if scope_selected in ["state", "country"] else f"-{scope_plural}"
     output_path = output_path_template.replace('[scope]', scope_folder)
+    # ZIP scope uses ZBP through 2018 and CBP starting in 2019.
     zip_dataset = "zbp" if year <= 2018 else "cbp"
 
     if args.naics_level.lower() == 'all':
@@ -596,15 +613,16 @@ def run_scope(year, scope_selected, effective_years):
     print(f"Started: {start_time_str}")
 
     check_dataset = zip_dataset if scope_selected in ["zip", "ziptotal"] else "cbp"
-    if not (args.zip_export_only and scope_selected in ["zip", "ziptotal"] and year < 2017):
-        if not check_year_available(year, args.api_key, dataset=check_dataset):
-            return
+    if not args.skip_api_check:
+        if not (args.zip_export_only and scope_selected in ["zip", "ziptotal"] and year < 2017):
+            if not check_year_available(year, args.api_key, dataset=check_dataset):
+                return
 
     if scope_selected in ["zip", "ziptotal"]:
         if args.naics_level.lower() == 'all':
             levels_to_process = [2, 3, 4, 5, 6]
-        if year > 2018:
-            print("ZIP scope for years 2019+ uses the CBP API (ZBP is only through 2018).")
+        if year >= 2019:
+            print("ZIP scope for years 2019+ uses the CBP API.")
         zip_results = []
         duckdb_files_to_delete = []
         zip_use_indlevel = not (zip_dataset == "zbp" and year < 2017)
