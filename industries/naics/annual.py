@@ -426,7 +426,7 @@ def read_failed_codes(path):
         df = pd.read_csv(path, dtype=str)
         if df.empty:
             return {}
-        return {row['code']: row for _, row in df.iterrows()}
+        return {row['code']: row.to_dict() for _, row in df.iterrows()}
     except Exception:
         return {}
 
@@ -435,7 +435,10 @@ def write_failed_codes(path, failed_by_code):
         if os.path.exists(path):
             os.remove(path)
         return
-    df = pd.DataFrame(list(failed_by_code.values()))
+    records = []
+    for row in failed_by_code.values():
+        records.append(row.to_dict() if hasattr(row, "to_dict") else row)
+    df = pd.DataFrame(records)
     df.to_csv(path, index=False)
 
 _ZIP_STATE_MAP = None
