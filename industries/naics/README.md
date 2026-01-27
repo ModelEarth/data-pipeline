@@ -2,19 +2,26 @@
 
 # Annual NAICS Pull
 
-#### Industry Employment Data
-
 ### County and Zip Business Patterns (CBP)
 
-[For industry impact comparisons by location](/localsite/info/)
+Generates annual .csv files for [Community Datasets](http://model.earth/community-data/) of zip code, county, state, US  aggregates (country) for [industries by location](../../../localsite/info/).
 
-[Our Community Datasets](http://model.earth/community-data/) for industries replace [annual-old.ipynb](https://github.com/ModelEarth/data-pipeline/tree/main/industries/naics) to generate country, states and county files.
-
-- [US Country](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/country)
-- [States](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/states)
+- [Zips](https://github.com/ModelEarth/community-zipcodes/tree/master/industries/naics/US/zip/)<!-- Also [Zip code data processing](https://model.earth/community-zipcodes/)-->
 - [Counties](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/counties)
-- [Zip](https://github.com/ModelEarth/community-zipcodes/tree/master/industries/naics/US/zip/) - [Zip code data processing](/community-zipcodes/)
+- [States](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/states)
+- [Country (sums)](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/country)
 
+**Columns**
+- Fips or Zip - State in 2-digit FIPS, County is 5-digit FIPS.
+- Industries - Number of unique naics categories
+- Naics - North American Industry Category ID (2, 4 & 6 digits)  
+- Establishments - Number of Extablishments  
+- Employees - Employment FlowAmount (Number of Employees)  
+- Payroll - US Dollars (Annual Wages)
+<!--
+- Population - Included with our [Machine Learning](/machine-learning/) output
+- Sqkm or Sqmiles - To be added
+-->
 
 ## Setup
 
@@ -101,17 +108,6 @@ With Fips (5-digit state and county)
 US36005-census-naics6-2020.csv for a single county. Not needed currently. -->
 [USAK-census-naics6-2020.csv](/community-data/us/state-naics-update/AK/USAK-census-naics6-2020.csv)
 [USAK-census-naics6-counties-2020.csv](/community-data/us/state-naics-update/AK/USAK-census-naics6-counties-2020.csv)
-
-**Columns**
-- Fips - Only in counties files.
-- Naics - ActivityProducedBy (6-digit naics)  
-- Establishments - Other (Number of Extablishments)  
-- Employees - Employment FlowAmount (Number of Employees)  
-- Payroll - US Dollars (Annual Wages)
-<!--
-- Population - Included with our [Machine Learning](/machine-learning/) output
-- Sqkm or Sqmiles - To be added
--->
 
 
 <!--
@@ -221,7 +217,7 @@ As included in the [naics-annual.ipynb](naics-annual.ipynb) notebook, the base u
 
 A full URL follows the following format:
 
-  {base_url}/{year}/cbp?get={columns_to_select}&for=county:*&in=state:{fips:02d}
+<div>{base_url}/{year}/cbp?get={columns_to_select}&for=county:*&in=state:{fips:02d}</div>
 
 For example, to get the 2016 data for all counties in the state of Georgia, you can use the following URL:
 
@@ -239,6 +235,22 @@ GA from 120kb, to under 59.2kb
 
 The ZIP scope is also handled by `annual.py` and uses the Census ZBP API up to 2018, and the CBP API for 2019+.
 
+pre‑2017, to get industry data for zip codes requires pulling each NAICS individually. industry_id_list.csv provides a list of available naics IDs. (Maybe lists for each naics level will be used later. The list does not need and index or decimal on the naics value.)
+
+DuckDB is used for our pre-2017 zip codes naics pull (split by state) because DuckDB is more efficient than pandas for large multi-year ZIP workloads due to lower memory usage and faster aggregations on big datasets.
+
+- 2016 zip scope (state folders) took over 20 minutes.
+- 2023 zip scope (state folders) took 4 minutes.
+
 Outputs:
-- `zipcodes-naics<level>-<year>.csv`
+- `US-<STATE>-zipcodes-naics<level>-<year>.csv` (state subfolders)
 - `results-zips.md`
+
+Notes:
+- For ZIP outputs, `Payroll` is 0 for all levels except NAICS 2.
+- `Industries` appears only in the `ziptotal` scope and is the count of unique NAICS codes per ZIP at the selected level (not a single NAICS value).
+- Pre‑2017 ZIP pulls use `industry_id_list.csv` to query by NAICS code. There may be better, newer sources than this legacy list.
+- DuckDB is recommended for pre‑2017 ZIP batching because it can aggregate large ZIP datasets with lower memory use than pandas.
+- Use `--zip-export-only` to rebuild state folders from existing DuckDB files without refetching.
+- Use `--delete-duckdb` to delete pre‑2017 ZIP DuckDB files after a successful export (skips prompt).
+- If `scope=all` and any years are 2017+, ZIP scope skips pre‑2017 years. If all years are pre‑2017, ZIP runs them.

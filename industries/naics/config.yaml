@@ -5,5 +5,5 @@ STATE:
 OUTPUT_PATH: ../../../community-data/industries/naics/US/[scope]-update
 API_KEY:
 SCOPE:
-  options: zip,county,state,country,all
-  selected: country
+  options: zip,ziptotal,county,state,country,all
+  selected: county
