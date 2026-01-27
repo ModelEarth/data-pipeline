@@ -9,14 +9,14 @@
 
 Generates annual .csv files for [Community Datasets](http://model.earth/community-data/) of zip code, county, state, US  aggregates (country) for [industries by location](../../../localsite/info/).
 
-- [Zips](https://github.com/ModelEarth/community-zipcodes/tree/master/industries/naics/US/zip/)<!-- Also [Zip code data processing](https://model.earth/community-zipcodes/)-->
-- [Counties](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/counties)
-- [States](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/states)
+- [Zip](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/zip)<!-- Also [Zip code data processing](https://model.earth/community-zipcodes/)-->
+- [County](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/county)
+- [States](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/state)
 - [Country (sums)](https://github.com/ModelEarth/community-data/tree/master/industries/naics/US/country)
 
 **Columns**
 - Fips or Zip - State in 2-digit FIPS, County is 5-digit FIPS.
-- Industries - Number of unique naics categories
+- Industries - Count of unique naics categories (no Naics column when present)
 - Naics - North American Industry Category ID (2, 4 & 6 digits)  
 - Establishments - Number of Extablishments  
 - Employees - Employment FlowAmount (Number of Employees)  
@@ -61,7 +61,7 @@ Config keys:
 - `STATE`: Optional two-letter state code (e.g., `GA`)
 - `OUTPUT_PATH`: Output directory
 - `API_KEY`: Optional Census API key (only needed for higher rate limits)
-- `SCOPE.selected`: One or more scopes (`zip`, `county`, `state`, `country`, or `all`). Comma-separated for multiple (e.g., `county,state`).
+- `SCOPE.selected`: One or more scopes (`zip`, `zip-totals`, `county`, `county-totals`, `state`, `country`, or `all`). Comma-separated for multiple (e.g., `county,state`).
 
 Local state FIPS file: `state-fips.csv`
 
@@ -101,16 +101,16 @@ https://github.com/modelearth/localsite/blob/main/info/naics/lookup/6-digit_2012
 -->
 
 **File Name**
-Country2 + State2 - census - naics[2,4,6] - [counties,zip] - year
+US - naics[2,4,6] - <scope> - year
 
 We'll need new annual US files. Previous:
-[US-census-naics6-2020.csv](/community-data/industries/naics/US/country/US-2021-Q1-naics-6-digits.csv)
+[US-naics6-country-2020.csv](/community-data/industries/naics/US/country/US-naics6-country-2020.csv)
 
 Examples:<!-- 
 With Fips (5-digit state and county) 
-US36005-census-naics6-2020.csv for a single county. Not needed currently. -->
-[USAK-census-naics6-2020.csv](/community-data/us/state-naics-update/AK/USAK-census-naics6-2020.csv)
-[USAK-census-naics6-counties-2020.csv](/community-data/us/state-naics-update/AK/USAK-census-naics6-counties-2020.csv)
+US36005-naics6-county-2020.csv for a single county. Not needed currently. -->
+[USAK-naics6-state-2020.csv](/community-data/us/state-naics-update/AK/USAK-naics6-state-2020.csv)
+[USAK-naics6-county-2020.csv](/community-data/us/state-naics-update/AK/USAK-naics6-county-2020.csv)
 
 
 <!--
@@ -126,9 +126,9 @@ We send the year files here:
 For timeline projections, we just use naics6 (2017 to 2023).
 With and without country rows for each state.
 
-/community-data/timelines/naics/us/ALL/US-census-naics6-2017.csv
-/community-data/timelines/naics/us/NY/USNY-census-naics6-2017.csv
-/community-data/timelines/naics/us/NY/USNY-census-naics6-counties-2017.csv
+/community-data/timelines/naics/us/ALL/US-naics6-country-2017.csv
+/community-data/timelines/naics/us/NY/USNY-naics6-state-2017.csv
+/community-data/timelines/naics/us/NY/USNY-naics6-county-2017.csv
 
 So for 2017 to 2023 there are 7 year files for the US with naics6, 
 and 14 year files for each state with naics6.
@@ -140,7 +140,7 @@ Python pulls from the [US Census CBP&nbsp;API](https://www.census.gov/data/devel
 
 The Jupyter Notebook for industry data preparation resides in [naics-annual.ipynb](naics-annual.ipynb).
 
-We use naics-annual.ipynb to generate country, states and county files.
+We use naics-annual.ipynb to generate country, state and county files.
 Zip code file generation resides in [community-zipcodes](/community-zipcodes/).
 
 In your webroot, create a virtual environment and install libraries.
@@ -246,7 +246,7 @@ DuckDB is used for our pre-2017 zip codes naics pull (split by state) because Du
 - 2023 zip scope (state folders) took 4 minutes.
 
 Outputs:
-- `US-<STATE>-zipcodes-naics<level>-<year>.csv` (state subfolders)
+- `US-<STATE>-naics<level>-zip-<year>.csv` (state subfolders)
 - `results-zips.md`
 
 Notes:

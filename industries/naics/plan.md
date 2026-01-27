@@ -21,10 +21,10 @@ Integrate support for county and state-level business data using the Census Bure
 The notebook generates three geographic levels:
 
 ### 1. County Level
-- **Path:** `community-data/industries/naics/US/counties-update/{STATE}/`
-- **Naming:** `US-{STATE}-census-naics{2,4,6}-counties-{YEAR}.csv`
+- **Path:** `community-data/industries/naics/US/county-update/{STATE}/`
+- **Naming:** `US-{STATE}-census-naics{2,4,6}-county-{YEAR}.csv`
 - **Columns:** Fips, Naics, Establishments, Employees, Payroll
-- **Example:** `US-GA-census-naics6-counties-2021.csv`
+- **Example:** `US-GA-census-naics6-county-2021.csv`
 
 ### 2. State Level
 - **Path:** `community-data/industries/naics/US/states-update/{STATE}/`
@@ -47,9 +47,9 @@ The notebook generates three geographic levels:
   - `year` (positional, default: 2021)
   - `--naics-level` (default: "all" for levels 2,4,6)
   - `--state` (optional, to process single state)
-  - `--output-path` (default: ../../../community-data/industries/naics/US/counties-update)
+  - `--output-path` (default: ../../../community-data/industries/naics/US/county-update)
   - `--api-key` (optional, for Census API authentication)
-- [x] Generate results-counties.md with timing and file stats
+- [x] Generate results-county.md with timing and file stats
 - [x] Handle years 2017-2021+ (CBP continues past 2018)
 - [x] Filter out NAICS code "00" (totals)
 - [x] Handle year-based column variations (NAICS2017, NAICS2012, etc.)
@@ -110,7 +110,7 @@ Following existing zipcodes.py pattern:
 |--------|--------------|--------------|
 | zipcodes.py | `zipcodes-naics{2,3,4,5,6}-{year}.csv` | results.md |
 | zipcodes-naics.py | `zipcode-{XXXXX}-census-naics{level}-{year}.csv` | results-naics.md |
-| **counties.py** | `US-{ST}-census-naics{2,4,6}-counties-{year}.csv` | results-counties.md |
+| **counties.py** | `US-{ST}-census-naics{2,4,6}-county-{year}.csv` | results-county.md |
 | **states.py** | `US-{ST}-census-naics{2,4,6}-{year}.csv` | results-states.md |
 | **country.py** | `US-census-naics{2,4,6}-{year}.csv` | results-country.md |
 

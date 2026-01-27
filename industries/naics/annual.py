@@ -5,6 +5,7 @@
 import os
 import sys
 import json
+import re
 
 def ensure_local_venv():
     """Re-exec in the local venv if it exists to avoid NumPy ABI mismatches."""
@@ -179,7 +180,7 @@ def check_year_available(year, api_key=None, dataset="cbp"):
 parser = argparse.ArgumentParser(description='Generate county-level NAICS data from Census CBP API')
 parser.add_argument('year', nargs='?', default=None, help='Census data year or comma-separated years (default: 2021)')
 parser.add_argument('--naics-level', type=str, default=None, help='Industry level (2,4,6 or "all" for 2,4,6, default: all)')
-parser.add_argument('--scope', type=str, help='Scope(s) to run: zip, ziptotal, county, state, country, or all. Comma-separated for multiple.')
+parser.add_argument('--scope', type=str, help='Scope(s) to run: zip, zip-totals, county, county-totals, state, country, or all. Comma-separated for multiple.')
 parser.add_argument('--zip-batch-size', type=int, default=50, help='Pre-2017 ZIP batching: max NAICS codes to fetch per run (default: 50)')
 parser.add_argument('--zip-max-minutes', type=int, default=120, help='Max minutes to keep running pre-2017 ZIP batching (default: 120)')
 parser.add_argument('--zip-batch-minutes', type=int, default=20, help='Soft cap per batch window in minutes before writing a progress report (default: 20)')
@@ -187,7 +188,7 @@ parser.add_argument('--retry-failed', action='store_true', help='Pre-2017 ZIP ba
 parser.add_argument('--zip-export-only', action='store_true', help='Pre-2017 ZIP batching: export from existing DuckDB files without refetching')
 parser.add_argument('--delete-duckdb', action='store_true', help='Delete pre-2017 ZIP DuckDB files after a successful export')
 parser.add_argument('--state', type=str, help='Two-letter state code to process single state (e.g., GA)')
-parser.add_argument('--output-path', type=str, default=None, help='Output directory (default: ../../../community-data/industries/naics/US/counties-update)')
+parser.add_argument('--output-path', type=str, default=None, help='Output directory (default: ../../../community-data/industries/naics/US/county-update)')
 parser.add_argument('--api-key', type=str, help='Census API key (optional)')
 parser.add_argument('--skip-api-check', action='store_true', help='Skip Census API availability check (use if DNS is failing)')
 args = parser.parse_args()
@@ -201,13 +202,6 @@ def load_config():
 
 config = load_config()
 
-scopes = {
-    'zip': 'zips',
-    'ziptotal': 'zipstotal',
-    'county': 'counties',
-    'state': 'states',
-    'country': 'countries'
-}
 
 def parse_years(raw_year):
     if not raw_year:
@@ -237,8 +231,123 @@ def parse_scopes(raw_scope):
         return []
     scopes_list = [s.strip() for s in raw_scope.split(',') if s.strip()]
     if 'all' in scopes_list:
-        return ['zip', 'ziptotal', 'county', 'state', 'country']
+        return ['zip', 'zip-totals', 'county', 'county-totals', 'state', 'country']
     return scopes_list
+
+def parse_level_from_filename(filename):
+    match = re.search(r'naics(\d+)', filename)
+    if not match:
+        return None
+    try:
+        return int(match.group(1))
+    except ValueError:
+        return None
+
+def collect_county_files(county_output_path, year, state_filter=None):
+    files = []
+    pattern = f"-county-{year}.csv"
+    if not os.path.exists(county_output_path):
+        return files
+    for root, _, filenames in os.walk(county_output_path):
+        state_dir = os.path.basename(root)
+        if state_filter and state_dir not in state_filter:
+            continue
+        for filename in filenames:
+            if pattern not in filename or "naics" not in filename:
+                continue
+            level = parse_level_from_filename(filename)
+            if level is None:
+                continue
+            files.append((os.path.join(root, filename), level))
+    return files
+
+def aggregate_county_totals(df):
+    df = df.copy()
+    df['Establishments'] = pd.to_numeric(df['Establishments'], errors='coerce').fillna(0)
+    df['Employees'] = pd.to_numeric(df['Employees'], errors='coerce').fillna(0)
+    df['Payroll'] = pd.to_numeric(df['Payroll'], errors='coerce').fillna(0)
+    df['PayrollWeighted'] = df['Payroll'] * df['Employees']
+    grouped = df.groupby('Fips', as_index=False)[['Establishments', 'Employees', 'PayrollWeighted']].sum()
+    grouped['Payroll'] = 0.0
+    nonzero = grouped['Employees'] > 0
+    grouped.loc[nonzero, 'Payroll'] = grouped.loc[nonzero, 'PayrollWeighted'] / grouped.loc[nonzero, 'Employees']
+    grouped['Payroll'] = grouped['Payroll'].round(0).astype(int)
+    grouped = grouped.drop(columns=['PayrollWeighted'])
+    return grouped[['Fips', 'Establishments', 'Employees', 'Payroll']]
+
+def run_countytotal_from_outputs(year, county_output_path, output_path, state_filter=None):
+    county_files = collect_county_files(county_output_path, year, state_filter=state_filter)
+    if not county_files:
+        print(f"  No county output files found for {year} in {county_output_path}")
+        return [], []
+    levels = sorted({level for _, level in county_files})
+    os.makedirs(output_path, exist_ok=True)
+    results = []
+    for level in levels:
+        selected_files = [path for path, file_level in county_files if file_level == level]
+        if not selected_files:
+            continue
+        frames = []
+        for filepath in selected_files:
+            df = pd.read_csv(filepath, dtype={'Fips': str})
+            if df.empty:
+                continue
+            frames.append(df)
+        if not frames:
+            continue
+        combined = pd.concat(frames, ignore_index=True)
+        aggregated = aggregate_county_totals(combined)
+        filename = f"US-naics{level}-county-totals-{year}.csv"
+        outpath = os.path.join(output_path, filename)
+        aggregated.to_csv(outpath, index=False)
+        file_size = os.path.getsize(outpath)
+        results.append({
+            'level': level,
+            'filename': filename,
+            'rows': len(aggregated),
+            'file_size': file_size
+        })
+        print(f"  Saved: {filename} ({len(aggregated):,} rows, {format_size(file_size)})")
+    return results, levels
+
+def write_countytotal_results(results, output_path, levels):
+    end_time = datetime.now()
+    end_time_str = end_time.strftime('%Y-%m-%d %H:%M:%S')
+    total_size_bytes = get_directory_size(output_path)
+    total_size_formatted = format_size(total_size_bytes)
+    results_file = f'{output_path}/results-county-totals.md'
+    files_section = ""
+    total_files = 0
+    for file_info in results:
+        file_size_formatted = format_size(file_info['file_size'])
+        files_section += f"- `{file_info['filename']}` - {file_info['rows']:,} rows, {file_size_formatted}\n"
+        total_files += 1
+    columns_block = "- Fips (5-digit county FIPS code)\n- Establishments (sum across NAICS)\n- Employees (sum across NAICS)\n- Payroll (weighted by employees)"
+    results_content = f"""# Results - County Totals CBP Data
+
+**Last successful completion:** {end_time_str}
+
+## Output Details
+
+- **States processed:** n/a
+- **Total files generated:** {total_files}
+- **Census years:** {census_years_str}
+- **Total output size:** {total_size_formatted}
+- **Source NAICS levels:** {', '.join([str(l) for l in levels]) if levels else 'n/a'}
+
+### Generated Files
+{files_section}
+
+## Data Summary
+
+Each output file contains county totals with the following columns:
+{columns_block}
+"""
+    with open(results_file, 'w') as f:
+        f.write(results_content)
+    print(f"\nResults saved to: {results_file}")
+    print(f"Completed: {end_time_str}")
+    print(f"Total files generated: {total_files}")
 
 scope_selected_raw = args.scope or config.get('SCOPE', {}).get('selected', 'county')
 scope_list = parse_scopes(scope_selected_raw)
@@ -409,7 +518,7 @@ def ensure_duckdb_zip_tables(conn, mapping_path):
     conn.execute("CREATE TABLE IF NOT EXISTS loaded_codes (code TEXT PRIMARY KEY)")
     ensure_zip_state_temp(conn, mapping_path)
 
-def export_zip_detail_duckdb(conn, output_path, level, year, mapping_path=None):
+def export_zip_detail_duckdb(conn, output_path, level, year, scope_name, mapping_path=None):
     mapping_path = mapping_path or get_zip_state_mapping_path()
     ensure_zip_state_temp(conn, mapping_path)
     mapping_path_sql = mapping_path.replace("'", "''")
@@ -420,7 +529,7 @@ def export_zip_detail_duckdb(conn, output_path, level, year, mapping_path=None):
         state_dir = os.path.join(output_path, state)
         if not os.path.exists(state_dir):
             os.makedirs(state_dir)
-        output_filename = f'{state_dir}/US-{state}-zipcodes-naics{level}-{year}.csv'
+        output_filename = f'{state_dir}/US-{state}-naics{level}-{scope_name}-{year}.csv'
         output_sql = output_filename.replace("'", "''")
         conn.execute(f"""
             COPY (
@@ -464,7 +573,7 @@ def export_zip_detail_duckdb(conn, output_path, level, year, mapping_path=None):
     not_dir = os.path.join(output_path, "NotSpecified")
     if not os.path.exists(not_dir):
         os.makedirs(not_dir)
-    not_filename = f'{not_dir}/US-NotSpecified-zipcodes-naics{level}-{year}.csv'
+    not_filename = f'{not_dir}/US-NotSpecified-naics{level}-{scope_name}-{year}.csv'
     not_sql = not_filename.replace("'", "''")
     conn.execute(f"""
         COPY (
@@ -504,16 +613,16 @@ def export_zip_detail_duckdb(conn, output_path, level, year, mapping_path=None):
             WHERE zs.State IS NULL OR zs.State = ''
         """).fetchone()[0]
 
-    print(f"  Exported: US-<STATE>-zipcodes-naics{level}-{year}.csv ({total_rows:,} rows)")
+    print(f"  Exported: US-<STATE>-naics{level}-{scope_name}-{year}.csv ({total_rows:,} rows)")
     return {
         'level': level,
-        'filename': f'US-<STATE>-zipcodes-naics{level}-{year}.csv',
+        'filename': f'US-<STATE>-naics{level}-{scope_name}-{year}.csv',
         'rows': total_rows,
         'file_size': total_size
     }
 
-def export_zip_total_duckdb(conn, output_path, level, year):
-    output_filename = f'{output_path}/zipcodes-naics{level}-{year}.csv'
+def export_zip_total_duckdb(conn, output_path, level, year, scope_name):
+    output_filename = f'{output_path}/US-naics{level}-{scope_name}-{year}.csv'
     output_sql = output_filename.replace("'", "''")
     conn.execute(f"""
         COPY (
@@ -535,14 +644,14 @@ def export_zip_total_duckdb(conn, output_path, level, year):
         'file_size': os.path.getsize(output_filename)
     }
 
-def write_zip_total(df, ind_level, year, output_path):
+def write_zip_total(df, ind_level, year, output_path, scope_name):
     if not os.path.exists(output_path):
         os.makedirs(output_path)
     gr1 = df[['Zip', 'Naics']].groupby(['Zip']).nunique()
     gr2 = df[['Zip', 'Establishments', 'Employees', 'Payroll']].groupby(['Zip']).sum()
     combined = gr1.merge(gr2, left_on='Zip', right_on='Zip')
     combined = combined.rename(columns={'Naics': 'Industries'})
-    output_filename = f'{output_path}/zipcodes-naics{ind_level}-{year}.csv'
+    output_filename = f'{output_path}/US-naics{ind_level}-{scope_name}-{year}.csv'
     combined.to_csv(output_filename)
     print(f"  Exported: {os.path.basename(output_filename)} ({len(combined):,} rows)")
     return {
@@ -552,12 +661,12 @@ def write_zip_total(df, ind_level, year, output_path):
         'file_size': os.path.getsize(output_filename)
     }
 
-def write_zip_detail(df, ind_level, year, output_path):
+def write_zip_detail(df, ind_level, year, output_path, scope_name):
     if not os.path.exists(output_path):
         os.makedirs(output_path)
     state_map = load_zip_state_map()
     if state_map is None:
-        output_filename = f'{output_path}/zipcodes-naics{ind_level}-{year}.csv'
+        output_filename = f'{output_path}/US-naics{ind_level}-{scope_name}-{year}.csv'
         df.to_csv(output_filename, index=False)
         print(f"  Exported: {os.path.basename(output_filename)} ({len(df):,} rows)")
         return {
@@ -576,22 +685,34 @@ def write_zip_detail(df, ind_level, year, output_path):
         state_dir = os.path.join(output_path, state)
         if not os.path.exists(state_dir):
             os.makedirs(state_dir)
-        output_filename = f'{state_dir}/US-{state}-zipcodes-naics{ind_level}-{year}.csv'
+        output_filename = f'{state_dir}/US-{state}-naics{ind_level}-{scope_name}-{year}.csv'
         state_df[['Zip', 'Naics', 'Establishments', 'Employees', 'Payroll']].to_csv(output_filename, index=False)
         total_size += os.path.getsize(output_filename)
-    print(f"  Exported: US-<STATE>-zipcodes-naics{ind_level}-{year}.csv ({len(merged):,} rows)")
+    print(f"  Exported: US-<STATE>-naics{ind_level}-{scope_name}-{year}.csv ({len(merged):,} rows)")
     return {
         'level': ind_level,
-        'filename': f'US-<STATE>-zipcodes-naics{ind_level}-{year}.csv',
+        'filename': f'US-<STATE>-naics{ind_level}-{scope_name}-{year}.csv',
         'rows': len(merged),
         'file_size': total_size
     }
 
 def run_scope(year, scope_selected, effective_years):
-    scope_plural = scopes.get(scope_selected, scope_selected)
-    scope_folder = "country" if scope_selected == "country" else scope_plural
-    scope_suffix = "" if scope_selected in ["state", "country"] else f"-{scope_plural}"
+    scope_folder = scope_selected
     output_path = output_path_template.replace('[scope]', scope_folder)
+    if scope_selected == "county-totals":
+        print(f"Preparing county totals from prior county outputs for {year}...")
+        county_output_path = output_path_template.replace('[scope]', "county")
+        state_filter = [args.state.upper()] if args.state else None
+        results, levels = run_countytotal_from_outputs(
+            year,
+            county_output_path,
+            output_path,
+            state_filter=state_filter
+        )
+        if not results:
+            return
+        write_countytotal_results(results, output_path, levels)
+        return
     # ZIP scope uses ZBP through 2018 and CBP starting in 2019.
     zip_dataset = "zbp" if year <= 2018 else "cbp"
 
@@ -612,13 +733,13 @@ def run_scope(year, scope_selected, effective_years):
     print(f"Sending to: {os.path.abspath(output_path)}")
     print(f"Started: {start_time_str}")
 
-    check_dataset = zip_dataset if scope_selected in ["zip", "ziptotal"] else "cbp"
+    check_dataset = zip_dataset if scope_selected in ["zip", "zip-totals"] else "cbp"
     if not args.skip_api_check:
-        if not (args.zip_export_only and scope_selected in ["zip", "ziptotal"] and year < 2017):
+        if not (args.zip_export_only and scope_selected in ["zip", "zip-totals"] and year < 2017):
             if not check_year_available(year, args.api_key, dataset=check_dataset):
                 return
 
-    if scope_selected in ["zip", "ziptotal"]:
+    if scope_selected in ["zip", "zip-totals"]:
         if args.naics_level.lower() == 'all':
             levels_to_process = [2, 3, 4, 5, 6]
         if year >= 2019:
@@ -647,9 +768,9 @@ def run_scope(year, scope_selected, effective_years):
                         conn.close()
                         continue
                     if scope_selected == "zip":
-                        result = export_zip_detail_duckdb(conn, output_path, level, year, mapping_path=get_zip_state_mapping_path())
+                        result = export_zip_detail_duckdb(conn, output_path, level, year, scope_selected, mapping_path=get_zip_state_mapping_path())
                     else:
-                        result = export_zip_total_duckdb(conn, output_path, level, year)
+                        result = export_zip_total_duckdb(conn, output_path, level, year, scope_selected)
                     conn.close()
                     zip_results.append(result)
                     duckdb_files_to_delete.append(db_path)
@@ -722,17 +843,17 @@ def run_scope(year, scope_selected, effective_years):
                 if failed_by_code:
                     print(f"  Failed NAICS codes logged to {os.path.basename(failed_log_path)}. Retry with --retry-failed.")
                 if scope_selected == "zip":
-                    result = export_zip_detail_duckdb(conn, output_path, level, year, mapping_path=get_zip_state_mapping_path())
+                    result = export_zip_detail_duckdb(conn, output_path, level, year, scope_selected, mapping_path=get_zip_state_mapping_path())
                 else:
-                    result = export_zip_total_duckdb(conn, output_path, level, year)
+                    result = export_zip_total_duckdb(conn, output_path, level, year, scope_selected)
                 conn.close()
                 zip_results.append(result)
                 duckdb_files_to_delete.append(db_path)
                 continue
             if scope_selected == "zip":
-                result = write_zip_detail(level_df, level, year, output_path)
+                result = write_zip_detail(level_df, level, year, output_path, scope_selected)
             else:
-                result = write_zip_total(level_df, level, year, output_path)
+                result = write_zip_total(level_df, level, year, output_path, scope_selected)
             zip_results.append(result)
 
         end_time = datetime.now()
@@ -769,10 +890,14 @@ def run_scope(year, scope_selected, effective_years):
             total_files_report = len(zip_results) * (len(effective_years) if len(effective_years) > 1 else 1)
         results_title = "Results - Zipcodes Detail" if scope_selected == "zip" else "Results - Zipcodes Aggregated Metrics"
         columns_block = "- Zip (zipcode)\n- Naics (NAICS code at specified level)\n- Establishments (total)\n- Employees (total)\n- Payroll (total)"
-        if scope_selected == "ziptotal":
+        if scope_selected == "zip-totals":
             columns_block = "- Zip (zipcode)\n- Industries (unique count at specified NAICS level)\n- Establishments (total)\n- Employees (total)\n- Payroll (total)"
 
-        filename_convention = f"US-<STATE>-zipcodes-naics<level>-<year>.csv" if scope_selected == "zip" else f"zipcodes-naics<level>-<year>.csv"
+        filename_convention = (
+            f"US-<STATE>-naics<level>-{scope_selected}-<year>.csv"
+            if scope_selected == "zip"
+            else f"US-naics<level>-{scope_selected}-<year>.csv"
+        )
         results_content = f"""# {results_title}
 
 **Last successful completion:** {end_time_str}
@@ -887,12 +1012,12 @@ Each output file contains zipcode metrics with the following columns:
 
         if scope_selected == "country":
             state_df = processed_df.copy()
-            state_df['Fips'] = f"{int(fips):02d}"
+            state_df['State'] = state_code
             for level in levels_to_process:
                 level_df = filter_by_naics_level(state_df, level)
                 if level_df.empty:
                     continue
-                grouped = level_df.groupby(['Fips', 'Naics'], as_index=False)[['Establishments', 'Employees', 'Payroll']].sum()
+                grouped = level_df.groupby(['State', 'Naics'], as_index=False)[['Establishments', 'Employees', 'Payroll']].sum()
                 country_level_frames[level].append(grouped)
             continue
 
@@ -903,7 +1028,7 @@ Each output file contains zipcode metrics with the following columns:
                 print(f"  No data for level {level}")
                 continue
 
-            filename = f"US-{state_code}-census-naics{level}{scope_suffix}-{year}.csv"
+            filename = f"US-{state_code}-naics{level}-{scope_selected}-{year}.csv"
             filepath = os.path.join(state_dir, filename)
             level_df.to_csv(filepath, index=False)
 
@@ -930,7 +1055,7 @@ Each output file contains zipcode metrics with the following columns:
             if not frames:
                 continue
             combined = pd.concat(frames, ignore_index=True)
-            filename = f"US-census-naics{level}-{year}.csv"
+            filename = f"US-naics{level}-{scope_selected}-{year}.csv"
             filepath = os.path.join(output_path, filename)
             combined.to_csv(filepath, index=False)
             file_size = os.path.getsize(filepath)
@@ -978,11 +1103,18 @@ Each output file contains zipcode metrics with the following columns:
     states_processed = len(state_fips) if scope_selected in ["county", "state", "country"] else len(all_results)
     total_files_report = total_files * (len(effective_years) if len(effective_years) > 1 else 1)
     columns_block = "- Naics (NAICS code at specified level)\n- Establishments (number of establishments)\n- Employees (total employees)\n- Payroll (total annual payroll in $1000s)"
-    if scope_selected != "state":
+    if scope_selected == "country":
+        columns_block = "- State (2-letter state abbreviation)\n" + columns_block
+    elif scope_selected != "state":
         columns_block = "- Fips (5-digit county FIPS code)\n" + columns_block
 
-    results_title = "Results - Country CBP Data" if scope_selected == "country" else f"Results - {scope_plural.title()} CBP Data"
-    filename_convention = f"US-census-naics<level>-<year>.csv" if scope_selected == "country" else f"US-<STATE>-census-naics<level>{scope_suffix}-<year>.csv"
+    scope_label = scope_folder.replace("-", " ").title()
+    results_title = "Results - Country CBP Data" if scope_selected == "country" else f"Results - {scope_label} CBP Data"
+    filename_convention = (
+        f"US-naics<level>-{scope_selected}-<year>.csv"
+        if scope_selected == "country"
+        else f"US-<STATE>-naics<level>-{scope_selected}-<year>.csv"
+    )
 
     results_content = f"""# {results_title}
 
@@ -1038,8 +1170,21 @@ Each output file contains CBP data with the following columns:
     print(f"Total run time: {duration_str}")
     print(f"Total files generated: {total_files}")
 
+    if scope_selected == "county" and "county-totals" not in scope_list:
+        print("\nGenerating county-totals outputs from county results...")
+        countytotal_output_path = output_path_template.replace('[scope]', "county-totals")
+        state_filter = [args.state.upper()] if args.state else None
+        results, levels = run_countytotal_from_outputs(
+            year,
+            output_path,
+            countytotal_output_path,
+            state_filter=state_filter
+        )
+        if results:
+            write_countytotal_results(results, countytotal_output_path, levels)
+
 def zip_years_for_scope(scope_selected, years, scopes):
-    if scope_selected not in ["zip", "ziptotal"]:
+    if scope_selected not in ["zip", "zip-totals"]:
         return years
     if 'all' not in scopes:
         return years
