@@ -6,8 +6,7 @@
 
 ## US Bureau of Labor Statistics (BLS)
 
-US EPA's USEEIO and Flowsa
-(BEA, Energy, Water, more)
+US EPA and BEA (Energy, water, land, more)
 [BEA Global Value Chains](https://www.bea.gov/data/special-topics/global-value-chains)
 
 

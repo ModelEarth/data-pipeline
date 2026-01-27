@@ -389,6 +389,15 @@ def build_zip_df(data, naics_field):
     df = df.rename({'ZIPCODE': 'Zip', naics_field: 'Naics', 'ESTAB': 'Establishments', 'EMPSZES': 'Employees', 'PAYANN': 'Payroll'}, axis=1)
     return df[['Zip', 'Naics', 'Establishments', 'Employees', 'Payroll']]
 
+def normalize_naics_range_codes(df):
+    df = df.copy()
+    df['Naics'] = df['Naics'].replace({
+        '31-33': '31',
+        '44-45': '44',
+        '48-49': '48'
+    })
+    return df
+
 def is_retryable_error(error):
     if isinstance(error, requests.exceptions.RequestException):
         return True
@@ -752,6 +761,8 @@ def run_scope(year, scope_selected, effective_years):
             if zip_use_indlevel:
                 data, naics_field = fetch_zip_data(year, zip_dataset, args.api_key, use_indlevel=True, ind_level=level)
                 level_df = build_zip_df(data, naics_field)
+                if scope_selected == "zip" and level == "2":
+                    level_df = normalize_naics_range_codes(level_df)
             else:
                 db_path = os.path.join(output_path, f'zip-pre2017-{year}-naics{level}.duckdb')
                 failed_log_path = os.path.join(output_path, f'zip-pre2017-failed-{year}-naics{level}.csv')

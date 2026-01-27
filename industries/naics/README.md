@@ -2,6 +2,8 @@
 
 # Annual NAICS Pull
 
+ISSUE: 2017 & 2019 zip are using ranges for NAICS. Try using Pre-2017.
+
 ### County and Zip Business Patterns (CBP)<br>Zip Business Patterns (ZBP) - Pre-2019
 
   - Pre‑2017 requires NAICS-specific pulls (using DuckDB batching) because INDLEVEL (naics 2 to 6) was not available yet.
@@ -105,6 +107,14 @@ US - naics[2,4,6] - <scope> - year
 
 We'll need new annual US files. Previous:
 [US-naics6-country-2020.csv](/community-data/industries/naics/US/country/US-naics6-country-2020.csv)
+
+**NAICS Level 2 Range Legend (ZIP scope)**
+- 31 Manufacturing (31-33)
+- 44 Retail Trade (44-45)
+- 48 Transportation and Warehousing (48-49)
+- 92 Public Administration (Not available for naics 2 level zip codes)
+
+For ZIP scope NAICS level 2 outputs, range codes are saved as the starting code (31-33 -> 31, 44-45 -> 44, 48-49 -> 48).
 
 Examples:<!-- 
 With Fips (5-digit state and county) 
