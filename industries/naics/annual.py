@@ -543,11 +543,20 @@ def ensure_duckdb_zip_tables(conn, mapping_path):
     conn.execute("CREATE TABLE IF NOT EXISTS loaded_codes (code TEXT PRIMARY KEY)")
     ensure_zip_state_temp(conn, mapping_path)
 
-def export_zip_detail_duckdb(conn, output_path, level, year, scope_name, mapping_path=None):
+def export_zip_detail_duckdb(conn, output_path, level, year, scope_name, mapping_path=None, normalize_ranges=False):
     mapping_path = mapping_path or get_zip_state_mapping_path()
     ensure_zip_state_temp(conn, mapping_path)
     mapping_path_sql = mapping_path.replace("'", "''")
     states = [row[0] for row in conn.execute("SELECT DISTINCT State FROM zip_state WHERE State IS NOT NULL AND State <> '' ORDER BY State").fetchall()]
+    naics_expr = "zr.Naics"
+    if normalize_ranges:
+        naics_expr = (
+            "CASE "
+            "WHEN zr.Naics = '31-33' THEN '31' "
+            "WHEN zr.Naics = '44-45' THEN '44' "
+            "WHEN zr.Naics = '48-49' THEN '48' "
+            "ELSE zr.Naics END"
+        )
     total_size = 0
     total_rows = 0
     for state in states:
@@ -558,7 +567,7 @@ def export_zip_detail_duckdb(conn, output_path, level, year, scope_name, mapping
         output_sql = output_filename.replace("'", "''")
         conn.execute(f"""
             COPY (
-                SELECT zr.Zip, zr.Naics, zr.Establishments, zr.Employees, zr.Payroll
+                SELECT zr.Zip, {naics_expr} AS Naics, zr.Establishments, zr.Employees, zr.Payroll
                 FROM zip_rows zr
                 JOIN (
                     SELECT lpad(zip, 5, '0') AS Zip, state AS State
@@ -602,7 +611,7 @@ def export_zip_detail_duckdb(conn, output_path, level, year, scope_name, mapping
     not_sql = not_filename.replace("'", "''")
     conn.execute(f"""
         COPY (
-            SELECT zr.Zip, zr.Naics, zr.Establishments, zr.Employees, zr.Payroll
+            SELECT zr.Zip, {naics_expr} AS Naics, zr.Establishments, zr.Employees, zr.Payroll
             FROM zip_rows zr
             LEFT JOIN (
                 SELECT lpad(zip, 5, '0') AS Zip, state AS State
@@ -795,7 +804,16 @@ def run_scope(year, scope_selected, effective_years):
                         conn.close()
                         continue
                     if scope_selected == "zip":
-                        result = export_zip_detail_duckdb(conn, output_path, level, year, scope_selected, mapping_path=get_zip_state_mapping_path())
+                        normalize_ranges = zip_dataset == "zbp" and year < 2017 and level == "2"
+                        result = export_zip_detail_duckdb(
+                            conn,
+                            output_path,
+                            level,
+                            year,
+                            scope_selected,
+                            mapping_path=get_zip_state_mapping_path(),
+                            normalize_ranges=normalize_ranges
+                        )
                     else:
                         result = export_zip_total_duckdb(conn, output_path, level, year, scope_selected)
                     conn.close()
@@ -871,8 +889,17 @@ def run_scope(year, scope_selected, effective_years):
                 write_failed_codes(failed_log_path, failed_by_code)
                 if failed_by_code:
                     print(f"  Failed NAICS codes logged to {os.path.basename(failed_log_path)}. Retry with --retry-failed.")
-                if scope_selected == "zip":
-                    result = export_zip_detail_duckdb(conn, output_path, level, year, scope_selected, mapping_path=get_zip_state_mapping_path())
+                    if scope_selected == "zip":
+                        normalize_ranges = zip_dataset == "zbp" and year < 2017 and level == "2"
+                        result = export_zip_detail_duckdb(
+                            conn,
+                            output_path,
+                            level,
+                            year,
+                            scope_selected,
+                            mapping_path=get_zip_state_mapping_path(),
+                            normalize_ranges=normalize_ranges
+                        )
                 else:
                     result = export_zip_total_duckdb(conn, output_path, level, year, scope_selected)
                 conn.close()
