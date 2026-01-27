@@ -2,8 +2,6 @@
 
 # Annual NAICS Pull
 
-ISSUE: 2017 & 2019 zip are using ranges for NAICS. Try using Pre-2017.
-
 ### County and Zip Business Patterns (CBP)<br>Zip Business Patterns (ZBP) - Pre-2019
 
   - Pre‑2017 requires NAICS-specific pulls (using DuckDB batching) because INDLEVEL (naics 2 to 6) was not available yet.
