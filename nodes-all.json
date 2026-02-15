@@ -1,0 +1,607 @@
+{
+  "nodes": [
+    {
+      "id": "trigger",
+      "name": "Start Pipeline",
+      "type": "n8n-nodes-base.manualTrigger",
+      "position": [
+        100,
+        300
+      ],
+      "parameters": {},
+      "typeVersion": 1
+    },
+    {
+      "id": "eco_001",
+      "name": "Economic Data Fetcher",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        300,
+        100
+      ],
+      "parameters": {
+        "command": "python JobsD+q-2csv.py",
+        "workingDirectory": "research/economy"
+      },
+      "typeVersion": 1,
+      "notes": "Fetches economic data (Jobs Output Commodities) from USEEIO API for all US states. Output: states/commodities/2020/. Size: 207M. Dependencies: numpy,pandas,requests,json. Processing time: medium"
+    },
+    {
+      "id": "zip_001",
+      "name": "Zipcode Metrics Generator",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        500,
+        150
+      ],
+      "parameters": {
+        "command": "python zipcodes.py",
+        "workingDirectory": "us/zipcodes"
+      },
+      "typeVersion": 1,
+      "notes": "Generates zipcode metrics aggregated by industry level from Census ZBP API. Output: us/zipcodes/. Size: 24K. Rate limited: yes. Parallel safe: yes"
+    },
+    {
+      "id": "zip_002",
+      "name": "Zipcode Range Processor",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        700,
+        200
+      ],
+      "parameters": {
+        "command": "python split_zip_data.py",
+        "workingDirectory": "us/zipcodes"
+      },
+      "typeVersion": 1,
+      "notes": "Retrieves NAICS data for zipcode ranges and creates hierarchical folder structure. Output: us/zipcodes/naics/. Size: 24K. Processing time: slow. Rate limited: yes"
+    },
+    {
+      "id": "zip_003",
+      "name": "Single Zipcode Processor",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        900,
+        250
+      ],
+      "parameters": {
+        "command": "single_zipcode(\"zipcode\", level)",
+        "workingDirectory": "us/zipcodes"
+      },
+      "typeVersion": 1,
+      "notes": "Generates data for a single zipcode with hierarchical directory structure. Output: zipcode directories. Size: 24K. Processing time: fast. Parallel safe: yes"
+    },
+    {
+      "id": "naics_001",
+      "name": "NAICS Timeline Aggregator",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        300,
+        350
+      ],
+      "parameters": {
+        "command": "python naics-timelines.py",
+        "workingDirectory": "timelines/prep/industries"
+      },
+      "typeVersion": 1,
+      "notes": "Aggregates NAICS data across years (2017-2020) to create timeline datasets. Output: ../../../../community-timelines/industries/naics4/US/states/. Size: 20K. Parallel safe: yes"
+    },
+    {
+      "id": "prep_001",
+      "name": "ZCTA Data Automator",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        500,
+        400
+      ],
+      "parameters": {
+        "command": "python automate.py zcta.SQL.txt",
+        "workingDirectory": "timelines/prep/all"
+      },
+      "typeVersion": 1,
+      "notes": "Generates SQL scripts for different years and processes ZCTA data (2012-2017). Output: output/{year}/. Size: 1.0G. Processing time: slow. Not parallel safe"
+    },
+    {
+      "id": "prep_002",
+      "name": "Zip Folder Structure Creator (2-level)",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        700,
+        450
+      ],
+      "parameters": {
+        "command": "python zipgraph_2folders.py ../zipcodes/zcta/zip_to_zcta_2018.csv ../../../community-forecasting/data/zip/",
+        "workingDirectory": "timelines/prep/all"
+      },
+      "typeVersion": 1,
+      "notes": "Creates zip code folder structure with metadata files using CSV crosswalk. Output: zip folder hierarchy. Size: 1.0G. Processing time: medium. Parallel safe: yes"
+    },
+    {
+      "id": "prep_003",
+      "name": "Zip Folder Structure Creator (5-level)",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        900,
+        500
+      ],
+      "parameters": {
+        "command": "python zipgraph.py ZIPCodetoZCTACrosswalk2022UDS.xlsx ../../zip/",
+        "workingDirectory": "timelines/prep/all"
+      },
+      "typeVersion": 1,
+      "notes": "Creates zip code folder structure using Excel crosswalk with 5-level hierarchy. Output: zip folder hierarchy. Size: 1.0G. Processing time: medium. Parallel safe: yes"
+    },
+    {
+      "id": "ml_001",
+      "name": "Random Forest Automator",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        300,
+        600
+      ],
+      "parameters": {
+        "command": "python automateRF.py \"../input\"",
+        "workingDirectory": "timelines/prep/all/python"
+      },
+      "typeVersion": 1,
+      "notes": "Automates random forest analysis across multiple files for poverty prediction. Output: output/. Size: 375M. Processing time: slow. Not parallel safe"
+    },
+    {
+      "id": "ml_002",
+      "name": "Individual File Processor",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        500,
+        650
+      ],
+      "parameters": {
+        "command": "python runOneFile.py",
+        "workingDirectory": "timelines/prep/all/python"
+      },
+      "typeVersion": 1,
+      "notes": "Individual file processor for machine learning pipeline. Output: output/. Size: 375M. Processing time: fast. Parallel safe: yes"
+    },
+    {
+      "id": "ml_003",
+      "name": "Poverty Predictor",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        700,
+        700
+      ],
+      "parameters": {
+        "command": "python poverty.py",
+        "workingDirectory": "timelines/prep/all/python"
+      },
+      "typeVersion": 1,
+      "notes": "Machine learning analysis for poverty prediction using multiple models. Output: output/. Size: 375M. Processing time: medium. Parallel safe: yes"
+    },
+    {
+      "id": "ml_004",
+      "name": "Advanced Poverty Analysis",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        900,
+        750
+      ],
+      "parameters": {
+        "command": "python automate.Hpy.py",
+        "workingDirectory": "timelines/prep/all/python"
+      },
+      "typeVersion": 1,
+      "notes": "Advanced poverty analysis with subprocess automation. Output: output/. Size: 375M. Processing time: slow. Not parallel safe"
+    },
+    {
+      "id": "pov_001",
+      "name": "ACS Poverty Data Cleaner",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        1100,
+        100
+      ],
+      "parameters": {
+        "command": "python clean_data_script.py",
+        "workingDirectory": "timelines/prep/all/input/poverty/python"
+      },
+      "typeVersion": 1,
+      "notes": "Cleans American Community Survey poverty data for years 2012-2017. Output: ../output/. Size: 72K. Processing time: medium. Parallel safe: yes"
+    },
+    {
+      "id": "reg_001",
+      "name": "Time Series Data Cleaner",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        1300,
+        150
+      ],
+      "parameters": {
+        "command": "python tscleanH.py",
+        "workingDirectory": "timelines/prep/regression"
+      },
+      "typeVersion": 1,
+      "notes": "Time series data cleaning and combination with projection capability. Output: data/. Size: 79M. Processing time: medium. Parallel safe: yes"
+    },
+    {
+      "id": "reg_002",
+      "name": "Zip Merger",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        1500,
+        200
+      ],
+      "parameters": {
+        "command": "python mergezip.py <zip_to_zcta_file> <output_dir> <combo_file>",
+        "workingDirectory": "timelines/prep/regression"
+      },
+      "typeVersion": 1,
+      "notes": "Merges ZCTA data with zip code mappings for geographic integration. Output: hierarchical zip structure. Size: 79M. Processing time: medium. Not parallel safe"
+    },
+    {
+      "id": "reg_003",
+      "name": "ML Regressor",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        1700,
+        250
+      ],
+      "parameters": {
+        "command": "python regressor.py",
+        "workingDirectory": "timelines/prep/regression"
+      },
+      "typeVersion": 1,
+      "notes": "Machine learning pipeline for time series forecasting using LassoLarsCV. Output: output/. Size: 79M. Processing time: slow. Parallel safe: yes"
+    },
+    {
+      "id": "train_001",
+      "name": "ML Training Batch Processor",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        1100,
+        400
+      ],
+      "parameters": {
+        "command": "python run.py",
+        "workingDirectory": "timelines/training/naics/python"
+      },
+      "typeVersion": 1,
+      "notes": "Automated batch processing for ML data generation across all US states (2017-2022). Output: output/NAICS{level}/{year}/. Size: 76K. Processing time: very_slow. Rate limited: yes. Not parallel safe"
+    },
+    {
+      "id": "train_002",
+      "name": "ML Data Generator",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        1300,
+        450
+      ],
+      "parameters": {
+        "command": "python ML_data_generation.py <year> <state>",
+        "workingDirectory": "timelines/training/naics/python"
+      },
+      "typeVersion": 1,
+      "notes": "Generates comprehensive county-level training datasets with geographic and industry data. Output: output/NAICS{level}/{year}/. Size: 76K. Processing time: slow. API keys required: census_api. Rate limited: yes. Parallel safe: yes"
+    },
+    {
+      "id": "tab_001",
+      "name": "CSV Timeline Merger",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        1500,
+        500
+      ],
+      "parameters": {
+        "command": "python csv_merge.py",
+        "workingDirectory": "timelines/tabulator"
+      },
+      "typeVersion": 1,
+      "notes": "Timeline data aggregation for NAICS industries. Output: output/. Size: 36K. Processing time: fast. Parallel safe: yes"
+    },
+    {
+      "id": "trade_001",
+      "name": "Comtrade Data Fetcher (Azure)",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        1100,
+        650
+      ],
+      "parameters": {
+        "command": "python comtrade-script-azure.py",
+        "workingDirectory": "international/comtrade"
+      },
+      "typeVersion": 1,
+      "notes": "Fetches trade data from UN Comtrade API using Azure authentication. Output: output/. Size: 15M. Processing time: medium. API keys required: comtrade_azure. Rate limited: yes. Parallel safe: yes"
+    },
+    {
+      "id": "trade_002",
+      "name": "Movie Data Collector",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        1300,
+        700
+      ],
+      "parameters": {
+        "command": "python movie-script.py [API_KEY]",
+        "workingDirectory": "international/comtrade"
+      },
+      "typeVersion": 1,
+      "notes": "Movie data collection from TheMovieDB API with similarity analysis. Output: ./. Size: 15M. Processing time: medium. API keys required: themoviedb. Rate limited: yes. Parallel safe: yes"
+    },
+    {
+      "id": "trade_003",
+      "name": "Comtrade Data Fetcher (Basic)",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        1500,
+        750
+      ],
+      "parameters": {
+        "command": "python comtrade-script.py nokey",
+        "workingDirectory": "international/comtrade"
+      },
+      "typeVersion": 1,
+      "notes": "UN Comtrade data fetching and CSV generation without API key. Output: ./. Size: 15M. Processing time: fast. Parallel safe: yes"
+    },
+    {
+      "id": "prod_001",
+      "name": "EPD Data Fetcher",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        1700,
+        100
+      ],
+      "parameters": {
+        "command": "python product-footprints.py",
+        "workingDirectory": "../products/pull"
+      },
+      "typeVersion": 1,
+      "notes": "Fetches Environmental Product Declarations (EPDs) from BuildingTransparency.org API for all US states and countries. Output: ../../../products-data/{COUNTRY}/{CATEGORY}/. Size: ~500M. Processing time: very_slow (~5+ hours). API keys required: buildingtransparency. Rate limited: yes. Parallel safe: no"
+    },
+    {
+      "id": "prod_002",
+      "name": "EPD Emissions Analyzer",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        1900,
+        150
+      ],
+      "parameters": {
+        "command": "python analyze_emissions_data.py",
+        "workingDirectory": "../products/pull"
+      },
+      "typeVersion": 1,
+      "notes": "Analyzes all downloaded EPD YAML files to document emissions-related fields and impact data availability. Output: console report. Size: N/A. Processing time: medium (~29 min for 184k products). Parallel safe: yes"
+    }
+  ],
+  "connections": {
+    "Start Pipeline": {
+      "main": [
+        [
+          {
+            "node": "Economic Data Fetcher",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "ACS Poverty Data Cleaner",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Economic Data Fetcher": {
+      "main": [
+        [
+          {
+            "node": "NAICS Timeline Aggregator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zipcode Metrics Generator": {
+      "main": [
+        [
+          {
+            "node": "Zipcode Range Processor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zipcode Range Processor": {
+      "main": [
+        [
+          {
+            "node": "Single Zipcode Processor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NAICS Timeline Aggregator": {
+      "main": [
+        [
+          {
+            "node": "Zipcode Metrics Generator",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "ZCTA Data Automator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ZCTA Data Automator": {
+      "main": [
+        [
+          {
+            "node": "Zip Folder Structure Creator (2-level)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zip Folder Structure Creator (2-level)": {
+      "main": [
+        [
+          {
+            "node": "Zip Folder Structure Creator (5-level)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zip Folder Structure Creator (5-level)": {
+      "main": [
+        [
+          {
+            "node": "Random Forest Automator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Random Forest Automator": {
+      "main": [
+        [
+          {
+            "node": "Individual File Processor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Individual File Processor": {
+      "main": [
+        [
+          {
+            "node": "Poverty Predictor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Poverty Predictor": {
+      "main": [
+        [
+          {
+            "node": "Advanced Poverty Analysis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ACS Poverty Data Cleaner": {
+      "main": [
+        [
+          {
+            "node": "Time Series Data Cleaner",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Time Series Data Cleaner": {
+      "main": [
+        [
+          {
+            "node": "Zip Merger",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zip Merger": {
+      "main": [
+        [
+          {
+            "node": "ML Regressor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ML Regressor": {
+      "main": [
+        [
+          {
+            "node": "ML Training Batch Processor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ML Training Batch Processor": {
+      "main": [
+        [
+          {
+            "node": "ML Data Generator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ML Data Generator": {
+      "main": [
+        [
+          {
+            "node": "CSV Timeline Merger",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CSV Timeline Merger": {
+      "main": [
+        [
+          {
+            "node": "Comtrade Data Fetcher (Azure)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Comtrade Data Fetcher (Azure)": {
+      "main": [
+        [
+          {
+            "node": "Movie Data Collector",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Movie Data Collector": {
+      "main": [
+        [
+          {
+            "node": "Comtrade Data Fetcher (Basic)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

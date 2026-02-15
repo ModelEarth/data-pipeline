@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Convert Python to JQuery</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+We asked ChatGPT to convert csv_merge.py into JQuery:<br><br>
+
+This code demonstrates how you might structure your JavaScript code using jQuery to perform similar operations to your Python code. Note that you would need to replace "base_directory_path", the success callback of the AJAX request, and adjust any assumptions made regarding the structure of your CSV files and the data within them.<br><br>
+
+https://chat.openai.com/share/7d2e1245-a77f-428e-9d80-513e0724cb1d
+
+<script>
+$(document).ready(function(){
+    var base_dir = "base_directory_path";
+    var inputs_dir = base_dir + "/inputs";
+    var outputs_dir = base_dir + "/outputs";
+
+    var all_files = ["file1-2000.csv", "file2-2001.csv", "file3-2002.csv"]; // Assuming you have list of files
+    var csv_files = all_files.filter(function(file) {
+        return file.endsWith('.csv');
+    });
+    
+    var years = csv_files.map(function(file) {
+        return parseInt(file.split('-').pop().split('.')[0]);
+    });
+    
+    var year2csv = {};
+    years.forEach(function(year, index) {
+        year2csv[year] = csv_files[index];
+    });
+    
+    console.log(year2csv);
+
+    var cells = ["Establishments", "Employees", "Payroll"];
+    var prefix = "US-AK-census-naics4-";
+
+    function outputCellCsv(year2csv, cell, prefix, inputs_dir, outputs_dir) {
+        var years = Object.keys(year2csv).sort();
+        var dfCell = { "Year": years };
+        var year2output = {};
+        var naicsTotal = new Set();
+        
+        years.forEach(function(year) {
+            var csvFile = year2csv[year];
+            $.ajax({
+                url: inputs_dir + "/" + csvFile,
+                dataType: 'text',
+                success: function(data) {
+                    var lines = data.split('\n');
+                    var naicsValues = new Set();
+                    lines.forEach(function(line) {
+                        var values = line.split(',');
+                        var naics = values[0]; // Assuming first column is Naics
+                        naicsValues.add(naics);
+                        year2output[year] = year2output[year] || {};
+                        year2output[year][naics] = values[1]; // Assuming second column is the cell value
+                    });
+                    naicsTotal = new Set([...naicsTotal, ...naicsValues]);
+                }
+            });
+        });
+        
+        naicsTotal = Array.from(naicsTotal).sort();
+        naicsTotal.forEach(function(naics) {
+            dfCell["N" + naics] = years.map(function(year) {
+                return year2output[year] ? year2output[year][naics] || null : null;
+            });
+        });
+
+        // Here you can process dfCell as you want
+        console.log(dfCell);
+    }
+
+    cells.forEach(function(cell) {
+        outputCellCsv(year2csv, cell, prefix, inputs_dir, outputs_dir);
+    });
+});
+</script>
+
+</body>
+</html>

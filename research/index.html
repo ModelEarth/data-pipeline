@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html;">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+
+<title>AI Research for Community Forecasting</title>
+<link type="text/css" rel="stylesheet" href="/localsite/css/base.css" id="/localsite/css/base.css" />
+
+<script type="text/javascript" src="/localsite/js/localsite.js?showheader=true"></script>
+</head>
+<style>
+#replicateDiv img {
+	displayX: none;
+}
+</style>
+<body>
+
+<img src="img/OR-Naics-7225-Biking-under-a-tree-canopy_xwide.jpg" style="width:100%">
+
+<div class="content contentpadding">
+
+	<a href="/projects/">Active Projects</a>
+	<h1>Storyboard Generator</h1>
+	<div id="readmeDiv"></div>
+	<div id="replicateDiv"></div>
+
+	<hr>
+	Github: <a href="https://github.com/modelearth/requests/">modelearth/requests</a> with prior development by <a href="https://github.com/mannurkishorreddy">mannurkishorreddy</a> at <a href="https://github.com/mannurkishorreddy/streamlit-replicate-img-app">streamlit-replicate-img-app</a>
+</div>
+
+<script>
+	loadMarkdown("README.md", "readmeDiv", "_parent");
+	loadMarkdown("/requests/README.md", "replicateDiv", "_parent");
+</script>
+
+</body>
+</html>

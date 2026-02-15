@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Timeline from Data Commons</title>
+<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link type="text/css" href="../../../localsite/css/base.css" rel="stylesheet" id="/localsite/css/base.css" />
+<script type="text/javascript" src="../../../localsite/js/localsite.js?showheader=true&showsearch=true"></script>
+</head>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="datacommonsJack.js" type="text/javascript"></script>
+
+<body>
+    <div class="content contentpadding">
+
+        <a href="../">Timelines</a><br>
+    
+        <h2>Country Data</h2>
+        <p>
+            Developers Note: Chart is only displayed when url has a hashtag at the end: #country=IN,CN,US <br>
+            To change displayed countries, change the URL hashtag.
+        </p>
+        <canvas id="countryChart"></canvas>
+
+        <h2>State Data</h2>
+        <canvas id="stateChart"></canvas>
+
+        <h2>County Data</h2>
+        <br>
+        <select id="entityId">
+            <option value="geoId/01" selected>Alabama</option>
+            <option value="geoId/02">Alaska</option>
+            <option value="geoId/04">Arizona</option>
+            <option value="geoId/05">Arkansas</option>
+            <option value="geoId/06">California</option>
+            <option value="geoId/08">Colorado</option>
+            <option value="geoId/09">Connecticut</option>
+            <option value="geoId/10">Delaware</option>
+            <option value="geoId/11">District of Columbia</option>
+            <option value="geoId/12">Florida</option>
+            <option value="geoId/13">Georgia</option>
+            <option value="geoId/15">Hawaii</option>
+            <option value="geoId/16">Idaho</option>
+            <option value="geoId/17">Illinois</option>
+            <option value="geoId/18">Indiana</option>
+            <option value="geoId/19">Iowa</option>
+            <option value="geoId/20">Kansas</option>
+            <option value="geoId/21">Kentucky</option>
+            <option value="geoId/22">Louisiana</option>
+            <option value="geoId/23">Maine</option>
+            <option value="geoId/24">Maryland</option>
+            <option value="geoId/25">Massachusetts</option>
+            <option value="geoId/26">Michigan</option>
+            <option value="geoId/27">Minnesota</option>
+            <option value="geoId/28">Mississippi</option>
+            <option value="geoId/29">Missouri</option>
+            <option value="geoId/30">Montana</option>
+            <option value="geoId/31">Nebraska</option>
+            <option value="geoId/32">Nevada</option>
+            <option value="geoId/33">New Hampshire</option>
+            <option value="geoId/34">New Jersey</option>
+            <option value="geoId/35">New Mexico</option>
+            <option value="geoId/36">New York</option>
+            <option value="geoId/37">North Carolina</option>
+            <option value="geoId/38">North Dakota</option>
+            <option value="geoId/39">Ohio</option>
+            <option value="geoId/40">Oklahoma</option>
+            <option value="geoId/41">Oregon</option>
+            <option value="geoId/42">Pennsylvania</option>
+            <option value="geoId/44">Rhode Island</option>
+            <option value="geoId/45">South Carolina</option>
+            <option value="geoId/46">South Dakota</option>
+            <option value="geoId/47">Tennessee</option>
+            <option value="geoId/48">Texas</option>
+            <option value="geoId/49">Utah</option>
+            <option value="geoId/50">Vermont</option>
+            <option value="geoId/51">Virginia</option>
+            <option value="geoId/53">Washington</option>
+            <option value="geoId/54">West Virginia</option>
+            <option value="geoId/55">Wisconsin</option>
+            <option value="geoId/56">Wyoming</option>
+            <option value="geoId/72">Puerto Rico</option>
+        </select>
+        <select id="chartVariable">
+            <option value="Count_Person" selected>County Populations</option>
+            <option value="LandCoverFraction_Forest">Land Covered by Forests</option>
+            <option value="Count_Farm">Number of Farms</option>
+        </select>
+        <br>
+        <form name="countyShow">
+            <label> <input value="showAll" type="radio" name="countyShow" />All Counties </label>
+            <label> <input value="showTop5" type="radio" name="countyShow" checked />Top 5 </label>
+            <label> <input value="showBottom5" type="radio" name="countyShow" />Bottom 5 </label>
+        </form>
+        <canvas id="countyChart"></canvas>
+        <div id="earthscape1"></div>
+        <br>
+        
+    
+        <div id="readmeDiv"></div>
+    </div>
+    <!-- Needs work:
+	<a href="https://chatgpt.com/share/e0e882e9-9a14-4677-abf5-399e509db10d">Source: ChatGPT</a><br><br>
+	<a href="/feed/view/#feed=LandCoverFraction_Forest">Our working feed request</a> -->
+</body>
+

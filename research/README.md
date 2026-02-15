@@ -1,0 +1,1 @@
+For our [requests repo image gen](/requests) you can get a free [Replicate API key](https://replicate.com/docs/reference/http#authentication). Login with your GitHub account.

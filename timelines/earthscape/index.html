@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Timeline Data Prep</title>
+<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<link type="text/css" href="../../../localsite/css/base.css" rel="stylesheet" id="/localsite/css/base.css" />
+
+<!-- Not needed -->
+<script type="text/javascript" src="/localsite/js/d3.v5.min.js" id="/localsite/js/d3.v5.min.js"></script>
+
+<!-- Temp: until checking for library to prevent ReferenceError: Tabulator is not defined-->
+<script type="text/javascript" src="https://unpkg.com/tabulator-tables/dist/js/tabulator.min.js" id="/localsite/js/tabulator.min.js"></script>
+<link type="text/css" rel="stylesheet" href="https://unpkg.com/tabulator-tables/dist/css/tabulator.min.css" id="/localsite/css/tabulator.min.css">
+<link type="text/css" rel="stylesheet" href="/localsite/css/base-tabulator.css" id="/localsite/css/base-tabulator.css">
+
+<link type="text/css" href="../../../localsite/js/earthscape.js" rel="stylesheet" id="/localsite/js/earthscape.js" />
+
+<script type="text/javascript" src="../../../localsite/js/localsite.js?showheader=true&showsearch=true"></script>
+
+<script>
+  //loadMarkdown("README.md", "readmeDiv", "_parent");
+</script>
+
+<style>
+hr {
+	border: 0px solid #ddd;
+	border-top: 1px solid #ddd;
+}
+</style>
+</head>
+
+<body>
+
+<div class="content contentpadding">
+
+	<a href="../">Timelines</a><br>
+
+	The chart below uses <a href="https://www.chartjs.org">chartjs.org</a><br>
+	We also use <a href="https://echarts.apache.org">Apache eCharts</a> and <a href="https://d3js.org">D3</a>
+
+	<h2>First 20 columns - Maine Establishments</h2>
+	<a href="" id="viewDataLink">View Data</a>
+	<canvas id="naics4Timeline"></canvas>
+	<div id="earthscape1"></div>
+	<br>
+
+	<h2>Basic Timeline</h2>
+	<canvas id="timelineChart"></canvas>
+	
+
+	<div id="readmeDiv"></div>
+</div>
+
+<script>
+// Data
+let csvYearData = [
+    {Year:"2017", Naics12:"12345", Naics23:"555"}, 
+    {Year:"2018", Naics12:"8787", Naics23:"777"},
+    {Year:"2019", Naics12:"3343", Naics23:"888"},
+    {Year:"2020", Naics12:"4343", Naics23:"465"},
+    {Year:"2021", Naics12:"5343", Naics23:"3322"},
+    {Year:"2022", Naics12:"6343", Naics23:"1010"},
+    {Year:"2023", Naics12:"7343", Naics23:"3247"},
+];
+
+function timescapeChart(elementID, csvYearData) {
+	// Extracting keys dynamically - Adding slice limits to the first 20 keys.
+	let keys = Object.keys(csvYearData[0]).filter(key => key !== 'Year').slice(0, 20); 
+
+	let datasets = keys.map(key => ({
+	    label: key,
+	    data: csvYearData.map(entry => entry[key]),
+	    borderColor: 'rgb(' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ', ' + Math.floor(Math.random() * 256) + ')',
+	    backgroundColor: 'rgba(0, 0, 0, 0)', // Transparent background
+	}));
+
+	// Chart configuration
+	let ctx = document.getElementById(elementID).getContext('2d');
+	let timelineChart = new Chart(ctx, {
+	    type: 'line',
+	    data: {
+	        labels: csvYearData.map(entry => entry.Year),
+	        datasets: datasets
+	    },
+	    options: {
+	        scales: {
+	            yAxes: [{
+	                ticks: {
+	                    beginAtZero: true
+	                }
+	            }]
+	        }
+	    }
+	});
+}
+timescapeChart("timelineChart", csvYearData);
+
+function loadTimeScape(my) {
+    loadScript(theroot + 'js/d3.v5.min.js', function (results) {
+        waitForVariable('customD3loaded', function () {
+            d3.csv(my.dataset).then(function (data) {
+                console.log("File loaded " + my.dataset);
+                $(document).ready(function () {
+                		timescapeChart(my.timeElementID, data);
+                    //earthscape_TableDisplay(my, data);
+                });
+            });
+        });
+    });
+}
+let my = {};
+let timelineDataroot = "https://model.earth/community-timelines/industries/naics4/US/states/";
+my.dataset = timelineDataroot + "ME/US-ME-census-naics4-establishments.csv";
+document.querySelector("#viewDataLink").setAttribute("href", my.dataset);
+my.elementID = "earthscape1";
+my.timeElementID = "naics4Timeline";
+// my.chartType = "timeline"; // Or chord, sankey, graph
+loadTimeScape(my);
+
+// Bug, this would reload the data. But why is earthscape_TableDisplay not available?
+// And why is this not available?
+//loadEarthScape(my);
+
+</script>
+
+</body>
+</html>

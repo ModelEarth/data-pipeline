@@ -1,0 +1,17 @@
+REQUIRED: node_id, source_python
+NODE_ID: ''
+NODES_CSV: ../../nodes.csv
+SOURCE_PYTHON: ''
+READ_ALL_NODES: false
+INCLUDE_LOCAL_MODULES: false
+NAME: Add or Update a Node
+ADMIN_NOTE: admin.md
+TYPE: data_generator
+TIME_EST: ''
+RUN_PROCESS: true
+N8N_PARALLEL_SAFE: false
+RATE_LIMITED: true
+ORDER: 9999
+AUTO_COMMIT: false
+REQUIRES_INTERACTIVE: false
+FLASK_ENDPOINT: /api/nodes/run

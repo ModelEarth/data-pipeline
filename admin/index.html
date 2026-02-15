@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Data Pipeline Admin (JS)</title>
+<link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="../../localsite/css/base.css" id="/localsite/css/base.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
+<link rel="stylesheet" href="pipeline.css" />
+
+<script src="../../localsite/js/localsite.js?showheader=true&showsearch=false"></script>
+<script src="../../localsite/js/yaml.js"></script>
+</head>
+<body>
+<div class="content contentpadding pipeline-shell">
+  <section class="pipeline-grid">
+    <aside class="pipeline-panel" id="panelList">
+      <div class="panel-head">
+        <div class="panel-title">Admin</div>
+        <div class="panel-meta" id="nodeCount">Loading…</div>
+      </div>
+      <div class="panel-body">
+        <div class="pipeline-search">
+          <input id="nodeSearch" type="search" placeholder="Filter" aria-label="Filter nodes">
+        </div>
+        <div id="nodeList" class="pipeline-list"></div>
+      </div>
+    </aside>
+
+    <main class="pipeline-panel" id="panelDetail">
+      <div class="flask-banner is-hidden" id="flaskBanner">
+        <div class="flask-banner-content">
+          <span class="flask-banner-icon">⚠️</span>
+          <span class="flask-banner-text">
+            Flask Server is not running on port 5001 - <a href="../flask" style="color: inherit; text-decoration: underline;">Details</a>
+          </span>
+        </div>
+        <div class="flask-banner-actions">
+          <button class="btn btn-sm" id="flaskActivate" type="button">Activate Flask</button>
+          <button class="btn btn-sm" id="flaskRetry" type="button">Retry</button>
+        </div>
+      </div>
+      <div class="panel-head">
+        <div>
+          <div class="panel-title" id="detailTitle">Select a node</div>
+          <div class="panel-meta" id="detailMeta"></div>
+        </div>
+        <div class="panel-actions">
+          <button class="btn btn-primary" id="openNodeFolder">README</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <section class="detail-section" id="detailSummary"></section>
+        <section class="detail-section is-hidden" id="overviewSection">
+          <div class="section-title">Overview</div>
+          <div id="overviewConfig"></div>
+        </section>
+        <section class="detail-section is-hidden" id="rawConfigSection">
+          <div class="section-title settings-title-row">CONFIG.YAML</div>
+          <textarea id="rawConfigYaml" class="raw-config-text" wrap="off"></textarea>
+          <div class="textarea-resize-grip" data-target="rawConfigYaml" title="Resize"></div>
+          <div class="raw-config-actions">
+            <button class="btn btn-primary" id="saveRawConfig" type="button">Save Changes</button>
+            <span class="panel-meta" id="rawConfigSaveStatus"></span>
+          </div>
+        </section>
+        <section class="detail-section" id="detailConfig">
+          <div class="section-title-row settings-title-row">
+            <div class="section-title">Config Settings</div>
+            <a
+              id="configGithubLink"
+              class="section-icon-link is-hidden"
+              href="#"
+              title="View config.yaml on GitHub"
+              aria-label="View config.yaml on GitHub"
+              rel="noopener"
+            ><span class="material-icons-outlined" aria-hidden="true">visibility</span></a>
+          </div>
+          <div id="configForm"></div>
+        </section>
+        <section class="detail-section is-hidden" id="adminNoteSection">
+          <div class="section-title">Admin Notes</div>
+          <div class="card cardstyle">
+            <div id="adminDiv" class="panel-meta"></div>
+          </div>
+        </section>
+        <section class="detail-section">
+          <div class="command-head">
+            <div class="section-title">Python Command</div>
+            <button class="btn btn-small btn-sm" id="copyCommand">Copy</button>
+          </div>
+          <div class="command-row">
+            <textarea id="pythonCommand" class="command-text" rows="2"></textarea>
+          </div>
+          <div class="textarea-resize-grip" data-target="pythonCommand" title="Resize"></div>
+        </section>
+        <section class="detail-section">
+          <div class="section-title">Run Process</div>
+          <div class="run-row">
+            <button class="btn btn-primary btn-lg" id="runProcess" type="button">▶️ Run Process</button>
+            <span class="run-status" id="runStatus"></span>
+          </div>
+          <div class="run-banner is-hidden" id="flaskFallback">
+            <div class="run-banner-content">
+              <span class="run-banner-icon" aria-hidden="true">⚠</span>
+              <p class="run-banner-text" id="runBannerText">Flask server not available. Using Next.js API fallback.</p>
+            </div>
+            <a href="../../team/admin/server/" rel="noopener" class="run-banner-link">View setup instructions</a>
+          </div>
+          <div class="run-result is-hidden" id="runResult">
+            <div class="run-result-title">Execution Result:</div>
+            <pre class="run-result-text" id="runResultText"></pre>
+          </div>
+          <div class="run-footnote is-hidden" id="runFlaskReady">✓ Using Flask server (port 5001)</div>
+        </section>
+      </div>
+    </main>
+
+    <section class="pipeline-panel is-hidden" id="panelFlow">
+      <div class="panel-head">
+        <div class="panel-title">Pipeline Flowchart</div>
+        <div class="panel-meta">Generated from nodes.json</div>
+      </div>
+      <div class="panel-body">
+        <div id="flowchart" class="flowchart-stage"></div>
+      </div>
+    </section>
+
+    <div class="pipeline-actions">
+      <button class="btn" id="btnViewFlowchart" type="button">Flowchart</button>
+      <button class="btn" id="btnViewAdmin" type="button">Admin</button>
+      <button class="btn is-hidden" id="btnViewBoth" type="button">Both</button>
+    </div>
+  </section>
+</div>
+
+<div class="popup-overlay is-hidden" id="flaskActivatePopup">
+  <div class="popup-card">
+    <div class="popup-title">Activate Flask Server</div>
+    <p class="popup-text">Enter <code>start pipeline</code> in your Code CLI, or <a id="flaskRunCommands" href="../flask/" rel="noopener">run commands</a>.</p>
+    <div class="popup-actions">
+      <button class="btn btn-success" id="flaskPopupCopy" type="button">Copy</button>
+      <button class="btn" id="flaskPopupClose" type="button">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="popup-overlay is-hidden" id="metaInfoPopup">
+  <div class="popup-card">
+    <div class="popup-title-row">
+      <div class="popup-title">Metadata Source </div>
+      <button class="popup-close-circle" id="metaInfoPopupCloseIcon" type="button" aria-label="Close">×</button>
+    </div>
+    <p class="popup-text">These details about the python script resides in <a id="nodesCsvGithubLink" href="https://github.com/ModelEarth/data-pipeline/blob/main/nodes.csv" rel="noopener">nodes.csv</a>.<br><br>The input fields are from the <a id="configYamlGithubLink" href="#" rel="noopener">config.yaml</a> file in the python's GitHub folder: <a id="pythonFolderGithubLink" href="#" rel="noopener">Details path</a>.</p>
+  </div>
+</div>
+
+<script src="flowchart.js"></script>
+<script src="pipeline.js"></script>
+</body>
+</html>

@@ -1,0 +1,412 @@
+Commodity,Location,Commodities,Output,Employees,Jobs
+Owner-occupied housing,US,1276281000000,1.3 Trillion,264861,264.9 K
+Other real estate,US,918306501100,918.3 Billion,1024104,1 Million
+Hospitals,US,851835000000,851.8 Billion,5462296,5.5 Million
+"Gasoline, fuels, and by-products of petroleum refining",US,753987572800,754.0 Billion,71460,71.5 K
+State and local government other services,US,738204000000,738.2 Billion,3526599,3.5 Million
+State and local government educational services,US,718720000000,718.7 Billion,40472,40.5 K
+Federal general government (defense),US,650338000000,650.3 Billion,591387,591.4 K
+Scientific research and development,US,475778992500,475.8 Billion,1574413,1.6 Million
+Company and enterprise management,US,465620289000,465.6 Billion,1781464,1.8 Million
+Electricity,US,428823888700,428.8 Billion,475894,475.9 K
+Tenant-occupied housing,US,425960000000,426.0 Billion,95158,95.2 K
+"Insurance carriers, except direct life",US,425120812500,425.1 Billion,650963,651 K
+Physicians,US,415070000000,415.1 Billion,2155646,2.2 Million
+Monetary authorities and depository credit intermediation,US,399620940900,399.6 Billion,1625019,1.6 Million
+Federal general government (nondefense),US,348913000000,348.9 Billion,1930211,1.9 Million
+"Investment advice, portfolio management, and other financial advising services",US,330650994900,330.7 Billion,604899,604.9 K
+Telecommunications,US,328046936100,328.0 Billion,556134,556.1 K
+Advertising and public relations,US,322019909400,322.0 Billion,1019943,1 Million
+Legal services,US,306887887800,306.9 Billion,1121657,1.1 Million
+Limited-service restaurants,US,299570978100,299.6 Billion,4237192,4.2 Million
+Other nondurable goods merchant wholesalers,US,299159952900,299.2 Billion,970706,970.7 K
+Insurance agencies and brokerages,US,297286986500,297.3 Billion,888459,888.5 K
+Truck transport,US,291629903100,291.6 Billion,1274203,1.3 Million
+Unrefined oil and gas,US,289816998800,289.8 Billion,91707,91.7 K
+Nondepository credit intermediation and related activities,US,287342992800,287.3 Billion,952057,952.1 K
+"Architectural, engineering, and related services",US,286940836500,286.9 Billion,1368493,1.4 Million
+Full-service restaurants,US,281323893500,281.3 Billion,4717750,4.7 Million
+Employment services,US,246378673300,246.4 Billion,2456520,2.5 Million
+Other durable goods merchant wholesalers,US,234204850600,234.2 Billion,917305,917.3 K
+"Colleges, universities, junior colleges, and professional schools",US,220985000000,221.0 Billion,2494339,2.5 Million
+Custom computer programming,US,201871000000,201.9 Billion,1006087,1 Million
+Wireless telecommunications,US,199883915400,199.9 Billion,70715,70.7 K
+General merchandise stores,US,199112998800,199.1 Billion,2664876,2.7 Million
+Management consulting,US,194808773200,194.8 Billion,882469,882.5 K
+Air transport,US,193516861100,193.5 Billion,424422,424.4 K
+Professional and commercial equipment and supplies,US,189761937600,189.8 Billion,570947,570.9 K
+Food and beverage stores,US,189369000000,189.4 Billion,2730134,2.7 Million
+Vehicle repair,US,185772830500,185.8 Billion,1279480,1.3 Million
+Other retail,US,185173998500,185.2 Billion,2125741,2.1 Million
+Nonresidential building repair and maintanence,US,176174988900,176.2 Billion,957914,957.9 K
+Hotels and campgrounds,US,174913867700,174.9 Billion,1658290,1.7 Million
+"Pickup trucks, vans, and SUVs",US,174069995500,174.1 Billion,51207,51.2 K
+Other residential structures,US,168976000000,169.0 Billion,613014,613 K
+Nursing and community care facilities,US,168293000000,168.3 Billion,2475587,2.5 Million
+Petroleum and petroleum products,US,160716952000,160.7 Billion,118648,118.6 K
+"Accounting, tax preparation, bookkeeping, and payroll",US,159053889600,159.1 Billion,812486,812.5 K
+Nonstore retailers,US,158944997900,158.9 Billion,346766,346.8 K
+"Machinery, equipment, and supplies",US,158568822100,158.6 Billion,641437,641.4 K
+Lessors of nonfinancial intangible assets,US,156270898300,156.3 Billion,28002,28 K
+Securities and commodities brokerage and exchanges,US,154622991600,154.6 Billion,340216,340.2 K
+Vehicles and parts sales,US,153479992500,153.5 Billion,912614,912.6 K
+All other food and drinking places,US,149812992500,149.8 Billion,2212491,2.2 Million
+Software,US,148124998500,148.1 Billion,248920,248.9 K
+Household appliances and electrical and electronic goods,US,144293940900,144.3 Billion,254247,254.2 K
+Computer systems design,US,142202963100,142.2 Billion,671472,671.5 K
+Buildings and dwellings services,US,141776926200,141.8 Billion,1724314,1.7 Million
+Packaged meat (except poultry),US,140591000000,140.6 Billion,256756,256.8 K
+"Funds, trusts, and financial vehicles",US,139734000000,139.7 Billion,119686,119.7 K
+Drugs and druggists sundries,US,136216999400,136.2 Billion,147719,147.7 K
+Single-family homes,US,132995000000,133.0 Billion,701952,702 K
+Grocery and related product wholesalers,US,132799998200,132.8 Billion,604334,604.3 K
+Other basic organic chemicals,US,131252820300,131.3 Billion,55975,56 K
+Scenic and sightseeing transportation and support activities for transportation,US,127208815200,127.2 Billion,682360,682.4 K
+Other support activities for mining,US,126975000000,127.0 Billion,347441,347.4 K
+"Primary iron, steel, and ferroalloy products",US,126882872500,126.9 Billion,131428,131.4 K
+Clothing and clothing accessories stores,US,123458000000,123.5 Billion,1255656,1.3 Million
+"Highways, streets, and bridges",US,122037000000,122.0 Billion,471113,471.1 K
+"Pharmaceutical products (pills, powders, solutions, etc.)",US,120588000000,120.6 Billion,140544,140.5 K
+Movies and film,US,114729000000,114.7 Billion,358534,358.5 K
+Utilities buildings and infrastructure,US,113571000000,113.6 Billion,831686,831.7 K
+Warehousing,US,112115976000,112.1 Billion,882298,882.3 K
+Data processing and hosting,US,111379905200,111.4 Billion,228190,228.2 K
+Building material and garden equipment and supplies dealers,US,111296000000,111.3 Billion,1004733,1 Million
+Dentists,US,107155000000,107.2 Billion,893009,893 K
+Aircraft,US,104985000000,105.0 Billion,195109,195.1 K
+Petrochemicals,US,104345988000,104.3 Billion,28458,28.5 K
+Motor vehicle and motor vehicle parts and supplies,US,103483930400,103.5 Billion,275348,275.3 K
+Outpatient healthcare,US,102723000000,102.7 Billion,803706,803.7 K
+Vehicle rental and leasing,US,99077835300,99.1 Billion,315485,315.5 K
+Health and personal care stores,US,95749000000,95.7 Billion,974977,975 K
+Natural gas,US,94040982300,94.0 Billion,133304,133.3 K
+Other nonresidential structures,US,93707000000,93.7 Billion,458134,458.1 K
+"Fresh wheat, corn, rice, and other grains",US,91529000000,91.5 Billion,43141,43.1 K
+Gambling establishments (except casino hotels),US,90042000000,90.0 Billion,489357,489.4 K
+Home healthcare,US,87311000000,87.3 Billion,1361293,1.4 Million
+Plastics,US,86688000000,86.7 Billion,58235,58.2 K
+Other state and local government enterprises,US,85039977500,85.0 Billion,103836,103.8 K
+Commercial equipment rental,US,83536874600,83.5 Billion,213417,213.4 K
+Other plastic products,US,83477971500,83.5 Billion,283372,283.4 K
+Religious organizations,US,82389000000,82.4 Billion,186415,186.4 K
+Healthcare practitioners (except physicians and dentists),US,82184000000,82.2 Billion,732243,732.2 K
+Schools and vocational buildings,US,81565000000,81.6 Billion,376220,376.2 K
+"Commercial structures, including farm structures",US,80889000000,80.9 Billion,433115,433.1 K
+Individual and family services,US,80482000000,80.5 Billion,2162240,2.2 Million
+"Marketing research and all other miscellaneous professional, scientific, and technical services",US,80230975400,80.2 Billion,256242,256.2 K
+Direct life insurance carriers,US,79206000000,79.2 Billion,232488,232.5 K
+Rail transport,US,77918988000,77.9 Billion,650,650
+Cattle ranches and feedlots,US,77600000000,77.6 Billion,49001,49 K
+Couriers and messengers,US,74264953800,74.3 Billion,637459,637.5 K
+Residential building repair and maintanence,US,73167000000,73.2 Billion,567695,567.7 K
+Other educational services,US,72798000000,72.8 Billion,748868,748.9 K
+"Civic, social, professional, and similar organizations",US,72629993100,72.6 Billion,811737,811.7 K
+"Other computer related services, including facilities management",US,72152977800,72.2 Billion,257935,257.9 K
+Business support,US,72095847900,72.1 Billion,835528,835.5 K
+Drinking water and wastewater treatment,US,69567980800,69.6 Billion,251394,251.4 K
+Gasoline stations,US,68139000000,68.1 Billion,836633,836.6 K
+Salons and barber shops,US,67714000000,67.7 Billion,598573,598.6 K
+"Golf courses, marinas, ski resorts, fitness and other rec centers and industries",US,66321993700,66.3 Billion,1088243,1.1 Million
+Passenger ground transport,US,65958964600,66.0 Billion,519498,519.5 K
+"Pet care, photofinishing, parking and other sundry services",US,63670000000,63.7 Billion,358163,358.2 K
+"Books, newspapers, magazines, and other print media",US,63008995800,63.0 Billion,349470,349.5 K
+Postal service,US,61749964600,61.7 Billion,700695,700.7 K
+State and local government hospitals and health services,US,59805000000,59.8 Billion,22384,22.4 K
+Commercial machinery repair,US,59689739600,59.7 Billion,307864,307.9 K
+Wholesale electronic markets and agents and brokers,US,58370971500,58.4 Billion,686820,686.8 K
+Packaged poultry,US,57873000000,57.9 Billion,214925,214.9 K
+Tobacco products,US,56647000000,56.6 Billion,16814,16.8 K
+Automobiles,US,55463000000,55.5 Billion,130791,130.8 K
+Other vehicle parts,US,53459830500,53.5 Billion,112473,112.5 K
+Investigation and security,US,52740966700,52.7 Billion,794778,794.8 K
+Medical laboratories,US,52089000000,52.1 Billion,242944,242.9 K
+Cardboard containers,US,51581979300,51.6 Billion,146689,146.7 K
+Radio and television,US,50976000000,51.0 Billion,69583,69.6 K
+Internet publishing and broadcasting,US,50223955300,50.2 Billion,73801,73.8 K
+Manufacturing buildings,US,48817000000,48.8 Billion,197039,197 K
+Paper,US,47736994300,47.7 Billion,74732,74.7 K
+Well drilling,US,47556000000,47.6 Billion,89895,89.9 K
+Electronic  equipment repair and maintenance,US,47295863200,47.3 Billion,200525,200.5 K
+Semiconductors,US,47168000000,47.2 Billion,139363,139.4 K
+Child day care,US,47135000000,47.1 Billion,845794,845.8 K
+Bread and other baked goods,US,46392000000,46.4 Billion,363940,363.9 K
+Health care buildings,US,46153000000,46.2 Billion,226065,226.1 K
+"Water transport (boats, ships, ferries)",US,45750994000,45.8 Billion,70052,70.1 K
+Office administration,US,45733938500,45.7 Billion,410783,410.8 K
+Soap and cleaning compounds,US,45724998500,45.7 Billion,62239,62.2 K
+Navigation instruments,US,45633000000,45.6 Billion,109838,109.8 K
+"Soft drinks, bottled water, and ice",US,45051000000,45.1 Billion,119302,119.3 K
+Solid waste collection,US,44805577741,44.8 Billion,193652,193.7 K
+Environmental and other technical consulting services,US,44578958600,44.6 Billion,239934,239.9 K
+Coal,US,43953999400,44.0 Billion,60210,60.2 K
+"Grantmaking, giving, and social advocacy organizations",US,43820000000,43.8 Billion,288421,288.4 K
+"Community food, housing, and other relief services, including rehabilitation services",US,43641000000,43.6 Billion,554861,554.9 K
+"Fresh soybeans, canola, flaxseeds, and other oilseeds",US,42262000000,42.3 Billion,3595,3.6 K
+Elementary and secondary schools,US,41383000000,41.4 Billion,6530307,6.5 Million
+"Residential mental retardation, mental health, substance abuse and other facilities",US,41123000000,41.1 Billion,800520,800.5 K
+"Plastic bags, films, and sheets",US,40293990400,40.3 Billion,92097,92.1 K
+Machine shops,US,39892997900,39.9 Billion,268887,268.9 K
+Aircraft engines and parts,US,39815000000,39.8 Billion,66247,66.2 K
+Animal farms and aquaculture ponds (except cattle and poultry),US,39722000000,39.7 Billion,71869,71.9 K
+Pipeline transport,US,39709996700,39.7 Billion,49144,49.1 K
+Construction machinery,US,38713904900,38.7 Billion,89691,89.7 K
+"Chemicals (except basic chemicals, agrichemicals, polymers, paints, pharmaceuticals,soaps, cleaning compounds)",US,38682000000,38.7 Billion,69459,69.5 K
+Fruit and vegetable preservation,US,38162000000,38.2 Billion,81443,81.4 K
+Metal structural products,US,37913912100,37.9 Billion,136010,136 K
+Other basic inorganic chemicals,US,37789976900,37.8 Billion,50425,50.4 K
+Travel arrangement and reservation,US,37672974500,37.7 Billion,166925,166.9 K
+Fluid milk and butter,US,37602000000,37.6 Billion,52222,52.2 K
+Cheese,US,37414000000,37.4 Billion,38735,38.7 K
+Poultry farms,US,37164000000,37.2 Billion,35996,36 K
+Other animal food,US,37120000000,37.1 Billion,37251,37.3 K
+Surgical and medical instruments,US,36933000000,36.9 Billion,99792,99.8 K
+Vegetable oils and by-products,US,36915000000,36.9 Billion,6745,6.7 K
+Dairies,US,36406000000,36.4 Billion,93668,93.7 K
+Transmission and power train parts,US,36011969700,36.0 Billion,76383,76.4 K
+"Metal windows, doors, and architectural products",US,35212665500,35.2 Billion,171323,171.3 K
+Other petroleum and coal products,US,34895996100,34.9 Billion,16900,16.9 K
+Consumer goods and general rental centers,US,34689978700,34.7 Billion,222572,222.6 K
+Heavy duty trucks,US,34516000000,34.5 Billion,46573,46.6 K
+Farm machinery and equipment,US,34299952300,34.3 Billion,81691,81.7 K
+Other aircraft parts,US,34123000000,34.1 Billion,97417,97.4 K
+"Sugar, candy, and chocolate",US,34003000000,34.0 Billion,67133,67.1 K
+Other support services,US,33963979900,34.0 Billion,220059,220.1 K
+Ambulances,US,33870000000,33.9 Billion,302061,302.1 K
+"Independent artists, writers, and performers",US,33516991900,33.5 Billion,41153,41.2 K
+Customs duties,US,33503000000,33.5 Billion,0,0.0
+Sports,US,32972994300,33.0 Billion,127073,127.1 K
+Snack foods,US,32307000000,32.3 Billion,52142,52.1 K
+Household goods repair,US,32182920500,32.2 Billion,160585,160.6 K
+Surgical appliance and supplies,US,31909878500,31.9 Billion,88170,88.2 K
+Mining and oil/gas field machinery,US,31215961600,31.2 Billion,107820,107.8 K
+Breweries and beer,US,31050000000,31.1 Billion,71790,71.8 K
+Books,US,30857000000,30.9 Billion,54333,54.3 K
+Toiletries,US,30629000000,30.6 Billion,41194,41.2 K
+Frozen food,US,30337000000,30.3 Billion,82525,82.5 K
+"Air conditioning, refrigeration, and warm air heating equipment",US,29410901000,29.4 Billion,84804,84.8 K
+Material handling equipment,US,29214786100,29.2 Billion,87669,87.7 K
+Performances,US,29197997600,29.2 Billion,150797,150.8 K
+Other engine equipment,US,28672985600,28.7 Billion,52349,52.3 K
+Wireless communications,US,28612989800,28.6 Billion,30952,31 K
+Cardboard,US,27973975700,28.0 Billion,32755,32.8 K
+Vehicle metal stamping,US,27958000000,28.0 Billion,62198,62.2 K
+Multifamily homes,US,27740000000,27.7 Billion,130625,130.6 K
+Agriculture and forestry support,US,27706000000,27.7 Billion,414903,414.9 K
+Electromedical appartuses,US,27675000000,27.7 Billion,51337,51.3 K
+"Screws, nuts, and bolts",US,27538997000,27.5 Billion,80468,80.5 K
+Vehicle engines and engine parts,US,27400895300,27.4 Billion,50592,50.6 K
+"Metal coatings, engravings, and heat treatments",US,27314000000,27.3 Billion,139322,139.3 K
+Specialized design,US,26569994900,26.6 Billion,117289,117.3 K
+Fertilizers,US,26538000000,26.5 Billion,26557,26.6 K
+"Copper, gold and silver concentrates",US,26482000000,26.5 Billion,23495,23.5 K
+"Cookies, crackers, pastas, and tortillas",US,26395000000,26.4 Billion,70083,70.1 K
+Facilities support,US,26269976000,26.3 Billion,140885,140.9 K
+Lumber and treated lumber,US,25908998500,25.9 Billion,89225,89.2 K
+Valve and fittings (except for plumbing),US,25765948400,25.8 Billion,75818,75.8 K
+Dry-cleaning and laundry,US,25679997900,25.7 Billion,282302,282.3 K
+Veterinarians,US,25520000000,25.5 Billion,237897,237.9 K
+Fresh fruits and tree nuts,US,25459000000,25.5 Billion,166429,166.4 K
+"Gaskets, seals, musical instruments, fasteners, brooms, brushes, mop and other misc. goods",US,25453998800,25.5 Billion,99873,99.9 K
+"Satellite, telecommunications resellers, and all other telecommunications",US,24891997600,24.9 Billion,43654,43.7 K
+"Electronic capacitors, resistors, coils, transformers, connectors and other components (except  semiconductors and printed circuit assemblies)",US,24763998800,24.8 Billion,103123,103.1 K
+Secondary aluminum,US,24669000000,24.7 Billion,42118,42.1 K
+Promoters and agents,US,24278999700,24.3 Billion,91328,91.3 K
+Vaccines and other biological medical products,US,24189000000,24.2 Billion,27459,27.5 K
+Paints and coatings,US,23355948400,23.4 Billion,32992,33 K
+All other foods,US,23270000000,23.3 Billion,65927,65.9 K
+Synthetic rubber and artificial and synthetic fibers,US,23147000000,23.1 Billion,49471,49.5 K
+Glass and glass products,US,22934998800,22.9 Billion,79434,79.4 K
+Vehicle seating and interior trim (upholstery),US,22258000000,22.3 Billion,52434,52.4 K
+"Motor vehicle steering, suspension components (except spring), and brake systems",US,21805952900,21.8 Billion,50104,50.1 K
+Secondary copper products,US,21734000000,21.7 Billion,29817,29.8 K
+Ships and ship repair,US,21685000000,21.7 Billion,130394,130.4 K
+"Iron, gold, silver, and other metal ores",US,21652000000,21.7 Billion,25291,25.3 K
+"Machinery for the paper, textile, food or other industries (except semiconductor machinery)",US,20923000000,20.9 Billion,68911,68.9 K
+Cable and subscription programming,US,20709000000,20.7 Billion,12773,12.8 K
+"Welding and Soldering Equipment, Scales and Balances, and other general purpose machinery",US,20411999700,20.4 Billion,56088,56.1 K
+"Dry, condensed, and evaporated dairy",US,20099000000,20.1 Billion,16269,16.3 K
+Ready-mix concrete,US,19913000000,19.9 Billion,73743,73.7 K
+Rubber tires,US,19825976900,19.8 Billion,55539,55.5 K
+Flours and malts,US,19562000000,19.6 Billion,18666,18.7 K
+Distilleries and spirits,US,19492000000,19.5 Billion,15519,15.5 K
+Seasonings and dressings,US,19352000000,19.4 Billion,41299,41.3 K
+Paper bags and coated paper,US,19238972700,19.2 Billion,54522,54.5 K
+Funerary services,US,19219000000,19.2 Billion,135462,135.5 K
+Dog and cat food,US,18976000000,19.0 Billion,21796,21.8 K
+"Veneer, plywood, and engineered wood",US,18952997300,19.0 Billion,85834,85.8 K
+"Refined vegetable, olive, and seed oils",US,18892000000,18.9 Billion,8826,8.8 K
+Cast iron and steel,US,18824000000,18.8 Billion,71819,71.8 K
+"Greenhouse crops, mushrooms, nurseries, and flowers",US,18552000000,18.6 Billion,90462,90.5 K
+Vehicle electrical and electronic equipment,US,18517981100,18.5 Billion,45871,45.9 K
+"Light gauge metal cans, boxes, and containers",US,18170996700,18.2 Billion,34034,34 K
+Turbines and turbine generator sets,US,17943974800,17.9 Billion,34325,34.3 K
+Guided missiles and space vehicles,US,17923000000,17.9 Billion,45415,45.4 K
+Timber and raw forest products,US,17682000000,17.7 Billion,47032,47 K
+"Tobacco, cotton, sugarcane, peanuts, sugar beets, herbs and spices, and other crops",US,17399000000,17.4 Billion,28573,28.6 K
+Household employees,US,17330000000,17.3 Billion,291542,291.5 K
+Other commercial and service industry machinery,US,17289000000,17.3 Billion,48748,48.7 K
+"Wooden windows, door, and flooring",US,17283000000,17.3 Billion,76651,76.7 K
+Other rubber products,US,17101975100,17.1 Billion,54569,54.6 K
+Plywood and veneer,US,16902000000,16.9 Billion,66593,66.6 K
+Printed circuit and electronic assembly,US,16719000000,16.7 Billion,49969,50 K
+Wineries and wine,US,16202000000,16.2 Billion,53049,53 K
+Railroad rolling stock,US,15927000000,15.9 Billion,24242,24.2 K
+Pumps and pumping equipment,US,15781993100,15.8 Billion,33042,33 K
+Sound recording,US,15751000000,15.8 Billion,16082,16.1 K
+Office furniture and custom architectural woodwork and millwork,US,15720000000,15.7 Billion,60341,60.3 K
+Corn products,US,15464000000,15.5 Billion,11946,11.9 K
+"All other forging, stamping, and sintering",US,15188979900,15.2 Billion,41431,41.4 K
+"Plastic pipe, fittings, and sausage casings",US,15184989800,15.2 Billion,42666,42.7 K
+Pesticides,US,14942000000,14.9 Billion,14609,14.6 K
+Communication and energy wire and cable,US,14791999700,14.8 Billion,20933,20.9 K
+Misc. fabricated metal products,US,14463957100,14.5 Billion,66658,66.7 K
+"Museums, historical sites, zoos, and parks",US,14429000000,14.4 Billion,218220,218.2 K
+"Fresh vegetables, melons, and potatoes",US,14340000000,14.3 Billion,90886,90.9 K
+"Sand, gravel, clay, phosphate, other nonmetallic minerals",US,14219000000,14.2 Billion,32952,33 K
+Other federal government enterprises,US,13751000000,13.8 Billion,23591,23.6 K
+Analytical laboratory instruments,US,13653994300,13.7 Billion,28139,28.1 K
+"Ammunition, arms, ordnance, and related accessories",US,13625000000,13.6 Billion,34261,34.3 K
+Remediation services,US,13297907798,13.3 Billion,76562,76.6 K
+Asphalt pavement,US,13065000000,13.1 Billion,13670,13.7 K
+Clothing,US,12860970300,12.9 Billion,132448,132.4 K
+Other secondary nonferrous metal products,US,12651000000,12.7 Billion,13291,13.3 K
+Dimensional stone,US,12635000000,12.6 Billion,30007,30 K
+Coffee and tea,US,12628000000,12.6 Billion,17486,17.5 K
+Nonferrous metal casts,US,12553000000,12.6 Billion,50732,50.7 K
+Hazardous waste collection treatment and disposal,US,12498119524,12.5 Billion,43414,43.4 K
+Signal testing instruments,US,12411000000,12.4 Billion,39503,39.5 K
+Primary aluminum,US,12379988600,12.4 Billion,14251,14.3 K
+Plastic bottles,US,12330997000,12.3 Billion,33492,33.5 K
+Medicinal and botanical ingredients,US,12203000000,12.2 Billion,21713,21.7 K
+Amusement parks and arcades,US,12160000000,12.2 Billion,147659,147.7 K
+Wiring devices,US,11827000000,11.8 Billion,32903,32.9 K
+"Blood sugar, pregnancy, and other diagnostic test kits",US,11809000000,11.8 Billion,19018,19 K
+Fabric,US,11805000000,11.8 Billion,46814,46.8 K
+Adhesives,US,11769000000,11.8 Billion,18647,18.6 K
+"Watches, clocks, and other measuring and controlling devices",US,11593000000,11.6 Billion,35796,35.8 K
+"Lids, jars, bottle caps, other metal closures and crowns",US,11486000000,11.5 Billion,50722,50.7 K
+Computer terminals and other computer peripheral equipment,US,11452967300,11.5 Billion,34815,34.8 K
+Jewelry and silverware,US,11351000000,11.4 Billion,54370,54.4 K
+Magazines and journals,US,11325999700,11.3 Billion,37797,37.8 K
+Photographers,US,11272998200,11.3 Billion,54740,54.7 K
+"Copper, nickel, lead, and zinc",US,11120984100,11.1 Billion,12186,12.2 K
+Wood kitchen cabinets and countertops,US,10952000000,11.0 Billion,90683,90.7 K
+Motors and generators,US,10931991900,10.9 Billion,40434,40.4 K
+Switchgear and switchboards,US,10705996700,10.7 Billion,32112,32.1 K
+"Hydraulic pumps, motors, cylinders and actuators",US,10670000000,10.7 Billion,34457,34.5 K
+"Directory, mailing list, and other publishers",US,10583000000,10.6 Billion,24776,24.8 K
+Seafood,US,10553000000,10.6 Billion,28929,28.9 K
+Industrial process variable instruments,US,10459972400,10.5 Billion,56508,56.5 K
+Other textiles,US,10457976300,10.5 Billion,59485,59.5 K
+"Sanitary paper (tissues, napkins, diapers, etc.)",US,10382000000,10.4 Billion,21824,21.8 K
+Asphalt shingles,US,10345972100,10.3 Billion,10886,10.9 K
+Light fixtures,US,10146938200,10.1 Billion,35700,35.7 K
+Travel trailer and campers,US,9986979300,10.0 Billion,35264,35.3 K
+Semiconductor machinery,US,9956000000,10.0 Billion,21250,21.2 K
+other miscellaneous electrical equipment and components,US,9808000000,9.8 Billion,24060,24.1 K
+Air and gas compressors,US,9754000000,9.8 Billion,23447,23.4 K
+Relay and industrial controls,US,9709996700,9.7 Billion,45610,45.6 K
+Breakfast cereals,US,9642000000,9.6 Billion,13440,13.4 K
+Sporting and athletic goods,US,9634999700,9.6 Billion,40895,40.9 K
+Flavored drink concentrates,US,9570000000,9.6 Billion,12899,12.9 K
+"Mattresses, blinds and shades",US,9564000000,9.6 Billion,38560,38.6 K
+Telephones,US,9536000000,9.5 Billion,12836,12.8 K
+Secondary steel products,US,9517000000,9.5 Billion,25902,25.9 K
+Urethane and other foam products,US,9175998500,9.2 Billion,33636,33.6 K
+Cutlery and handtools,US,9099000000,9.1 Billion,36525,36.5 K
+Carpets and rugs,US,9082000000,9.1 Billion,31304,31.3 K
+Heavy gauge metal tanks,US,9015993700,9.0 Billion,34447,34.4 K
+Finished and coated fabric,US,9010000000,9.0 Billion,35196,35.2 K
+Home furniture - upholstered,US,8856000000,8.9 Billion,49412,49.4 K
+Synthetic dyes and pigments,US,8854999700,8.9 Billion,13143,13.1 K
+Computer storage device readers,US,8673000000,8.7 Billion,19817,19.8 K
+Newspapers,US,8654000000,8.7 Billion,57704,57.7 K
+Wild-caught fish and game,US,8641000000,8.6 Billion,9067,9.1 K
+Irradiation apparatuses,US,8611000000,8.6 Billion,9472,9.5 K
+Scrap,US,8544000000,8.5 Billion,32655,32.7 K
+Other concrete products,US,8404986800,8.4 Billion,46697,46.7 K
+Other waste collection and treatment services,US,8399222951,8.4 Billion,69046,69 K
+"News syndicates, libraries, archives, Internet publishing and all other information services",US,8343000000,8.3 Billion,42269,42.3 K
+"Cutting and machine tool accessory, rolling mill, and other metalworking machines",US,8338000000,8.3 Billion,35532,35.5 K
+"Special tools, dies, jigs, and fixtures",US,8317000000,8.3 Billion,54952,55 K
+Computers,US,8274000000,8.3 Billion,39151,39.2 K
+Custom metal rolls,US,8224000000,8.2 Billion,6867,6.9 K
+Fabricated pipe and pipe fittings,US,8105000000,8.1 Billion,40593,40.6 K
+Signs,US,7931000000,7.9 Billion,44381,44.4 K
+Truck trailers,US,7894000000,7.9 Billion,30249,30.2 K
+Polystyrene foam products,US,7765997900,7.8 Billion,34246,34.2 K
+Wood pulp,US,7538000000,7.5 Billion,7969,8 K
+Metal cutting and forming machine tools,US,7516000000,7.5 Billion,42063,42.1 K
+Compressed Gases,US,7263976900,7.3 Billion,15544,15.5 K
+"Metal hinges, keys, lock, and other hardware",US,7256986200,7.3 Billion,22436,22.4 K
+Ice cream and frozen desserts,US,7232000000,7.2 Billion,18156,18.2 K
+Solid waste landfilling,US,7212631575,7.2 Billion,63134,63.1 K
+Ophthalmic goods,US,7169000000,7.2 Billion,20894,20.9 K
+Lawn and garden equipment,US,7162000000,7.2 Billion,15921,15.9 K
+Stationery,US,7152000000,7.2 Billion,20796,20.8 K
+Clay and ceramic products,US,7139000000,7.1 Billion,28492,28.5 K
+Vehicle bodies,US,6989000000,7.0 Billion,26776,26.8 K
+Other transportation equipment,US,6887992800,6.9 Billion,12188,12.2 K
+Leather,US,6868000000,6.9 Billion,27115,27.1 K
+Power boilers and heat exchangers,US,6841935500,6.8 Billion,20775,20.8 K
+Ball and roller bearings,US,6787975400,6.8 Billion,26124,26.1 K
+Boats,US,6729000000,6.7 Billion,32502,32.5 K
+Shelving and lockers,US,6648000000,6.6 Billion,39379,39.4 K
+Fluid meters and counting devices,US,6604819700,6.6 Billion,12934,12.9 K
+Industrial molds,US,6500000000,6.5 Billion,35864,35.9 K
+Storage batteries,US,6276895000,6.3 Billion,16579,16.6 K
+Material separation/recovery facilities,US,5944579212,5.9 Billion,20943,20.9 K
+Air purification and ventilation equipment,US,5926906100,5.9 Billion,24735,24.7 K
+Lime and gypsum products,US,5914998800,5.9 Billion,13700,13.7 K
+"Motorcycle, bicycle, and parts",US,5877000000,5.9 Billion,9466,9.5 K
+Springs and wires,US,5831986500,5.8 Billion,26641,26.6 K
+Military armored vehicles and tanks,US,5793000000,5.8 Billion,8229,8.2 K
+Specialty transformers,US,5726000000,5.7 Billion,26586,26.6 K
+Cement,US,5702000000,5.7 Billion,11504,11.5 K
+Packaging machinery,US,5384000000,5.4 Billion,19342,19.3 K
+"Concrete pipe, bricks, and blocks",US,5336999400,5.3 Billion,22662,22.7 K
+Propulsion units and parts for space vehicles and guided missiles,US,5294000000,5.3 Billion,13210,13.2 K
+Rubber and plastic belts and hoses,US,5247000000,5.2 Billion,24387,24.4 K
+All other converted paper products,US,5140000000,5.1 Billion,18988,19 K
+Ink and ink cartridges,US,5102000000,5.1 Billion,9992,10 K
+Optical instruments and lenses,US,5059000000,5.1 Billion,19181,19.2 K
+Mineral wool,US,4859989500,4.9 Billion,14826,14.8 K
+"Fiber, yarn, and thread",US,4828000000,4.8 Billion,17383,17.4 K
+Heating equipment other than warm air furnaces,US,4753961900,4.8 Billion,16597,16.6 K
+Abrasive products,US,4743000000,4.7 Billion,9775,9.8 K
+Communications equipment,US,4733997600,4.7 Billion,16459,16.5 K
+Printing support,US,4607000000,4.6 Billion,29818,29.8 K
+Dental laboratories,US,4581000000,4.6 Billion,39504,39.5 K
+Institutional furniture,US,4555000000,4.6 Billion,22566,22.6 K
+"Speed changers, industrial high-speed drives, and gears",US,4524910900,4.5 Billion,15309,15.3 K
+Solid waste combustors and incinerators,US,4490811640,4.5 Billion,9617,9.6 K
+"Major home appliances (except ovens, stoves, refrigerators and laundry machines)",US,4410000000,4.4 Billion,12576,12.6 K
+Home cooking appliances,US,4407000000,4.4 Billion,11736,11.7 K
+Primary batteries,US,4404000000,4.4 Billion,14768,14.8 K
+Mechanical power transmission equipment,US,4318833500,4.3 Billion,13402,13.4 K
+Dental equipment and supplies,US,4260000000,4.3 Billion,15419,15.4 K
+"Home furniture - wood, nonupholstered",US,4108000000,4.1 Billion,31192,31.2 K
+Other nonmetallic mineral products,US,3955000000,4.0 Billion,11830,11.8 K
+Curtains and linens,US,3725000000,3.7 Billion,17399,17.4 K
+Power tools,US,3709000000,3.7 Billion,11049,11 K
+Home laundry machines,US,3612000000,3.6 Billion,11080,11.1 K
+Laminated plastic plates and shapes,US,3612000000,3.6 Billion,18289,18.3 K
+Cut stone and stone products,US,3549000000,3.5 Billion,26225,26.2 K
+Home refrigerators and freezers,US,3506000000,3.5 Billion,10864,10.9 K
+Carbon and graphite products,US,3313992200,3.3 Billion,7059,7.1 K
+"Metal plumbing drains, faucets, valves, and other fittings",US,3236997000,3.2 Billion,9030,9 K
+Ground or treated minerals and earth,US,3230000000,3.2 Billion,5796,5.8 K
+Small electrical appliances,US,3172000000,3.2 Billion,10106,10.1 K
+Office supplies (not paper),US,3082998500,3.1 Billion,9688,9.7 K
+"External hard drives, CDs, other storage media",US,3051999700,3.1 Billion,14734,14.7 K
+Audio and video equipment,US,2927000000,2.9 Billion,18829,18.8 K
+Rest of the world adjustment,US,2906000000,2.9 Billion,16076,16.1 K
+Industrial process furnaces and ovens,US,2602000000,2.6 Billion,10167,10.2 K
+Automatic controls for HVAC and refrigeration equipment,US,2594992200,2.6 Billion,16085,16.1 K
+"Home furniture - Cabinets and non-wood, nonupholstered",US,2586000000,2.6 Billion,9957,10 K
+Motor homes,US,2430000000,2.4 Billion,10137,10.1 K
+Photography and photocopying equipment,US,1842000000,1.8 Billion,6701,6.7 K
+Light bulbs,US,1801000000,1.8 Billion,9453,9.5 K
+"Dolls, toys, and games",US,1800000000,1.8 Billion,10806,10.8 K
+Used and secondhand goods,US,-1000000,-1000000.0,0,0.0
+Noncomparable imports,US,-14031800,-14031800.0,0,0.0

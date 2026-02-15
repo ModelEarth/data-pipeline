@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html;">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+
+<title>Top Commodities by State</title>
+
+<script type="text/javascript" src="/localsite/js/earthscape.js" id="/localsite/js/earthscape.js"></script>
+
+<!-- Temp: until checking for library to prevent ReferenceError: Tabulator is not defined-->
+<script type="text/javascript" src="/localsite/js/tabulator.min.js" id="/localsite/js/tabulator.min.js"></script>
+<link type="text/css" rel="stylesheet" href="/localsite/css/tabulator.min.css" id="/localsite/css/tabulator.min.css">
+<link type="text/css" rel="stylesheet" href="/localsite/css/base-tabulator.css" id="/localsite/css/base-tabulator.css">
+
+
+<link type="text/css" rel="stylesheet" href="/localsite/css/base.css" id="/localsite/css/base.css">
+
+<script type="text/javascript" src="/localsite/js/localsite.js?showheader=true&showsearch=true"></script>
+
+<style>
+hr {
+	border: 0px solid #ddd;
+	border-top: 1px solid #ddd;
+}
+.tabulator-cell {
+	text-align: right;
+}
+.tabulator-cell:first-child {
+	text-align: left;
+	max-width: 510px;
+}
+</style>
+<script>
+
+
+
+let fileEnding = "EEIOv1.0-s-20.csv";
+
+let tabulatorTable; // Declare tabulatorTable variable in the global scope
+
+function initializeTabulator() {
+    tabulatorTable = new Tabulator("#earthscape1", {
+        layout: "fitColumns",
+        columns: [
+            { title: "Commodity", field: "Commodity" },
+            { title: "Location", field: "Location" },
+            { title: "Commodities", field: "Commodities", visible: false, dir: "desc" },
+            { title: "Output", field: "Output", headerSort: true, dir: "desc",
+                sorter: (a, b) => sortDescending(a, b)
+            },
+            { title: "Employees", field: "Employees", visible: false, headerSort: true, dir: "desc" },
+            { title: "Jobs", field: "Jobs", headerSort: true, dir: "desc"
+            }
+        ]
+    });
+
+    initialLoad(tabulatorTable);
+
+    window.addEventListener("hashchange", hashChangedEconomy, false);
+    hashChangedEconomy();
+}
+
+function sortDescending(a, b) {
+    const aValue = parseFloat(a.replace(/[^\d.-]/g, '')) || -Infinity;
+    const bValue = parseFloat(b.replace(/[^\d.-]/g, '')) || -Infinity;
+    return bValue - aValue || (isNaN(bValue) ? 0 : NaN);
+}
+
+function initialLoad(tabulatorTable) {
+    let locationID = "US";
+    let hash = getHash();
+    if (hash.state) {
+        locationID = hash.state;
+    }
+    let locationFile = hash.state ? locationID + fileEnding : undefined;
+    renderTable(tabulatorTable, locationID, locationFile);
+}
+
+
+function renderTable(tabulatorTable, locationID, locationFile) {
+    let folderPath = "states/commodities/2020/";
+    let dataset;
+
+    if (locationFile) {
+        dataset = folderPath + locationFile;
+    } else {
+        dataset = folderPath + "USEEIOv2.0.1-411.csv";
+    }
+
+    fetch(dataset)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.text();
+        })
+        .then(data => {
+            let rows = data.split('\n').slice(1); // Remove header row
+            let tableData = rows.map(row => {
+                let cols = row.match(/(?:[^",]+|"[^"]*")+/g); // Split row using regex to handle quotes and commas
+                if (!cols) return null; // Skip this row if cols is null
+                let commodity = cols[0].trim();
+                let output = parseFloat(cols[3].replace(/[^\d.-]/g, ''));
+                if (output < 0) return null; // Exclude rows with negative output values
+
+                return {
+                    Commodity: commodity,
+                    Location: cols[1],
+                    Commodities: cols[2],
+                    Output: cols[3],
+                    Employees: cols[4],
+                    Jobs: cols[5]
+                };
+            }).filter(Boolean);
+
+            tabulatorTable.setData(tableData);
+            const elem = document.getElementById("stateName");
+            if (elem) {
+                elem.textContent = locationID;
+            }
+        })
+        .catch(error => console.error(error));
+}
+
+function hashChangedEconomy() {
+    let hash = getHash();
+    if (hash.state) {
+        renderTable(tabulatorTable, hash.state, hash.state + fileEnding);
+    } else {
+        renderTable(tabulatorTable, "US", "USEEIOv2.0.1-411.csv");
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Check if the Tabulator library is loaded
+    if (typeof Tabulator !== 'undefined') {
+        initializeTabulator();
+    } else {
+        // Wait for the Tabulator library to load
+        const script = document.createElement('script');
+        script.src = 'https://unpkg.com/tabulator-tables/dist/js/tabulator.min.js';
+        script.onload = initializeTabulator;
+        document.head.appendChild(script);
+    }
+});
+
+
+</script>
+
+<style>
+#relocatedStateMenu #state_select {
+    background-color: #ddd;
+}
+#relocatedStateMenu #state_select {
+    cursor: pointer;
+    border-radius:24px;
+    min-height:38px;
+    line-height:16px;
+    color: #555;
+    appearance: none;
+    max-width: 220px !important;
+    padding: 15px 20px !important;
+    font-size: 18px;
+}
+#relocatedStateMenu #state_select:hover {
+    background-color: #fff   !important;
+}
+</style>
+</head>
+<body>
+
+<div style="position:relative;">
+	<img src="../img/OR-Naics-7225-Biking-under-a-tree-canopy_xwide.jpg" style="width:100%">
+	<div id="relocatedStateMenu" style="position:absolute;top:0;left:22px;margin:40px;padding-left:20px"></div>
+</div>
+
+<div class="content contentpadding">
+
+    <a href="/useeio.js/footprint/tabulator.html" style="float:right">TO DO: Apply sort from Commodity sample</a>
+
+	<span id="stateName"></span> - 
+	<a href="#geoview=country" id="changeState">Change State</a>
+	<div id="earthscape1" style="overflow-x: auto;"></div><br>
+
+	<div id="readmeDiv"></div>
+</div>
+
+<script>
+	loadMarkdown("README.md", "readmeDiv", "_parent");
+</script>
+
+</body>
+</html>

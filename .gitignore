@@ -1,0 +1,25 @@
+*data_raw*
+*-update/*
+build/
+node_modules/
+dist/
+.vscode/
+.DS_Store
+.env
+env/
+env
+.venv
+.flaskenv
+flask.log
+*.pyc
+*.pyo
+# Data directories (too large for git)
+industries/naics/duck_zipcode_db/
+industries/naics/sqlite_zipcode_db_delete/
+timelines/prep/all/
+timelines/prep/regression/
+us/zipcodes/ind_data.json
+experiments/*.tar.gz
+data-pipe-csv
+__pycache__
+.~lock.*#

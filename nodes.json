@@ -1,0 +1,88 @@
+{
+  "nodes": [
+    {
+      "id": "trigger",
+      "name": "Start Pipeline",
+      "type": "n8n-nodes-base.manualTrigger",
+      "position": [
+        100,
+        300
+      ],
+      "parameters": {},
+      "typeVersion": 1
+    },
+    {
+      "id": "naics",
+      "name": "Annual US Industry Data",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        240,
+        120
+      ],
+      "parameters": {
+        "command": "annual.py",
+        "workingDirectory": "industries/naics"
+      },
+      "typeVersion": 1,
+      "notes": "Generates NAICS industry data for US zip, county, state, country by year using 2 Census Bureau APIs. Output: NAICS CSV files. Processing time: medium"
+    },
+    {
+      "id": "exiobase",
+      "name": "Exiobase Trade Flow",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        500,
+        120
+      ],
+      "parameters": {
+        "command": "python main.py",
+        "workingDirectory": "exiobase/tradeflow"
+      },
+      "typeVersion": 1,
+      "notes": "Runs exiobase international tradeflow processing.. Output: Exiobase trade tables"
+    },
+    {
+      "id": "us_bea",
+      "name": "US BEA Trade Flow",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        1020,
+        120
+      ],
+      "parameters": {
+        "command": "python us-bea.py",
+        "workingDirectory": "exiobase/tradeflow"
+      },
+      "typeVersion": 1,
+      "notes": "Runs exiobase US-BEA tradeflow integration and writes US trade-data outputs.. Output: US BEA enhanced trade tables"
+    },
+    {
+      "id": "add_node",
+      "name": "Add or Update a Node",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        760,
+        120
+      ],
+      "parameters": {
+        "command": "python node.py",
+        "workingDirectory": "admin/add"
+      },
+      "typeVersion": 1,
+      "notes": "Runs node.py"
+    }
+  ],
+  "connections": {
+    "Exiobase Trade Flow": {
+      "main": [
+        [
+          {
+            "node": "US BEA Trade Flow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
