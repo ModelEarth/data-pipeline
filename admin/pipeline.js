@@ -1576,11 +1576,16 @@
         columnFields
           .map((field) => {
             const rawValue = state.configValues[field.key];
+            const isChooseNodeId =
+              String(field.key || '').toLowerCase() === 'node_id' &&
+              String(rawValue || '').trim().toLowerCase() === 'choose';
             const value =
               field.type === 'flag'
                 ? rawValue
                   ? 'True'
                   : 'False'
+                : isChooseNodeId
+                  ? '<a href="#" class="node-id-choose-link">choose</a>'
                 : rawValue === null || rawValue === undefined || rawValue === ''
                   ? blankPlaceholderHtml()
                   : String(rawValue);
@@ -1619,6 +1624,16 @@
       blocks.push(renderOverviewGrid(state.nodeSpecificConfigSchema));
     }
     wrap.innerHTML = blocks.join('');
+    wrap.querySelectorAll('.node-id-choose-link').forEach((link) => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        if (typeof goHash === 'function') {
+          goHash({ input: 'fields' });
+        } else {
+          safeGoHash({ input: 'fields' });
+        }
+      });
+    });
   }
 
   function renderRawConfig() {
