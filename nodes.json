@@ -57,21 +57,6 @@
       "notes": "Runs exiobase US-BEA tradeflow integration and writes US trade-data outputs.. Output: US BEA enhanced trade tables"
     },
     {
-      "id": "add_node",
-      "name": "Add or Update a Node",
-      "type": "n8n-nodes-base.executeCommand",
-      "position": [
-        760,
-        120
-      ],
-      "parameters": {
-        "command": "python node.py",
-        "workingDirectory": "admin/add"
-      },
-      "typeVersion": 1,
-      "notes": "Runs node.py"
-    },
-    {
       "id": "airports",
       "name": "Airports",
       "type": "n8n-nodes-base.executeCommand",
@@ -85,6 +70,21 @@
       },
       "typeVersion": 1,
       "notes": "Runs pull-airports.py"
+    },
+    {
+      "id": "add_node",
+      "name": "Add or Update a Node",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        760,
+        120
+      ],
+      "parameters": {
+        "command": "python node.py",
+        "workingDirectory": "admin/add"
+      },
+      "typeVersion": 1,
+      "notes": "Runs node.py"
     }
   ],
   "connections": {
