@@ -499,6 +499,15 @@ body.dark .detail-info-btn:hover {
 
 .detail-kv div {
   margin-bottom: 5px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.detail-kv div::-webkit-scrollbar {
+  display: none;
 }
 
 .detail-kv-edit {
