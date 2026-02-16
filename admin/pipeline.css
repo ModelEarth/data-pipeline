@@ -1071,6 +1071,11 @@ body.is-resizing-textarea {
   overflow: hidden;
 }
 
+.dark .flowchart-stage,
+body.dark .flowchart-stage {
+  background: none;
+}
+
 .flow-links {
   position: absolute;
   inset: 0;

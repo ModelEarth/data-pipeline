@@ -908,7 +908,12 @@
 
   function fieldIsRightColumn(key) {
     const lower = key.toLowerCase();
-    return lower === 'source_python' || lower === 'output_path' || isApiKeyField(key);
+    return (
+      lower === 'source_python' ||
+      lower === 'output_path' ||
+      lower.includes('wiki') ||
+      isApiKeyField(key)
+    );
   }
 
   function getNodeOptionsFromList() {
