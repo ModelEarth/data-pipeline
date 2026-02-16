@@ -1,11 +1,11 @@
-# Node Row Upsert (`admin/add/node.py`)
+# Pipeline Row Editor
 
-This folder now manages **one node at a time** in `data-pipeline/nodes.csv` using `config.yaml`.
+[Add/Update](../#node=add_node) a row in [nodes.csv](https://github.com/ModelEarth/data-pipeline/blob/main/nodes.csv)
 
-## What Changed
+## About Editor
 
-- `node.py` now reads `data-pipeline/admin/add/config.yaml` (uppercase first-level keys)
-- It analyzes one Python source file (`SOURCE_PYTHON`) to infer:
+- `node.py` reads `data-pipeline/admin/add/config.yaml` (uppercase first-level keys)
+- It analyzes Python file (`SOURCE_PYTHON`) to infer:
   - `python_cmds`
   - `link`
   - `dependencies`
@@ -14,7 +14,7 @@ This folder now manages **one node at a time** in `data-pipeline/nodes.csv` usin
 - It inserts or updates exactly one row by `node_id`
 - Default mode is **streaming upsert** (`READ_ALL_EXISTING_NODES: false`) so it does not load all nodes into memory
 
-## Files
+## Python, Yaml.Config, CSV Output
 
 - `data-pipeline/admin/add/node.py` - upsert script
 - `data-pipeline/admin/add/config.yaml` - node row config
@@ -47,6 +47,9 @@ Supported substitutions in each `NODES.<key>` values:
 - `{detected_flags}`
 
 ## Usage
+
+From web interface:
+[Add/Update](../#node=add_node) a row
 
 From webroot:
 
