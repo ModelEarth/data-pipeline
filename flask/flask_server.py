@@ -54,6 +54,14 @@ PACKAGE_NAME_MAP = {
     'PIL': 'pillow',
 }
 
+# Reverse map for dependency strings that are pip package names.
+PIP_IMPORT_MAP = {
+    'pyyaml': 'yaml',
+    'scikit-learn': 'sklearn',
+    'opencv-python': 'cv2',
+    'pillow': 'PIL',
+}
+
 
 def ensure_dependencies(dependencies_str: str) -> Dict:
     """
@@ -74,7 +82,8 @@ def ensure_dependencies(dependencies_str: str) -> Dict:
 
         # Check if already installed
         try:
-            __import__(dep)
+            import_name = PIP_IMPORT_MAP.get(dep, dep)
+            __import__(import_name)
             continue  # Already installed
         except ImportError:
             pass

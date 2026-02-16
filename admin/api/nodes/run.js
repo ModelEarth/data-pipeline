@@ -42,10 +42,14 @@ export default function handler(req, res) {
       exec(command, execOptions, (error, stdout, stderr) => {
         if (error) {
           console.error(`Execution error for ${node_id}:`, error);
+          const detailMessage = [stderr?.trim(), error.message, stdout?.trim()]
+            .filter(Boolean)
+            .join('\n');
           return res.status(500).json({
             success: false,
-            error: error.message,
+            error: detailMessage || error.message,
             stderr,
+            output: stdout,
             node_id,
           });
         }

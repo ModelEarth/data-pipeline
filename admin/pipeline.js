@@ -16,6 +16,7 @@
 
   const state = {
     nodes: [],
+    nodeHeaders: [],
     filtered: [],
     activeId: null,
     configValues: {},
@@ -39,6 +40,13 @@
     requiredFieldKeys: [],
     hashNodeId: '',
     hashSourcePython: '',
+    rowEditMode: false,
+    rowEditValues: {},
+    rowEditOriginalId: '',
+    rowEditStatus: '',
+    rowEditStatusIsSuccess: false,
+    rowToastMessage: '',
+    rowToastIsSuccess: false,
   };
 
   let flaskCheckPromise = null;
@@ -206,7 +214,12 @@
     }
 
     const normalized = normalizeNodeLink(link);
-    return normalized ? `../${normalized}` : '';
+    if (!normalized) return '';
+    const parts = normalized.split('/').filter(Boolean);
+    if (parts.length > 1) {
+      return `../../${normalized}`;
+    }
+    return `../${normalized}`;
   }
 
   function buildConfigGithubUrl(nodeLink) {
@@ -227,6 +240,13 @@
     if (normalized.startsWith('exiobase/')) {
       const repoPath = normalized.replace(/^exiobase\//, '');
       return `https://github.com/ModelEarth/exiobase/blob/main/${repoPath}/${CONFIG_FILENAME}`;
+    }
+
+    const parts = normalized.split('/').filter(Boolean);
+    if (parts.length > 1) {
+      const repo = parts[0];
+      const repoPath = parts.slice(1).join('/');
+      return `https://github.com/ModelEarth/${repo}/blob/main/${repoPath}/${CONFIG_FILENAME}`;
     }
 
     if (normalized) {
@@ -254,6 +274,13 @@
     if (normalized.startsWith('exiobase/')) {
       const repoPath = normalized.replace(/^exiobase\//, '');
       return `https://github.com/ModelEarth/exiobase/tree/main/${repoPath}`;
+    }
+
+    const parts = normalized.split('/').filter(Boolean);
+    if (parts.length > 1) {
+      const repo = parts[0];
+      const repoPath = parts.slice(1).join('/');
+      return `https://github.com/ModelEarth/${repo}/tree/main/${repoPath}`;
     }
 
     if (normalized) {
@@ -465,6 +492,7 @@
     const text = await response.text();
     const rows = parseCsvRows(text);
     const headers = rows.shift();
+    state.nodeHeaders = Array.isArray(headers) ? [...headers] : [];
     state.nodes = rows
       .filter((row) => row.length && row[0])
       .map((row) => {
@@ -479,6 +507,13 @@
 
   function selectNode(nodeId, updateHash = true) {
     if (!nodeId) return;
+    if (state.activeId !== nodeId) {
+      state.rowEditMode = false;
+      state.rowEditValues = {};
+      state.rowEditOriginalId = '';
+      state.rowEditStatus = '';
+      state.rowEditStatusIsSuccess = false;
+    }
     state.activeId = nodeId;
     window.currentPipelineNodeId = nodeId;
     if (updateHash) {
@@ -518,6 +553,117 @@
       card.addEventListener('click', () => selectNode(node.node_id));
       list.appendChild(card);
     });
+  }
+
+  function ensureRowEditState(node) {
+    if (!node) return;
+    const activeNodeId = String(node.node_id || '').trim();
+    if (
+      state.rowEditOriginalId !== activeNodeId ||
+      !state.rowEditValues ||
+      typeof state.rowEditValues !== 'object'
+    ) {
+      const next = {};
+      (state.nodeHeaders || Object.keys(node)).forEach((key) => {
+        next[key] = node[key] === undefined || node[key] === null ? '' : String(node[key]);
+      });
+      if (!next.node_id) next.node_id = activeNodeId;
+      state.rowEditValues = next;
+      state.rowEditOriginalId = activeNodeId;
+      state.rowEditStatus = '';
+      state.rowEditStatusIsSuccess = false;
+    }
+  }
+
+  function setRowEditValue(key, value) {
+    if (!state.rowEditValues || typeof state.rowEditValues !== 'object') {
+      state.rowEditValues = {};
+    }
+    state.rowEditValues[key] = value;
+  }
+
+  function showRowToast(message, isSuccess = true, durationMs = 3000) {
+    state.rowToastMessage = message || '';
+    state.rowToastIsSuccess = Boolean(isSuccess);
+    renderDetail();
+    if (durationMs > 0) {
+      window.setTimeout(() => {
+        if (state.rowToastMessage === message) {
+          state.rowToastMessage = '';
+          state.rowToastIsSuccess = false;
+          renderDetail();
+        }
+      }, durationMs);
+    }
+  }
+
+  async function saveNodeRowEdits() {
+    const rowUpdates = { ...(state.rowEditValues || {}) };
+    const targetNodeId = String(rowUpdates.node_id || '').trim();
+    if (!targetNodeId) {
+      state.rowEditStatus = 'Save failed: node_id is required';
+      state.rowEditStatusIsSuccess = false;
+      renderDetail();
+      return;
+    }
+
+    const saveBtn = document.getElementById('saveNodeRowEdits');
+    if (saveBtn) saveBtn.disabled = true;
+    state.rowEditStatus = 'Saving...';
+    state.rowEditStatusIsSuccess = true;
+    renderDetail();
+
+    try {
+      const shellQuote = (value) => `'${String(value || '').replace(/'/g, `'\\''`)}'`;
+      const commandParts = [
+        'python3 node.py',
+        '--manual-row-update true',
+        '--nodes-csv ../../nodes.csv',
+        `--node-id ${shellQuote(targetNodeId)}`,
+        `--original-node-id ${shellQuote(state.rowEditOriginalId || state.activeId || targetNodeId)}`,
+      ];
+      Object.entries(rowUpdates).forEach(([key, value]) => {
+        if (!key || key === 'node_id') return;
+        const flag = `--${String(key).replace(/_/g, '-')}`;
+        commandParts.push(`${flag} ${shellQuote(value)}`);
+      });
+      const command = commandParts.join(' ');
+      const apiUrl =
+        state.flaskAvailable === true ? FLASK_RUN_ENDPOINT : `${LOCAL_API_BASE}/nodes/run`;
+
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          node_id: 'add_node',
+          command,
+          working_directory: 'data-pipeline/admin/add',
+        }),
+      });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok || !result.success) {
+        const detail = [result.error, result.stderr, result.output]
+          .filter(Boolean)
+          .join('\n')
+          .trim();
+        throw new Error(detail || `HTTP ${response.status}`);
+      }
+
+      await loadNodes();
+      state.filtered = [...state.nodes];
+      state.rowEditMode = false;
+      state.rowEditStatus = '';
+      state.rowEditStatusIsSuccess = false;
+      const nextNodeId = String(result.node_id || targetNodeId);
+      selectNode(nextNodeId || state.activeId, true);
+      showRowToast(`Saved row for node_id: ${nextNodeId || targetNodeId}`, true, 3200);
+    } catch (err) {
+      state.rowEditStatus = `Save failed: ${err.message || 'unknown error'}`;
+      state.rowEditStatusIsSuccess = false;
+      renderDetail();
+    } finally {
+      if (saveBtn) saveBtn.disabled = false;
+    }
   }
 
   function setDetailSummary(node) {
@@ -594,6 +740,12 @@
     ].filter(Boolean);
 
     const formatLabel = (label) => String(label || '').replace(/_/g, ' ');
+    const escapeAttr = (value) =>
+      String(value || '')
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
     const renderRows = (rows) =>
       rows
         .map(
@@ -607,49 +759,127 @@
             }</div></div>`
         )
         .join('');
+    const toastMarkup = state.rowToastMessage
+      ? `<div class="row-edit-toast ${state.rowToastIsSuccess ? 'row-edit-toast--success' : 'row-edit-toast--error'}">${state.rowToastMessage}</div>`
+      : '';
 
-    summary.innerHTML = `
-      <div class="detail-columns-row">
-        <div class="detail-columns">
-          <div class="detail-col">
-            ${renderRows(leftRows)}
-            <div class="local">
-              <button class="btn btn-sm btn-outline" type="button" id="showNodeOrder">row order</button>
-              <button class="btn btn-sm btn-outline" type="button" id="updateNodeFromDetails">update row</button>
-            </div>
+    if (state.rowEditMode) {
+      ensureRowEditState(node);
+      const baseVisibleKeys = [
+        'node_id',
+        'type',
+        'order',
+        'output_info',
+        'processing_time_est',
+        'link',
+        'python_cmds',
+        'data_sources',
+        'dependencies',
+      ];
+      const allKeys = (state.nodeHeaders || Object.keys(state.rowEditValues)).filter(Boolean);
+      const extraKeys = allKeys.filter((key) => !baseVisibleKeys.includes(key));
+
+      const renderEditableRows = (keys) =>
+        keys
+          .map((key) => {
+            const safeValue =
+              state.rowEditValues[key] === undefined || state.rowEditValues[key] === null
+                ? ''
+                : String(state.rowEditValues[key]);
+            return `<div class="detail-kv detail-kv-edit"><span class="key-label">${formatLabel(
+              key
+            )}</span><input class="detail-edit-input" type="text" data-row-key="${escapeAttr(
+              key
+            )}" value="${escapeAttr(safeValue)}"></div>`;
+          })
+          .join('');
+
+      summary.innerHTML = `
+        ${toastMarkup}
+        <div class="detail-columns-row">
+          <div class="detail-columns">
+            <div class="detail-col">${renderEditableRows(baseVisibleKeys.slice(0, 5))}</div>
+            <div class="detail-col">${renderEditableRows(baseVisibleKeys.slice(5))}</div>
           </div>
-          <div class="detail-col">${renderRows(rightRows)}</div>
+          <button class="detail-info-btn" id="detailMetaInfoBtn" type="button" aria-label="Metadata info" title="Metadata info">i</button>
         </div>
-        <button class="detail-info-btn" id="detailMetaInfoBtn" type="button" aria-label="Metadata info" title="Metadata info">i</button>
-      </div>
-      <div id="inputTabsContainer"></div>
-    `;
-
-    const nodeOrderBtn = summary.querySelector('#showNodeOrder');
-    if (nodeOrderBtn) {
-      nodeOrderBtn.addEventListener('click', () => {
-        const orderRow = summary.querySelector('.detail-kv--order');
-        if (orderRow) {
-          orderRow.classList.remove('is-hidden');
-          nodeOrderBtn.remove();
+        ${
+          extraKeys.length
+            ? `<div class="detail-edit-extra"><div class="section-title">Additional Row Fields</div><div class="detail-edit-grid">${renderEditableRows(
+                extraKeys
+              )}</div></div>`
+            : ''
         }
-      });
-    }
+        <div class="detail-edit-actions">
+          <button class="btn btn-primary" type="button" id="saveNodeRowEdits">Save</button>
+          <span class="panel-meta ${state.rowEditStatusIsSuccess ? 'status-success' : 'status-error'}" id="nodeRowEditStatus">${
+            state.rowEditStatus || ''
+          }</span>
+        </div>
+        <div id="inputTabsContainer"></div>
+      `;
 
-    const updateNodeBtn = summary.querySelector('#updateNodeFromDetails');
-    if (updateNodeBtn) {
-      updateNodeBtn.addEventListener('click', () => {
-        const hashUpdate = {
-          node: 'add_node',
-          node_id: node.node_id || '',
-          source_python: sourcePythonForAddNode,
-        };
-        if (typeof goHash === 'function') {
-          goHash(hashUpdate);
-        } else {
-          safeGoHash(hashUpdate);
-        }
+      summary.querySelectorAll('input[data-row-key]').forEach((input) => {
+        input.addEventListener('input', () => {
+          const key = input.getAttribute('data-row-key');
+          if (!key) return;
+          setRowEditValue(key, input.value);
+          state.rowEditStatus = '';
+          state.rowEditStatusIsSuccess = false;
+        });
       });
+
+      const saveRowBtn = summary.querySelector('#saveNodeRowEdits');
+      if (saveRowBtn) {
+        saveRowBtn.addEventListener('click', () => {
+          saveNodeRowEdits();
+        });
+      }
+    } else {
+      summary.innerHTML = `
+        ${toastMarkup}
+        <div class="detail-columns-row">
+          <div class="detail-columns">
+            <div class="detail-col">
+              ${renderRows(leftRows)}
+              <div class="local">
+                <button class="btn btn-sm btn-outline" type="button" id="showNodeOrder">row order</button>
+                <button class="btn btn-sm btn-outline" type="button" id="updateNodeFromDetails">update row</button>
+              </div>
+            </div>
+            <div class="detail-col">${renderRows(rightRows)}</div>
+          </div>
+          <button class="detail-info-btn" id="detailMetaInfoBtn" type="button" aria-label="Metadata info" title="Metadata info">i</button>
+        </div>
+        <div id="inputTabsContainer"></div>
+      `;
+
+      const nodeOrderBtn = summary.querySelector('#showNodeOrder');
+      if (nodeOrderBtn) {
+        nodeOrderBtn.addEventListener('click', () => {
+          const orderRow = summary.querySelector('.detail-kv--order');
+          if (orderRow) {
+            orderRow.classList.remove('is-hidden');
+            nodeOrderBtn.remove();
+          }
+        });
+      }
+
+      const updateNodeBtn = summary.querySelector('#updateNodeFromDetails');
+      if (updateNodeBtn) {
+        updateNodeBtn.addEventListener('click', () => {
+          const hashUpdate = {
+            node: 'add_node',
+            node_id: node.node_id || '',
+            source_python: sourcePythonForAddNode,
+          };
+          if (typeof goHash === 'function') {
+            goHash(hashUpdate);
+          } else {
+            safeGoHash(hashUpdate);
+          }
+        });
+      }
     }
 
     const detailInfoBtn = summary.querySelector('#detailMetaInfoBtn');
@@ -1574,6 +1804,24 @@
     setConfigGithubLink(node);
 
     const openBtn = document.getElementById('openNodeFolder');
+    const editBtn = document.getElementById('editNodeRow');
+    if (editBtn) {
+      editBtn.disabled = !node;
+      editBtn.textContent = state.rowEditMode ? 'Cancel' : 'Edit';
+      editBtn.onclick = () => {
+        if (!node) return;
+        if (state.rowEditMode) {
+          state.rowEditMode = false;
+          state.rowEditStatus = '';
+          state.rowEditStatusIsSuccess = false;
+          renderDetail();
+          return;
+        }
+        state.rowEditMode = true;
+        ensureRowEditState(node);
+        renderDetail();
+      };
+    }
     if (openBtn) {
       openBtn.disabled = !node || !node.link;
       openBtn.onclick = () => {
@@ -1624,7 +1872,8 @@
           runResult.classList.add('is-hidden');
           runResult.classList.remove('success', 'error');
         }
-        renderDetail();
+        runBtn.disabled = true;
+        runBtn.textContent = '🔄 Running...';
         try {
           const response = await fetch(apiUrl, {
             method: 'POST',

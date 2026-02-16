@@ -70,6 +70,21 @@
       },
       "typeVersion": 1,
       "notes": "Runs node.py"
+    },
+    {
+      "id": "airports",
+      "name": "Airports",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        240,
+        280
+      ],
+      "parameters": {
+        "command": "python pull-airports.py",
+        "workingDirectory": "airports/pipeline"
+      },
+      "typeVersion": 1,
+      "notes": "Runs pull-airports.py"
     }
   ],
   "connections": {

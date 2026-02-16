@@ -14,6 +14,7 @@ import json
 import re
 import shutil
 import sys
+import traceback
 from pathlib import Path
 from typing import Dict, List, Set, Tuple
 
@@ -37,8 +38,10 @@ IMPORT_TO_PIP = {
 
 CONTROL_KEYS = {
     "NODE_ID",
+    "ORIGINAL_NODE_ID",
     "NODES_CSV",
     "SOURCE_PYTHON",
+    "MANUAL_ROW_UPDATE",
     "READ_ALL_NODES",
     "READ_ALL_EXISTING_NODES",
     "INCLUDE_LOCAL_MODULES",
@@ -120,7 +123,14 @@ def parse_cli_overrides(argv: List[str]) -> Tuple[Path, Dict]:
 
 def resolve_path(path_value: str, base_dir: Path) -> Path:
     path = Path(path_value)
-    return path if path.is_absolute() else (base_dir / path).resolve()
+    if path.is_absolute():
+        return path
+    primary = (base_dir / path).resolve()
+    if primary.exists():
+        return primary
+    # Allow repo-root relative paths passed from admin UI, e.g. airports/pipeline/pull-airports.py
+    fallback = (WEBROOT_DIR / path).resolve()
+    return fallback if fallback.exists() else primary
 
 
 def stdlib_modules() -> Set[str]:
@@ -296,6 +306,18 @@ def build_target_updates(
     discovered: Dict[str, List[str]],
 ) -> Dict[str, str]:
     admin_row_updates = extract_admin_row_updates(admin_config)
+    manual_row_update = bool(cfg_get(admin_config, "MANUAL_ROW_UPDATE", False))
+
+    if manual_row_update:
+        updates = dict(admin_row_updates)
+        node_id = cfg_get(admin_config, "NODE_ID", updates.get("node_id"))
+        if node_id is None or str(node_id).strip() == "":
+            raise ValueError("NODE_ID is required for MANUAL_ROW_UPDATE")
+        updates["node_id"] = normalize_node_id(str(node_id))
+        if not updates["node_id"]:
+            raise ValueError("Could not derive a valid node_id")
+        return updates
+
     source_path_value = cfg_get(admin_config, "SOURCE_PYTHON")
     source_path_str = source_path_value if source_path_value else ""
     node_cfg = select_node_cfg(source_config, source_path_str) or {}
@@ -342,7 +364,7 @@ def build_target_updates(
     return updates
 
 
-def upsert_streaming(nodes_csv: Path, target_updates: Dict[str, str]) -> Tuple[bool, List[str]]:
+def upsert_streaming(nodes_csv: Path, target_updates: Dict[str, str], match_node_id: str | None = None) -> Tuple[bool, List[str]]:
     temp_path = nodes_csv.with_suffix(".tmp")
     replaced = False
 
@@ -356,9 +378,10 @@ def upsert_streaming(nodes_csv: Path, target_updates: Dict[str, str]) -> Tuple[b
         writer.writeheader()
 
         target_id = target_updates["node_id"]
+        match_id = (match_node_id or target_id).strip().lower()
 
         for row in reader:
-            if row.get("node_id", "").strip().lower() == target_id:
+            if row.get("node_id", "").strip().lower() == match_id:
                 row = merge_row(row, target_updates, fieldnames)
                 replaced = True
             writer.writerow({k: row.get(k, "") for k in fieldnames})
@@ -371,7 +394,7 @@ def upsert_streaming(nodes_csv: Path, target_updates: Dict[str, str]) -> Tuple[b
     return replaced, fieldnames
 
 
-def upsert_in_memory(nodes_csv: Path, target_updates: Dict[str, str]) -> Tuple[bool, List[str]]:
+def upsert_in_memory(nodes_csv: Path, target_updates: Dict[str, str], match_node_id: str | None = None) -> Tuple[bool, List[str]]:
     with nodes_csv.open("r", encoding="utf-8", newline="") as source:
         reader = csv.DictReader(source)
         if not reader.fieldnames:
@@ -380,10 +403,11 @@ def upsert_in_memory(nodes_csv: Path, target_updates: Dict[str, str]) -> Tuple[b
         rows = list(reader)
 
     target_id = target_updates["node_id"]
+    match_id = (match_node_id or target_id).strip().lower()
     replaced = False
 
     for idx, row in enumerate(rows):
-        if row.get("node_id", "").strip().lower() == target_id:
+        if row.get("node_id", "").strip().lower() == match_id:
             rows[idx] = merge_row(row, target_updates, fieldnames)
             replaced = True
             break
@@ -552,50 +576,77 @@ def main() -> int:
         config.update(cli_overrides)
 
     nodes_csv_raw = str(cfg_get(config, "NODES_CSV", "../../nodes.csv"))
+    manual_row_update = bool(cfg_get(config, "MANUAL_ROW_UPDATE", False))
     source_python_raw = cfg_get(config, "SOURCE_PYTHON")
-    if not source_python_raw:
-        raise ValueError("config.yaml must set SOURCE_PYTHON")
 
     nodes_csv = resolve_path(nodes_csv_raw, config_path.parent)
-    source_python = resolve_path(str(source_python_raw), config_path.parent)
+    source_python = resolve_path(str(source_python_raw), config_path.parent) if source_python_raw else None
 
     if not nodes_csv.exists():
         raise FileNotFoundError(f"nodes.csv not found: {nodes_csv}")
-    if not source_python.exists():
-        raise FileNotFoundError(f"source_python not found: {source_python}")
+    if not manual_row_update:
+        if not source_python_raw:
+            raise ValueError("config.yaml must set SOURCE_PYTHON")
+        if source_python is None or not source_python.exists():
+            raise FileNotFoundError(f"source_python not found: {source_python}")
 
-    inferred_fields, discovered = infer_node_fields(config, source_python)
+    inferred_fields: Dict[str, str] = {}
+    discovered: Dict[str, List[str]] = {"dependencies": [], "cli_flags": []}
+    source_rel = ""
+    source_config_path: Path | None = None
+    source_config: Dict = {}
 
-    # Ensure substitution paths are repo-relative and portable.
-    source_rel = source_python.relative_to(WEBROOT_DIR).as_posix()
-    config["SOURCE_PYTHON"] = source_rel
+    if not manual_row_update:
+        inferred_fields, discovered = infer_node_fields(config, source_python)
+        # Ensure substitution paths are repo-relative and portable.
+        source_rel = source_python.relative_to(WEBROOT_DIR).as_posix()
+        config["SOURCE_PYTHON"] = source_rel
 
-    source_config_path = source_python.parent / "config.yaml"
-    source_config = load_config(source_config_path) if source_config_path.exists() else {}
+        source_config_path = source_python.parent / "config.yaml"
+        source_config = load_config(source_config_path) if source_config_path.exists() else {}
+    elif source_python and source_python.exists():
+        source_rel = source_python.relative_to(WEBROOT_DIR).as_posix()
+        config["SOURCE_PYTHON"] = source_rel
 
     target_updates = build_target_updates(config, source_config, inferred_fields, discovered)
+    match_node_id = cfg_get(config, "ORIGINAL_NODE_ID")
+    if match_node_id is not None:
+        match_node_id = normalize_node_id(str(match_node_id))
+    if not match_node_id:
+        match_node_id = target_updates["node_id"]
 
     read_all = bool(cfg_get(config, "READ_ALL_NODES", cfg_get(config, "READ_ALL_EXISTING_NODES", False)))
 
-    if read_all:
-        replaced, fieldnames = upsert_in_memory(nodes_csv, target_updates)
-        mode = "in-memory"
-    else:
-        replaced, fieldnames = upsert_streaming(nodes_csv, target_updates)
-        mode = "streaming"
+    try:
+        if read_all:
+            replaced, fieldnames = upsert_in_memory(nodes_csv, target_updates, match_node_id=match_node_id)
+            mode = "in-memory"
+        else:
+            replaced, fieldnames = upsert_streaming(nodes_csv, target_updates, match_node_id=match_node_id)
+            mode = "streaming"
 
-    sort_nodes_csv_by_order(nodes_csv)
-    update_nodes_json_from_csv(nodes_csv)
+        sort_nodes_csv_by_order(nodes_csv)
+        update_nodes_json_from_csv(nodes_csv)
+    except PermissionError as exc:
+        err_path = getattr(exc, "filename", None) or getattr(exc, "filename2", None) or str(nodes_csv)
+        raise PermissionError(
+            f"Permission denied while updating pipeline files. "
+            f"Path: {err_path}. "
+            f"Operation: upsert/sort/write nodes.csv or nodes.json. "
+            f"Original error: {exc}"
+        ) from exc
 
     print(f"[OK] {'Updated' if replaced else 'Inserted'} node_id={target_updates['node_id']}")
     print(f"[OK] nodes.csv: {nodes_csv.relative_to(WEBROOT_DIR)}")
     print(f"[OK] nodes.json: {(nodes_csv.parent / 'nodes.json').relative_to(WEBROOT_DIR)}")
     print(f"[OK] mode: {mode}")
-    print(f"[OK] source analyzed: {source_rel}")
-    print(
-        f"[OK] source config: "
-        f"{source_config_path.relative_to(WEBROOT_DIR) if source_config_path.exists() else 'not found'}"
-    )
+    if source_rel:
+        print(f"[OK] source analyzed: {source_rel}")
+    if source_config_path is not None:
+        print(
+            f"[OK] source config: "
+            f"{source_config_path.relative_to(WEBROOT_DIR) if source_config_path.exists() else 'not found'}"
+        )
     if discovered["dependencies"]:
         print(f"[OK] detected dependencies: {', '.join(discovered['dependencies'])}")
     if discovered["cli_flags"]:
@@ -606,4 +657,18 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    try:
+        raise SystemExit(main())
+    except Exception as exc:
+        print(f"[ERROR] {exc.__class__.__name__}: {exc}", file=sys.stderr)
+        print(f"[ERROR] cwd: {Path.cwd()}", file=sys.stderr)
+        print(f"[ERROR] argv: {' '.join(sys.argv)}", file=sys.stderr)
+        if isinstance(exc, OSError):
+            print(
+                f"[ERROR] os_error_details: errno={getattr(exc, 'errno', None)} "
+                f"filename={getattr(exc, 'filename', None)} "
+                f"filename2={getattr(exc, 'filename2', None)}",
+                file=sys.stderr,
+            )
+        traceback.print_exc()
+        raise SystemExit(1)
