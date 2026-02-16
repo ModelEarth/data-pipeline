@@ -24,7 +24,10 @@
     generalSectionSchemas: [],
     nodeSpecificConfigSchema: [],
     rawConfigText: '',
+    rawConfigOriginalText: '',
     rawConfigValid: true,
+    rawConfigSaveMessage: '',
+    rawConfigSaveIsSuccess: false,
     commandBase: '',
     adminNotePath: '',
     flaskAvailable: null,
@@ -91,6 +94,37 @@
     return 'all';
   }
 
+  function normalizeYamlForCompare(text) {
+    return String(text || '')
+      .replace(/\r\n/g, '\n')
+      .trim();
+  }
+
+  function hasUnsavedRawConfigChanges() {
+    return (
+      normalizeYamlForCompare(state.rawConfigText) !==
+      normalizeYamlForCompare(state.rawConfigOriginalText)
+    );
+  }
+
+  function renderRawSaveStatus() {
+    const statusEl = document.getElementById('rawConfigSaveStatus');
+    if (!statusEl) return;
+    statusEl.textContent = state.rawConfigSaveMessage || '';
+    statusEl.classList.remove('status-success', 'status-error');
+    if (state.rawConfigSaveMessage) {
+      statusEl.classList.add(state.rawConfigSaveIsSuccess ? 'status-success' : 'status-error');
+    }
+  }
+
+  function clearSavedStatusWhenDirty() {
+    if (hasUnsavedRawConfigChanges() && state.rawConfigSaveMessage === 'Saved config.yaml') {
+      state.rawConfigSaveMessage = '';
+      state.rawConfigSaveIsSuccess = false;
+      renderRawSaveStatus();
+    }
+  }
+
   function renderInputTabs() {
     const container = document.getElementById('inputTabsContainer');
     if (!container) return;
@@ -123,6 +157,7 @@
       fields: document.getElementById('detailConfig'),
       yaml: document.getElementById('rawConfigSection'),
       notes: document.getElementById('adminNoteSection'),
+      save: document.getElementById('rawConfigSaveSection'),
     };
     const mode = state.inputMode || 'overview';
     const showAll = mode === 'all';
@@ -132,11 +167,22 @@
     const showFields = showAll || mode === 'fields';
     const showYaml = hasRawYaml && (showAll || mode === 'yaml');
     const showNotes = hasAdminNote && (showAll || mode === 'notes');
+    const inSaveViews = showAll || mode === 'fields' || mode === 'yaml';
+    const isDirty = hasUnsavedRawConfigChanges();
+    const showSavedMessageOnly = !isDirty && state.rawConfigSaveMessage === 'Saved config.yaml';
+    const showSaveSection = inSaveViews && (isDirty || showSavedMessageOnly);
+    const showSaveButton = inSaveViews && isDirty;
 
     if (sections.overview) sections.overview.classList.toggle('is-hidden', !showOverview);
     if (sections.fields) sections.fields.classList.toggle('is-hidden', !showFields);
     if (sections.yaml) sections.yaml.classList.toggle('is-hidden', !showYaml);
     if (sections.notes) sections.notes.classList.toggle('is-hidden', !showNotes);
+    if (sections.save) sections.save.classList.toggle('is-hidden', !showSaveSection);
+    const saveBtn = document.getElementById('saveRawConfig');
+    if (saveBtn) {
+      saveBtn.classList.toggle('is-hidden', !showSaveButton);
+    }
+    renderRawSaveStatus();
   }
 
   function normalizeNodeLink(link) {
@@ -318,12 +364,12 @@
       return localApiCheckPromise;
     }
     localApiCheckPromise = fetch(`${LOCAL_API_BASE}/nodes/run`, {
-      method: 'OPTIONS',
+      method: 'GET',
       cache: 'no-store',
       signal: AbortSignal.timeout(2000),
     })
       .then((response) => {
-        state.localApiAvailable = response.status !== 404;
+        state.localApiAvailable = response.status !== 404 && response.status !== 501;
         return state.localApiAvailable;
       })
       .catch(() => {
@@ -635,6 +681,26 @@
     return lower === 'source_python' || lower === 'output_path' || isApiKeyField(key);
   }
 
+  function getNodeOptionsFromList() {
+    const listCards = Array.from(document.querySelectorAll('#nodeList .node-card[data-node-id]'));
+    const fromDom = listCards
+      .map((card) => {
+        const nodeId = String(card.getAttribute('data-node-id') || '').trim();
+        const nameEl = card.querySelector('.node-name');
+        const nodeName = String((nameEl && nameEl.textContent) || nodeId).trim();
+        return nodeId ? { id: nodeId, name: nodeName } : null;
+      })
+      .filter(Boolean);
+    if (fromDom.length) return fromDom;
+
+    return (state.nodes || [])
+      .map((node) => ({
+        id: String(node.node_id || '').trim(),
+        name: String(node.name || node.node_id || '').trim(),
+      }))
+      .filter((item) => item.id);
+  }
+
   function normalizeConfigField(key, value, label = key) {
     if (String(value || '').toLowerCase() === 'required') {
       return {
@@ -874,6 +940,157 @@
     return '<span class="blank-placeholder" aria-hidden="true">&nbsp;</span>';
   }
 
+  function yamlStringifySafe(obj) {
+    if (typeof YAML === 'undefined') return '';
+    if (typeof YAML.stringify === 'function') return YAML.stringify(obj);
+    if (typeof YAML.dump === 'function') return YAML.dump(obj);
+    return '';
+  }
+
+  function findLeafPaths(obj, prefix = '', path = []) {
+    if (!obj || typeof obj !== 'object' || Array.isArray(obj)) return [];
+    const leaves = [];
+    Object.entries(obj).forEach(([key, value]) => {
+      const flatKey = prefix ? `${prefix}_${key}` : key;
+      const nextPath = path.concat(key);
+      if (
+        value &&
+        typeof value === 'object' &&
+        !Array.isArray(value) &&
+        !isRunFieldValue(value)
+      ) {
+        leaves.push(...findLeafPaths(value, flatKey, nextPath));
+      } else {
+        leaves.push({
+          flatKey,
+          normalizedKey: normalizeFieldKey(flatKey),
+          path: nextPath,
+          value,
+        });
+      }
+    });
+    return leaves;
+  }
+
+  function getValueAtPath(obj, path) {
+    let current = obj;
+    for (let i = 0; i < path.length; i++) {
+      if (!current || typeof current !== 'object') return undefined;
+      current = current[path[i]];
+    }
+    return current;
+  }
+
+  function setValueAtPath(obj, path, nextValue) {
+    if (!obj || typeof obj !== 'object' || !path.length) return false;
+    let current = obj;
+    for (let i = 0; i < path.length - 1; i++) {
+      const key = path[i];
+      if (!current[key] || typeof current[key] !== 'object') return false;
+      current = current[key];
+    }
+    current[path[path.length - 1]] = nextValue;
+    return true;
+  }
+
+  function applyFieldValueToLeafValue(existingValue, field, value) {
+    if (field.type === 'flag') {
+      const boolVal = Boolean(value);
+      if (
+        existingValue &&
+        typeof existingValue === 'object' &&
+        !Array.isArray(existingValue) &&
+        String(existingValue.type || '').toLowerCase() === 'flag'
+      ) {
+        return { ...existingValue, selected: boolVal };
+      }
+      return boolVal;
+    }
+
+    const textVal = value === undefined || value === null ? '' : String(value);
+    if (
+      existingValue &&
+      typeof existingValue === 'object' &&
+      !Array.isArray(existingValue) &&
+      Object.prototype.hasOwnProperty.call(existingValue, 'options')
+    ) {
+      return { ...existingValue, selected: textVal };
+    }
+    return textVal;
+  }
+
+  function updateFieldInObject(targetObj, field, value) {
+    if (!targetObj || typeof targetObj !== 'object') return false;
+    const targetNorm = normalizeFieldKey(field.key);
+    const leaves = findLeafPaths(targetObj);
+    if (!leaves.length) return false;
+
+    const exactMatch = leaves.find((leaf) => leaf.normalizedKey === targetNorm);
+    const suffixMatch = leaves.find((leaf) => leaf.normalizedKey.endsWith(`_${targetNorm}`));
+    const match = exactMatch || suffixMatch;
+    if (!match) return false;
+
+    const existingValue = getValueAtPath(targetObj, match.path);
+    const nextValue = applyFieldValueToLeafValue(existingValue, field, value);
+    return setValueAtPath(targetObj, match.path, nextValue);
+  }
+
+  function findNodeConfigContainer(config, node) {
+    if (!config || typeof config !== 'object' || !config.NODES || typeof config.NODES !== 'object') {
+      return null;
+    }
+    const nodeId = String((node && node.node_id) || '').trim();
+    if (nodeId && config.NODES[nodeId] && typeof config.NODES[nodeId] === 'object') {
+      return config.NODES[nodeId];
+    }
+    const scriptKey = guessScriptKeyFromNode(node);
+    if (scriptKey && config.NODES[scriptKey] && typeof config.NODES[scriptKey] === 'object') {
+      return config.NODES[scriptKey];
+    }
+    return null;
+  }
+
+  function syncRawConfigFromFieldChange(field, value) {
+    if (!field) return;
+    if (typeof YAML === 'undefined') return;
+    const node = state.nodes.find((n) => n.node_id === state.activeId);
+    const sourceText =
+      state.rawConfigText ||
+      (document.getElementById('rawConfigYaml') && document.getElementById('rawConfigYaml').value) ||
+      '';
+    if (!sourceText.trim()) return;
+
+    let configObj;
+    try {
+      configObj = YAML.parse(sourceText) || {};
+    } catch (err) {
+      return;
+    }
+
+    let updated = false;
+    const nodeContainer = findNodeConfigContainer(configObj, node);
+    if (nodeContainer) {
+      updated = updateFieldInObject(nodeContainer, field, value) || updated;
+    }
+    if (!updated) {
+      updated = updateFieldInObject(configObj, field, value) || updated;
+    }
+    if (!updated) return;
+
+    const nextYaml = yamlStringifySafe(configObj);
+    if (!nextYaml) return;
+    state.rawConfigText = nextYaml;
+    state.rawConfigValid = true;
+
+    const rawEl = document.getElementById('rawConfigYaml');
+    if (rawEl) {
+      rawEl.value = nextYaml;
+      rawEl.classList.remove('invalid-yaml');
+    }
+    clearSavedStatusWhenDirty();
+    applyInputSectionVisibility();
+  }
+
   function buildCommand() {
     const pieces = [state.commandBase];
     state.configSchema.forEach((field) => {
@@ -959,7 +1176,60 @@
         wrapper.appendChild(label);
 
         let input;
-        if (field.type === 'select') {
+        const isNodeIdField = String(field.key || '').toLowerCase() === 'node_id';
+        const currentValue = state.configValues[field.key] || field.value || '';
+        const useNodeIdPicker =
+          isNodeIdField && String(currentValue).trim().toLowerCase() === 'choose';
+
+        if (useNodeIdPicker) {
+          input = document.createElement('select');
+          const chooseOption = document.createElement('option');
+          chooseOption.value = 'choose';
+          chooseOption.textContent = 'New or Existing Row...';
+          input.appendChild(chooseOption);
+          const newOption = document.createElement('option');
+          newOption.value = 'new';
+          newOption.textContent = 'Add new pipeline row';
+          input.appendChild(newOption);
+          getNodeOptionsFromList().forEach((item) => {
+            const option = document.createElement('option');
+            option.value = item.id;
+            option.textContent = item.name;
+            input.appendChild(option);
+          });
+          input.value = currentValue;
+
+          const newNodeInput = document.createElement('input');
+          newNodeInput.type = 'text';
+          newNodeInput.placeholder = 'Enter new node_id';
+          newNodeInput.className = 'node-id-new-input is-hidden';
+
+          const syncPickerValue = () => {
+            const selectedValue = String(input.value || '').trim();
+            if (selectedValue === 'new') {
+              newNodeInput.classList.remove('is-hidden');
+              const typedNodeId = String(newNodeInput.value || '').trim();
+              state.configValues[field.key] = typedNodeId;
+              syncRawConfigFromFieldChange(field, typedNodeId);
+            } else {
+              newNodeInput.classList.add('is-hidden');
+              state.configValues[field.key] = selectedValue;
+              syncRawConfigFromFieldChange(field, selectedValue);
+            }
+            commandEl.value = buildCommand();
+            renderOverviewSection();
+            clearRequiredFieldErrors();
+          };
+
+          input.addEventListener('change', syncPickerValue);
+          newNodeInput.addEventListener('input', syncPickerValue);
+          newNodeInput.addEventListener('change', syncPickerValue);
+
+          wrapper.appendChild(input);
+          wrapper.appendChild(newNodeInput);
+          col.appendChild(wrapper);
+          return;
+        } else if (field.type === 'select') {
           input = document.createElement('select');
           field.options.forEach((opt) => {
             const option = document.createElement('option');
@@ -967,7 +1237,7 @@
             option.textContent = opt;
             input.appendChild(option);
           });
-          input.value = state.configValues[field.key] || field.value || '';
+          input.value = currentValue;
         } else {
           input = document.createElement('input');
           if (field.type === 'flag') {
@@ -975,16 +1245,20 @@
             input.checked = Boolean(state.configValues[field.key]);
           } else {
             input.type = 'text';
-            input.value = state.configValues[field.key] || field.value || '';
+            input.value = currentValue;
           }
         }
 
-        input.addEventListener('input', () => {
-          state.configValues[field.key] = field.type === 'flag' ? input.checked : input.value;
+        const onFieldChange = () => {
+          const nextValue = field.type === 'flag' ? input.checked : input.value;
+          state.configValues[field.key] = nextValue;
+          syncRawConfigFromFieldChange(field, nextValue);
           commandEl.value = buildCommand();
           renderOverviewSection();
           clearRequiredFieldErrors();
-        });
+        };
+        input.addEventListener('input', onFieldChange);
+        input.addEventListener('change', onFieldChange);
 
         wrapper.appendChild(input);
         col.appendChild(wrapper);
@@ -1115,15 +1389,11 @@
   function renderRawConfig() {
     const section = document.getElementById('rawConfigSection');
     const textarea = document.getElementById('rawConfigYaml');
-    const saveStatus = document.getElementById('rawConfigSaveStatus');
     if (!section || !textarea) return;
     const text = state.rawConfigText || '';
     textarea.value = text;
     textarea.classList.toggle('invalid-yaml', !state.rawConfigValid);
-    if (saveStatus) {
-      saveStatus.textContent = '';
-      saveStatus.classList.remove('status-success', 'status-error');
-    }
+    renderRawSaveStatus();
     if (text.trim()) {
       section.classList.remove('is-hidden');
     } else {
@@ -1229,7 +1499,10 @@
     state.configValues = {};
     state.adminNotePath = '';
     state.rawConfigText = '';
+    state.rawConfigOriginalText = '';
     state.rawConfigValid = true;
+    state.rawConfigSaveMessage = '';
+    state.rawConfigSaveIsSuccess = false;
 
     if (!node || !node.link) {
       renderRawConfig();
@@ -1245,7 +1518,10 @@
       if (!response.ok) throw new Error('config missing');
       const yamlText = await response.text();
       state.rawConfigText = yamlText;
+      state.rawConfigOriginalText = yamlText;
       state.rawConfigValid = true;
+      state.rawConfigSaveMessage = '';
+      state.rawConfigSaveIsSuccess = false;
       if (typeof YAML === 'undefined') {
         throw new Error('YAML parser unavailable');
       }
@@ -1257,6 +1533,7 @@
         } else if (typeof YAML.dump === 'function') {
           state.rawConfigText = YAML.dump(config);
         }
+        state.rawConfigOriginalText = state.rawConfigText;
       }
       applyConfigObject(config, node);
     } catch (err) {
@@ -1266,7 +1543,10 @@
       state.nodeSpecificConfigSchema = [];
       state.adminNotePath = '';
       state.rawConfigText = '';
+      state.rawConfigOriginalText = '';
       state.rawConfigValid = true;
+      state.rawConfigSaveMessage = '';
+      state.rawConfigSaveIsSuccess = false;
     }
 
     renderRawConfig();
@@ -1430,6 +1710,7 @@
     if (!textarea) return;
     textarea.addEventListener('input', () => {
       state.rawConfigText = textarea.value || '';
+      clearSavedStatusWhenDirty();
       const node = state.nodes.find((n) => n.node_id === state.activeId);
       const nodeLink = node ? buildNodeUrl(node.link) : '';
       if (!state.rawConfigText.trim()) {
@@ -1440,10 +1721,12 @@
         state.configValues = {};
         state.adminNotePath = '';
         state.rawConfigValid = true;
+        clearSavedStatusWhenDirty();
         textarea.classList.remove('invalid-yaml');
         renderConfigForm();
         renderOverviewSection();
         renderAdminNote(nodeLink);
+        applyInputSectionVisibility();
         return;
       }
       try {
@@ -1453,23 +1736,24 @@
         const config = YAML.parse(state.rawConfigText) || {};
         applyConfigObject(config, node);
         state.rawConfigValid = true;
+        clearSavedStatusWhenDirty();
         textarea.classList.remove('invalid-yaml');
         renderConfigForm();
         renderOverviewSection();
         renderAdminNote(nodeLink);
+        applyInputSectionVisibility();
       } catch (err) {
         state.rawConfigValid = false;
         textarea.classList.add('invalid-yaml');
+        applyInputSectionVisibility();
       }
     });
   }
 
   function setRawSaveStatus(message, isSuccess) {
-    const statusEl = document.getElementById('rawConfigSaveStatus');
-    if (!statusEl) return;
-    statusEl.textContent = message;
-    statusEl.classList.remove('status-success', 'status-error');
-    statusEl.classList.add(isSuccess ? 'status-success' : 'status-error');
+    state.rawConfigSaveMessage = message || '';
+    state.rawConfigSaveIsSuccess = Boolean(isSuccess);
+    renderRawSaveStatus();
   }
 
   function bindRawConfigSave() {
@@ -1521,7 +1805,9 @@
           const message = result.error || `HTTP ${response.status}`;
           throw new Error(message);
         }
+        state.rawConfigOriginalText = state.rawConfigText;
         setRawSaveStatus('Saved config.yaml', true);
+        applyInputSectionVisibility();
       } catch (err) {
         setRawSaveStatus(`Save failed: ${err.message || 'unknown error'}`, false);
       } finally {

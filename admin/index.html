@@ -63,10 +63,6 @@
           <div class="section-title settings-title-row">CONFIG.YAML</div>
           <textarea id="rawConfigYaml" class="raw-config-text" wrap="off"></textarea>
           <div class="textarea-resize-grip" data-target="rawConfigYaml" title="Resize"></div>
-          <div class="raw-config-actions">
-            <button class="btn btn-primary" id="saveRawConfig" type="button">Save Changes</button>
-            <span class="panel-meta" id="rawConfigSaveStatus"></span>
-          </div>
         </section>
         <section class="detail-section" id="detailConfig">
           <div class="section-title-row settings-title-row">
@@ -81,6 +77,12 @@
             ><span class="material-icons-outlined" aria-hidden="true">visibility</span></a>
           </div>
           <div id="configForm"></div>
+        </section>
+        <section class="detail-section is-hidden" id="rawConfigSaveSection">
+          <div class="raw-config-actions">
+            <button class="btn btn-primary" id="saveRawConfig" type="button">Save Changes</button>
+            <span class="panel-meta" id="rawConfigSaveStatus"></span>
+          </div>
         </section>
         <section class="detail-section is-hidden" id="adminNoteSection">
           <div class="section-title">Admin Notes</div>
