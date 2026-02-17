@@ -47,6 +47,7 @@
     rowEditStatusIsSuccess: false,
     rowToastMessage: '',
     rowToastIsSuccess: false,
+    allowRowEdit: true,
   };
 
   let flaskCheckPromise = null;
@@ -106,6 +107,24 @@
     return String(text || '')
       .replace(/\r\n/g, '\n')
       .trim();
+  }
+
+  function parseConfigBoolean(value, defaultValue = true) {
+    if (value === undefined || value === null || value === '') return defaultValue;
+    if (typeof value === 'boolean') return value;
+    const normalized = String(value).trim().toLowerCase();
+    if (['false', 'no', 'off', '0'].includes(normalized)) return false;
+    if (['true', 'yes', 'on', '1'].includes(normalized)) return true;
+    return defaultValue;
+  }
+
+  function getConfigValueCaseInsensitive(config, key) {
+    if (!config || typeof config !== 'object') return undefined;
+    if (Object.prototype.hasOwnProperty.call(config, key)) return config[key];
+    const match = Object.keys(config).find(
+      (entry) => String(entry).toLowerCase() === String(key).toLowerCase()
+    );
+    return match ? config[match] : undefined;
   }
 
   function hasUnsavedRawConfigChanges() {
@@ -1753,6 +1772,7 @@
     state.rawConfigValid = true;
     state.rawConfigSaveMessage = '';
     state.rawConfigSaveIsSuccess = false;
+    state.allowRowEdit = true;
 
     if (!node || !node.link) {
       renderRawConfig();
@@ -1776,6 +1796,10 @@
         throw new Error('YAML parser unavailable');
       }
       const config = YAML.parse(yamlText) || {};
+      state.allowRowEdit = parseConfigBoolean(
+        getConfigValueCaseInsensitive(config, 'ALLOW_ROW_EDIT'),
+        true
+      );
       const mergedFromHash = applyHashOverridesToConfig(config, node);
       if (mergedFromHash) {
         if (typeof YAML.stringify === 'function') {
@@ -1797,6 +1821,7 @@
       state.rawConfigValid = true;
       state.rawConfigSaveMessage = '';
       state.rawConfigSaveIsSuccess = false;
+      state.allowRowEdit = true;
     }
 
     renderRawConfig();
@@ -1823,13 +1848,18 @@
     setCommandBase(node);
     setConfigGithubLink(node);
 
-    const openBtn = document.getElementById('openNodeFolder');
     const editBtn = document.getElementById('editNodeRow');
     if (editBtn) {
+      const canEditRow = Boolean(node) && state.allowRowEdit !== false;
+      if (!canEditRow && state.rowEditMode) {
+        state.rowEditMode = false;
+      }
+      editBtn.classList.toggle('is-hidden', !canEditRow);
       editBtn.disabled = !node;
       editBtn.textContent = state.rowEditMode ? 'Cancel' : 'Edit';
       editBtn.onclick = () => {
         if (!node) return;
+        if (state.allowRowEdit === false) return;
         if (state.rowEditMode) {
           state.rowEditMode = false;
           state.rowEditStatus = '';
@@ -1842,6 +1872,8 @@
         renderDetail();
       };
     }
+
+    const openBtn = document.getElementById('openNodeFolder');
     if (openBtn) {
       openBtn.disabled = !node || !node.link;
       openBtn.onclick = () => {
@@ -1939,6 +1971,15 @@
     updateFlaskFallback();
 
     await loadConfig(node);
+    const editBtnAfterConfig = document.getElementById('editNodeRow');
+    if (editBtnAfterConfig) {
+      const canEditRow = Boolean(node) && state.allowRowEdit !== false;
+      if (!canEditRow && state.rowEditMode) {
+        state.rowEditMode = false;
+        setDetailSummary(node);
+      }
+      editBtnAfterConfig.classList.toggle('is-hidden', !canEditRow);
+    }
   }
 
   function filterNodes(term) {

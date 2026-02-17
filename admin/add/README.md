@@ -2,6 +2,26 @@
 
 [Add/Update](../#node=add_node) a row in [nodes.csv](https://github.com/ModelEarth/data-pipeline/blob/main/nodes.csv)
 
+## Initial Row Insert
+
+To insert row(s) initially, enter the folder in this vibe prompt:
+
+    Add a data-pipeline/nodes.csv row or rows for the python processes found in folder [folder] and populate the columns based on analysis of the code in the folders. The "link" column contains the path from the site root to the python code’s folder. Include commands found to run the file with any documented parameters. The same folder may contain multiple files to run, so you can add more than one row if needed. The nodes.csv file can be used by n8n to create a “nodes.json” workflow json file. Update the local nodes.json file for the row(s) in nodes.csv updated and include any parent-child relations between nodes in the nodes.json update.
+
+    node_id
+    name
+    description
+    type
+    order
+    link
+    python_cmds
+    output_path
+    output_info
+    folder_size
+    n8n_parallel_safe (yes indicates the python is safe to run in parallel)
+
+    There are additional columns with info that will be useful to n8n when executing the python scripts.
+
 ## About Editor
 
 - `node.py` reads `data-pipeline/admin/add/config.yaml` (uppercase first-level keys)
