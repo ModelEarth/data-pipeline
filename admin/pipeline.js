@@ -220,6 +220,15 @@
       .replace(/^\/+/, '');
   }
 
+  function setRunButtonLabel(btn, isRunning) {
+    if (!btn) return;
+    if (isRunning) {
+      btn.innerHTML = 'Running...';
+      return;
+    }
+    btn.innerHTML = '<span aria-hidden="true" style="font-size:14px; margin-right:6px;">&#9654;</span>Run Process';
+  }
+
   function buildNodeUrl(link) {
     const raw = String(link || '').trim().replace(/^(\.\.\/)+/, '').replace(/^\/+/, '');
     if (!raw) return '';
@@ -532,6 +541,15 @@
       state.rowEditOriginalId = '';
       state.rowEditStatus = '';
       state.rowEditStatusIsSuccess = false;
+      const runStatus = document.getElementById('runStatus');
+      const runResult = document.getElementById('runResult');
+      const runResultText = document.getElementById('runResultText');
+      if (runStatus) runStatus.textContent = '';
+      if (runResultText) runResultText.textContent = '';
+      if (runResult) {
+        runResult.classList.add('is-hidden');
+        runResult.classList.remove('success', 'error');
+      }
     }
     state.activeId = nodeId;
     window.currentPipelineNodeId = nodeId;
@@ -1897,7 +1915,7 @@
           node.run_process_available.toLowerCase &&
           node.run_process_available.toLowerCase() === 'no');
       runBtn.disabled = runDisabled || state.isRunning;
-      runBtn.textContent = state.isRunning ? '🔄 Running...' : '▶️ Run Process';
+      setRunButtonLabel(runBtn, state.isRunning);
       runBtn.onclick = async () => {
         const missingRequiredFields = getMissingRequiredFields();
         if (missingRequiredFields.length) {
@@ -1925,7 +1943,7 @@
           runResult.classList.remove('success', 'error');
         }
         runBtn.disabled = true;
-        runBtn.textContent = '🔄 Running...';
+        setRunButtonLabel(runBtn, true);
         try {
           const response = await fetch(apiUrl, {
             method: 'POST',
@@ -1962,7 +1980,7 @@
           state.isRunning = false;
           if (runBtn) {
             runBtn.disabled = runDisabled;
-            runBtn.textContent = '▶️ Run Process';
+            setRunButtonLabel(runBtn, false);
           }
         }
       };

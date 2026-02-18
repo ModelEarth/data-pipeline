@@ -136,6 +136,10 @@ body.dark .pipeline-actions {
   gap: 10px;
 }
 
+#panelDetail .panel-actions {
+  gap: 6px;
+}
+
 .panel-body {
   padding: 18px 20px 22px;
   display: flex;
@@ -757,12 +761,17 @@ body.dark .run-footnote {
   z-index: 1000;
 }
 
+.dark .popup-overlay,
+body.dark .popup-overlay {
+  background: rgba(2, 6, 23, 0.72);
+}
+
 .popup-card {
   width: min(520px, 100%);
   background: var(--pipeline-panel);
   border: 1px solid var(--pipeline-border);
   border-radius: var(--pipeline-radius);
-  box-shadow: var(--pipeline-shadow);
+  box-shadow: 0 22px 56px rgba(15, 23, 42, 0.22);
   padding: 16px 18px;
 }
 
@@ -807,6 +816,23 @@ body.dark .run-footnote {
   color: var(--pipeline-text);
 }
 
+.popup-card a,
+.popup-card a:link,
+.popup-card a:visited {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.dark .popup-card a,
+body.dark .popup-card a,
+.dark .popup-card a:link,
+body.dark .popup-card a:link,
+.dark .popup-card a:visited,
+body.dark .popup-card a:visited {
+  color: #acb;
+  text-decoration: none;
+}
+
 .popup-actions {
   margin-top: 10px;
   display: flex;
@@ -824,7 +850,7 @@ body.dark .run-result {
 body.dark .popup-card {
   background: #0f172a;
   border-color: rgba(148, 163, 184, 0.3);
-  box-shadow: 0 18px 60px rgba(15, 23, 42, 0.4);
+  box-shadow: 0 24px 68px rgba(2, 6, 23, 0.56);
 }
 
 .dark .popup-close-circle,
@@ -1055,8 +1081,27 @@ body.dark .config-field.is-required-missing select {
   height: 8px;
   margin: 0 auto 0;
   border-radius: 999px;
-  background: rgba(100, 116, 139, 0.5);
+  background: rgba(100, 116, 139, 0.12);
+  position: relative;
+  overflow: hidden;
   cursor: ns-resize;
+  transition: background-color 0.2s ease;
+}
+
+.textarea-resize-grip::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 1px;
+  transform: translateX(-50%);
+  width: 22px;
+  height: 6px;
+  border-radius: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(71, 85, 105, 0.6) 0 2px,
+    transparent 2px 4px
+  );
 }
 
 .raw-config-text + .textarea-resize-grip,
@@ -1065,7 +1110,43 @@ body.dark .config-field.is-required-missing select {
 }
 
 .textarea-resize-grip:hover {
-  background: rgba(59, 130, 246, 0.65);
+  background: rgba(59, 130, 246, 0.16);
+}
+
+.textarea-resize-grip:hover::before {
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(37, 99, 235, 0.95) 0 2px,
+    transparent 2px 4px
+  );
+}
+
+.dark .textarea-resize-grip,
+body.dark .textarea-resize-grip {
+  background: rgba(148, 163, 184, 0.16);
+}
+
+.dark .textarea-resize-grip::before,
+body.dark .textarea-resize-grip::before {
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(203, 213, 225, 0.6) 0 2px,
+    transparent 2px 4px
+  );
+}
+
+.dark .textarea-resize-grip:hover,
+body.dark .textarea-resize-grip:hover {
+  background: rgba(147, 197, 253, 0.2);
+}
+
+.dark .textarea-resize-grip:hover::before,
+body.dark .textarea-resize-grip:hover::before {
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(191, 219, 254, 0.98) 0 2px,
+    transparent 2px 4px
+  );
 }
 
 body.is-resizing-textarea {
