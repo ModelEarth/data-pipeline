@@ -380,6 +380,12 @@
   }
 
   function checkFlaskAvailability() {
+    const allowLocalhostAccess = (typeof window.shouldAccessLocalhost == 'function')
+      ? window.shouldAccessLocalhost()
+      : (window.location.hostname == 'localhost' || window.location.hostname == '127.0.0.1');
+    if (!allowLocalhostAccess) {
+      return Promise.resolve(null);
+    }
     if (state.flaskAvailable !== null) {
       return Promise.resolve(state.flaskAvailable);
     }
