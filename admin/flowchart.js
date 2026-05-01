@@ -49,9 +49,9 @@
 
   function goNodeHashOnly(nodeId) {
     const current = safeGetHash();
-    const update = { node: nodeId };
+    const update = { event: nodeId };
     Object.keys(current || {}).forEach((key) => {
-      if (key !== 'node') {
+      if (key !== 'event') {
         update[key] = '';
       }
     });
@@ -213,7 +213,7 @@
     applyParentChildLayout(data, scaledNodes, width);
     const nodeElements = new Map();
     const hash = safeGetHash();
-    const activeNodeId = String(hash.node || window.currentPipelineNodeId || '').trim();
+    const activeNodeId = String(hash.event || hash.node || window.currentPipelineNodeId || '').trim();
 
     scaledNodes.forEach((node) => {
       const box = document.createElement('div');
@@ -228,7 +228,7 @@
 
       const link = document.createElement('a');
       link.className = 'flow-node-link';
-      link.href = `#node=${encodeURIComponent(node.id || '')}`;
+      link.href = `#event=${encodeURIComponent(node.id || '')}`;
       link.addEventListener('click', (event) => {
         event.preventDefault();
         const nodeId = node.id || '';

@@ -6,13 +6,6 @@
   const FLASK_RUN_ENDPOINT = `${FLASK_SERVER_URL}/api/nodes/run`;
   const FLASK_SAVE_CONFIG_ENDPOINT = `${FLASK_SERVER_URL}/api/config/save`;
   const LOCAL_API_BASE = './api';
-  const INPUT_TABS = {
-    overview: { name: 'Overview' },
-    fields: { name: 'Fields' },
-    yaml: { name: 'Yaml' },
-    notes: { name: 'Notes' },
-    all: { name: 'All' },
-  };
 
   const state = {
     nodes: [],
@@ -81,9 +74,9 @@
 
   function goNodeHashOnly(nodeId) {
     const current = safeGetHash();
-    const update = { node: nodeId };
+    const update = { event: nodeId };
     Object.keys(current || {}).forEach((key) => {
-      if (key !== 'node') {
+      if (key !== 'event') {
         update[key] = '';
       }
     });
@@ -95,12 +88,7 @@
   }
 
   function resolveInputMode(inputValue) {
-    if (!inputValue) return 'overview';
-    const normalized = String(inputValue).trim().toLowerCase();
-    if (Object.prototype.hasOwnProperty.call(INPUT_TABS, normalized)) {
-      return normalized;
-    }
-    return 'all';
+    return window.InputTabs.resolveInputMode(inputValue);
   }
 
   function normalizeYamlForCompare(text) {
@@ -153,62 +141,18 @@
   }
 
   function renderInputTabs() {
-    const container = document.getElementById('inputTabsContainer');
-    if (!container) return;
-    const hash = safeGetHash();
-    const mode = resolveInputMode(hash.input);
-    state.inputMode = mode;
-
-    const tabsHtml = [
-      '<div class="page-tab-container">',
-      ...Object.keys(INPUT_TABS).map((key) => {
-        const isActive = key === mode ? ' active' : '';
-        return `<button class="page-tab${isActive}" id="input-${key}-tab" type="button" data-input="${key}">${INPUT_TABS[key].name}</button>`;
-      }),
-      '</div>',
-      '<div class="page-tab-line"></div>',
-    ].join('');
-    container.innerHTML = tabsHtml;
-
-    container.querySelectorAll('.page-tab[data-input]').forEach((tab) => {
-      tab.addEventListener('click', () => {
-        const value = tab.getAttribute('data-input') || 'overview';
-        safeGoHash({ input: value });
-      });
-    });
+    window.InputTabs.renderInputTabs();
+    state.inputMode = window.InputTabs.getMode();
   }
 
   function applyInputSectionVisibility() {
-    const sections = {
-      overview: document.getElementById('overviewSection'),
-      fields: document.getElementById('detailConfig'),
-      yaml: document.getElementById('rawConfigSection'),
-      notes: document.getElementById('adminNoteSection'),
-      save: document.getElementById('rawConfigSaveSection'),
-    };
-    const mode = state.inputMode || 'overview';
-    const showAll = mode === 'all';
-    const hasRawYaml = Boolean((state.rawConfigText || '').trim());
-    const hasAdminNote = Boolean((state.adminNotePath || '').trim());
-    const showOverview = showAll || mode === 'overview';
-    const showFields = showAll || mode === 'fields';
-    const showYaml = hasRawYaml && (showAll || mode === 'yaml');
-    const showNotes = hasAdminNote && (showAll || mode === 'notes');
-    const inSaveViews = showAll || mode === 'fields' || mode === 'yaml';
-    const isDirty = hasUnsavedRawConfigChanges();
-    const showSavedMessageOnly = !isDirty && state.rawConfigSaveMessage === 'Saved config.yaml';
-    const showSaveSection = inSaveViews && (isDirty || showSavedMessageOnly);
-    const showSaveButton = inSaveViews && isDirty;
-
-    if (sections.overview) sections.overview.classList.toggle('is-hidden', !showOverview);
-    if (sections.fields) sections.fields.classList.toggle('is-hidden', !showFields);
-    if (sections.yaml) sections.yaml.classList.toggle('is-hidden', !showYaml);
-    if (sections.notes) sections.notes.classList.toggle('is-hidden', !showNotes);
-    if (sections.save) sections.save.classList.toggle('is-hidden', !showSaveSection);
-    const saveBtn = document.getElementById('saveRawConfig');
-    if (saveBtn) {
-      saveBtn.classList.toggle('is-hidden', !showSaveButton);
-    }
+    window.InputTabs.applyInputSectionVisibility({
+      hasYaml: Boolean((state.rawConfigText || '').trim()),
+      hasNotes: Boolean((state.adminNotePath || '').trim()),
+      hasSave: true,
+      isDirty: hasUnsavedRawConfigChanges(),
+      savedMessage: state.rawConfigSaveMessage,
+    });
     renderRawSaveStatus();
   }
 
@@ -912,7 +856,7 @@
       if (updateNodeBtn) {
         updateNodeBtn.addEventListener('click', () => {
           const hashUpdate = {
-            node: 'add_node',
+            event: 'add_node',
             node_id: node.node_id || '',
             source_python: sourcePythonForAddNode,
           };
@@ -2322,8 +2266,9 @@
       }
     }
     let nodeChanged = false;
-    if (hash.node && hash.node !== state.activeId) {
-      selectNode(hash.node, false);
+    const hashEventId = String(hash.event || hash.node || '');
+    if (hashEventId && hashEventId !== state.activeId) {
+      selectNode(hashEventId, false);
       nodeChanged = true;
     }
 
@@ -2355,8 +2300,8 @@
     renderList();
 
     const hash = safeGetHash();
-    if (hash.node) {
-      selectNode(hash.node, false);
+    if (hash.event || hash.node) {
+      selectNode(hash.event || hash.node, false);
     } else if (state.nodes[0]) {
       selectNode(state.nodes[0].node_id, false);
     }
